@@ -13,6 +13,7 @@
 
 #main.Exercises .cell {
   border-left: 1px solid var(--cell-exercises-border);
+  width: auto;
 }
 
 #main.Exercises .cell.selected {
@@ -45,7 +46,6 @@
 }
 
 .test-panel {
-  z-index: var(--test-panel-z);
   display: flex;
   flex-direction: column;
   gap: 1em;
@@ -73,7 +73,7 @@
 }
 
 .test-report:hover {
-  background-color: var(--test-pass-active);
+  background-color: var(--SAND);
 }
 
 .test-id.Pass {
@@ -90,7 +90,7 @@
   margin-left: 0.17em;
   font-size: 64%;
   vertical-align: super;
-  z-index: 4;
+  z-index: var(--test-result-z);
 }
 
 .test-instance.Pass:before,
