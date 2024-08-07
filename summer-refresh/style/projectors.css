@@ -34,7 +34,6 @@
 .projector.block.selected > svg > path {
   vector-effect: non-scaling-stroke;
   stroke: var(--Y3);
-  /* filter: url(#drop-shadow-Nul) !important; */
 }
 .projector.selected > svg,
 .projector.selected.indicated > svg,
@@ -134,13 +133,15 @@
 }
 
 .projector.text.selected .cols {
-  color: var(--textarea-selected);
   background: repeating-linear-gradient(
     var(--NONE),
     var(--NONE) 1.41em,
     var(--textarea-h-strip-selected) 1.41em,
     var(--textarea-h-strip-selected) 1.45em /* line-height */
   );
+}
+.projector.text.selected > svg {
+  z-index: 9;
 }
 
 .projector.text textarea {
@@ -154,7 +155,7 @@
   font-family: var(--code-font);
   font-size: inherit;
   border: none;
-  color: var(--textarea-bkg);
+  color: var(--textarea-text);
   background: none;
   box-shadow: inset 1px 0 0 var(--textarea-v-stripe);
   overflow: hidden; /* hack: scrolls in chrome without this? */
