@@ -181,10 +181,14 @@
 
 /* OFFSIDE VIEW */
 
+.projector.probe div:has(.live-offside) {
+  top: 0;
+}
+
 .projector.probe .live-offside {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: baseline;
   gap: 6px;
 }
 .projector.probe .live-offside:empty {
@@ -218,6 +222,7 @@
   gap: 2px;
   position: absolute;
   left: -1.75em;
+  top: 0.35em;
 }
 
 .projector.probe .live-offside .ellipsis {
@@ -526,6 +531,10 @@
   filter: none !important;
 }
 
+.projector.probe .value.indet.cursor .code-text .token {
+  color: grey;
+}
+
 .projector.probe .value.cursor .code-text .token {
   color: var(--exp-indicated);
 }
@@ -584,7 +593,6 @@
 .projector.probe .nav-arrow {
   width: 10px;
   height: 13px;
-
   color: var(--exp-indicated);
   background: url(../../img/noun-arrow-3130579.svg);
   background-size: cover;
@@ -599,9 +607,9 @@
 .projector.probe .nav-arrow {
   filter: invert(1) brightness(0.7) sepia(1) hue-rotate(61deg) saturate(0.6);
 }
-/* .projector.probe.Pat .nav-arrow {
+.projector.probe.Pat .nav-arrow {
   filter: invert(1) brightness(0.7) sepia(1) hue-rotate(141deg) saturate(0.6);
-} */
+}
 
 .projector.probe:not(.indicated) .nav-arrow {
   pointer-events: none;
