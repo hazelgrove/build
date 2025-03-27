@@ -2269,7 +2269,7 @@
     e4("ninja-keys")
   ], NinjaKeys);
 
-  // ninja_module.js
+  // prebundle.js
   hotkeys_esm_default.filter = (event) => {
     const target = event.target || event.srcElement;
     const { tagName, id } = target;
