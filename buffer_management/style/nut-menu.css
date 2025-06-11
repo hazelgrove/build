@@ -248,7 +248,7 @@
 }
 
 #top-bar #editor-mode #slide-navigation:hover {
-  padding-right: 9em; /* Increase padding to make room for the buttons */
+  padding-right: 5em; /* Increase padding to make room for the buttons */
   transition-delay: 0s;
 }
 
