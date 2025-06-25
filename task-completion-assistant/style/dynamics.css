@@ -8,9 +8,12 @@
   background-color: var(--cell-result);
   gap: 0.5em;
   color: var(--cell-result-text);
-  border-top: 1px dotted var(--cell-result-border);
   padding: 0.5em;
   padding-left: 1.2em;
+}
+
+.cell>.cell-result {
+  border-top: 1px dotted var(--cell-result-border);
 }
 
 .cell-result .status {
@@ -165,31 +168,11 @@
   display: inline-block;
 }
 
-.DHCode .OperationError,
-.DHCode .CastDecoration,
-.DHCode .FailedCastDecoration {
+.DHCode .OperationError {
   display: inline-block;
   position: relative;
   font-size: 75%;
   top: -10px;
-}
-
-.DHCode .FailedCastDecoration {
-  background-color: var(--R0);
-  color: var(--BLACK);
-}
-
-.DHCode .FailedCastDelim {
-  color: var(--R1);
-}
-
-.DHCode .CastDecoration {
-  background-color: var(--shard-typ);
-  color: var(--BLACK);
-}
-
-.DHCode .CastDecoration .code-delim {
-  color: var(--token-typ);
 }
 
 /* STEPPER */
