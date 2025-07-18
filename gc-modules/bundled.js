@@ -25477,76 +25477,21 @@
    *)
 
 @lit/reactive-element/reactive-element.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
 lit-html/lit-html.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
 lit-element/lit-element.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
 @lit/reactive-element/decorators/custom-element.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
 @lit/reactive-element/decorators/property.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
 @lit/reactive-element/decorators/state.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
 @lit/reactive-element/decorators/base.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
 @lit/reactive-element/decorators/event-options.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
 @lit/reactive-element/decorators/query.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
 @lit/reactive-element/decorators/query-all.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
 @lit/reactive-element/decorators/query-async.js:
+@lit/reactive-element/decorators/query-assigned-nodes.js:
+lit-html/directive.js:
+lit-html/directives/repeat.js:
+lit-html/async-directive.js:
+lit-html/directives/unsafe-html.js:
   (**
    * @license
    * Copyright 2017 Google LLC
@@ -25554,54 +25499,15 @@ lit-element/lit-element.js:
    *)
 
 @lit/reactive-element/decorators/query-assigned-elements.js:
+lit-html/directives/join.js:
   (**
    * @license
    * Copyright 2021 Google LLC
    * SPDX-License-Identifier: BSD-3-Clause
    *)
 
-@lit/reactive-element/decorators/query-assigned-nodes.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
-lit-html/directive.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
 lit-html/directive-helpers.js:
-  (**
-   * @license
-   * Copyright 2020 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
-lit-html/directives/repeat.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
 lit-html/directives/live.js:
-  (**
-   * @license
-   * Copyright 2020 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
-lit-html/async-directive.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
 lit-html/directives/ref.js:
   (**
    * @license
@@ -25625,20 +25531,6 @@ hotkeys-js/dist/hotkeys.esm.js:
    * http://jaywcjlove.github.io/hotkeys
    * 
    * Licensed under the MIT license.
-   *)
-
-lit-html/directives/unsafe-html.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
-lit-html/directives/join.js:
-  (**
-   * @license
-   * Copyright 2021 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
    *)
 
 @material/mwc-icon/mwc-icon-host.css.js:
