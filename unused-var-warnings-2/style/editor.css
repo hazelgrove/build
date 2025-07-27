@@ -318,18 +318,16 @@ svg:has(.child-line) {
 
 /* BACKPACK DECO */
 
-.backpack {
-  z-index: var(--backpack-z);
+.backpack .code-text {
+  position: relative;
 }
 
-.backpack.cant-put-down > * {
+.backpack.cant-put-down {
   opacity: 40%;
 }
 
 .backpack-joiner {
-  z-index: var(--backpack-z);
-  width: 2px;
-  background-color: var(--backpack-joiner);
+  opacity: 40%;
 }
 
 .backpack-selection {
@@ -340,8 +338,12 @@ svg:has(.child-line) {
   width: fit-content;
   background-color: var(--backpack-selection);
   outline: 1px solid var(--backpack-selection-outline);
-  font-weight: bold;
-  color: var(--token-incomplete) !important;
+}
+
+.backpack-joiner {
+  border-radius: 2px;
+  width: 2px;
+  background-color: var(--backpack-joiner);
 }
 
 .backpack-genie {
@@ -350,6 +352,12 @@ svg:has(.child-line) {
   vector-effect: non-scaling-stroke;
 }
 
-.restructuring-genie {
-  z-index: var(--backpack-z);
+/* BACKPACK TARGETS DECO */
+
+.backpack-target {
+  z-index: var(--backpack-targets-z);
+}
+
+.caret-position-path {
+  fill: var(--backback-targets);
 }
