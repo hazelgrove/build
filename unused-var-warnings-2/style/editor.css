@@ -206,6 +206,10 @@ svg.shard.error {
   z-index: var(--err-hole-z);
 }
 
+.warnings svg.shard.error {
+  z-index: var(--warn-hole-z);
+}
+
 svg.shard.selected > path {
   fill: var(--shard-selected);
   stroke-width: 0.5px;
@@ -220,6 +224,17 @@ svg.shard.error > path,
 }
 svg.shard.error > path {
   fill: var(--error-hole-fill);
+}
+
+.warnings svg.shard.error > path,
+.warnings .errors-piece svg .child-line {
+  stroke: var(--warning-hole-stroke);
+  stroke-width: 0.75px;
+  stroke-dasharray: 1, 1;
+  stroke-linecap: butt;
+}
+.warnings svg.shard.error > path {
+  fill: var(--warning-hole-fill);
 }
 
 /* Code completion decoration */
@@ -303,16 +318,18 @@ svg:has(.child-line) {
 
 /* BACKPACK DECO */
 
-.backpack .code-text {
-  position: relative;
+.backpack {
+  z-index: var(--backpack-z);
 }
 
-.backpack.cant-put-down {
+.backpack.cant-put-down > * {
   opacity: 40%;
 }
 
 .backpack-joiner {
-  opacity: 40%;
+  z-index: var(--backpack-z);
+  width: 2px;
+  background-color: var(--backpack-joiner);
 }
 
 .backpack-selection {
@@ -323,12 +340,8 @@ svg:has(.child-line) {
   width: fit-content;
   background-color: var(--backpack-selection);
   outline: 1px solid var(--backpack-selection-outline);
-}
-
-.backpack-joiner {
-  border-radius: 2px;
-  width: 2px;
-  background-color: var(--backpack-joiner);
+  font-weight: bold;
+  color: var(--token-incomplete) !important;
 }
 
 .backpack-genie {
@@ -337,12 +350,6 @@ svg:has(.child-line) {
   vector-effect: non-scaling-stroke;
 }
 
-/* BACKPACK TARGETS DECO */
-
-.backpack-target {
-  z-index: var(--backpack-targets-z);
-}
-
-.caret-position-path {
-  fill: var(--backback-targets);
+.restructuring-genie {
+  z-index: var(--backpack-z);
 }
