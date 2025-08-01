@@ -53,12 +53,20 @@
 .projector.probe:has(.ap.pinned) > svg {
   /* fill: var(--exp-ap-indicated); */
 }
+.refractors .projector.probe.indicated.Exp > svg {
+  fill: var(--exp-base);
+}
+.refractors .projector.probe.indicated.Pat > svg {
+  fill: var(--pat-base);
+}
 
 /* INLINE VIEW */
 
 .projector.probe .main {
   font-family: var(--code-font);
   font-size: var(--base-font-size);
+  line-height: var(--line-height);
+  white-space: pre;
   color: var(--code-text);
   display: flex;
   flex-direction: row;
@@ -71,7 +79,7 @@
 .cell-item:not(.selected):not(.error) .projector.probe.indicated .main {
   color: white;
 }
-.projector.probe .main:focus {
+.projector.probe .live-offside:focus {
   outline: none;
 }
 
@@ -127,6 +135,7 @@
 }
 .overlays .projector.probe.Exp .num-closures {
   --original-bg: var(--exp-base);
+  color: var(--exp-shadow);
 }
 .overlays .projector.probe.Pat .num-closures {
   --original-bg: var(--pat-base);
@@ -298,6 +307,7 @@
     box-shadow 0.1s ease-in-out, top 0.1s ease-in-out;
   background-color: var(--bkg);
   border-bottom-color: var(--bottom-border-clr);
+  padding: 0 0.1em;
 }
 .projector.probe .closure {
   --bottom-border-clr: oklch(0.8 0.06 145.88); /*var(--exp-shadow);*/
@@ -312,7 +322,7 @@
   --below-shadow: var(--R2);
   --bottom-border-clr: var(--R2);
   --inner-shadow: #f59393 !important; */
-  background-color: oklch(0.87 0 0) !important;
+  background-color: var(--T3) !important;
   --below-shadow: oklch(0.46 0 0);
   --bottom-border-clr: oklch(0.4 0 0);
   --inner-shadow: #a2a2a2 !important;
@@ -331,7 +341,14 @@
   outline-color: var(--caller-accent);
 }
 .projector.probe
-  .live-offside:has(
+  .live-offside.Many:has(
+    .value.cursor-unrelated:not(.below):not(.above):not(:hover)
+  ),
+.projector.probe .live-offside:has(.value.cursor-callee.indirect) {
+  /* filter: contrast(0.32) brightness(1.51); */
+}
+.projector.probe
+  .live-offside.Single:has(
     .value.cursor-unrelated:not(.below):not(.above):not(:hover)
   ),
 .projector.probe .live-offside:has(.value.cursor-callee.indirect) {
@@ -456,7 +473,7 @@
 }
 
 /* TOKEN BKG INDICATED + HOVER */
-.projector.probe.indicated .closure:has(.value.cursor-unrelated) {
+.projector.probe.indicated .Many.closure:has(.value.cursor-unrelated) {
   filter: contrast(0.5) brightness(1.32) saturate(0.7);
 }
 .projector.probe.indicated .closure:has(.value.cursor) {
@@ -470,9 +487,14 @@
 .projector.probe.indicated .closure:has(.value.cursor) {
   outline-color: var(--exp-indicated);
 }
-.projector.probe.indicated:has(*:focus) .closure:has(.value.cursor) {
-  outline-color: var(--R1);
+.projector.probe.indicated .closure:has(.value.cursor) {
+  outline: 1.5px solid var(--R1);
 }
+.projector.probe.indicated .closure:has(.value.above),
+.projector.probe.indicated .closure:has(.value.below) {
+  outline: 1.5px solid oklch(0.41 0.19 28.96); /* TODO(andrew*/
+}
+
 /* .projector.probe.indicated.Pat .closure:has(.value.cursor),
 .projector.probe.Pat .closure:hover {
   outline-color: var(--pat-indicated);
@@ -557,7 +579,8 @@
 .projector.probe .value.cursor-unrelated .code-text .token,
 .projector.probe .value.cursor-caller .code-text .token {
   /* filter: invert(1) brightness(10); */
-  color: white;
+  /* color: white; */
+  color: var(--exp-indicated);
 }
 .projector.probe .value.cursor-callee.indirect .code-text .token {
   color: white;
