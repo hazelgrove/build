@@ -12,6 +12,7 @@
 @import "style/sidebar.css";
 @import "style/exercise-mode.css";
 @import "style/tutorial-mode.css";
+@import "style/test-panel.css";
 @import "style/cell.css";
 @import "style/dynamics.css";
 @import "style/stepper.css";
@@ -86,10 +87,11 @@ select {
 }
 
 #main {
-  grid-row: 2;
+  grid-row: 1 / span 2;
   grid-column: 1 / span 1;
   overflow: auto;
   padding: 0;
+  padding-top: 2em;
   background-color: var(--main-bkg);
   display: flex;
   flex-direction: column;
@@ -121,6 +123,10 @@ select {
   align-items: center;
   background-color: var(--ui-bkg);
   outline: 0.6px solid var(--BR2);
+}
+
+#top-bar:hover {
+  z-index: var(--top-bar-hover-z);
 }
 
 #bottom-bar {
