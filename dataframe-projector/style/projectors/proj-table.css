@@ -36,7 +36,9 @@
 
 
 .projector.table {
+    height: 100%;
     width: 100%;
+    overflow: auto;
     box-sizing: content-box;
 
     display: flex;
