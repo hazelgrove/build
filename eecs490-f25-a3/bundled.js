@@ -28,7 +28,7 @@
   // ../../../../../node_modules/big-integer/BigInteger.js
   var require_BigInteger = __commonJS({
     "../../../../../node_modules/big-integer/BigInteger.js"(exports2, module2) {
-      var bigInt2 = function(undefined2) {
+      var bigInt2 = (function(undefined2) {
         "use strict";
         var BASE = 1e7, LOG_BASE = 7, MAX_INT = 9007199254740992, MAX_INT_ARR = smallToArray(MAX_INT), DEFAULT_ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyz";
         var supportsNativeBigInt = typeof BigInt === "function";
@@ -1269,7 +1269,7 @@
           return parseBaseFromArray(digits.map(parseValue), parseValue(base || 10), isNegative);
         };
         return Integer;
-      }();
+      })();
       if (typeof module2 !== "undefined" && module2.hasOwnProperty("exports")) {
         module2.exports = bigInt2;
       }
@@ -1302,15 +1302,15 @@
         recursionLevelNestedRadicalsRemoval = 0;
         do_simplify_nested_radicals = true;
         avoidCalculatingPowersIntoArctans = true;
-        rational = function() {
+        rational = (function() {
           class rational2 {
           }
           ;
           rational2.prototype.a = null;
           rational2.prototype.b = null;
           return rational2;
-        }.call(this);
-        U = function() {
+        }).call(this);
+        U = (function() {
           class U2 {
             toString() {
               return print_expr(this);
@@ -1335,7 +1335,7 @@
           U2.prototype.k = 0;
           U2.prototype.tag = 0;
           return U2;
-        }.call(this);
+        }).call(this);
         errorMessage = "";
         CONS = 0;
         NUM = 1;
@@ -1543,17 +1543,17 @@
         chainOfUserSymbolsNotFunctionsBeingEvaluated = [];
         stringsEmittedByUserPrintouts = "";
         called_from_Algebra_block = false;
-        tensor = function() {
+        tensor = (function() {
           class tensor2 {
             constructor() {
-              this.dim = function() {
+              this.dim = (function() {
                 var o12, ref2, results;
                 results = [];
                 for (o12 = 0, ref2 = MAXDIM; 0 <= ref2 ? o12 <= ref2 : o12 >= ref2; 0 <= ref2 ? o12++ : o12--) {
                   results.push(0);
                 }
                 return results;
-              }();
+              })();
               this.elem = [];
             }
           }
@@ -1563,8 +1563,8 @@
           tensor2.prototype.nelem = 0;
           tensor2.prototype.elem = null;
           return tensor2;
-        }.call(this);
-        display = function() {
+        }).call(this);
+        display = (function() {
           class display2 {
           }
           ;
@@ -1573,8 +1573,8 @@
           display2.prototype.n = 0;
           display2.prototype.a = [];
           return display2;
-        }.call(this);
-        text_metric = function() {
+        }).call(this);
+        text_metric = (function() {
           class text_metric2 {
           }
           ;
@@ -1582,7 +1582,7 @@
           text_metric2.prototype.descent = 0;
           text_metric2.prototype.width = 0;
           return text_metric2;
-        }.call(this);
+        }).call(this);
         tos = 0;
         expanding = 0;
         evaluatingAsFloats = 0;
@@ -1591,7 +1591,7 @@
         fmt_index = 0;
         fmt_level = 0;
         verbosing = 0;
-        primetab = function() {
+        primetab = (function() {
           var ceil, i5, j2, primes;
           primes = [2];
           i5 = 3;
@@ -1612,7 +1612,7 @@
           }
           primes[MAXPRIMETAB] = 0;
           return primes;
-        }();
+        })();
         esc_flag = 0;
         draw_flag = 0;
         mtotal = 0;
@@ -7096,7 +7096,7 @@
             p3 = pop();
             results = [];
             for (i5 = s1 = 0, ref10 = EIG_N; 0 <= ref10 ? s1 < ref10 : s1 > ref10; i5 = 0 <= ref10 ? ++s1 : --s1) {
-              results.push(function() {
+              results.push((function() {
                 var ref11, results1, t1;
                 results1 = [];
                 for (j2 = t1 = 0, ref11 = EIG_N; 0 <= ref11 ? t1 < ref11 : t1 > ref11; j2 = 0 <= ref11 ? ++t1 : --t1) {
@@ -7104,7 +7104,7 @@
                   results1.push(p3.tensor.elem[EIG_N * i5 + j2] = pop());
                 }
                 return results1;
-              }());
+              })());
             }
             return results;
           }
@@ -8155,7 +8155,7 @@
           d3 = pop_integer();
           results = [];
           for (i5 = o12 = 0, ref2 = n9; 0 <= ref2 ? o12 < ref2 : o12 > ref2; i5 = 0 <= ref2 ? ++o12 : --o12) {
-            results.push(function() {
+            results.push((function() {
               var i12, ref12, results1;
               results1 = [];
               for (j2 = i12 = 0, ref12 = d3; 0 <= ref12 ? i12 < ref12 : i12 > ref12; j2 = 0 <= ref12 ? ++i12 : --i12) {
@@ -8176,7 +8176,7 @@
                 results1.push(expanding = prev_expanding);
               }
               return results1;
-            }());
+            })());
           }
           return results;
         };
@@ -8278,7 +8278,7 @@
           d3 = pop_integer();
           results = [];
           for (i5 = o12 = ref2 = n9; ref2 <= 0 ? o12 < 0 : o12 > 0; i5 = ref2 <= 0 ? ++o12 : --o12) {
-            results.push(function() {
+            results.push((function() {
               var i12, ref12, results1;
               results1 = [];
               for (j2 = i12 = 0, ref12 = d3; 0 <= ref12 ? i12 < ref12 : i12 > ref12; j2 = 0 <= ref12 ? ++i12 : --i12) {
@@ -8292,7 +8292,7 @@
                 results1.push(multiply());
               }
               return results1;
-            }());
+            })());
           }
           return results;
         };
@@ -11105,7 +11105,7 @@
               divide();
               stack[u4 + n9 * d3 + j2] = pop();
             }
-            results.push(function() {
+            results.push((function() {
               var m1, ref5, results1;
               results1 = [];
               for (i5 = m1 = 0, ref5 = n9; 0 <= ref5 ? m1 < ref5 : m1 > ref5; i5 = 0 <= ref5 ? ++m1 : --m1) {
@@ -11113,7 +11113,7 @@
                   continue;
                 }
                 p2 = stack[a4 + n9 * i5 + d3];
-                results1.push(function() {
+                results1.push((function() {
                   var n1, ref6, results2;
                   results2 = [];
                   for (j2 = n1 = 0, ref6 = n9; 0 <= ref6 ? n1 < ref6 : n1 > ref6; j2 = 0 <= ref6 ? ++n1 : --n1) {
@@ -11133,10 +11133,10 @@
                     results2.push(stack[u4 + n9 * i5 + j2] = pop());
                   }
                   return results2;
-                }());
+                })());
               }
               return results1;
-            }());
+            })());
           }
           return results;
         };
@@ -12801,14 +12801,14 @@
         NROOTS_RANDOM = function() {
           return 4 * Math.random() - 2;
         };
-        numericRootOfPolynomial = function() {
+        numericRootOfPolynomial = (function() {
           class numericRootOfPolynomial2 {
           }
           ;
           numericRootOfPolynomial2.prototype.r = 0;
           numericRootOfPolynomial2.prototype.i = 0;
           return numericRootOfPolynomial2;
-        }.call(this);
+        }).call(this);
         nroots_a = new numericRootOfPolynomial();
         nroots_b = new numericRootOfPolynomial();
         nroots_x = new numericRootOfPolynomial();
@@ -15242,7 +15242,7 @@
           return 0;
         };
         YMAX = 1e4;
-        glyph = function() {
+        glyph = (function() {
           class glyph2 {
           }
           ;
@@ -15250,7 +15250,7 @@
           glyph2.prototype.x = 0;
           glyph2.prototype.y = 0;
           return glyph2;
-        }.call(this);
+        }).call(this);
         chartab = [];
         for (charTabIndex = i1 = 0, ref1 = YMAX; 0 <= ref1 ? i1 < ref1 : i1 > ref1; charTabIndex = 0 <= ref1 ? ++i1 : --i1) {
           chartab[charTabIndex] = new glyph();
@@ -16098,7 +16098,7 @@
           return tmpBuffer[sIndex++] = "\n";
         };
         N = 100;
-        oneElement = function() {
+        oneElement = (function() {
           class oneElement2 {
           }
           ;
@@ -16109,7 +16109,7 @@
           oneElement2.prototype.index = 0;
           oneElement2.prototype.count = 0;
           return oneElement2;
-        }.call(this);
+        }).call(this);
         elem = [];
         for (elelmIndex = j1 = 0; j1 < 1e4; elelmIndex = ++j1) {
           elem[elelmIndex] = new oneElement();
@@ -23205,18 +23205,18 @@
   };
   var r = (t5) => new o2("string" == typeof t5 ? t5 : t5 + "", void 0, s);
   var i = (t5, ...e11) => {
-    const n9 = 1 === t5.length ? t5[0] : e11.reduce((e12, s7, n10) => e12 + ((t6) => {
+    const n9 = 1 === t5.length ? t5[0] : e11.reduce(((e12, s7, n10) => e12 + ((t6) => {
       if (true === t6._$cssResult$) return t6.cssText;
       if ("number" == typeof t6) return t6;
       throw Error("Value passed to 'css' function must be a 'css' function result: " + t6 + ". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.");
-    })(s7) + t5[n10 + 1], t5[0]);
+    })(s7) + t5[n10 + 1]), t5[0]);
     return new o2(n9, t5, s);
   };
   var S = (s7, n9) => {
-    e ? s7.adoptedStyleSheets = n9.map((t5) => t5 instanceof CSSStyleSheet ? t5 : t5.styleSheet) : n9.forEach((e11) => {
+    e ? s7.adoptedStyleSheets = n9.map(((t5) => t5 instanceof CSSStyleSheet ? t5 : t5.styleSheet)) : n9.forEach(((e11) => {
       const n10 = document.createElement("style"), o12 = t.litNonce;
       void 0 !== o12 && n10.setAttribute("nonce", o12), n10.textContent = e11.cssText, s7.appendChild(n10);
-    });
+    }));
   };
   var c = e ? (t5) => t5 : (t5) => t5 instanceof CSSStyleSheet ? ((t6) => {
     let e11 = "";
@@ -23273,10 +23273,10 @@
     static get observedAttributes() {
       this.finalize();
       const t5 = [];
-      return this.elementProperties.forEach((i5, s7) => {
+      return this.elementProperties.forEach(((i5, s7) => {
         const e11 = this._$Ep(s7, i5);
         void 0 !== e11 && (this._$Ev.set(e11, s7), t5.push(e11));
-      }), t5;
+      })), t5;
     }
     static createProperty(t5, i5 = l) {
       if (i5.state && (i5.attribute = false), this.finalize(), this.elementProperties.set(t5, i5), !i5.noAccessor && !this.prototype.hasOwnProperty(t5)) {
@@ -23319,7 +23319,7 @@
     }
     _$Eu() {
       var t5;
-      this._$E_ = new Promise((t6) => this.enableUpdating = t6), this._$AL = /* @__PURE__ */ new Map(), this._$Eg(), this.requestUpdate(), null === (t5 = this.constructor.h) || void 0 === t5 || t5.forEach((t6) => t6(this));
+      this._$E_ = new Promise(((t6) => this.enableUpdating = t6)), this._$AL = /* @__PURE__ */ new Map(), this._$Eg(), this.requestUpdate(), null === (t5 = this.constructor.h) || void 0 === t5 || t5.forEach(((t6) => t6(this)));
     }
     addController(t5) {
       var i5, s7;
@@ -23330,9 +23330,9 @@
       null === (i5 = this._$ES) || void 0 === i5 || i5.splice(this._$ES.indexOf(t5) >>> 0, 1);
     }
     _$Eg() {
-      this.constructor.elementProperties.forEach((t5, i5) => {
+      this.constructor.elementProperties.forEach(((t5, i5) => {
         this.hasOwnProperty(i5) && (this._$Ei.set(i5, this[i5]), delete this[i5]);
-      });
+      }));
     }
     createRenderRoot() {
       var t5;
@@ -23341,19 +23341,19 @@
     }
     connectedCallback() {
       var t5;
-      void 0 === this.renderRoot && (this.renderRoot = this.createRenderRoot()), this.enableUpdating(true), null === (t5 = this._$ES) || void 0 === t5 || t5.forEach((t6) => {
+      void 0 === this.renderRoot && (this.renderRoot = this.createRenderRoot()), this.enableUpdating(true), null === (t5 = this._$ES) || void 0 === t5 || t5.forEach(((t6) => {
         var i5;
         return null === (i5 = t6.hostConnected) || void 0 === i5 ? void 0 : i5.call(t6);
-      });
+      }));
     }
     enableUpdating(t5) {
     }
     disconnectedCallback() {
       var t5;
-      null === (t5 = this._$ES) || void 0 === t5 || t5.forEach((t6) => {
+      null === (t5 = this._$ES) || void 0 === t5 || t5.forEach(((t6) => {
         var i5;
         return null === (i5 = t6.hostDisconnected) || void 0 === i5 ? void 0 : i5.call(t6);
-      });
+      }));
     }
     attributeChangedCallback(t5, i5, s7) {
       this._$AK(t5, s7);
@@ -23394,14 +23394,14 @@
     performUpdate() {
       var t5;
       if (!this.isUpdatePending) return;
-      this.hasUpdated, this._$Ei && (this._$Ei.forEach((t6, i6) => this[i6] = t6), this._$Ei = void 0);
+      this.hasUpdated, this._$Ei && (this._$Ei.forEach(((t6, i6) => this[i6] = t6)), this._$Ei = void 0);
       let i5 = false;
       const s7 = this._$AL;
       try {
-        i5 = this.shouldUpdate(s7), i5 ? (this.willUpdate(s7), null === (t5 = this._$ES) || void 0 === t5 || t5.forEach((t6) => {
+        i5 = this.shouldUpdate(s7), i5 ? (this.willUpdate(s7), null === (t5 = this._$ES) || void 0 === t5 || t5.forEach(((t6) => {
           var i6;
           return null === (i6 = t6.hostUpdate) || void 0 === i6 ? void 0 : i6.call(t6);
-        }), this.update(s7)) : this._$Ek();
+        })), this.update(s7)) : this._$Ek();
       } catch (t6) {
         throw i5 = false, this._$Ek(), t6;
       }
@@ -23411,10 +23411,10 @@
     }
     _$AE(t5) {
       var i5;
-      null === (i5 = this._$ES) || void 0 === i5 || i5.forEach((t6) => {
+      null === (i5 = this._$ES) || void 0 === i5 || i5.forEach(((t6) => {
         var i6;
         return null === (i6 = t6.hostUpdated) || void 0 === i6 ? void 0 : i6.call(t6);
-      }), this.hasUpdated || (this.hasUpdated = true, this.firstUpdated(t5)), this.updated(t5);
+      })), this.hasUpdated || (this.hasUpdated = true, this.firstUpdated(t5)), this.updated(t5);
     }
     _$Ek() {
       this._$AL = /* @__PURE__ */ new Map(), this.isUpdatePending = false;
@@ -23429,7 +23429,7 @@
       return true;
     }
     update(t5) {
-      void 0 !== this._$EC && (this._$EC.forEach((t6, i5) => this._$EO(i5, this[i5], t6)), this._$EC = void 0), this._$Ek();
+      void 0 !== this._$EC && (this._$EC.forEach(((t6, i5) => this._$EO(i5, this[i5], t6))), this._$EC = void 0), this._$Ek();
     }
     updated(t5) {
     }
@@ -23773,7 +23773,7 @@
 
   // ../../../../../node_modules/@lit/reactive-element/decorators/query-assigned-elements.js
   var n6;
-  var e6 = null != (null === (n6 = window.HTMLSlotElement) || void 0 === n6 ? void 0 : n6.prototype.assignedElements) ? (o12, n9) => o12.assignedElements(n9) : (o12, n9) => o12.assignedNodes(n9).filter((o13) => o13.nodeType === Node.ELEMENT_NODE);
+  var e6 = null != (null === (n6 = window.HTMLSlotElement) || void 0 === n6 ? void 0 : n6.prototype.assignedElements) ? (o12, n9) => o12.assignedElements(n9) : (o12, n9) => o12.assignedNodes(n9).filter(((o13) => o13.nodeType === Node.ELEMENT_NODE));
 
   // ../../../../../node_modules/lit-html/directive.js
   var t4 = { ATTRIBUTE: 1, CHILD: 2, PROPERTY: 3, BOOLEAN_ATTRIBUTE: 4, EVENT: 5, ELEMENT: 6 };
@@ -24012,19 +24012,19 @@
       if (super(t5), t5.type !== t4.ATTRIBUTE || "class" !== t5.name || (null === (i5 = t5.strings) || void 0 === i5 ? void 0 : i5.length) > 2) throw Error("`classMap()` can only be used in the `class` attribute and must be the only part in the attribute.");
     }
     render(t5) {
-      return " " + Object.keys(t5).filter((i5) => t5[i5]).join(" ") + " ";
+      return " " + Object.keys(t5).filter(((i5) => t5[i5])).join(" ") + " ";
     }
     update(i5, [s7]) {
       var r6, o12;
       if (void 0 === this.it) {
-        this.it = /* @__PURE__ */ new Set(), void 0 !== i5.strings && (this.nt = new Set(i5.strings.join(" ").split(/\s/).filter((t5) => "" !== t5)));
+        this.it = /* @__PURE__ */ new Set(), void 0 !== i5.strings && (this.nt = new Set(i5.strings.join(" ").split(/\s/).filter(((t5) => "" !== t5))));
         for (const t5 in s7) s7[t5] && !(null === (r6 = this.nt) || void 0 === r6 ? void 0 : r6.has(t5)) && this.it.add(t5);
         return this.render(s7);
       }
       const e11 = i5.element.classList;
-      this.it.forEach((t5) => {
+      this.it.forEach(((t5) => {
         t5 in s7 || (e11.remove(t5), this.it.delete(t5));
-      });
+      }));
       for (const t5 in s7) {
         const i6 = !!s7[t5];
         i6 === this.it.has(t5) || (null === (o12 = this.nt) || void 0 === o12 ? void 0 : o12.has(t5)) || (i6 ? (e11.add(t5), this.it.add(t5)) : (e11.remove(t5), this.it.delete(t5)));
@@ -25477,76 +25477,21 @@
    *)
 
 @lit/reactive-element/reactive-element.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
 lit-html/lit-html.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
 lit-element/lit-element.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
 @lit/reactive-element/decorators/custom-element.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
 @lit/reactive-element/decorators/property.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
 @lit/reactive-element/decorators/state.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
 @lit/reactive-element/decorators/base.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
 @lit/reactive-element/decorators/event-options.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
 @lit/reactive-element/decorators/query.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
 @lit/reactive-element/decorators/query-all.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
 @lit/reactive-element/decorators/query-async.js:
+@lit/reactive-element/decorators/query-assigned-nodes.js:
+lit-html/directive.js:
+lit-html/directives/repeat.js:
+lit-html/async-directive.js:
+lit-html/directives/unsafe-html.js:
   (**
    * @license
    * Copyright 2017 Google LLC
@@ -25554,54 +25499,15 @@ lit-element/lit-element.js:
    *)
 
 @lit/reactive-element/decorators/query-assigned-elements.js:
+lit-html/directives/join.js:
   (**
    * @license
    * Copyright 2021 Google LLC
    * SPDX-License-Identifier: BSD-3-Clause
    *)
 
-@lit/reactive-element/decorators/query-assigned-nodes.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
-lit-html/directive.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
 lit-html/directive-helpers.js:
-  (**
-   * @license
-   * Copyright 2020 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
-lit-html/directives/repeat.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
 lit-html/directives/live.js:
-  (**
-   * @license
-   * Copyright 2020 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
-lit-html/async-directive.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
 lit-html/directives/ref.js:
   (**
    * @license
@@ -25625,20 +25531,6 @@ hotkeys-js/dist/hotkeys.esm.js:
    * http://jaywcjlove.github.io/hotkeys
    * 
    * Licensed under the MIT license.
-   *)
-
-lit-html/directives/unsafe-html.js:
-  (**
-   * @license
-   * Copyright 2017 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
-   *)
-
-lit-html/directives/join.js:
-  (**
-   * @license
-   * Copyright 2021 Google LLC
-   * SPDX-License-Identifier: BSD-3-Clause
    *)
 
 @material/mwc-icon/mwc-icon-host.css.js:
