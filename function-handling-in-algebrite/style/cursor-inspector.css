@@ -180,7 +180,7 @@
   color: var(--BR2);
 }
 #cursor-inspector.error .divider {
-  color: var(--R2) !important;
+  color: var(--R2);
 }
 #cursor-inspector .Pat .divider {
   color: var(--token-pat);

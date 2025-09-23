@@ -21,9 +21,9 @@
 }
 
 .step-display {
-  display: flex;
+  display:flex;
   flex-direction: row;
-  gap: 0.5em;
+  gap: 0.5em
 }
 
 .step-output {
@@ -31,7 +31,7 @@
 }
 
 .stepper-controls {
-  display: flex;
+  display:flex;
   flex-direction: row;
   gap: 0.5em;
 }
@@ -94,21 +94,15 @@
   opacity: 1;
 }
 
-*:hover > .subtle-button {
+*:hover>.subtle-button {
   opacity: 1;
 }
+
 
 .inline-editor-wrapper {
   background-color: var(--light-page-color);
   padding: 0.2em 0.5em 0.2em 0.5em;
-  clip-path: polygon(
-    0.5em 0%,
-    calc(100% - 0.5em) 0%,
-    100% 50%,
-    calc(100% - 0.5em) 100%,
-    0.5em 100%,
-    0% 50%
-  );
+  clip-path: polygon(0.5em 0%, calc(100% - 0.5em) 0%, 100% 50%, calc(100% - 0.5em) 100%, 0.5em 100%, 0% 50%);
   border: 1px dotted var(--cell-result-border);
 }
 
@@ -173,6 +167,7 @@
   gap: 5px;
 }
 
+
 /* STEPPER (OLD) */
 
 .stepper-justification {
@@ -202,58 +197,65 @@
   color: var(--STONE);
 }
 
+
 /* TILES */
 
-.overlays .child-line {
-  /* To make it align to shard shadows */
-  translate: 0 0.02px;
-}
-
-.step-next > svg.shard > path,
-.step-next > svg.shard > path *:not(.EmptyHole *, .EmptyHole) {
+.tile-next-step path,
+.tile-next-step path *:not(.DHCode .EmptyHole *, .DHCode .EmptyHole) {
+  border: 1px var(--G1) !important;
   fill: var(--G1) !important;
   cursor: pointer;
 }
-.step-refl > svg.shard > path,
-.step-refl > svg.shard > path *:not(.EmptyHole *, .EmptyHole) {
-  fill: var(--exp-ap) !important;
-  cursor: pointer;
-}
-.step-taken > svg.shard > path,
-.step-taken > svg.shard > path *:not(.EmptyHole *, .EmptyHole) {
+
+.tile-taken-step path,
+.tile-taken-step path *:not(.DHCode .EmptyHole *, .DHCode .EmptyHole) {
   border: 1px var(--BR1);
   fill: var(--BR1);
 }
 
-.step-next > svg > path.child-line {
+.child-line.Exp.next-step-line {
   stroke: var(--G2);
 }
-.step-taken > svg > path.child-line {
+
+.child-line.Exp.taken-step-line {
   stroke: var(--BR1);
 }
-.step-refl > svg > path.child-line {
-  stroke: var(--TYP);
+
+.taken-step-line {
+  stroke: var(--BR1);
 }
 
-.step-next > svg.shard {
+.tile-next-step .tile-path.Exp.indicated {
+  fill: var(--G1);
+}
+
+.tile-taken-step .tile-path.Exp.indicated {
+  fill: var(--BR1);
+}
+
+svg.tile-next-step {
   pointer-events: all;
   cursor: pointer;
   z-index: var(--stepper-interactive-z) !important;
   filter: drop-shadow(1px 1px var(--G2)) !important;
 }
-.step-refl > svg.shard {
+
+svg.tile-next-step-top {
   pointer-events: all;
   cursor: pointer;
+  visibility: hidden;
   z-index: var(--stepper-interactive-z) !important;
-  filter: drop-shadow(1px 1px var(--TYP)) !important;
+  filter: drop-shadow(1px 1px var(--G2)) !important;
 }
-.step-taken > svg.shard {
+
+svg.tile-taken-step {
   filter: drop-shadow(1px 1px var(--BR1)) !important;
 }
 
 .cell-result .code {
   pointer-events: none;
 }
+
 
 /* STEPPER SETTINGS */
 
