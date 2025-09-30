@@ -75,6 +75,9 @@
 .code-deco .refractors svg path.child-line {
   stroke: var(--G0) !important;
 }
+.code-deco .refractors svg path.child-line.repl {
+  stroke: var(--PAT) !important;
+}
 
 .code-deco .refractors svg.shard path {
   fill: var(--exp-base) !important;
@@ -241,7 +244,7 @@
 .projector.probe .pin {
   pointer-events: auto;
   position: absolute;
-  right: -0.4em;
+  left: -0.85em;
   top: -0.4em;
   height: 1.3em;
   width: 1.3em;
