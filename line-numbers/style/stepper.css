@@ -63,14 +63,6 @@
   margin-left: -1em;
 }
 
-.induction-case-hypothesis {
-  display: flex;
-  flex-direction: row;
-  gap: 0.5em;
-  margin-left: 3em;
-  align-items: center;
-}
-
 .induction-case-patten {
   display: flex;
   flex-direction: row;
@@ -130,7 +122,7 @@
   position: absolute;
   top: calc(100% + 0.5em);
   left: 2em;
-  z-index: var(--context-inspector-z);
+  z-index: var(--stepper-interactive-z);
   display: flex;
   flex-direction: column;
   gap: 0.5em;
@@ -328,16 +320,4 @@
 .settings-modal .icon.disabled:hover svg {
   transform: scale(100%);
   cursor: not-allowed;
-}
-
-.assumption-box {
-  display: flex;
-  flex-direction: row;
-  gap : 1em;
-  align-items: center;
-  margin-left: 2em;
-}
-
-.step-placeholder {
-  background-color: var(--test-panel-bkg)
 }
