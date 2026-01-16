@@ -19,6 +19,7 @@ var __copyProps = (to, from, except, desc) => {
   }
   return to;
 };
+var __reExport = (target, mod2, secondTarget) => (__copyProps(target, mod2, "default"), secondTarget && __copyProps(secondTarget, mod2, "default"));
 var __toESM = (mod2, isNodeMode, target) => (target = mod2 != null ? __create(__getProtoOf(mod2)) : {}, __copyProps(
   // If the importer is in node compatibility mode or this is not an ESM
   // file that has been converted to a CommonJS file using a Babel-
@@ -23636,6 +23637,631 @@ var require_interval_tree = __commonJS({
       }
       return new IntervalTree2(createIntervalTree(intervals));
     }
+  }
+});
+
+// ../../../node_modules/eventemitter3/index.js
+var require_eventemitter3 = __commonJS({
+  "../../../node_modules/eventemitter3/index.js"(exports2, module2) {
+    "use strict";
+    var has = Object.prototype.hasOwnProperty;
+    var prefix = "~";
+    function Events() {
+    }
+    if (Object.create) {
+      Events.prototype = /* @__PURE__ */ Object.create(null);
+      if (!new Events().__proto__) prefix = false;
+    }
+    function EE(fn, context, once) {
+      this.fn = fn;
+      this.context = context;
+      this.once = once || false;
+    }
+    function addListener(emitter, event, fn, context, once) {
+      if (typeof fn !== "function") {
+        throw new TypeError("The listener must be a function");
+      }
+      var listener = new EE(fn, context || emitter, once), evt = prefix ? prefix + event : event;
+      if (!emitter._events[evt]) emitter._events[evt] = listener, emitter._eventsCount++;
+      else if (!emitter._events[evt].fn) emitter._events[evt].push(listener);
+      else emitter._events[evt] = [emitter._events[evt], listener];
+      return emitter;
+    }
+    function clearEvent(emitter, evt) {
+      if (--emitter._eventsCount === 0) emitter._events = new Events();
+      else delete emitter._events[evt];
+    }
+    function EventEmitter2() {
+      this._events = new Events();
+      this._eventsCount = 0;
+    }
+    EventEmitter2.prototype.eventNames = function eventNames() {
+      var names = [], events, name;
+      if (this._eventsCount === 0) return names;
+      for (name in events = this._events) {
+        if (has.call(events, name)) names.push(prefix ? name.slice(1) : name);
+      }
+      if (Object.getOwnPropertySymbols) {
+        return names.concat(Object.getOwnPropertySymbols(events));
+      }
+      return names;
+    };
+    EventEmitter2.prototype.listeners = function listeners(event) {
+      var evt = prefix ? prefix + event : event, handlers = this._events[evt];
+      if (!handlers) return [];
+      if (handlers.fn) return [handlers.fn];
+      for (var i5 = 0, l8 = handlers.length, ee = new Array(l8); i5 < l8; i5++) {
+        ee[i5] = handlers[i5].fn;
+      }
+      return ee;
+    };
+    EventEmitter2.prototype.listenerCount = function listenerCount(event) {
+      var evt = prefix ? prefix + event : event, listeners = this._events[evt];
+      if (!listeners) return 0;
+      if (listeners.fn) return 1;
+      return listeners.length;
+    };
+    EventEmitter2.prototype.emit = function emit(event, a1, a22, a32, a42, a5) {
+      var evt = prefix ? prefix + event : event;
+      if (!this._events[evt]) return false;
+      var listeners = this._events[evt], len = arguments.length, args2, i5;
+      if (listeners.fn) {
+        if (listeners.once) this.removeListener(event, listeners.fn, void 0, true);
+        switch (len) {
+          case 1:
+            return listeners.fn.call(listeners.context), true;
+          case 2:
+            return listeners.fn.call(listeners.context, a1), true;
+          case 3:
+            return listeners.fn.call(listeners.context, a1, a22), true;
+          case 4:
+            return listeners.fn.call(listeners.context, a1, a22, a32), true;
+          case 5:
+            return listeners.fn.call(listeners.context, a1, a22, a32, a42), true;
+          case 6:
+            return listeners.fn.call(listeners.context, a1, a22, a32, a42, a5), true;
+        }
+        for (i5 = 1, args2 = new Array(len - 1); i5 < len; i5++) {
+          args2[i5 - 1] = arguments[i5];
+        }
+        listeners.fn.apply(listeners.context, args2);
+      } else {
+        var length4 = listeners.length, j2;
+        for (i5 = 0; i5 < length4; i5++) {
+          if (listeners[i5].once) this.removeListener(event, listeners[i5].fn, void 0, true);
+          switch (len) {
+            case 1:
+              listeners[i5].fn.call(listeners[i5].context);
+              break;
+            case 2:
+              listeners[i5].fn.call(listeners[i5].context, a1);
+              break;
+            case 3:
+              listeners[i5].fn.call(listeners[i5].context, a1, a22);
+              break;
+            case 4:
+              listeners[i5].fn.call(listeners[i5].context, a1, a22, a32);
+              break;
+            default:
+              if (!args2) for (j2 = 1, args2 = new Array(len - 1); j2 < len; j2++) {
+                args2[j2 - 1] = arguments[j2];
+              }
+              listeners[i5].fn.apply(listeners[i5].context, args2);
+          }
+        }
+      }
+      return true;
+    };
+    EventEmitter2.prototype.on = function on(event, fn, context) {
+      return addListener(this, event, fn, context, false);
+    };
+    EventEmitter2.prototype.once = function once(event, fn, context) {
+      return addListener(this, event, fn, context, true);
+    };
+    EventEmitter2.prototype.removeListener = function removeListener(event, fn, context, once) {
+      var evt = prefix ? prefix + event : event;
+      if (!this._events[evt]) return this;
+      if (!fn) {
+        clearEvent(this, evt);
+        return this;
+      }
+      var listeners = this._events[evt];
+      if (listeners.fn) {
+        if (listeners.fn === fn && (!once || listeners.once) && (!context || listeners.context === context)) {
+          clearEvent(this, evt);
+        }
+      } else {
+        for (var i5 = 0, events = [], length4 = listeners.length; i5 < length4; i5++) {
+          if (listeners[i5].fn !== fn || once && !listeners[i5].once || context && listeners[i5].context !== context) {
+            events.push(listeners[i5]);
+          }
+        }
+        if (events.length) this._events[evt] = events.length === 1 ? events[0] : events;
+        else clearEvent(this, evt);
+      }
+      return this;
+    };
+    EventEmitter2.prototype.removeAllListeners = function removeAllListeners(event) {
+      var evt;
+      if (event) {
+        evt = prefix ? prefix + event : event;
+        if (this._events[evt]) clearEvent(this, evt);
+      } else {
+        this._events = new Events();
+        this._eventsCount = 0;
+      }
+      return this;
+    };
+    EventEmitter2.prototype.off = EventEmitter2.prototype.removeListener;
+    EventEmitter2.prototype.addListener = EventEmitter2.prototype.on;
+    EventEmitter2.prefixed = prefix;
+    EventEmitter2.EventEmitter = EventEmitter2;
+    if ("undefined" !== typeof module2) {
+      module2.exports = EventEmitter2;
+    }
+  }
+});
+
+// ../../../node_modules/ms/index.js
+var require_ms = __commonJS({
+  "../../../node_modules/ms/index.js"(exports2, module2) {
+    var s8 = 1e3;
+    var m3 = s8 * 60;
+    var h5 = m3 * 60;
+    var d3 = h5 * 24;
+    var w2 = d3 * 7;
+    var y3 = d3 * 365.25;
+    module2.exports = function(val, options) {
+      options = options || {};
+      var type2 = typeof val;
+      if (type2 === "string" && val.length > 0) {
+        return parse3(val);
+      } else if (type2 === "number" && isFinite(val)) {
+        return options.long ? fmtLong(val) : fmtShort(val);
+      }
+      throw new Error(
+        "val is not a non-empty string or a valid number. val=" + JSON.stringify(val)
+      );
+    };
+    function parse3(str) {
+      str = String(str);
+      if (str.length > 100) {
+        return;
+      }
+      var match = /^(-?(?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)?$/i.exec(
+        str
+      );
+      if (!match) {
+        return;
+      }
+      var n9 = parseFloat(match[1]);
+      var type2 = (match[2] || "ms").toLowerCase();
+      switch (type2) {
+        case "years":
+        case "year":
+        case "yrs":
+        case "yr":
+        case "y":
+          return n9 * y3;
+        case "weeks":
+        case "week":
+        case "w":
+          return n9 * w2;
+        case "days":
+        case "day":
+        case "d":
+          return n9 * d3;
+        case "hours":
+        case "hour":
+        case "hrs":
+        case "hr":
+        case "h":
+          return n9 * h5;
+        case "minutes":
+        case "minute":
+        case "mins":
+        case "min":
+        case "m":
+          return n9 * m3;
+        case "seconds":
+        case "second":
+        case "secs":
+        case "sec":
+        case "s":
+          return n9 * s8;
+        case "milliseconds":
+        case "millisecond":
+        case "msecs":
+        case "msec":
+        case "ms":
+          return n9;
+        default:
+          return void 0;
+      }
+    }
+    function fmtShort(ms) {
+      var msAbs = Math.abs(ms);
+      if (msAbs >= d3) {
+        return Math.round(ms / d3) + "d";
+      }
+      if (msAbs >= h5) {
+        return Math.round(ms / h5) + "h";
+      }
+      if (msAbs >= m3) {
+        return Math.round(ms / m3) + "m";
+      }
+      if (msAbs >= s8) {
+        return Math.round(ms / s8) + "s";
+      }
+      return ms + "ms";
+    }
+    function fmtLong(ms) {
+      var msAbs = Math.abs(ms);
+      if (msAbs >= d3) {
+        return plural(ms, msAbs, d3, "day");
+      }
+      if (msAbs >= h5) {
+        return plural(ms, msAbs, h5, "hour");
+      }
+      if (msAbs >= m3) {
+        return plural(ms, msAbs, m3, "minute");
+      }
+      if (msAbs >= s8) {
+        return plural(ms, msAbs, s8, "second");
+      }
+      return ms + " ms";
+    }
+    function plural(ms, msAbs, n9, name) {
+      var isPlural = msAbs >= n9 * 1.5;
+      return Math.round(ms / n9) + " " + name + (isPlural ? "s" : "");
+    }
+  }
+});
+
+// ../../../node_modules/debug/src/common.js
+var require_common = __commonJS({
+  "../../../node_modules/debug/src/common.js"(exports2, module2) {
+    function setup2(env) {
+      createDebug.debug = createDebug;
+      createDebug.default = createDebug;
+      createDebug.coerce = coerce;
+      createDebug.disable = disable;
+      createDebug.enable = enable;
+      createDebug.enabled = enabled;
+      createDebug.humanize = require_ms();
+      createDebug.destroy = destroy;
+      Object.keys(env).forEach((key) => {
+        createDebug[key] = env[key];
+      });
+      createDebug.names = [];
+      createDebug.skips = [];
+      createDebug.formatters = {};
+      function selectColor(namespace) {
+        let hash = 0;
+        for (let i5 = 0; i5 < namespace.length; i5++) {
+          hash = (hash << 5) - hash + namespace.charCodeAt(i5);
+          hash |= 0;
+        }
+        return createDebug.colors[Math.abs(hash) % createDebug.colors.length];
+      }
+      createDebug.selectColor = selectColor;
+      function createDebug(namespace) {
+        let prevTime;
+        let enableOverride = null;
+        let namespacesCache;
+        let enabledCache;
+        function debug4(...args2) {
+          if (!debug4.enabled) {
+            return;
+          }
+          const self2 = debug4;
+          const curr = Number(/* @__PURE__ */ new Date());
+          const ms = curr - (prevTime || curr);
+          self2.diff = ms;
+          self2.prev = prevTime;
+          self2.curr = curr;
+          prevTime = curr;
+          args2[0] = createDebug.coerce(args2[0]);
+          if (typeof args2[0] !== "string") {
+            args2.unshift("%O");
+          }
+          let index2 = 0;
+          args2[0] = args2[0].replace(/%([a-zA-Z%])/g, (match, format3) => {
+            if (match === "%%") {
+              return "%";
+            }
+            index2++;
+            const formatter = createDebug.formatters[format3];
+            if (typeof formatter === "function") {
+              const val = args2[index2];
+              match = formatter.call(self2, val);
+              args2.splice(index2, 1);
+              index2--;
+            }
+            return match;
+          });
+          createDebug.formatArgs.call(self2, args2);
+          const logFn = self2.log || createDebug.log;
+          logFn.apply(self2, args2);
+        }
+        debug4.namespace = namespace;
+        debug4.useColors = createDebug.useColors();
+        debug4.color = createDebug.selectColor(namespace);
+        debug4.extend = extend2;
+        debug4.destroy = createDebug.destroy;
+        Object.defineProperty(debug4, "enabled", {
+          enumerable: true,
+          configurable: false,
+          get: () => {
+            if (enableOverride !== null) {
+              return enableOverride;
+            }
+            if (namespacesCache !== createDebug.namespaces) {
+              namespacesCache = createDebug.namespaces;
+              enabledCache = createDebug.enabled(namespace);
+            }
+            return enabledCache;
+          },
+          set: (v3) => {
+            enableOverride = v3;
+          }
+        });
+        if (typeof createDebug.init === "function") {
+          createDebug.init(debug4);
+        }
+        return debug4;
+      }
+      function extend2(namespace, delimiter) {
+        const newDebug = createDebug(this.namespace + (typeof delimiter === "undefined" ? ":" : delimiter) + namespace);
+        newDebug.log = this.log;
+        return newDebug;
+      }
+      function enable(namespaces) {
+        createDebug.save(namespaces);
+        createDebug.namespaces = namespaces;
+        createDebug.names = [];
+        createDebug.skips = [];
+        const split = (typeof namespaces === "string" ? namespaces : "").trim().replace(/\s+/g, ",").split(",").filter(Boolean);
+        for (const ns of split) {
+          if (ns[0] === "-") {
+            createDebug.skips.push(ns.slice(1));
+          } else {
+            createDebug.names.push(ns);
+          }
+        }
+      }
+      function matchesTemplate(search, template2) {
+        let searchIndex = 0;
+        let templateIndex = 0;
+        let starIndex = -1;
+        let matchIndex = 0;
+        while (searchIndex < search.length) {
+          if (templateIndex < template2.length && (template2[templateIndex] === search[searchIndex] || template2[templateIndex] === "*")) {
+            if (template2[templateIndex] === "*") {
+              starIndex = templateIndex;
+              matchIndex = searchIndex;
+              templateIndex++;
+            } else {
+              searchIndex++;
+              templateIndex++;
+            }
+          } else if (starIndex !== -1) {
+            templateIndex = starIndex + 1;
+            matchIndex++;
+            searchIndex = matchIndex;
+          } else {
+            return false;
+          }
+        }
+        while (templateIndex < template2.length && template2[templateIndex] === "*") {
+          templateIndex++;
+        }
+        return templateIndex === template2.length;
+      }
+      function disable() {
+        const namespaces = [
+          ...createDebug.names,
+          ...createDebug.skips.map((namespace) => "-" + namespace)
+        ].join(",");
+        createDebug.enable("");
+        return namespaces;
+      }
+      function enabled(name) {
+        for (const skip of createDebug.skips) {
+          if (matchesTemplate(name, skip)) {
+            return false;
+          }
+        }
+        for (const ns of createDebug.names) {
+          if (matchesTemplate(name, ns)) {
+            return true;
+          }
+        }
+        return false;
+      }
+      function coerce(val) {
+        if (val instanceof Error) {
+          return val.stack || val.message;
+        }
+        return val;
+      }
+      function destroy() {
+        console.warn("Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`.");
+      }
+      createDebug.enable(createDebug.load());
+      return createDebug;
+    }
+    module2.exports = setup2;
+  }
+});
+
+// ../../../node_modules/debug/src/browser.js
+var require_browser = __commonJS({
+  "../../../node_modules/debug/src/browser.js"(exports2, module2) {
+    exports2.formatArgs = formatArgs;
+    exports2.save = save2;
+    exports2.load = load;
+    exports2.useColors = useColors;
+    exports2.storage = localstorage();
+    exports2.destroy = /* @__PURE__ */ (() => {
+      let warned = false;
+      return () => {
+        if (!warned) {
+          warned = true;
+          console.warn("Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`.");
+        }
+      };
+    })();
+    exports2.colors = [
+      "#0000CC",
+      "#0000FF",
+      "#0033CC",
+      "#0033FF",
+      "#0066CC",
+      "#0066FF",
+      "#0099CC",
+      "#0099FF",
+      "#00CC00",
+      "#00CC33",
+      "#00CC66",
+      "#00CC99",
+      "#00CCCC",
+      "#00CCFF",
+      "#3300CC",
+      "#3300FF",
+      "#3333CC",
+      "#3333FF",
+      "#3366CC",
+      "#3366FF",
+      "#3399CC",
+      "#3399FF",
+      "#33CC00",
+      "#33CC33",
+      "#33CC66",
+      "#33CC99",
+      "#33CCCC",
+      "#33CCFF",
+      "#6600CC",
+      "#6600FF",
+      "#6633CC",
+      "#6633FF",
+      "#66CC00",
+      "#66CC33",
+      "#9900CC",
+      "#9900FF",
+      "#9933CC",
+      "#9933FF",
+      "#99CC00",
+      "#99CC33",
+      "#CC0000",
+      "#CC0033",
+      "#CC0066",
+      "#CC0099",
+      "#CC00CC",
+      "#CC00FF",
+      "#CC3300",
+      "#CC3333",
+      "#CC3366",
+      "#CC3399",
+      "#CC33CC",
+      "#CC33FF",
+      "#CC6600",
+      "#CC6633",
+      "#CC9900",
+      "#CC9933",
+      "#CCCC00",
+      "#CCCC33",
+      "#FF0000",
+      "#FF0033",
+      "#FF0066",
+      "#FF0099",
+      "#FF00CC",
+      "#FF00FF",
+      "#FF3300",
+      "#FF3333",
+      "#FF3366",
+      "#FF3399",
+      "#FF33CC",
+      "#FF33FF",
+      "#FF6600",
+      "#FF6633",
+      "#FF9900",
+      "#FF9933",
+      "#FFCC00",
+      "#FFCC33"
+    ];
+    function useColors() {
+      if (typeof window !== "undefined" && window.process && (window.process.type === "renderer" || window.process.__nwjs)) {
+        return true;
+      }
+      if (typeof navigator !== "undefined" && navigator.userAgent && navigator.userAgent.toLowerCase().match(/(edge|trident)\/(\d+)/)) {
+        return false;
+      }
+      let m3;
+      return typeof document !== "undefined" && document.documentElement && document.documentElement.style && document.documentElement.style.WebkitAppearance || // Is firebug? http://stackoverflow.com/a/398120/376773
+      typeof window !== "undefined" && window.console && (window.console.firebug || window.console.exception && window.console.table) || // Is firefox >= v31?
+      // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
+      typeof navigator !== "undefined" && navigator.userAgent && (m3 = navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/)) && parseInt(m3[1], 10) >= 31 || // Double check webkit in userAgent just in case we are in a worker
+      typeof navigator !== "undefined" && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/);
+    }
+    function formatArgs(args2) {
+      args2[0] = (this.useColors ? "%c" : "") + this.namespace + (this.useColors ? " %c" : " ") + args2[0] + (this.useColors ? "%c " : " ") + "+" + module2.exports.humanize(this.diff);
+      if (!this.useColors) {
+        return;
+      }
+      const c9 = "color: " + this.color;
+      args2.splice(1, 0, c9, "color: inherit");
+      let index2 = 0;
+      let lastC = 0;
+      args2[0].replace(/%[a-zA-Z%]/g, (match) => {
+        if (match === "%%") {
+          return;
+        }
+        index2++;
+        if (match === "%c") {
+          lastC = index2;
+        }
+      });
+      args2.splice(lastC, 0, c9);
+    }
+    exports2.log = console.debug || console.log || (() => {
+    });
+    function save2(namespaces) {
+      try {
+        if (namespaces) {
+          exports2.storage.setItem("debug", namespaces);
+        } else {
+          exports2.storage.removeItem("debug");
+        }
+      } catch (error) {
+      }
+    }
+    function load() {
+      let r6;
+      try {
+        r6 = exports2.storage.getItem("debug") || exports2.storage.getItem("DEBUG");
+      } catch (error) {
+      }
+      if (!r6 && typeof process !== "undefined" && "env" in process) {
+        r6 = process.env.DEBUG;
+      }
+      return r6;
+    }
+    function localstorage() {
+      try {
+        return localStorage;
+      } catch (error) {
+      }
+    }
+    module2.exports = require_common()(exports2);
+    var { formatters } = module2.exports;
+    formatters.j = function(v3) {
+      try {
+        return JSON.stringify(v3);
+      } catch (error) {
+        return "[UnexpectedJSONParseError]: " + error.message;
+      }
+    };
   }
 });
 
@@ -48622,118 +49248,722 @@ Mark.prototype.plot = function({ marks: marks2 = [], ...options } = {}) {
   return plot({ ...options, marks: [...marks2, this] });
 };
 
-// setup-service-worker.js
+// prebundle.js
+import { registerPatchworkViewElement } from "@inkandswitch/patchwork-elements";
 import {
-  IndexedDBStorageAdapter,
-  MessageChannelNetworkAdapter,
-  Repo
-} from "@automerge/vanillajs";
-async function installServiceWorker() {
-  const sw = await navigator.serviceWorker.register("service-worker.js", { type: "classic" }).then((registration) => {
-    const installing = registration.installing;
-    if (installing) {
-      console.log("%c spawing new service worker", "color: pink");
-      return new Promise((resolve) => {
-        installing.onstatechange = (event) => {
-          const serviceWorker = event.target;
-          if (serviceWorker.state === "activated") {
-            resolve(serviceWorker);
-          }
-        };
-      });
+  ModuleWatcher,
+  createFilesystemHandoffHandler
+} from "@inkandswitch/patchwork-filesystem";
+import setup from "@inkandswitch/patchwork-bootloader";
+import { registerPlugins, getRegistry } from "@inkandswitch/patchwork-plugins";
+
+// ../../../node_modules/@automerge/vanillajs/dist/slim.js
+var slim_exports = {};
+__export(slim_exports, {
+  BroadcastChannelNetworkAdapter: () => BroadcastChannelNetworkAdapter,
+  IndexedDBStorageAdapter: () => IndexedDBStorageAdapter,
+  MessageChannelNetworkAdapter: () => MessageChannelNetworkAdapter,
+  WebSocketClientAdapter: () => WebSocketClientAdapter
+});
+__reExport(slim_exports, slim_star);
+import * as slim_star from "@automerge/automerge-repo/slim";
+
+// ../../../node_modules/@automerge/automerge-repo-network-broadcastchannel/dist/index.js
+import { NetworkAdapter } from "@automerge/automerge-repo/slim";
+var BroadcastChannelNetworkAdapter = class extends NetworkAdapter {
+  #broadcastChannel;
+  #disconnected = false;
+  #options;
+  #ready = false;
+  #readyResolver;
+  #readyPromise = new Promise((resolve) => {
+    this.#readyResolver = resolve;
+  });
+  #connectedPeers = [];
+  isReady() {
+    return this.#ready;
+  }
+  whenReady() {
+    return this.#readyPromise;
+  }
+  #forceReady() {
+    if (!this.#ready) {
+      this.#ready = true;
+      this.#readyResolver?.();
     }
-    return registration.active;
-  });
-  setInterval(() => {
-    sw.postMessage({ type: "PING" });
-  }, 5e3);
-  return sw;
-}
-async function createRepo(storage) {
-  const peerIdSuffix = `patchwork-${Math.random().toString(36).slice(2)}`;
-  const peerId = peerIdSuffix;
-  const repo2 = new Repo({
-    network: [],
-    storage,
-    peerId,
-    enableRemoteHeadsGossiping: true
-  });
-  self.repo = repo2;
-  repo2.subscribeToRemotes(["3760df37-a4c6-4f66-9ecd-732039a9385d"]);
-  return { repo: repo2 };
-}
-var globalMessageChannelAdapter;
-function connectServiceWorkerToRepo(serviceWorker, repo2) {
-  const messageChannel = new MessageChannel();
-  if (globalMessageChannelAdapter) {
-    repo2.networkSubsystem.removeNetworkAdapter(globalMessageChannelAdapter);
   }
-  globalMessageChannelAdapter = new MessageChannelNetworkAdapter(
-    messageChannel.port1
-  );
-  repo2.networkSubsystem.addNetworkAdapter(globalMessageChannelAdapter);
-  serviceWorker.postMessage({ type: "INIT" }, [messageChannel.port2]);
-  console.log("%c Connected to service worker", "color: blue");
-}
-async function bootstrap() {
-  let sw = await installServiceWorker();
-  const storage = new IndexedDBStorageAdapter();
-  const { repo: repo2, hive } = await createRepo(storage);
-  const { promise: serviceWorkerInitEcho, resolve } = Promise.withResolvers();
-  if (!hive) {
-    navigator.serviceWorker.addEventListener("message", (event) => {
-      switch (event.data.type) {
-        case "SERVICE_WORKER_RESTARTED":
-          console.log(
-            "establishMessageChannel: SERVICE_WORKER_RESTARTED message"
-          );
-          connectServiceWorkerToRepo(sw, repo2);
+  constructor(options) {
+    super();
+    this.#options = { channelName: "broadcast", ...options ?? {} };
+    this.#broadcastChannel = new BroadcastChannel(this.#options.channelName);
+  }
+  connect(peerId, peerMetadata) {
+    this.peerId = peerId;
+    this.peerMetadata = peerMetadata;
+    this.#disconnected = false;
+    this.#broadcastChannel.addEventListener("message", (e11) => {
+      const message = e11.data;
+      if ("targetId" in message && message.targetId !== this.peerId) {
+        return;
+      }
+      if (this.#disconnected) {
+        return;
+      }
+      const { senderId, type: type2 } = message;
+      switch (type2) {
+        case "arrive":
+          {
+            const { peerMetadata: peerMetadata2 } = message;
+            this.#broadcastChannel.postMessage({
+              senderId: this.peerId,
+              targetId: senderId,
+              type: "welcome",
+              peerMetadata: this.peerMetadata
+            });
+            this.#announceConnection(senderId, peerMetadata2);
+          }
           break;
-        case "SERVICE_WORKER_READY":
-          resolve();
+        case "welcome":
+          {
+            const { peerMetadata: peerMetadata2 } = message;
+            this.#announceConnection(senderId, peerMetadata2);
+          }
+          break;
+        case "leave":
+          this.#connectedPeers = this.#connectedPeers.filter((p11) => p11 !== senderId);
+          this.emit("peer-disconnected", { peerId: senderId });
+          break;
+        default:
+          if (!("data" in message)) {
+            this.emit("message", message);
+          } else {
+            if (!message.data) {
+              throw new Error("We got a message without data, we can't send this.");
+            }
+            const data = message.data;
+            this.emit("message", {
+              ...message,
+              data: new Uint8Array(data)
+            });
+          }
           break;
       }
     });
-    navigator.serviceWorker.addEventListener("controllerchange", (event) => {
-      const newServiceWorker = event.target.controller;
-      if (newServiceWorker !== sw) {
-        console.log(
-          "establishMessageChannel: controllerchange to new service worker"
-        );
-        sw = newServiceWorker;
-        connectServiceWorkerToRepo(newServiceWorker, repo2);
+    this.#broadcastChannel.postMessage({
+      senderId: this.peerId,
+      type: "arrive",
+      peerMetadata
+    });
+  }
+  #announceConnection(peerId, peerMetadata) {
+    this.#forceReady();
+    this.#connectedPeers.push(peerId);
+    this.emit("peer-candidate", { peerId, peerMetadata });
+  }
+  send(message) {
+    if (this.#disconnected) {
+      return false;
+    }
+    if ("data" in message) {
+      this.#broadcastChannel.postMessage({
+        ...message,
+        data: message.data ? message.data.buffer.slice(message.data.byteOffset, message.data.byteOffset + message.data.byteLength) : void 0
+      });
+    } else {
+      this.#broadcastChannel.postMessage(message);
+    }
+  }
+  disconnect() {
+    this.#broadcastChannel.postMessage({
+      senderId: this.peerId,
+      type: "leave"
+    });
+    for (const peerId of this.#connectedPeers) {
+      this.emit("peer-disconnected", { peerId });
+    }
+    this.#disconnected = true;
+  }
+};
+
+// ../../../node_modules/@automerge/automerge-repo-network-messagechannel/dist/index.js
+import { NetworkAdapter as NetworkAdapter2 } from "@automerge/automerge-repo/slim";
+
+// ../../../node_modules/eventemitter3/index.mjs
+var import_index28 = __toESM(require_eventemitter3(), 1);
+
+// ../../../node_modules/@automerge/automerge-repo-network-messagechannel/dist/StrongMessagePortRef.js
+var StrongMessagePortRef = class extends import_index28.default {
+  port;
+  isDisconnected = false;
+  constructor(port) {
+    port.addEventListener("message", (event) => {
+      if (!this.isDisconnected) {
+        this.emit("message", event);
       }
     });
-    connectServiceWorkerToRepo(sw, repo2);
-    await serviceWorkerInitEcho;
+    super();
+    this.port = port;
   }
-  return { repo: repo2, hive };
+  postMessage(message, transfer) {
+    if (!this.isDisconnected) {
+      this.port.postMessage(message, transfer);
+    }
+  }
+  start() {
+    this.isDisconnected = false;
+    this.port.start();
+  }
+  stop() {
+    this.isDisconnected = true;
+  }
+  isAlive() {
+    return true;
+  }
+};
+
+// ../../../node_modules/@automerge/automerge-repo-network-messagechannel/dist/WeakMessagePortRef.js
+var WeakMessagePortRef = class extends import_index28.default {
+  weakRef;
+  isDisconnected = false;
+  constructor(port) {
+    super();
+    this.weakRef = new WeakRef(port);
+    port.addEventListener("message", (event) => {
+      if (!this.isDisconnected) {
+        this.emit("message", event);
+      }
+    });
+  }
+  postMessage(message, transfer) {
+    const port = this.weakRef.deref();
+    if (!port) {
+      this.disconnnect();
+      return;
+    }
+    if (this.isDisconnected) {
+      return;
+    }
+    try {
+      port.postMessage(message, transfer);
+    } catch (err) {
+      this.disconnnect();
+    }
+  }
+  start() {
+    const port = this.weakRef.deref();
+    if (!port) {
+      this.disconnnect();
+      return;
+    }
+    this.isDisconnected = false;
+    try {
+      port.start();
+    } catch (err) {
+      this.disconnnect();
+    }
+  }
+  stop() {
+    this.isDisconnected = true;
+  }
+  disconnnect() {
+    if (!this.isDisconnected) {
+      this.emit("close");
+      this.isDisconnected = true;
+    }
+  }
+  isAlive() {
+    if (this.isDisconnected) {
+      return false;
+    }
+    if (!this.weakRef.deref()) {
+      this.disconnnect();
+      return false;
+    }
+    return true;
+  }
+};
+
+// ../../../node_modules/@automerge/automerge-repo-network-messagechannel/dist/index.js
+var import_debug = __toESM(require_browser(), 1);
+var log3 = (0, import_debug.default)("automerge-repo:messagechannel");
+var MessageChannelNetworkAdapter = class extends NetworkAdapter2 {
+  channels = {};
+  /** @hidden */
+  messagePortRef;
+  #ready = false;
+  #readyResolver;
+  #readyPromise = new Promise((resolve) => {
+    this.#readyResolver = resolve;
+  });
+  #remotePeerId;
+  isReady() {
+    return this.#ready;
+  }
+  whenReady() {
+    return this.#readyPromise;
+  }
+  #forceReady() {
+    if (!this.#ready) {
+      this.#ready = true;
+      this.#readyResolver?.();
+    }
+  }
+  constructor(messagePort, config = {}) {
+    super();
+    const useWeakRef = config.useWeakRef ?? false;
+    this.messagePortRef = useWeakRef ? new WeakMessagePortRef(messagePort) : new StrongMessagePortRef(messagePort);
+  }
+  connect(peerId, peerMetadata) {
+    log3("messageport connecting");
+    this.peerId = peerId;
+    this.peerMetadata = peerMetadata;
+    this.messagePortRef.start();
+    this.messagePortRef.addListener("message", (e11) => {
+      log3("message port received %o", e11.data);
+      const message = e11.data;
+      if ("targetId" in message && message.targetId !== this.peerId) {
+        throw new Error("MessagePortNetwork should never receive messages for a different peer.");
+      }
+      const { senderId, type: type2 } = message;
+      switch (type2) {
+        case "arrive":
+          {
+            const { peerMetadata: peerMetadata2 } = message;
+            this.messagePortRef.postMessage({
+              type: "welcome",
+              senderId: this.peerId,
+              peerMetadata: this.peerMetadata,
+              targetId: senderId
+            });
+            this.announceConnection(senderId, peerMetadata2);
+          }
+          break;
+        case "welcome":
+          {
+            const { peerMetadata: peerMetadata2 } = message;
+            this.announceConnection(senderId, peerMetadata2);
+          }
+          break;
+        case "leave":
+          if (this.#remotePeerId === senderId) {
+            this.emit("peer-disconnected", { peerId: senderId });
+            this.emit("close");
+          }
+          break;
+        default:
+          if (!("data" in message)) {
+            this.emit("message", message);
+          } else {
+            this.emit("message", {
+              ...message,
+              data: message.data ? new Uint8Array(message.data) : void 0
+            });
+          }
+          break;
+      }
+    });
+    this.messagePortRef.addListener("close", () => {
+      this.emit("close");
+    });
+    this.messagePortRef.postMessage({
+      senderId: this.peerId,
+      type: "arrive",
+      peerMetadata
+    });
+    setTimeout(() => {
+      this.#forceReady();
+    }, 100);
+  }
+  send(message) {
+    if ("data" in message) {
+      const data = message.data.buffer.slice(message.data.byteOffset, message.data.byteOffset + message.data.byteLength);
+      this.messagePortRef.postMessage({
+        ...message,
+        data
+      }, [data]);
+    } else {
+      this.messagePortRef.postMessage(message);
+    }
+  }
+  announceConnection(peerId, peerMetadata) {
+    this.#remotePeerId = peerId;
+    this.#forceReady();
+    this.emit("peer-candidate", { peerId, peerMetadata });
+  }
+  disconnect() {
+    if (this.#remotePeerId && this.peerId) {
+      this.messagePortRef.postMessage({
+        type: "leave",
+        senderId: this.peerId
+      });
+      this.emit("peer-disconnected", { peerId: this.#remotePeerId });
+      this.emit("close");
+    }
+    this.messagePortRef.stop();
+  }
+};
+
+// ../../../node_modules/@automerge/vanillajs/node_modules/@automerge/automerge-repo-network-websocket/dist/WebSocketClientAdapter.js
+import { NetworkAdapter as NetworkAdapter3, cbor } from "@automerge/automerge-repo/slim";
+
+// ../../../node_modules/isomorphic-ws/browser.js
+var ws = null;
+if (typeof WebSocket !== "undefined") {
+  ws = WebSocket;
+} else if (typeof MozWebSocket !== "undefined") {
+  ws = MozWebSocket;
+} else if (typeof global !== "undefined") {
+  ws = global.WebSocket || global.MozWebSocket;
+} else if (typeof window !== "undefined") {
+  ws = window.WebSocket || window.MozWebSocket;
+} else if (typeof self !== "undefined") {
+  ws = self.WebSocket || self.MozWebSocket;
+}
+var browser_default = ws;
+
+// ../../../node_modules/@automerge/vanillajs/node_modules/@automerge/automerge-repo-network-websocket/dist/WebSocketClientAdapter.js
+var import_debug2 = __toESM(require_browser(), 1);
+
+// ../../../node_modules/@automerge/vanillajs/node_modules/@automerge/automerge-repo-network-websocket/dist/messages.js
+var isPeerMessage = (message) => message.type === "peer";
+var isErrorMessage = (message) => message.type === "error";
+
+// ../../../node_modules/@automerge/vanillajs/node_modules/@automerge/automerge-repo-network-websocket/dist/protocolVersion.js
+var ProtocolV1 = "1";
+
+// ../../../node_modules/@automerge/vanillajs/node_modules/@automerge/automerge-repo-network-websocket/dist/assert.js
+function assert(value, message = "Assertion failed") {
+  if (value === false || value === null || value === void 0) {
+    const error = new Error(trimLines(message));
+    error.stack = removeLine(error.stack, "assert.ts");
+    throw error;
+  }
+}
+var trimLines = (s8) => s8.split("\n").map((s9) => s9.trim()).join("\n");
+var removeLine = (s8 = "", targetText) => s8.split("\n").filter((line2) => !line2.includes(targetText)).join("\n");
+
+// ../../../node_modules/@automerge/vanillajs/node_modules/@automerge/automerge-repo-network-websocket/dist/toArrayBuffer.js
+var toArrayBuffer = (bytes) => {
+  const { buffer: buffer2, byteOffset, byteLength } = bytes;
+  return buffer2.slice(byteOffset, byteOffset + byteLength);
+};
+
+// ../../../node_modules/@automerge/vanillajs/node_modules/@automerge/automerge-repo-network-websocket/dist/WebSocketClientAdapter.js
+var WebSocketNetworkAdapter = class extends NetworkAdapter3 {
+  socket;
+};
+var WebSocketClientAdapter = class extends WebSocketNetworkAdapter {
+  url;
+  retryInterval;
+  #ready = false;
+  #readyResolver;
+  #readyPromise = new Promise((resolve) => {
+    this.#readyResolver = resolve;
+  });
+  isReady() {
+    return this.#ready;
+  }
+  whenReady() {
+    return this.#readyPromise;
+  }
+  #forceReady() {
+    if (!this.#ready) {
+      this.#ready = true;
+      this.#readyResolver?.();
+    }
+  }
+  #retryIntervalId;
+  #log = (0, import_debug2.default)("automerge-repo:websocket:browser");
+  remotePeerId;
+  // this adapter only connects to one remote client at a time
+  constructor(url, retryInterval = 5e3) {
+    super();
+    this.url = url;
+    this.retryInterval = retryInterval;
+    this.#log = this.#log.extend(url);
+  }
+  connect(peerId, peerMetadata) {
+    if (!this.socket || !this.peerId) {
+      this.#log("connecting");
+      this.peerId = peerId;
+      this.peerMetadata = peerMetadata ?? {};
+    } else {
+      this.#log("reconnecting");
+      assert(peerId === this.peerId);
+      this.socket.removeEventListener("open", this.onOpen);
+      this.socket.removeEventListener("close", this.onClose);
+      this.socket.removeEventListener("message", this.onMessage);
+      this.socket.removeEventListener("error", this.onError);
+    }
+    if (!this.#retryIntervalId)
+      this.#retryIntervalId = setInterval(() => {
+        this.connect(peerId, peerMetadata);
+      }, this.retryInterval);
+    this.socket = new browser_default(this.url);
+    this.socket.binaryType = "arraybuffer";
+    this.socket.addEventListener("open", this.onOpen);
+    this.socket.addEventListener("close", this.onClose);
+    this.socket.addEventListener("message", this.onMessage);
+    this.socket.addEventListener("error", this.onError);
+    setTimeout(() => this.#forceReady(), 1e3);
+    this.join();
+  }
+  onOpen = () => {
+    this.#log("open");
+    clearInterval(this.#retryIntervalId);
+    this.#retryIntervalId = void 0;
+    this.join();
+  };
+  // When a socket closes, or disconnects, remove it from the array.
+  onClose = () => {
+    this.#log("close");
+    if (this.remotePeerId)
+      this.emit("peer-disconnected", { peerId: this.remotePeerId });
+    if (this.retryInterval > 0 && !this.#retryIntervalId)
+      setTimeout(() => {
+        assert(this.peerId);
+        return this.connect(this.peerId, this.peerMetadata);
+      }, this.retryInterval);
+  };
+  onMessage = (event) => {
+    this.receiveMessage(event.data);
+  };
+  /** The websocket error handler signature is different on node and the browser.  */
+  onError = (event) => {
+    if ("error" in event) {
+      if (event.error.code !== "ECONNREFUSED") {
+        throw event.error;
+      }
+    } else {
+    }
+    this.#log("Connection failed, retrying...");
+  };
+  join() {
+    assert(this.peerId);
+    assert(this.socket);
+    if (this.socket.readyState === browser_default.OPEN) {
+      this.send(joinMessage(this.peerId, this.peerMetadata));
+    } else {
+    }
+  }
+  disconnect() {
+    assert(this.peerId);
+    assert(this.socket);
+    const socket = this.socket;
+    if (socket) {
+      socket.removeEventListener("open", this.onOpen);
+      socket.removeEventListener("close", this.onClose);
+      socket.removeEventListener("message", this.onMessage);
+      socket.removeEventListener("error", this.onError);
+      socket.close();
+    }
+    clearInterval(this.#retryIntervalId);
+    if (this.remotePeerId)
+      this.emit("peer-disconnected", { peerId: this.remotePeerId });
+    this.socket = void 0;
+  }
+  send(message) {
+    if ("data" in message && message.data?.byteLength === 0)
+      throw new Error("Tried to send a zero-length message");
+    assert(this.peerId);
+    if (!this.socket) {
+      this.#log("Tried to send on a disconnected socket.");
+      return;
+    }
+    if (this.socket.readyState !== browser_default.OPEN)
+      throw new Error(`Websocket not ready (${this.socket.readyState})`);
+    const encoded = cbor.encode(message);
+    this.socket.send(toArrayBuffer(encoded));
+  }
+  peerCandidate(remotePeerId, peerMetadata) {
+    assert(this.socket);
+    this.#forceReady();
+    this.remotePeerId = remotePeerId;
+    this.emit("peer-candidate", {
+      peerId: remotePeerId,
+      peerMetadata
+    });
+  }
+  receiveMessage(messageBytes) {
+    let message;
+    try {
+      message = cbor.decode(new Uint8Array(messageBytes));
+    } catch (e11) {
+      this.#log("error decoding message:", e11);
+      return;
+    }
+    assert(this.socket);
+    if (messageBytes.byteLength === 0)
+      throw new Error("received a zero-length message");
+    if (isPeerMessage(message)) {
+      const { peerMetadata } = message;
+      this.#log(`peer: ${message.senderId}`);
+      this.peerCandidate(message.senderId, peerMetadata);
+    } else if (isErrorMessage(message)) {
+      this.#log(`error: ${message.message}`);
+    } else {
+      this.emit("message", message);
+    }
+  }
+};
+function joinMessage(senderId, peerMetadata) {
+  return {
+    type: "join",
+    senderId,
+    peerMetadata,
+    supportedProtocolVersions: [ProtocolV1]
+  };
 }
 
+// ../../../node_modules/@automerge/vanillajs/node_modules/@automerge/automerge-repo-network-websocket/dist/WebSocketServerAdapter.js
+var import_debug3 = __toESM(require_browser(), 1);
+import { cbor as cborHelpers, NetworkAdapter as NetworkAdapter4 } from "@automerge/automerge-repo/slim";
+var log4 = (0, import_debug3.default)("WebsocketServer");
+var { encode, decode } = cborHelpers;
+
+// ../../../node_modules/@automerge/automerge-repo-storage-indexeddb/dist/index.js
+var IndexedDBStorageAdapter = class {
+  database;
+  store;
+  dbPromise;
+  /** Create a new {@link IndexedDBStorageAdapter}.
+   * @param database - The name of the database to use. Defaults to "automerge".
+   * @param store - The name of the object store to use. Defaults to "documents".
+   */
+  constructor(database = "automerge", store = "documents") {
+    this.database = database;
+    this.store = store;
+    this.dbPromise = this.createDatabasePromise();
+  }
+  createDatabasePromise() {
+    return new Promise((resolve, reject) => {
+      const request = indexedDB.open(this.database, 1);
+      request.onerror = () => {
+        reject(request.error);
+      };
+      request.onupgradeneeded = (event) => {
+        const db = event.target.result;
+        db.createObjectStore(this.store);
+      };
+      request.onsuccess = (event) => {
+        const db = event.target.result;
+        resolve(db);
+      };
+    });
+  }
+  async load(keyArray) {
+    const db = await this.dbPromise;
+    const transaction = db.transaction(this.store);
+    const objectStore = transaction.objectStore(this.store);
+    const request = objectStore.get(keyArray);
+    return new Promise((resolve, reject) => {
+      transaction.onerror = () => {
+        reject(request.error);
+      };
+      request.onsuccess = (event) => {
+        const result = event.target.result;
+        if (result && typeof result === "object" && "binary" in result) {
+          resolve(result.binary);
+        } else {
+          resolve(void 0);
+        }
+      };
+    });
+  }
+  async save(keyArray, binary) {
+    const db = await this.dbPromise;
+    const transaction = db.transaction(this.store, "readwrite");
+    const objectStore = transaction.objectStore(this.store);
+    objectStore.put({ key: keyArray, binary }, keyArray);
+    return new Promise((resolve, reject) => {
+      transaction.onerror = () => {
+        reject(transaction.error);
+      };
+      transaction.oncomplete = () => {
+        resolve();
+      };
+    });
+  }
+  async remove(keyArray) {
+    const db = await this.dbPromise;
+    const transaction = db.transaction(this.store, "readwrite");
+    const objectStore = transaction.objectStore(this.store);
+    objectStore.delete(keyArray);
+    return new Promise((resolve, reject) => {
+      transaction.onerror = () => {
+        reject(transaction.error);
+      };
+      transaction.oncomplete = () => {
+        resolve();
+      };
+    });
+  }
+  async loadRange(keyPrefix) {
+    const db = await this.dbPromise;
+    const lowerBound = keyPrefix;
+    const upperBound = [...keyPrefix, "\uFFFF"];
+    const range3 = IDBKeyRange.bound(lowerBound, upperBound);
+    const transaction = db.transaction(this.store);
+    const objectStore = transaction.objectStore(this.store);
+    const request = objectStore.openCursor(range3);
+    const result = [];
+    return new Promise((resolve, reject) => {
+      transaction.onerror = () => {
+        reject(request.error);
+      };
+      request.onsuccess = (event) => {
+        const cursor = event.target.result;
+        if (cursor) {
+          result.push({
+            data: cursor.value.binary,
+            key: cursor.key
+          });
+          cursor.continue();
+        } else {
+          resolve(result);
+        }
+      };
+    });
+  }
+  async removeRange(keyPrefix) {
+    const db = await this.dbPromise;
+    const lowerBound = keyPrefix;
+    const upperBound = [...keyPrefix, "\uFFFF"];
+    const range3 = IDBKeyRange.bound(lowerBound, upperBound);
+    const transaction = db.transaction(this.store, "readwrite");
+    const objectStore = transaction.objectStore(this.store);
+    objectStore.delete(range3);
+    return new Promise((resolve, reject) => {
+      transaction.onerror = () => {
+        reject(transaction.error);
+      };
+      transaction.oncomplete = () => {
+        resolve();
+      };
+    });
+  }
+};
+
 // prebundle.js
-import { registerPatchworkViewElement } from "@patchwork/elements";
-import { ModuleWatcher } from "@patchwork/filesystem";
-import { registerPlugins } from "@patchwork/plugins";
-var { repo } = await bootstrap();
+var repo = new slim_exports.Repo({
+  network: [new WebSocketClientAdapter("wss://sync3.automerge.org")],
+  storage: new IndexedDBStorageAdapter()
+});
 window.repo = repo;
+var handoff = createFilesystemHandoffHandler(repo);
+setup(async (href, request) => handoff(href, request));
 var moduleWatcher = new ModuleWatcher(
-  "automerge:4GHeCq7k1BEhPdpPDWyF2EQFXKrG",
-  ["automerge:BDesnARCFFupAzaSQ9nhnTYHE3B"],
   repo,
+  // rabbitcounter
+  ["automerge:4GHeCq7k1BEhPdpPDWyF2EQFXKrG"],
   (name, mod2) => {
+    console.log("Prebundled module loaded:", name, mod2);
     if (Array.isArray(mod2.plugins)) {
       registerPlugins(mod2.plugins, name);
     }
   }
 );
-registerPatchworkViewElement({
-  repo,
-  moduleWatcher: (
-    /** @type {ModuleWatcher} */
-    /** @type {unknown} */
-    null
-  )
-});
+registerPatchworkViewElement({ repo });
 window.Algebrite = import_algebrite.default;
 window.Plot = src_exports;
 hotkeys_esm_default.filter = (event) => {
