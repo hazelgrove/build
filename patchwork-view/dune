@@ -1,0 +1,11 @@
+(rule
+ (copy ../main.bc.js hazel.js))
+
+(rule
+ (copy ../worker.bc.js worker.js))
+
+(rule
+ (targets bundled.js)
+ (deps prebundle.js)
+ (action
+  (run node ./build-prebundle.mjs)))
