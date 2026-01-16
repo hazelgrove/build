@@ -28,9 +28,9 @@ var __toESM = (mod2, isNodeMode, target) => (target = mod2 != null ? __create(__
   mod2
 ));
 
-// ../../../../../node_modules/big-integer/BigInteger.js
+// ../../../node_modules/big-integer/BigInteger.js
 var require_BigInteger = __commonJS({
-  "../../../../../node_modules/big-integer/BigInteger.js"(exports2, module2) {
+  "../../../node_modules/big-integer/BigInteger.js"(exports2, module2) {
     var bigInt2 = function(undefined2) {
       "use strict";
       var BASE = 1e7, LOG_BASE = 7, MAX_INT = 9007199254740992, MAX_INT_ARR = smallToArray(MAX_INT), DEFAULT_ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyz";
@@ -1284,9 +1284,9 @@ var require_BigInteger = __commonJS({
   }
 });
 
-// ../../../../../node_modules/algebrite/dist/algebrite.js
+// ../../../node_modules/algebrite/dist/algebrite.js
 var require_algebrite = __commonJS({
-  "../../../../../node_modules/algebrite/dist/algebrite.js"(exports, module) {
+  "../../../node_modules/algebrite/dist/algebrite.js"(exports, module) {
     (function() {
       var $, ABS, ADD, ADJ, AND, APPROXRATIO, ARCCOS, ARCCOSH, ARCSIN, ARCSINH, ARCTAN, ARCTANH, ARG, ASSUME_REAL_VARIABLES, ATOMIZE, AUTOEXPAND, BAKE, BESSELJ, BESSELY, BINDING, BINOMIAL, BINOM_check_args, BUF, C1, C2, C3, C4, C5, C6, CEILING, CHECK, CHOOSE, CIRCEXP, CLEAR, CLEARALL, CLEARPATTERNS, CLOCK, COEFF, COFACTOR, CONDENSE, CONJ, CONS, CONTRACT, COS, COSH, Condense, DEBUG, DEBUG_ABS, DEBUG_ARG, DEBUG_CLOCKFORM, DEBUG_IMAG, DEBUG_IS, DEBUG_MULTIPLY, DEBUG_POWER, DEBUG_RATIONALIZE, DEBUG_RECT, DEBUG_SIMPLIFY, DECOMP, DEFINT, DEGREE, DENOMINATOR, DERIVATIVE, DET, DET_check_arg, DIM, DIRAC, DIVISORS, DO, DOT, DOUBLE, DRAW, DRAWX, DSOLVE, E, EIGEN, EIGENVAL, EIGENVEC, EIG_N, EIG_check_arg, EIG_yydd, EIG_yyqq, ERF, ERFC, EVAL, EXP, EXPAND, EXPCOS, EXPSIN, Eval, Eval_Eval, Eval_abs, Eval_add, Eval_adj, Eval_and, Eval_approxratio, Eval_arccos, Eval_arccosh, Eval_arcsin, Eval_arcsinh, Eval_arctan, Eval_arctanh, Eval_arg, Eval_besselj, Eval_bessely, Eval_binding, Eval_binomial, Eval_ceiling, Eval_check, Eval_choose, Eval_circexp, Eval_clear, Eval_clearall, Eval_clearpatterns, Eval_clock, Eval_coeff, Eval_cofactor, Eval_condense, Eval_conj, Eval_cons, Eval_contract, Eval_cos, Eval_cosh, Eval_decomp, Eval_defint, Eval_degree, Eval_denominator, Eval_derivative, Eval_det, Eval_dim, Eval_dirac, Eval_divisors, Eval_do, Eval_dsolve, Eval_eigen, Eval_eigenval, Eval_eigenvec, Eval_erf, Eval_erfc, Eval_exp, Eval_expand, Eval_expcos, Eval_expsin, Eval_factor, Eval_factorial, Eval_factorpoly, Eval_filter, Eval_float, Eval_floor, Eval_for, Eval_function_reference, Eval_gamma, Eval_gcd, Eval_hermite, Eval_hilbert, Eval_imag, Eval_index, Eval_inner, Eval_integral, Eval_inv, Eval_invg, Eval_isinteger, Eval_isprime, Eval_laguerre, Eval_lcm, Eval_leading, Eval_legendre, Eval_log, Eval_lookup, Eval_mod, Eval_multiply, Eval_noexpand, Eval_not, Eval_nroots, Eval_number, Eval_numerator, Eval_operator, Eval_or, Eval_outer, Eval_pattern, Eval_patternsinfo, Eval_polar, Eval_power, Eval_predicate, Eval_prime, Eval_print, Eval_print2dascii, Eval_printcomputer, Eval_printhuman, Eval_printlatex, Eval_printlist, Eval_product, Eval_quote, Eval_quotient, Eval_rank, Eval_rationalize, Eval_real, Eval_rect, Eval_roots, Eval_round, Eval_setq, Eval_sgn, Eval_shape, Eval_silentpattern, Eval_simfac, Eval_simplify, Eval_sin, Eval_sinh, Eval_sqrt, Eval_stop, Eval_subst, Eval_sum, Eval_sym, Eval_symbolsinfo, Eval_tan, Eval_tanh, Eval_taylor, Eval_tensor, Eval_test, Eval_testeq, Eval_testge, Eval_testgt, Eval_testle, Eval_testlt, Eval_transpose, Eval_unit, Eval_user_function, Eval_zero, Evalpoly, FACTOR, FACTORIAL, FACTORPOLY, FILTER, FLOATF, FLOOR, FOR, FORCE_FIXED_PRINTOUT, FUNCTION, Find, GAMMA, GCD, HERMITE, HILBERT, IMAG, INDEX, INNER, INTEGRAL, INV, INVG, INV_check_arg, INV_decomp, ISINTEGER, ISPRIME, LAGUERRE, LAST, LAST_2DASCII_PRINT, LAST_FULL_PRINT, LAST_LATEX_PRINT, LAST_LIST_PRINT, LAST_PLAIN_PRINT, LAST_PRINT, LCM, LEADING, LEGENDRE, LOG, LOOKUP, M, MAXDIM, MAXPRIMETAB, MAX_CONSECUTIVE_APPLICATIONS_OF_ALL_RULES, MAX_CONSECUTIVE_APPLICATIONS_OF_SINGLE_RULE, MAX_FIXED_PRINTOUT_DIGITS, MAX_PROGRAM_SIZE, MEQUAL, METAA, METAB, METAX, MLENGTH, MOD, MSIGN, MULTIPLY, MZERO, N, NIL, NOT, NROOTS, NROOTS_ABS, NROOTS_DELTA, NROOTS_EPSILON, NROOTS_RANDOM, NROOTS_YMAX, NROOTS_divpoly, NSYM, NUM, NUMBER, NUMERATOR, OPERATOR, OR, OUTER, PATTERN, PATTERNSINFO, PI, POLAR, POWER, PRIME, PRINT, PRINT2DASCII, PRINTFULL, PRINTLATEX, PRINTLIST, PRINTMODE_2DASCII, PRINTMODE_COMPUTER, PRINTMODE_HUMAN, PRINTMODE_LATEX, PRINTMODE_LIST, PRINTOUTRESULT, PRINTPLAIN, PRINT_LEAVE_E_ALONE, PRINT_LEAVE_X_ALONE, PRODUCT, QUOTE, QUOTIENT, RANK, RATIONALIZE, REAL, ROOTS, ROUND, SECRETX, SELFTEST, SETQ, SGN, SHAPE, SILENTPATTERN, SIMPLIFY, SIN, SINH, SPACE_BETWEEN_COLUMNS, SPACE_BETWEEN_ROWS, SQRT, STOP, STR, SUBST, SUM, SYM, SYMBOLSINFO, SYMBOL_A, SYMBOL_A_UNDERSCORE, SYMBOL_B, SYMBOL_B_UNDERSCORE, SYMBOL_C, SYMBOL_D, SYMBOL_I, SYMBOL_IDENTITY_MATRIX, SYMBOL_J, SYMBOL_N, SYMBOL_R, SYMBOL_S, SYMBOL_T, SYMBOL_X, SYMBOL_X_UNDERSCORE, SYMBOL_Y, SYMBOL_Z, TAN, TANH, TAYLOR, TENSOR, TEST, TESTEQ, TESTGE, TESTGT, TESTLE, TESTLT, TIMING_DEBUGS, TOS, TRACE, TRANSPOSE, T_DOUBLE, T_EQ, T_FUNCTION, T_GTEQ, T_INTEGER, T_LTEQ, T_NEQ, T_NEWLINE, T_QUOTASSIGN, T_STRING, T_SYMBOL, U, UNIT, USR_SYMBOLS, VERSION, YMAX, YYE, YYRECT, ZERO, __emit_char, __emit_str, __factor_add, __factorial, __is_negative, __is_radical_number, __lcm, __legendre, __legendre2, __legendre3, __normalize_radical_factors, __rationalize_tensor, _print, abs, absValFloat, absval, absval_tensor, add, addSymbolLeftOfAssignment, addSymbolRightOfAssignment, add_all, add_factor_to_accumulator, add_numbers, add_terms, addf, adj, alloc_tensor, allocatedId, any_denominators, approxAll, approxLogs, approxLogsOfRationals, approxOneRatioOnly, approxRadicals, approxRadicalsOfRationals, approxRationalsOfLogs, approxRationalsOfPowersOfE, approxRationalsOfPowersOfPI, approxRationalsOfRadicals, approxSineOfRationalMultiplesOfPI, approxSineOfRationals, approxTrigonometric, approx_just_an_integer, approx_logarithmsOfRationals, approx_nothingUseful, approx_radicalOfRatio, approx_ratioOfRadical, approx_rationalOfE, approx_rationalOfPi, approx_rationalsOfLogarithms, approx_sine_of_pi_times_rational, approx_sine_of_rational, approxratioRecursive, arccos, arccosh, arcsin, arcsinh, arctan, arctanh, areunivarpolysfactoredorexpandedform, arg, arglist, assignmentFound, avoidCalculatingPowersIntoArctans, bake, bake_poly, bake_poly_term, besselj, bessely, bigInt, bignum_factorial, bignum_float, bignum_power_number, bignum_scan_float, bignum_scan_integer, bignum_truncate, binding, binomial, buffer, build_tensor, caaddr, caadr, caar, cadaddr, cadadr, cadar, caddaddr, caddadr, caddar, caddddr, cadddr, caddr, cadr, called_from_Algebra_block, car, cdaddr, cdadr, cdar, cddaddr, cddar, cdddaddr, cddddr, cdddr, cddr, cdr, ceiling, chainOfUserSymbolsNotFunctionsBeingEvaluated, charTabIndex, chartab, checkFloatHasWorkedOutCompletely, check_esc_flag, check_stack, check_tensor_dimensions, choose, choose_check_args, circexp, clearAlgebraEnvironment, clearRenamedVariablesToAvoidBindingToExternalScope, clear_symbols, clear_term, clearall, clockform, cmpGlyphs, cmp_args, cmp_expr, cmp_terms, cmp_terms_count, codeGen, coeff, cofactor, collectLatexStringFromReturnValue, collectUserSymbols, combine_factors, combine_gammas, combine_terms, compareState, compare_numbers, compare_rationals, compare_tensors, compatible, computeDependenciesFromAlgebra, computeResultsAndJavaScriptFromAlgebra, compute_fa, conjugate, cons, consCount, contract, convert_bignum_to_double, convert_rational_to_double, copy_tensor, cosine, cosine_of_angle, cosine_of_angle_sum, count, countOccurrencesOfSymbol, count_denominators, counter, countsize, d_scalar_scalar, d_scalar_scalar_1, d_scalar_tensor, d_tensor_scalar, d_tensor_tensor, dabs, darccos, darccosh, darcsin, darcsinh, darctan, darctanh, dbesselj0, dbesseljn, dbessely0, dbesselyn, dcos, dcosh, dd, decomp, decomp_product, decomp_sum, defineSomeHandyConstants, define_user_function, defn, defn_str, degree, denominator, derf, derfc, derivative, derivative_of_integral, det, determinant, detg, dfunction, dhermite, dirac, display, display_flag, displaychar, divide, divide_numbers, divisors, divisors_onstack, divpoly, dlog, do_clearPatterns, do_clearall, do_simplify_nested_radicals, dontCreateNewRadicalsInDenominatorWhenEvalingMultiplication, dotprod_unicode, doubleToReasonableString, dpow, dpower, dproduct, draw_flag, draw_stop_return, dsgn, dsin, dsinh, dsum, dtan, dtanh, dupl, eigen, elelmIndex, elem, emit_denominator, emit_denominators, emit_expr, emit_factor, emit_factorial_function, emit_flat_tensor, emit_fraction, emit_function, emit_index_function, emit_multiply, emit_number, emit_numerators, emit_numerical_fraction, emit_power, emit_string, emit_subexpr, emit_symbol, emit_tensor, emit_tensor_inner, emit_term, emit_top_expr, emit_unsigned_expr, emit_x, equal, equaln, equalq, erfc, errorMessage, esc_flag, evaluatingAsFloats, evaluatingPolar, exec, expand, expand_get_A, expand_get_AF, expand_get_B, expand_get_C, expand_get_CF, expand_tensor, expanding, expcos, exponential, expr_level, expsin, f1, f10, f2, f3, f4, f5, f9, f_equals_a, factor, factor_a, factor_again, factor_b, factor_number, factor_small_number, factor_term, factorial, factorpoly, factors, fill_buf, filter, filter_main, filter_sum, filter_tensor, findDependenciesInScript, findPossibleClockForm, findPossibleExponentialForm, findroot, fixup_fraction, fixup_power, flag, floatToRatioRoutine, fmt_index, fmt_level, fmt_x, frame, freeze, functionInvokationsScanningStack, gamma, gamma_of_sum, gammaf, gcd, gcd_main, gcd_numbers, gcd_polys, gcd_powers_with_same_base, gcd_product_product, gcd_product_sum, gcd_sum, gcd_sum_product, gcd_sum_sum, gen, getSimpleRoots, getStateHash, get_binding, get_factor_from_complex_root, get_factor_from_real_root, get_innerprod_factors, get_next_token, get_printname, get_size, get_token, getdisplaystr, glyph, gp, guess, hasImaginaryCoeff, hasNegativeRationalExponent, hash_addition, hash_function, hash_multiplication, hash_power, hashcode_values, hashed_itab, hermite, hilbert, i1, imag, imaginaryunit, index_function, init, initNRoots, inited, inner, inner_f, input_str, integral, integral_of_form, integral_of_product, integral_of_sum, inv, inverse, invert_number, invg, isNumberOneOverSomething, isNumericAtom, isNumericAtomOrTensor, isSimpleRoot, isSmall, isSymbolLeftOfAssignment, isSymbolReclaimable, isZeroAtom, isZeroAtomOrTensor, isZeroLikeOrNonZeroLikeOrUndetermined, isZeroTensor, is_denominator, is_factor, is_small_integer, is_square_matrix, is_usr_symbol, isadd, isalnumorunderscore, isalpha, isalphaOrUnderscore, iscomplexnumber, iscomplexnumberdouble, iscons, isdenominator, isdigit, isdouble, iseveninteger, isfactor, isfactorial, isfloating, isfraction, isidentitymatrix, isimaginarynumber, isimaginarynumberdouble, isimaginaryunit, isinnerordot, isinteger, isintegerfactor, isintegerorintegerfloat, isinv, iskeyword, isminusone, isminusoneoversqrttwo, isminusoneovertwo, isminussqrtthreeovertwo, ismultiply, isnegative, isnegativenumber, isnegativeterm, isnonnegativeinteger, isnpi, isone, isoneover, isoneoversqrttwo, isoneovertwo, isplusone, isplustwo, ispolyexpandedform, ispolyexpandedform_expr, ispolyexpandedform_factor, ispolyexpandedform_term, ispolyfactoredorexpandedform, ispolyfactoredorexpandedform_factor, ispolyfactoredorexpandedform_power, isposint, ispositivenumber, ispower, isquarterturn, isrational, isspace, issqrtthree, issqrtthreeovertwo, isstr, issymbol, issymbolic, istensor, istranspose, isunderscore, isunivarpolyfactoredorexpandedform, itab, italu_hashcode, j1, laguerre, laguerre2, lastFoundSymbol, latexErrorSign, lcm, leading, legendre, length, lessp, level, list, listLength, logarithm, logbuf, lookupsTotal, lu_decomp, madd, makePositive, makeSignSameAs, make_hashed_itab, mask, mcmp, mcmpint, mdiv, mdivrem, meta_mode, mgcd, mini_solve, mint, mmod, mmul, mod, monic, move, moveTos, mp_clr_bit, mp_denominator, mp_numerator, mp_set_bit, mpow, mprime, mroot, mshiftright, msub, mtotal, multinomial_sum, multiply, multiply_all, multiply_all_noexpand, multiply_consecutive_constants, multiply_denominators, multiply_denominators_factor, multiply_denominators_term, multiply_noexpand, multiply_numbers, n_factor_number, negate, negate_expand, negate_noexpand, negate_number, new_integer, new_string, newline_flag, nil_symbols, normaliseDots, normalisedCoeff, normalize_angle, nroots_a, nroots_b, nroots_c, nroots_df, nroots_dx, nroots_fa, nroots_fb, nroots_x, nroots_y, nterms, nthCadr, numerator, numericRootOfPolynomial, o, one, oneElement, one_as_double, out_buf, out_count, out_of_memory, outer, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, parse, parse_internal, parse_p1, parse_p2, parse_time_simplifications, partition, patternHasBeenFound, patternsinfo, performing_roots, polar, polarRectAMinusOneBase, polyform, pop, pop_double, pop_frame, pop_integer, power, power_str, power_sum, power_tensor, predefinedSymbolsInGlobalScope_doNotTrackInDependencies, prime, primetab, print2dascii, printMode, print_ABS_latex, print_ARCCOS_codegen, print_ARCSIN_codegen, print_ARCTAN_codegen, print_BINOMIAL_latex, print_COS_codegen, print_DEFINT_latex, print_DOT_codegen, print_DOT_latex, print_DO_codegen, print_FOR_codegen, print_INV_codegen, print_INV_latex, print_PRODUCT_codegen, print_PRODUCT_latex, print_SETQ_codegen, print_SIN_codegen, print_SQRT_latex, print_SUM_codegen, print_SUM_latex, print_TAN_codegen, print_TESTEQ_latex, print_TESTGE_latex, print_TESTGT_latex, print_TESTLE_latex, print_TESTLT_latex, print_TEST_codegen, print_TEST_latex, print_TRANSPOSE_codegen, print_TRANSPOSE_latex, print_UNIT_codegen, print_a_over_b, print_base, print_base_of_denom, print_char, print_denom, print_double, print_expo_of_denom, print_exponent, print_expr, print_factor, print_factorial_function, print_glyphs, print_index_function, print_list, print_multiply_sign, print_number, print_power, print_str, print_subexpr, print_tensor, print_tensor_inner, print_tensor_inner_latex, print_tensor_latex, print_term, printchar, printchar_nowrap, printline, program_buf, promote_tensor, push, pushTryNotToDuplicate, push_cars, push_double, push_factor, push_frame, push_identity_matrix, push_integer, push_rational, push_symbol, push_term_factors, push_terms, push_zero_matrix, qadd, qdiv, qmul, qpow, qpowf, quickfactor, quickpower, rational, rationalize, rationalize_coefficients, real, reciprocate, rect, recursionLevelNestedRadicalsRemoval, recursiveDependencies, ref, ref1, rememberPrint, remove_negative_exponents, reset_after_error, restore, restoreMetaBindings, rewrite_args, rewrite_args_tensor, roots, roots2, roots3, run, runUserDefinedSimplifications, save, saveMetaBindings, scalar_times_tensor, scan, scan_error, scan_expression, scan_factor, scan_function_call_with_function_name, scan_function_call_without_function_name, scan_index, scan_meta, scan_power, scan_relation, scan_stmt, scan_str, scan_string, scan_subexpr, scan_symbol, scan_tensor, scan_term, scanned, scanningParameters, setM, setSignTo, set_binding, set_component, setq_indexed, sfac_product, sfac_product_f, sgn, shape, show_power_debug, sign, sign_of_term, simfac, simfac_term, simpleComplexityMeasure, simplify, simplifyForCodeGeneration, simplify_1_in_products, simplify_main, simplify_nested_radicals, simplify_polar, simplify_polarRect, simplify_rational_expressions, simplify_rectToClock, simplify_tensor, simplify_trig, simplifyfactorials, sine, sine_of_angle, sine_of_angle_sum, skipRootVariableToBeSolved, sort_stack, square, ssqrt, stack, stackAddsCount, std_symbol, step, step2, stop, strcmp, stringsEmittedByUserPrintouts, subf, subst, subtract, subtract_numbers, swap, symbol, symbolsDependencies, symbolsHavingReassignments, symbolsInExpressionsWithoutAssignments, symbolsLeftOfAssignment, symbolsRightOfAssignment, symbolsinfo, symnum, symtab, take_care_of_nested_radicals, tangent, taylor, tensor, tensor_plus_tensor, tensor_times_scalar, testApprox, test_flag, text_metric, theRandom, token, token_buf, token_str, top, top_level_eval, tos, transform, transpose, transpose_unicode, trigmode, trivial_divide, try_kth_prime, turnErrorMessageToLatex, ucmp, unfreeze, unique, unique_f, update_token_buf, userSimplificationsInListForm, userSimplificationsInStringForm, usr_symbol, verbosing, version, will_be_displayed_as_fraction, ybinomial, ycosh, ydirac, yerf, yerfc, yfloor, yindex, yround, ysinh, yyarg, yybesselj, yybessely, yyceiling, yycondense, yycontract, yycosh, yydegree, yydetg, yydivpoly, yyerf, yyerfc, yyexpand, yyfactorpoly, yyfloat, yyfloor, yyhermite, yyhermite2, yyinvg, yylcm, yylog, yymultiply, yyouter, yypower, yyrationalize, yyround, yysgn, yysimfac, yysinh, yytangent, zero, zzfloat, hasProp = {}.hasOwnProperty;
       bigInt = require_BigInteger();
@@ -23183,9 +23183,9 @@ var require_algebrite = __commonJS({
   }
 });
 
-// ../../../../../node_modules/binary-search-bounds/search-bounds.js
+// ../../../node_modules/binary-search-bounds/search-bounds.js
 var require_search_bounds = __commonJS({
-  "../../../../../node_modules/binary-search-bounds/search-bounds.js"(exports2, module2) {
+  "../../../node_modules/binary-search-bounds/search-bounds.js"(exports2, module2) {
     "use strict";
     function ge(a5, y3, c9, l8, h5) {
       var i5 = h5 + 1;
@@ -23284,9 +23284,9 @@ var require_search_bounds = __commonJS({
   }
 });
 
-// ../../../../../node_modules/interval-tree-1d/interval-tree.js
+// ../../../node_modules/interval-tree-1d/interval-tree.js
 var require_interval_tree = __commonJS({
-  "../../../../../node_modules/interval-tree-1d/interval-tree.js"(exports2, module2) {
+  "../../../node_modules/interval-tree-1d/interval-tree.js"(exports2, module2) {
     "use strict";
     var bounds = require_search_bounds();
     var NOT_FOUND = 0;
@@ -23639,7 +23639,7 @@ var require_interval_tree = __commonJS({
   }
 });
 
-// ../../../../../node_modules/@lit/reactive-element/css-tag.js
+// ../../../node_modules/@lit/reactive-element/css-tag.js
 var t = window;
 var e = t.ShadowRoot && (void 0 === t.ShadyCSS || t.ShadyCSS.nativeShadow) && "adoptedStyleSheets" in Document.prototype && "replace" in CSSStyleSheet.prototype;
 var s = Symbol();
@@ -23683,7 +23683,7 @@ var c = e ? (t5) => t5 : (t5) => t5 instanceof CSSStyleSheet ? ((t6) => {
   return r(e11);
 })(t5) : t5;
 
-// ../../../../../node_modules/@lit/reactive-element/reactive-element.js
+// ../../../node_modules/@lit/reactive-element/reactive-element.js
 var s2;
 var e2 = window;
 var r2 = e2.trustedTypes;
@@ -23897,7 +23897,7 @@ var u = class extends HTMLElement {
 };
 u[d] = true, u.elementProperties = /* @__PURE__ */ new Map(), u.elementStyles = [], u.shadowRootOptions = { mode: "open" }, null == o3 || o3({ ReactiveElement: u }), (null !== (s2 = e2.reactiveElementVersions) && void 0 !== s2 ? s2 : e2.reactiveElementVersions = []).push("1.6.3");
 
-// ../../../../../node_modules/lit-html/lit-html.js
+// ../../../node_modules/lit-html/lit-html.js
 var t2;
 var i2 = window;
 var s3 = i2.trustedTypes;
@@ -24169,7 +24169,7 @@ var D = (t5, i5, s8) => {
   return l8._$AI(t5), l8;
 };
 
-// ../../../../../node_modules/lit-element/lit-element.js
+// ../../../node_modules/lit-element/lit-element.js
 var l3;
 var o5;
 var s4 = class extends u {
@@ -24202,7 +24202,7 @@ var n4 = globalThis.litElementPolyfillSupport;
 null == n4 || n4({ LitElement: s4 });
 (null !== (o5 = globalThis.litElementVersions) && void 0 !== o5 ? o5 : globalThis.litElementVersions = []).push("3.3.3");
 
-// ../../../../../node_modules/@lit/reactive-element/decorators/custom-element.js
+// ../../../node_modules/@lit/reactive-element/decorators/custom-element.js
 var e4 = (e11) => (n9) => "function" == typeof n9 ? ((e12, n10) => (customElements.define(e12, n10), n10))(e11, n9) : ((e12, n10) => {
   const { kind: t5, elements: s8 } = n10;
   return { kind: t5, elements: s8, finisher(n11) {
@@ -24210,7 +24210,7 @@ var e4 = (e11) => (n9) => "function" == typeof n9 ? ((e12, n10) => (customElemen
   } };
 })(e11, n9);
 
-// ../../../../../node_modules/@lit/reactive-element/decorators/property.js
+// ../../../node_modules/@lit/reactive-element/decorators/property.js
 var i3 = (i5, e11) => "method" === e11.kind && e11.descriptor && !("value" in e11.descriptor) ? { ...e11, finisher(n9) {
   n9.createProperty(e11.key, i5);
 } } : { kind: "field", key: Symbol(), placement: "own", descriptor: {}, originalKey: e11.key, initializer() {
@@ -24225,16 +24225,16 @@ function n5(n9) {
   return (t5, o12) => void 0 !== o12 ? e5(n9, t5, o12) : i3(n9, t5);
 }
 
-// ../../../../../node_modules/@lit/reactive-element/decorators/state.js
+// ../../../node_modules/@lit/reactive-element/decorators/state.js
 function t3(t5) {
   return n5({ ...t5, state: true });
 }
 
-// ../../../../../node_modules/@lit/reactive-element/decorators/query-assigned-elements.js
+// ../../../node_modules/@lit/reactive-element/decorators/query-assigned-elements.js
 var n6;
 var e6 = null != (null === (n6 = window.HTMLSlotElement) || void 0 === n6 ? void 0 : n6.prototype.assignedElements) ? (o12, n9) => o12.assignedElements(n9) : (o12, n9) => o12.assignedNodes(n9).filter((o13) => o13.nodeType === Node.ELEMENT_NODE);
 
-// ../../../../../node_modules/lit-html/directive.js
+// ../../../node_modules/lit-html/directive.js
 var t4 = { ATTRIBUTE: 1, CHILD: 2, PROPERTY: 3, BOOLEAN_ATTRIBUTE: 4, EVENT: 5, ELEMENT: 6 };
 var e7 = (t5) => (...e11) => ({ _$litDirective$: t5, values: e11 });
 var i4 = class {
@@ -24254,7 +24254,7 @@ var i4 = class {
   }
 };
 
-// ../../../../../node_modules/lit-html/directive-helpers.js
+// ../../../node_modules/lit-html/directive-helpers.js
 var { I: l5 } = j;
 var e8 = (o12) => void 0 === o12.strings;
 var r4 = () => document.createComment("");
@@ -24295,7 +24295,7 @@ var p10 = (o12) => {
   }
 };
 
-// ../../../../../node_modules/lit-html/directives/repeat.js
+// ../../../node_modules/lit-html/directives/repeat.js
 var u3 = (e11, s8, t5) => {
   const r6 = /* @__PURE__ */ new Map();
   for (let l8 = s8; l8 <= t5; l8++) r6.set(e11[l8], l8);
@@ -24349,7 +24349,7 @@ var c4 = e7(class extends i4 {
   }
 });
 
-// ../../../../../node_modules/lit-html/directives/live.js
+// ../../../node_modules/lit-html/directives/live.js
 var l6 = e7(class extends i4 {
   constructor(r6) {
     if (super(r6), r6.type !== t4.PROPERTY && r6.type !== t4.ATTRIBUTE && r6.type !== t4.BOOLEAN_ATTRIBUTE) throw Error("The `live` directive is not allowed on child or event bindings");
@@ -24370,7 +24370,7 @@ var l6 = e7(class extends i4 {
   }
 });
 
-// ../../../../../node_modules/lit-html/async-directive.js
+// ../../../node_modules/lit-html/async-directive.js
 var s6 = (i5, t5) => {
   var e11, o12;
   const r6 = i5._$AN;
@@ -24430,7 +24430,7 @@ var c5 = class extends i4 {
   }
 };
 
-// ../../../../../node_modules/lit-html/directives/ref.js
+// ../../../node_modules/lit-html/directives/ref.js
 var e9 = () => new o8();
 var o8 = class {
 };
@@ -24464,7 +24464,7 @@ var n8 = e7(class extends c5 {
   }
 });
 
-// ../../../../../node_modules/lit-html/directives/class-map.js
+// ../../../node_modules/lit-html/directives/class-map.js
 var o9 = e7(class extends i4 {
   constructor(t5) {
     var i5;
@@ -24492,7 +24492,7 @@ var o9 = e7(class extends i4 {
   }
 });
 
-// ../../../../../node_modules/hotkeys-js/dist/hotkeys.esm.js
+// ../../../node_modules/hotkeys-js/dist/hotkeys.esm.js
 var isff = typeof navigator !== "undefined" ? navigator.userAgent.toLowerCase().indexOf("firefox") > 0 : false;
 function addEvent(object, event, method) {
   if (object.addEventListener) {
@@ -24901,7 +24901,7 @@ if (typeof window !== "undefined") {
 var _hotkeys;
 var hotkeys_esm_default = hotkeys;
 
-// ../../../../../node_modules/ninja-keys/dist/ninja-header.js
+// ../../../node_modules/ninja-keys/dist/ninja-header.js
 var __decorate = function(decorators, target, key, desc) {
   var c9 = arguments.length, r6 = c9 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d3;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r6 = Reflect.decorate(decorators, target, key, desc);
@@ -25054,7 +25054,7 @@ NinjaHeader = __decorate([
   e4("ninja-header")
 ], NinjaHeader);
 
-// ../../../../../node_modules/lit-html/directives/unsafe-html.js
+// ../../../node_modules/lit-html/directives/unsafe-html.js
 var e10 = class extends i4 {
   constructor(i5) {
     if (super(i5), this.et = A, i5.type !== t4.CHILD) throw Error(this.constructor.directiveName + "() can only be used in child bindings");
@@ -25072,7 +25072,7 @@ var e10 = class extends i4 {
 e10.directiveName = "unsafeHTML", e10.resultType = 1;
 var o10 = e7(e10);
 
-// ../../../../../node_modules/lit-html/directives/join.js
+// ../../../node_modules/lit-html/directives/join.js
 function* o11(o12, t5) {
   const f7 = "function" == typeof t5;
   if (void 0 !== o12) {
@@ -25081,7 +25081,7 @@ function* o11(o12, t5) {
   }
 }
 
-// ../../../../../node_modules/tslib/tslib.es6.mjs
+// ../../../node_modules/tslib/tslib.es6.mjs
 function __decorate2(decorators, target, key, desc) {
   var c9 = arguments.length, r6 = c9 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d3;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r6 = Reflect.decorate(decorators, target, key, desc);
@@ -25089,10 +25089,10 @@ function __decorate2(decorators, target, key, desc) {
   return c9 > 3 && r6 && Object.defineProperty(target, key, r6), r6;
 }
 
-// ../../../../../node_modules/@material/mwc-icon/mwc-icon-host.css.js
+// ../../../node_modules/@material/mwc-icon/mwc-icon-host.css.js
 var styles = i`:host{font-family:var(--mdc-icon-font, "Material Icons");font-weight:normal;font-style:normal;font-size:var(--mdc-icon-size, 24px);line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;-moz-osx-font-smoothing:grayscale;font-feature-settings:"liga"}`;
 
-// ../../../../../node_modules/@material/mwc-icon/mwc-icon.js
+// ../../../node_modules/@material/mwc-icon/mwc-icon.js
 var Icon = class Icon2 extends s4 {
   /** @soyTemplate */
   render() {
@@ -25104,7 +25104,7 @@ Icon = __decorate2([
   e4("mwc-icon")
 ], Icon);
 
-// ../../../../../node_modules/ninja-keys/dist/ninja-action.js
+// ../../../node_modules/ninja-keys/dist/ninja-action.js
 var __decorate3 = function(decorators, target, key, desc) {
   var c9 = arguments.length, r6 = c9 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d3;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r6 = Reflect.decorate(decorators, target, key, desc);
@@ -25265,7 +25265,7 @@ NinjaAction = __decorate3([
   e4("ninja-action")
 ], NinjaAction);
 
-// ../../../../../node_modules/ninja-keys/dist/ninja-footer.js
+// ../../../node_modules/ninja-keys/dist/ninja-footer.js
 var footerHtml = x` <div class="modal-footer" slot="footer">
   <span class="help">
     <svg
@@ -25323,7 +25323,7 @@ var footerHtml = x` <div class="modal-footer" slot="footer">
   </span>
 </div>`;
 
-// ../../../../../node_modules/ninja-keys/dist/base-styles.js
+// ../../../node_modules/ninja-keys/dist/base-styles.js
 var baseStyles = i`
   :host {
     --ninja-width: 640px;
@@ -25507,7 +25507,7 @@ var baseStyles = i`
   }
 `;
 
-// ../../../../../node_modules/ninja-keys/dist/ninja-keys.js
+// ../../../node_modules/ninja-keys/dist/ninja-keys.js
 var __decorate4 = function(decorators, target, key, desc) {
   var c9 = arguments.length, r6 = c9 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d3;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r6 = Reflect.decorate(decorators, target, key, desc);
@@ -25912,7 +25912,7 @@ NinjaKeys = __decorate4([
 // prebundle.js
 var import_algebrite = __toESM(require_algebrite());
 
-// ../../../../../node_modules/@observablehq/plot/src/index.js
+// ../../../node_modules/@observablehq/plot/src/index.js
 var src_exports = {};
 __export(src_exports, {
   Area: () => Area,
@@ -26083,17 +26083,17 @@ __export(src_exports, {
   windowY: () => windowY
 });
 
-// ../../../../../node_modules/d3-array/src/ascending.js
+// ../../../node_modules/d3-array/src/ascending.js
 function ascending(a5, b2) {
   return a5 == null || b2 == null ? NaN : a5 < b2 ? -1 : a5 > b2 ? 1 : a5 >= b2 ? 0 : NaN;
 }
 
-// ../../../../../node_modules/d3-array/src/descending.js
+// ../../../node_modules/d3-array/src/descending.js
 function descending(a5, b2) {
   return a5 == null || b2 == null ? NaN : b2 < a5 ? -1 : b2 > a5 ? 1 : b2 >= a5 ? 0 : NaN;
 }
 
-// ../../../../../node_modules/d3-array/src/bisector.js
+// ../../../node_modules/d3-array/src/bisector.js
 function bisector(f7) {
   let compare1, compare2, delta;
   if (f7.length !== 2) {
@@ -26137,7 +26137,7 @@ function zero2() {
   return 0;
 }
 
-// ../../../../../node_modules/d3-array/src/number.js
+// ../../../node_modules/d3-array/src/number.js
 function number(x3) {
   return x3 === null ? NaN : +x3;
 }
@@ -26158,14 +26158,14 @@ function* numbers(values2, valueof2) {
   }
 }
 
-// ../../../../../node_modules/d3-array/src/bisect.js
+// ../../../node_modules/d3-array/src/bisect.js
 var ascendingBisect = bisector(ascending);
 var bisectRight = ascendingBisect.right;
 var bisectLeft = ascendingBisect.left;
 var bisectCenter = bisector(number).center;
 var bisect_default = bisectRight;
 
-// ../../../../../node_modules/d3-array/src/blur.js
+// ../../../node_modules/d3-array/src/blur.js
 var blur2 = Blur2(blurf);
 var blurImage = Blur2(blurfImage);
 function Blur2(blur3) {
@@ -26255,7 +26255,7 @@ function bluri(radius2) {
   };
 }
 
-// ../../../../../node_modules/d3-array/src/count.js
+// ../../../node_modules/d3-array/src/count.js
 function count2(values2, valueof2) {
   let count4 = 0;
   if (valueof2 === void 0) {
@@ -26275,7 +26275,7 @@ function count2(values2, valueof2) {
   return count4;
 }
 
-// ../../../../../node_modules/d3-array/src/cross.js
+// ../../../node_modules/d3-array/src/cross.js
 function length2(array3) {
   return array3.length | 0;
 }
@@ -26306,13 +26306,13 @@ function cross(...values2) {
   }
 }
 
-// ../../../../../node_modules/d3-array/src/cumsum.js
+// ../../../node_modules/d3-array/src/cumsum.js
 function cumsum(values2, valueof2) {
   var sum3 = 0, index2 = 0;
   return Float64Array.from(values2, valueof2 === void 0 ? (v3) => sum3 += +v3 || 0 : (v3) => sum3 += +valueof2(v3, index2++, values2) || 0);
 }
 
-// ../../../../../node_modules/d3-array/src/variance.js
+// ../../../node_modules/d3-array/src/variance.js
 function variance(values2, valueof2) {
   let count4 = 0;
   let delta;
@@ -26339,13 +26339,13 @@ function variance(values2, valueof2) {
   if (count4 > 1) return sum3 / (count4 - 1);
 }
 
-// ../../../../../node_modules/d3-array/src/deviation.js
+// ../../../node_modules/d3-array/src/deviation.js
 function deviation(values2, valueof2) {
   const v3 = variance(values2, valueof2);
   return v3 ? Math.sqrt(v3) : v3;
 }
 
-// ../../../../../node_modules/d3-array/src/extent.js
+// ../../../node_modules/d3-array/src/extent.js
 function extent(values2, valueof2) {
   let min4;
   let max3;
@@ -26376,7 +26376,7 @@ function extent(values2, valueof2) {
   return [min4, max3];
 }
 
-// ../../../../../node_modules/d3-array/src/fsum.js
+// ../../../node_modules/d3-array/src/fsum.js
 var Adder = class {
   constructor() {
     this._partials = new Float64Array(32);
@@ -26416,7 +26416,7 @@ var Adder = class {
   }
 };
 
-// ../../../../../node_modules/internmap/src/index.js
+// ../../../node_modules/internmap/src/index.js
 var InternMap = class extends Map {
   constructor(entries, key = keyof) {
     super();
@@ -26474,12 +26474,12 @@ function keyof(value) {
   return value !== null && typeof value === "object" ? value.valueOf() : value;
 }
 
-// ../../../../../node_modules/d3-array/src/identity.js
+// ../../../node_modules/d3-array/src/identity.js
 function identity(x3) {
   return x3;
 }
 
-// ../../../../../node_modules/d3-array/src/group.js
+// ../../../node_modules/d3-array/src/group.js
 function group(values2, ...keys) {
   return nest(values2, identity, identity, keys);
 }
@@ -26508,12 +26508,12 @@ function nest(values2, map4, reduce, keys) {
   }(values2, 0);
 }
 
-// ../../../../../node_modules/d3-array/src/permute.js
+// ../../../node_modules/d3-array/src/permute.js
 function permute(source, keys) {
   return Array.from(keys, (key) => source[key]);
 }
 
-// ../../../../../node_modules/d3-array/src/sort.js
+// ../../../node_modules/d3-array/src/sort.js
 function sort(values2, ...F) {
   if (typeof values2[Symbol.iterator] !== "function") throw new TypeError("values is not iterable");
   values2 = Array.from(values2);
@@ -26549,12 +26549,12 @@ function ascendingDefined(a5, b2) {
   return (a5 == null || !(a5 >= a5)) - (b2 == null || !(b2 >= b2)) || (a5 < b2 ? -1 : a5 > b2 ? 1 : 0);
 }
 
-// ../../../../../node_modules/d3-array/src/groupSort.js
+// ../../../node_modules/d3-array/src/groupSort.js
 function groupSort(values2, reduce, key) {
   return (reduce.length !== 2 ? sort(rollup(values2, reduce, key), ([ak, av], [bk, bv]) => ascending(av, bv) || ascending(ak, bk)) : sort(group(values2, key), ([ak, av], [bk, bv]) => reduce(av, bv) || ascending(ak, bk))).map(([key2]) => key2);
 }
 
-// ../../../../../node_modules/d3-array/src/ticks.js
+// ../../../node_modules/d3-array/src/ticks.js
 var e102 = Math.sqrt(50);
 var e52 = Math.sqrt(10);
 var e22 = Math.sqrt(2);
@@ -26604,7 +26604,7 @@ function tickStep(start2, stop2, count4) {
   return (reverse3 ? -1 : 1) * (inc2 < 0 ? 1 / -inc2 : inc2);
 }
 
-// ../../../../../node_modules/d3-array/src/nice.js
+// ../../../node_modules/d3-array/src/nice.js
 function nice(start2, stop2, count4) {
   let prestep;
   while (true) {
@@ -26622,12 +26622,12 @@ function nice(start2, stop2, count4) {
   }
 }
 
-// ../../../../../node_modules/d3-array/src/threshold/sturges.js
+// ../../../node_modules/d3-array/src/threshold/sturges.js
 function thresholdSturges(values2) {
   return Math.max(1, Math.ceil(Math.log(count2(values2)) / Math.LN2) + 1);
 }
 
-// ../../../../../node_modules/d3-array/src/max.js
+// ../../../node_modules/d3-array/src/max.js
 function max(values2, valueof2) {
   let max3;
   if (valueof2 === void 0) {
@@ -26647,7 +26647,7 @@ function max(values2, valueof2) {
   return max3;
 }
 
-// ../../../../../node_modules/d3-array/src/maxIndex.js
+// ../../../node_modules/d3-array/src/maxIndex.js
 function maxIndex(values2, valueof2) {
   let max3;
   let maxIndex2 = -1;
@@ -26669,7 +26669,7 @@ function maxIndex(values2, valueof2) {
   return maxIndex2;
 }
 
-// ../../../../../node_modules/d3-array/src/min.js
+// ../../../node_modules/d3-array/src/min.js
 function min(values2, valueof2) {
   let min4;
   if (valueof2 === void 0) {
@@ -26689,7 +26689,7 @@ function min(values2, valueof2) {
   return min4;
 }
 
-// ../../../../../node_modules/d3-array/src/minIndex.js
+// ../../../node_modules/d3-array/src/minIndex.js
 function minIndex(values2, valueof2) {
   let min4;
   let minIndex2 = -1;
@@ -26711,7 +26711,7 @@ function minIndex(values2, valueof2) {
   return minIndex2;
 }
 
-// ../../../../../node_modules/d3-array/src/quickselect.js
+// ../../../node_modules/d3-array/src/quickselect.js
 function quickselect(array3, k3, left2 = 0, right2 = Infinity, compare) {
   k3 = Math.floor(k3);
   left2 = Math.floor(Math.max(0, left2));
@@ -26752,7 +26752,7 @@ function swap2(array3, i5, j2) {
   array3[j2] = t5;
 }
 
-// ../../../../../node_modules/d3-array/src/greatest.js
+// ../../../node_modules/d3-array/src/greatest.js
 function greatest(values2, compare = ascending) {
   let max3;
   let defined2 = false;
@@ -26777,7 +26777,7 @@ function greatest(values2, compare = ascending) {
   return max3;
 }
 
-// ../../../../../node_modules/d3-array/src/quantile.js
+// ../../../node_modules/d3-array/src/quantile.js
 function quantile(values2, p11, valueof2) {
   values2 = Float64Array.from(numbers(values2, valueof2));
   if (!(n9 = values2.length) || isNaN(p11 = +p11)) return;
@@ -26794,19 +26794,19 @@ function quantileSorted(values2, p11, valueof2 = number) {
   return value0 + (value1 - value0) * (i5 - i0);
 }
 
-// ../../../../../node_modules/d3-array/src/threshold/freedmanDiaconis.js
+// ../../../node_modules/d3-array/src/threshold/freedmanDiaconis.js
 function thresholdFreedmanDiaconis(values2, min4, max3) {
   const c9 = count2(values2), d3 = quantile(values2, 0.75) - quantile(values2, 0.25);
   return c9 && d3 ? Math.ceil((max3 - min4) / (2 * d3 * Math.pow(c9, -1 / 3))) : 1;
 }
 
-// ../../../../../node_modules/d3-array/src/threshold/scott.js
+// ../../../node_modules/d3-array/src/threshold/scott.js
 function thresholdScott(values2, min4, max3) {
   const c9 = count2(values2), d3 = deviation(values2);
   return c9 && d3 ? Math.ceil((max3 - min4) * Math.cbrt(c9) / (3.49 * d3)) : 1;
 }
 
-// ../../../../../node_modules/d3-array/src/mean.js
+// ../../../node_modules/d3-array/src/mean.js
 function mean(values2, valueof2) {
   let count4 = 0;
   let sum3 = 0;
@@ -26827,12 +26827,12 @@ function mean(values2, valueof2) {
   if (count4) return sum3 / count4;
 }
 
-// ../../../../../node_modules/d3-array/src/median.js
+// ../../../node_modules/d3-array/src/median.js
 function median(values2, valueof2) {
   return quantile(values2, 0.5, valueof2);
 }
 
-// ../../../../../node_modules/d3-array/src/merge.js
+// ../../../node_modules/d3-array/src/merge.js
 function* flatten(arrays) {
   for (const array3 of arrays) {
     yield* array3;
@@ -26842,7 +26842,7 @@ function merge(arrays) {
   return Array.from(flatten(arrays));
 }
 
-// ../../../../../node_modules/d3-array/src/mode.js
+// ../../../node_modules/d3-array/src/mode.js
 function mode(values2, valueof2) {
   const counts = new InternMap();
   if (valueof2 === void 0) {
@@ -26870,7 +26870,7 @@ function mode(values2, valueof2) {
   return modeValue;
 }
 
-// ../../../../../node_modules/d3-array/src/pairs.js
+// ../../../node_modules/d3-array/src/pairs.js
 function pairs(values2, pairof = pair) {
   const pairs2 = [];
   let previous;
@@ -26886,7 +26886,7 @@ function pair(a5, b2) {
   return [a5, b2];
 }
 
-// ../../../../../node_modules/d3-array/src/range.js
+// ../../../node_modules/d3-array/src/range.js
 function range(start2, stop2, step3) {
   start2 = +start2, stop2 = +stop2, step3 = (n9 = arguments.length) < 2 ? (stop2 = start2, start2 = 0, 1) : n9 < 3 ? 1 : +step3;
   var i5 = -1, n9 = Math.max(0, Math.ceil((stop2 - start2) / step3)) | 0, range3 = new Array(n9);
@@ -26896,7 +26896,7 @@ function range(start2, stop2, step3) {
   return range3;
 }
 
-// ../../../../../node_modules/d3-array/src/rank.js
+// ../../../node_modules/d3-array/src/rank.js
 function rank(values2, valueof2 = ascending) {
   if (typeof values2[Symbol.iterator] !== "function") throw new TypeError("values is not iterable");
   let V2 = Array.from(values2);
@@ -26918,7 +26918,7 @@ function rank(values2, valueof2 = ascending) {
   return R2;
 }
 
-// ../../../../../node_modules/d3-array/src/least.js
+// ../../../node_modules/d3-array/src/least.js
 function least(values2, compare = ascending) {
   let min4;
   let defined2 = false;
@@ -26943,7 +26943,7 @@ function least(values2, compare = ascending) {
   return min4;
 }
 
-// ../../../../../node_modules/d3-array/src/sum.js
+// ../../../node_modules/d3-array/src/sum.js
 function sum(values2, valueof2) {
   let sum3 = 0;
   if (valueof2 === void 0) {
@@ -26963,18 +26963,18 @@ function sum(values2, valueof2) {
   return sum3;
 }
 
-// ../../../../../node_modules/d3-array/src/reverse.js
+// ../../../node_modules/d3-array/src/reverse.js
 function reverse(values2) {
   if (typeof values2[Symbol.iterator] !== "function") throw new TypeError("values is not iterable");
   return Array.from(values2).reverse();
 }
 
-// ../../../../../node_modules/d3-axis/src/identity.js
+// ../../../node_modules/d3-axis/src/identity.js
 function identity_default(x3) {
   return x3;
 }
 
-// ../../../../../node_modules/d3-axis/src/axis.js
+// ../../../node_modules/d3-axis/src/axis.js
 var top2 = 1;
 var right = 2;
 var bottom = 3;
@@ -27066,7 +27066,7 @@ function axisBottom(scale3) {
   return axis(bottom, scale3);
 }
 
-// ../../../../../node_modules/d3-dispatch/src/dispatch.js
+// ../../../node_modules/d3-dispatch/src/dispatch.js
 var noop = { value: () => {
 } };
 function dispatch2() {
@@ -27136,7 +27136,7 @@ function set(type2, name, callback) {
 }
 var dispatch_default = dispatch2;
 
-// ../../../../../node_modules/d3-selection/src/namespaces.js
+// ../../../node_modules/d3-selection/src/namespaces.js
 var xhtml = "http://www.w3.org/1999/xhtml";
 var namespaces_default = {
   svg: "http://www.w3.org/2000/svg",
@@ -27146,14 +27146,14 @@ var namespaces_default = {
   xmlns: "http://www.w3.org/2000/xmlns/"
 };
 
-// ../../../../../node_modules/d3-selection/src/namespace.js
+// ../../../node_modules/d3-selection/src/namespace.js
 function namespace_default(name) {
   var prefix = name += "", i5 = prefix.indexOf(":");
   if (i5 >= 0 && (prefix = name.slice(0, i5)) !== "xmlns") name = name.slice(i5 + 1);
   return namespaces_default.hasOwnProperty(prefix) ? { space: namespaces_default[prefix], local: name } : name;
 }
 
-// ../../../../../node_modules/d3-selection/src/creator.js
+// ../../../node_modules/d3-selection/src/creator.js
 function creatorInherit(name) {
   return function() {
     var document2 = this.ownerDocument, uri = this.namespaceURI;
@@ -27170,7 +27170,7 @@ function creator_default(name) {
   return (fullname.local ? creatorFixed : creatorInherit)(fullname);
 }
 
-// ../../../../../node_modules/d3-selection/src/selector.js
+// ../../../node_modules/d3-selection/src/selector.js
 function none() {
 }
 function selector_default(selector) {
@@ -27179,7 +27179,7 @@ function selector_default(selector) {
   };
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/select.js
+// ../../../node_modules/d3-selection/src/selection/select.js
 function select_default(select2) {
   if (typeof select2 !== "function") select2 = selector_default(select2);
   for (var groups2 = this._groups, m3 = groups2.length, subgroups = new Array(m3), j2 = 0; j2 < m3; ++j2) {
@@ -27193,12 +27193,12 @@ function select_default(select2) {
   return new Selection(subgroups, this._parents);
 }
 
-// ../../../../../node_modules/d3-selection/src/array.js
+// ../../../node_modules/d3-selection/src/array.js
 function array(x3) {
   return x3 == null ? [] : Array.isArray(x3) ? x3 : Array.from(x3);
 }
 
-// ../../../../../node_modules/d3-selection/src/selectorAll.js
+// ../../../node_modules/d3-selection/src/selectorAll.js
 function empty2() {
   return [];
 }
@@ -27208,7 +27208,7 @@ function selectorAll_default(selector) {
   };
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/selectAll.js
+// ../../../node_modules/d3-selection/src/selection/selectAll.js
 function arrayAll(select2) {
   return function() {
     return array(select2.apply(this, arguments));
@@ -27228,7 +27228,7 @@ function selectAll_default(select2) {
   return new Selection(subgroups, parents);
 }
 
-// ../../../../../node_modules/d3-selection/src/matcher.js
+// ../../../node_modules/d3-selection/src/matcher.js
 function matcher_default(selector) {
   return function() {
     return this.matches(selector);
@@ -27240,7 +27240,7 @@ function childMatcher(selector) {
   };
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/selectChild.js
+// ../../../node_modules/d3-selection/src/selection/selectChild.js
 var find = Array.prototype.find;
 function childFind(match) {
   return function() {
@@ -27254,7 +27254,7 @@ function selectChild_default(match) {
   return this.select(match == null ? childFirst : childFind(typeof match === "function" ? match : childMatcher(match)));
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/selectChildren.js
+// ../../../node_modules/d3-selection/src/selection/selectChildren.js
 var filter3 = Array.prototype.filter;
 function children() {
   return Array.from(this.children);
@@ -27268,7 +27268,7 @@ function selectChildren_default(match) {
   return this.selectAll(match == null ? children : childrenFilter(typeof match === "function" ? match : childMatcher(match)));
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/filter.js
+// ../../../node_modules/d3-selection/src/selection/filter.js
 function filter_default(match) {
   if (typeof match !== "function") match = matcher_default(match);
   for (var groups2 = this._groups, m3 = groups2.length, subgroups = new Array(m3), j2 = 0; j2 < m3; ++j2) {
@@ -27281,12 +27281,12 @@ function filter_default(match) {
   return new Selection(subgroups, this._parents);
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/sparse.js
+// ../../../node_modules/d3-selection/src/selection/sparse.js
 function sparse_default(update) {
   return new Array(update.length);
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/enter.js
+// ../../../node_modules/d3-selection/src/selection/enter.js
 function enter_default() {
   return new Selection(this._enter || this._groups.map(sparse_default), this._parents);
 }
@@ -27313,14 +27313,14 @@ EnterNode.prototype = {
   }
 };
 
-// ../../../../../node_modules/d3-selection/src/constant.js
+// ../../../node_modules/d3-selection/src/constant.js
 function constant_default(x3) {
   return function() {
     return x3;
   };
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/data.js
+// ../../../node_modules/d3-selection/src/selection/data.js
 function bindIndex(parent, group3, enter, update, exit, data) {
   var i5 = 0, node, groupLength = group3.length, dataLength = data.length;
   for (; i5 < dataLength; ++i5) {
@@ -27392,12 +27392,12 @@ function arraylike(data) {
   return typeof data === "object" && "length" in data ? data : Array.from(data);
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/exit.js
+// ../../../node_modules/d3-selection/src/selection/exit.js
 function exit_default() {
   return new Selection(this._exit || this._groups.map(sparse_default), this._parents);
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/join.js
+// ../../../node_modules/d3-selection/src/selection/join.js
 function join_default(onenter, onupdate, onexit) {
   var enter = this.enter(), update = this, exit = this.exit();
   if (typeof onenter === "function") {
@@ -27415,7 +27415,7 @@ function join_default(onenter, onupdate, onexit) {
   return enter && update ? enter.merge(update).order() : update;
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/merge.js
+// ../../../node_modules/d3-selection/src/selection/merge.js
 function merge_default(context) {
   var selection2 = context.selection ? context.selection() : context;
   for (var groups0 = this._groups, groups1 = selection2._groups, m0 = groups0.length, m1 = groups1.length, m3 = Math.min(m0, m1), merges = new Array(m0), j2 = 0; j2 < m3; ++j2) {
@@ -27431,7 +27431,7 @@ function merge_default(context) {
   return new Selection(merges, this._parents);
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/order.js
+// ../../../node_modules/d3-selection/src/selection/order.js
 function order_default() {
   for (var groups2 = this._groups, j2 = -1, m3 = groups2.length; ++j2 < m3; ) {
     for (var group3 = groups2[j2], i5 = group3.length - 1, next = group3[i5], node; --i5 >= 0; ) {
@@ -27444,7 +27444,7 @@ function order_default() {
   return this;
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/sort.js
+// ../../../node_modules/d3-selection/src/selection/sort.js
 function sort_default(compare) {
   if (!compare) compare = ascending2;
   function compareNode(a5, b2) {
@@ -27464,7 +27464,7 @@ function ascending2(a5, b2) {
   return a5 < b2 ? -1 : a5 > b2 ? 1 : a5 >= b2 ? 0 : NaN;
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/call.js
+// ../../../node_modules/d3-selection/src/selection/call.js
 function call_default() {
   var callback = arguments[0];
   arguments[0] = this;
@@ -27472,12 +27472,12 @@ function call_default() {
   return this;
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/nodes.js
+// ../../../node_modules/d3-selection/src/selection/nodes.js
 function nodes_default() {
   return Array.from(this);
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/node.js
+// ../../../node_modules/d3-selection/src/selection/node.js
 function node_default() {
   for (var groups2 = this._groups, j2 = 0, m3 = groups2.length; j2 < m3; ++j2) {
     for (var group3 = groups2[j2], i5 = 0, n9 = group3.length; i5 < n9; ++i5) {
@@ -27488,19 +27488,19 @@ function node_default() {
   return null;
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/size.js
+// ../../../node_modules/d3-selection/src/selection/size.js
 function size_default() {
   let size = 0;
   for (const node of this) ++size;
   return size;
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/empty.js
+// ../../../node_modules/d3-selection/src/selection/empty.js
 function empty_default() {
   return !this.node();
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/each.js
+// ../../../node_modules/d3-selection/src/selection/each.js
 function each_default(callback) {
   for (var groups2 = this._groups, j2 = 0, m3 = groups2.length; j2 < m3; ++j2) {
     for (var group3 = groups2[j2], i5 = 0, n9 = group3.length, node; i5 < n9; ++i5) {
@@ -27510,7 +27510,7 @@ function each_default(callback) {
   return this;
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/attr.js
+// ../../../node_modules/d3-selection/src/selection/attr.js
 function attrRemove(name) {
   return function() {
     this.removeAttribute(name);
@@ -27554,12 +27554,12 @@ function attr_default(name, value) {
   return this.each((value == null ? fullname.local ? attrRemoveNS : attrRemove : typeof value === "function" ? fullname.local ? attrFunctionNS : attrFunction : fullname.local ? attrConstantNS : attrConstant)(fullname, value));
 }
 
-// ../../../../../node_modules/d3-selection/src/window.js
+// ../../../node_modules/d3-selection/src/window.js
 function window_default(node) {
   return node.ownerDocument && node.ownerDocument.defaultView || node.document && node || node.defaultView;
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/style.js
+// ../../../node_modules/d3-selection/src/selection/style.js
 function styleRemove(name) {
   return function() {
     this.style.removeProperty(name);
@@ -27584,7 +27584,7 @@ function styleValue(node, name) {
   return node.style.getPropertyValue(name) || window_default(node).getComputedStyle(node, null).getPropertyValue(name);
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/property.js
+// ../../../node_modules/d3-selection/src/selection/property.js
 function propertyRemove(name) {
   return function() {
     delete this[name];
@@ -27606,7 +27606,7 @@ function property_default(name, value) {
   return arguments.length > 1 ? this.each((value == null ? propertyRemove : typeof value === "function" ? propertyFunction : propertyConstant)(name, value)) : this.node()[name];
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/classed.js
+// ../../../node_modules/d3-selection/src/selection/classed.js
 function classArray(string2) {
   return string2.trim().split(/^|\s+/);
 }
@@ -27669,7 +27669,7 @@ function classed_default(name, value) {
   return this.each((typeof value === "function" ? classedFunction : value ? classedTrue : classedFalse)(names, value));
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/text.js
+// ../../../node_modules/d3-selection/src/selection/text.js
 function textRemove() {
   this.textContent = "";
 }
@@ -27688,7 +27688,7 @@ function text_default(value) {
   return arguments.length ? this.each(value == null ? textRemove : (typeof value === "function" ? textFunction : textConstant)(value)) : this.node().textContent;
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/html.js
+// ../../../node_modules/d3-selection/src/selection/html.js
 function htmlRemove() {
   this.innerHTML = "";
 }
@@ -27707,7 +27707,7 @@ function html_default(value) {
   return arguments.length ? this.each(value == null ? htmlRemove : (typeof value === "function" ? htmlFunction : htmlConstant)(value)) : this.node().innerHTML;
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/raise.js
+// ../../../node_modules/d3-selection/src/selection/raise.js
 function raise() {
   if (this.nextSibling) this.parentNode.appendChild(this);
 }
@@ -27715,7 +27715,7 @@ function raise_default() {
   return this.each(raise);
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/lower.js
+// ../../../node_modules/d3-selection/src/selection/lower.js
 function lower() {
   if (this.previousSibling) this.parentNode.insertBefore(this, this.parentNode.firstChild);
 }
@@ -27723,7 +27723,7 @@ function lower_default() {
   return this.each(lower);
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/append.js
+// ../../../node_modules/d3-selection/src/selection/append.js
 function append_default(name) {
   var create3 = typeof name === "function" ? name : creator_default(name);
   return this.select(function() {
@@ -27731,7 +27731,7 @@ function append_default(name) {
   });
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/insert.js
+// ../../../node_modules/d3-selection/src/selection/insert.js
 function constantNull() {
   return null;
 }
@@ -27742,7 +27742,7 @@ function insert_default(name, before) {
   });
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/remove.js
+// ../../../node_modules/d3-selection/src/selection/remove.js
 function remove() {
   var parent = this.parentNode;
   if (parent) parent.removeChild(this);
@@ -27751,7 +27751,7 @@ function remove_default() {
   return this.each(remove);
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/clone.js
+// ../../../node_modules/d3-selection/src/selection/clone.js
 function selection_cloneShallow() {
   var clone = this.cloneNode(false), parent = this.parentNode;
   return parent ? parent.insertBefore(clone, this.nextSibling) : clone;
@@ -27764,12 +27764,12 @@ function clone_default(deep) {
   return this.select(deep ? selection_cloneDeep : selection_cloneShallow);
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/datum.js
+// ../../../node_modules/d3-selection/src/selection/datum.js
 function datum_default(value) {
   return arguments.length ? this.property("__data__", value) : this.node().__data__;
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/on.js
+// ../../../node_modules/d3-selection/src/selection/on.js
 function contextListener(listener) {
   return function(event) {
     listener.call(this, event, this.__data__);
@@ -27832,7 +27832,7 @@ function on_default(typename, value, options) {
   return this;
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/dispatch.js
+// ../../../node_modules/d3-selection/src/selection/dispatch.js
 function dispatchEvent(node, type2, params) {
   var window3 = window_default(node), event = window3.CustomEvent;
   if (typeof event === "function") {
@@ -27858,7 +27858,7 @@ function dispatch_default2(type2, params) {
   return this.each((typeof params === "function" ? dispatchFunction : dispatchConstant)(type2, params));
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/iterator.js
+// ../../../node_modules/d3-selection/src/selection/iterator.js
 function* iterator_default() {
   for (var groups2 = this._groups, j2 = 0, m3 = groups2.length; j2 < m3; ++j2) {
     for (var group3 = groups2[j2], i5 = 0, n9 = group3.length, node; i5 < n9; ++i5) {
@@ -27867,7 +27867,7 @@ function* iterator_default() {
   }
 }
 
-// ../../../../../node_modules/d3-selection/src/selection/index.js
+// ../../../node_modules/d3-selection/src/selection/index.js
 var root = [null];
 function Selection(groups2, parents) {
   this._groups = groups2;
@@ -27919,19 +27919,19 @@ Selection.prototype = selection.prototype = {
 };
 var selection_default = selection;
 
-// ../../../../../node_modules/d3-selection/src/select.js
+// ../../../node_modules/d3-selection/src/select.js
 function select_default2(selector) {
   return typeof selector === "string" ? new Selection([[document.querySelector(selector)]], [document.documentElement]) : new Selection([[selector]], root);
 }
 
-// ../../../../../node_modules/d3-selection/src/sourceEvent.js
+// ../../../node_modules/d3-selection/src/sourceEvent.js
 function sourceEvent_default(event) {
   let sourceEvent;
   while (sourceEvent = event.sourceEvent) event = sourceEvent;
   return event;
 }
 
-// ../../../../../node_modules/d3-selection/src/pointer.js
+// ../../../node_modules/d3-selection/src/pointer.js
 function pointer_default(event, node) {
   event = sourceEvent_default(event);
   if (node === void 0) node = event.currentTarget;
@@ -27951,7 +27951,7 @@ function pointer_default(event, node) {
   return [event.pageX, event.pageY];
 }
 
-// ../../../../../node_modules/d3-color/src/define.js
+// ../../../node_modules/d3-color/src/define.js
 function define_default(constructor, factory, prototype) {
   constructor.prototype = factory.prototype = prototype;
   prototype.constructor = constructor;
@@ -27962,7 +27962,7 @@ function extend(parent, definition) {
   return prototype;
 }
 
-// ../../../../../node_modules/d3-color/src/color.js
+// ../../../node_modules/d3-color/src/color.js
 function Color() {
 }
 var darker = 0.7;
@@ -28299,11 +28299,11 @@ function hsl2rgb(h5, m1, m22) {
   return (h5 < 60 ? m1 + (m22 - m1) * h5 / 60 : h5 < 180 ? m22 : h5 < 240 ? m1 + (m22 - m1) * (240 - h5) / 60 : m1) * 255;
 }
 
-// ../../../../../node_modules/d3-color/src/math.js
+// ../../../node_modules/d3-color/src/math.js
 var radians = Math.PI / 180;
 var degrees = 180 / Math.PI;
 
-// ../../../../../node_modules/d3-color/src/lab.js
+// ../../../node_modules/d3-color/src/lab.js
 var K = 18;
 var Xn = 0.96422;
 var Yn = 1;
@@ -28398,7 +28398,7 @@ define_default(Hcl, hcl, extend(Color, {
   }
 }));
 
-// ../../../../../node_modules/d3-color/src/cubehelix.js
+// ../../../node_modules/d3-color/src/cubehelix.js
 var A2 = -0.14861;
 var B2 = 1.78277;
 var C7 = -0.29227;
@@ -28442,7 +28442,7 @@ define_default(Cubehelix, cubehelix, extend(Color, {
   }
 }));
 
-// ../../../../../node_modules/d3-interpolate/src/basis.js
+// ../../../node_modules/d3-interpolate/src/basis.js
 function basis(t13, v0, v1, v22, v3) {
   var t23 = t13 * t13, t33 = t23 * t13;
   return ((1 - 3 * t13 + 3 * t23 - t33) * v0 + (4 - 6 * t23 + 3 * t33) * v1 + (1 + 3 * t13 + 3 * t23 - 3 * t33) * v22 + t33 * v3) / 6;
@@ -28455,7 +28455,7 @@ function basis_default(values2) {
   };
 }
 
-// ../../../../../node_modules/d3-interpolate/src/basisClosed.js
+// ../../../node_modules/d3-interpolate/src/basisClosed.js
 function basisClosed_default(values2) {
   var n9 = values2.length;
   return function(t5) {
@@ -28464,10 +28464,10 @@ function basisClosed_default(values2) {
   };
 }
 
-// ../../../../../node_modules/d3-interpolate/src/constant.js
+// ../../../node_modules/d3-interpolate/src/constant.js
 var constant_default2 = (x3) => () => x3;
 
-// ../../../../../node_modules/d3-interpolate/src/color.js
+// ../../../node_modules/d3-interpolate/src/color.js
 function linear(a5, d3) {
   return function(t5) {
     return a5 + t5 * d3;
@@ -28492,7 +28492,7 @@ function nogamma(a5, b2) {
   return d3 ? linear(a5, d3) : constant_default2(isNaN(a5) ? b2 : a5);
 }
 
-// ../../../../../node_modules/d3-interpolate/src/rgb.js
+// ../../../node_modules/d3-interpolate/src/rgb.js
 var rgb_default = function rgbGamma(y3) {
   var color3 = gamma2(y3);
   function rgb2(start2, end) {
@@ -28532,7 +28532,7 @@ function rgbSpline(spline) {
 var rgbBasis = rgbSpline(basis_default);
 var rgbBasisClosed = rgbSpline(basisClosed_default);
 
-// ../../../../../node_modules/d3-interpolate/src/numberArray.js
+// ../../../node_modules/d3-interpolate/src/numberArray.js
 function numberArray_default(a5, b2) {
   if (!b2) b2 = [];
   var n9 = a5 ? Math.min(b2.length, a5.length) : 0, c9 = b2.slice(), i5;
@@ -28545,7 +28545,7 @@ function isNumberArray(x3) {
   return ArrayBuffer.isView(x3) && !(x3 instanceof DataView);
 }
 
-// ../../../../../node_modules/d3-interpolate/src/array.js
+// ../../../node_modules/d3-interpolate/src/array.js
 function genericArray(a5, b2) {
   var nb = b2 ? b2.length : 0, na = a5 ? Math.min(nb, a5.length) : 0, x3 = new Array(na), c9 = new Array(nb), i5;
   for (i5 = 0; i5 < na; ++i5) x3[i5] = value_default(a5[i5], b2[i5]);
@@ -28556,7 +28556,7 @@ function genericArray(a5, b2) {
   };
 }
 
-// ../../../../../node_modules/d3-interpolate/src/date.js
+// ../../../node_modules/d3-interpolate/src/date.js
 function date_default(a5, b2) {
   var d3 = /* @__PURE__ */ new Date();
   return a5 = +a5, b2 = +b2, function(t5) {
@@ -28564,14 +28564,14 @@ function date_default(a5, b2) {
   };
 }
 
-// ../../../../../node_modules/d3-interpolate/src/number.js
+// ../../../node_modules/d3-interpolate/src/number.js
 function number_default(a5, b2) {
   return a5 = +a5, b2 = +b2, function(t5) {
     return a5 * (1 - t5) + b2 * t5;
   };
 }
 
-// ../../../../../node_modules/d3-interpolate/src/object.js
+// ../../../node_modules/d3-interpolate/src/object.js
 function object_default(a5, b2) {
   var i5 = {}, c9 = {}, k3;
   if (a5 === null || typeof a5 !== "object") a5 = {};
@@ -28589,7 +28589,7 @@ function object_default(a5, b2) {
   };
 }
 
-// ../../../../../node_modules/d3-interpolate/src/string.js
+// ../../../node_modules/d3-interpolate/src/string.js
 var reA = /[-+]?(?:\d+\.?\d*|\.?\d+)(?:[eE][-+]?\d+)?/g;
 var reB = new RegExp(reA.source, "g");
 function zero3(b2) {
@@ -28631,20 +28631,20 @@ function string_default(a5, b2) {
   });
 }
 
-// ../../../../../node_modules/d3-interpolate/src/value.js
+// ../../../node_modules/d3-interpolate/src/value.js
 function value_default(a5, b2) {
   var t5 = typeof b2, c9;
   return b2 == null || t5 === "boolean" ? constant_default2(b2) : (t5 === "number" ? number_default : t5 === "string" ? (c9 = color(b2)) ? (b2 = c9, rgb_default) : string_default : b2 instanceof color ? rgb_default : b2 instanceof Date ? date_default : isNumberArray(b2) ? numberArray_default : Array.isArray(b2) ? genericArray : typeof b2.valueOf !== "function" && typeof b2.toString !== "function" || isNaN(b2) ? object_default : number_default)(a5, b2);
 }
 
-// ../../../../../node_modules/d3-interpolate/src/round.js
+// ../../../node_modules/d3-interpolate/src/round.js
 function round_default(a5, b2) {
   return a5 = +a5, b2 = +b2, function(t5) {
     return Math.round(a5 * (1 - t5) + b2 * t5);
   };
 }
 
-// ../../../../../node_modules/d3-interpolate/src/transform/decompose.js
+// ../../../node_modules/d3-interpolate/src/transform/decompose.js
 var degrees2 = 180 / Math.PI;
 var identity2 = {
   translateX: 0,
@@ -28670,7 +28670,7 @@ function decompose_default(a5, b2, c9, d3, e11, f7) {
   };
 }
 
-// ../../../../../node_modules/d3-interpolate/src/transform/parse.js
+// ../../../node_modules/d3-interpolate/src/transform/parse.js
 var svgNode;
 function parseCss(value) {
   const m3 = new (typeof DOMMatrix === "function" ? DOMMatrix : WebKitCSSMatrix)(value + "");
@@ -28685,7 +28685,7 @@ function parseSvg(value) {
   return decompose_default(value.a, value.b, value.c, value.d, value.e, value.f);
 }
 
-// ../../../../../node_modules/d3-interpolate/src/transform/index.js
+// ../../../node_modules/d3-interpolate/src/transform/index.js
 function interpolateTransform(parse3, pxComma, pxParen, degParen) {
   function pop2(s8) {
     return s8.length ? s8.pop() + " " : "";
@@ -28740,7 +28740,7 @@ function interpolateTransform(parse3, pxComma, pxParen, degParen) {
 var interpolateTransformCss = interpolateTransform(parseCss, "px, ", "px)", "deg)");
 var interpolateTransformSvg = interpolateTransform(parseSvg, ", ", ")", ")");
 
-// ../../../../../node_modules/d3-interpolate/src/hsl.js
+// ../../../node_modules/d3-interpolate/src/hsl.js
 function hsl2(hue2) {
   return function(start2, end) {
     var h5 = hue2((start2 = hsl(start2)).h, (end = hsl(end)).h), s8 = nogamma(start2.s, end.s), l8 = nogamma(start2.l, end.l), opacity2 = nogamma(start2.opacity, end.opacity);
@@ -28756,7 +28756,7 @@ function hsl2(hue2) {
 var hsl_default = hsl2(hue);
 var hslLong = hsl2(nogamma);
 
-// ../../../../../node_modules/d3-interpolate/src/lab.js
+// ../../../node_modules/d3-interpolate/src/lab.js
 function lab2(start2, end) {
   var l8 = nogamma((start2 = lab(start2)).l, (end = lab(end)).l), a5 = nogamma(start2.a, end.a), b2 = nogamma(start2.b, end.b), opacity2 = nogamma(start2.opacity, end.opacity);
   return function(t5) {
@@ -28768,7 +28768,7 @@ function lab2(start2, end) {
   };
 }
 
-// ../../../../../node_modules/d3-interpolate/src/hcl.js
+// ../../../node_modules/d3-interpolate/src/hcl.js
 function hcl2(hue2) {
   return function(start2, end) {
     var h5 = hue2((start2 = hcl(start2)).h, (end = hcl(end)).h), c9 = nogamma(start2.c, end.c), l8 = nogamma(start2.l, end.l), opacity2 = nogamma(start2.opacity, end.opacity);
@@ -28784,7 +28784,7 @@ function hcl2(hue2) {
 var hcl_default = hcl2(hue);
 var hclLong = hcl2(nogamma);
 
-// ../../../../../node_modules/d3-interpolate/src/cubehelix.js
+// ../../../node_modules/d3-interpolate/src/cubehelix.js
 function cubehelix2(hue2) {
   return function cubehelixGamma(y3) {
     y3 = +y3;
@@ -28805,7 +28805,7 @@ function cubehelix2(hue2) {
 var cubehelix_default = cubehelix2(hue);
 var cubehelixLong = cubehelix2(nogamma);
 
-// ../../../../../node_modules/d3-interpolate/src/piecewise.js
+// ../../../node_modules/d3-interpolate/src/piecewise.js
 function piecewise(interpolate, values2) {
   if (values2 === void 0) values2 = interpolate, interpolate = value_default;
   var i5 = 0, n9 = values2.length - 1, v3 = values2[0], I2 = new Array(n9 < 0 ? 0 : n9);
@@ -28816,14 +28816,14 @@ function piecewise(interpolate, values2) {
   };
 }
 
-// ../../../../../node_modules/d3-interpolate/src/quantize.js
+// ../../../node_modules/d3-interpolate/src/quantize.js
 function quantize_default(interpolator, n9) {
   var samples = new Array(n9);
   for (var i5 = 0; i5 < n9; ++i5) samples[i5] = interpolator(i5 / (n9 - 1));
   return samples;
 }
 
-// ../../../../../node_modules/d3-timer/src/timer.js
+// ../../../node_modules/d3-timer/src/timer.js
 var frame2 = 0;
 var timeout = 0;
 var interval = 0;
@@ -28925,7 +28925,7 @@ function sleep(time2) {
   }
 }
 
-// ../../../../../node_modules/d3-timer/src/timeout.js
+// ../../../node_modules/d3-timer/src/timeout.js
 function timeout_default(callback, delay, time2) {
   var t5 = new Timer();
   delay = delay == null ? 0 : +delay;
@@ -28936,7 +28936,7 @@ function timeout_default(callback, delay, time2) {
   return t5;
 }
 
-// ../../../../../node_modules/d3-transition/src/transition/schedule.js
+// ../../../node_modules/d3-transition/src/transition/schedule.js
 var emptyOn = dispatch_default("start", "end", "cancel", "interrupt");
 var emptyTween = [];
 var CREATED = 0;
@@ -29047,7 +29047,7 @@ function create(node, id2, self2) {
   }
 }
 
-// ../../../../../node_modules/d3-transition/src/interrupt.js
+// ../../../node_modules/d3-transition/src/interrupt.js
 function interrupt_default(node, name) {
   var schedules = node.__transition, schedule, active, empty3 = true, i5;
   if (!schedules) return;
@@ -29066,14 +29066,14 @@ function interrupt_default(node, name) {
   if (empty3) delete node.__transition;
 }
 
-// ../../../../../node_modules/d3-transition/src/selection/interrupt.js
+// ../../../node_modules/d3-transition/src/selection/interrupt.js
 function interrupt_default2(name) {
   return this.each(function() {
     interrupt_default(this, name);
   });
 }
 
-// ../../../../../node_modules/d3-transition/src/transition/tween.js
+// ../../../node_modules/d3-transition/src/transition/tween.js
 function tweenRemove(id2, name) {
   var tween0, tween1;
   return function() {
@@ -29134,13 +29134,13 @@ function tweenValue(transition2, name, value) {
   };
 }
 
-// ../../../../../node_modules/d3-transition/src/transition/interpolate.js
+// ../../../node_modules/d3-transition/src/transition/interpolate.js
 function interpolate_default(a5, b2) {
   var c9;
   return (typeof b2 === "number" ? number_default : b2 instanceof color ? rgb_default : (c9 = color(b2)) ? (b2 = c9, rgb_default) : string_default)(a5, b2);
 }
 
-// ../../../../../node_modules/d3-transition/src/transition/attr.js
+// ../../../node_modules/d3-transition/src/transition/attr.js
 function attrRemove2(name) {
   return function() {
     this.removeAttribute(name);
@@ -29190,7 +29190,7 @@ function attr_default2(name, value) {
   return this.attrTween(name, typeof value === "function" ? (fullname.local ? attrFunctionNS2 : attrFunction2)(fullname, i5, tweenValue(this, "attr." + name, value)) : value == null ? (fullname.local ? attrRemoveNS2 : attrRemove2)(fullname) : (fullname.local ? attrConstantNS2 : attrConstant2)(fullname, i5, value));
 }
 
-// ../../../../../node_modules/d3-transition/src/transition/attrTween.js
+// ../../../node_modules/d3-transition/src/transition/attrTween.js
 function attrInterpolate(name, i5) {
   return function(t5) {
     this.setAttribute(name, i5.call(this, t5));
@@ -29230,7 +29230,7 @@ function attrTween_default(name, value) {
   return this.tween(key, (fullname.local ? attrTweenNS : attrTween)(fullname, value));
 }
 
-// ../../../../../node_modules/d3-transition/src/transition/delay.js
+// ../../../node_modules/d3-transition/src/transition/delay.js
 function delayFunction(id2, value) {
   return function() {
     init2(this, id2).delay = +value.apply(this, arguments);
@@ -29246,7 +29246,7 @@ function delay_default(value) {
   return arguments.length ? this.each((typeof value === "function" ? delayFunction : delayConstant)(id2, value)) : get2(this.node(), id2).delay;
 }
 
-// ../../../../../node_modules/d3-transition/src/transition/duration.js
+// ../../../node_modules/d3-transition/src/transition/duration.js
 function durationFunction(id2, value) {
   return function() {
     set2(this, id2).duration = +value.apply(this, arguments);
@@ -29262,7 +29262,7 @@ function duration_default(value) {
   return arguments.length ? this.each((typeof value === "function" ? durationFunction : durationConstant)(id2, value)) : get2(this.node(), id2).duration;
 }
 
-// ../../../../../node_modules/d3-transition/src/transition/ease.js
+// ../../../node_modules/d3-transition/src/transition/ease.js
 function easeConstant(id2, value) {
   if (typeof value !== "function") throw new Error();
   return function() {
@@ -29274,7 +29274,7 @@ function ease_default(value) {
   return arguments.length ? this.each(easeConstant(id2, value)) : get2(this.node(), id2).ease;
 }
 
-// ../../../../../node_modules/d3-transition/src/transition/easeVarying.js
+// ../../../node_modules/d3-transition/src/transition/easeVarying.js
 function easeVarying(id2, value) {
   return function() {
     var v3 = value.apply(this, arguments);
@@ -29287,7 +29287,7 @@ function easeVarying_default(value) {
   return this.each(easeVarying(this._id, value));
 }
 
-// ../../../../../node_modules/d3-transition/src/transition/filter.js
+// ../../../node_modules/d3-transition/src/transition/filter.js
 function filter_default2(match) {
   if (typeof match !== "function") match = matcher_default(match);
   for (var groups2 = this._groups, m3 = groups2.length, subgroups = new Array(m3), j2 = 0; j2 < m3; ++j2) {
@@ -29300,7 +29300,7 @@ function filter_default2(match) {
   return new Transition(subgroups, this._parents, this._name, this._id);
 }
 
-// ../../../../../node_modules/d3-transition/src/transition/merge.js
+// ../../../node_modules/d3-transition/src/transition/merge.js
 function merge_default2(transition2) {
   if (transition2._id !== this._id) throw new Error();
   for (var groups0 = this._groups, groups1 = transition2._groups, m0 = groups0.length, m1 = groups1.length, m3 = Math.min(m0, m1), merges = new Array(m0), j2 = 0; j2 < m3; ++j2) {
@@ -29316,7 +29316,7 @@ function merge_default2(transition2) {
   return new Transition(merges, this._parents, this._name, this._id);
 }
 
-// ../../../../../node_modules/d3-transition/src/transition/on.js
+// ../../../node_modules/d3-transition/src/transition/on.js
 function start(name) {
   return (name + "").trim().split(/^|\s+/).every(function(t5) {
     var i5 = t5.indexOf(".");
@@ -29337,7 +29337,7 @@ function on_default2(name, listener) {
   return arguments.length < 2 ? get2(this.node(), id2).on.on(name) : this.each(onFunction(id2, name, listener));
 }
 
-// ../../../../../node_modules/d3-transition/src/transition/remove.js
+// ../../../node_modules/d3-transition/src/transition/remove.js
 function removeFunction(id2) {
   return function() {
     var parent = this.parentNode;
@@ -29349,7 +29349,7 @@ function remove_default2() {
   return this.on("end.remove", removeFunction(this._id));
 }
 
-// ../../../../../node_modules/d3-transition/src/transition/select.js
+// ../../../node_modules/d3-transition/src/transition/select.js
 function select_default3(select2) {
   var name = this._name, id2 = this._id;
   if (typeof select2 !== "function") select2 = selector_default(select2);
@@ -29365,7 +29365,7 @@ function select_default3(select2) {
   return new Transition(subgroups, this._parents, name, id2);
 }
 
-// ../../../../../node_modules/d3-transition/src/transition/selectAll.js
+// ../../../node_modules/d3-transition/src/transition/selectAll.js
 function selectAll_default2(select2) {
   var name = this._name, id2 = this._id;
   if (typeof select2 !== "function") select2 = selectorAll_default(select2);
@@ -29385,13 +29385,13 @@ function selectAll_default2(select2) {
   return new Transition(subgroups, parents, name, id2);
 }
 
-// ../../../../../node_modules/d3-transition/src/transition/selection.js
+// ../../../node_modules/d3-transition/src/transition/selection.js
 var Selection2 = selection_default.prototype.constructor;
 function selection_default2() {
   return new Selection2(this._groups, this._parents);
 }
 
-// ../../../../../node_modules/d3-transition/src/transition/style.js
+// ../../../node_modules/d3-transition/src/transition/style.js
 function styleNull(name, interpolate) {
   var string00, string10, interpolate0;
   return function() {
@@ -29432,7 +29432,7 @@ function style_default2(name, value, priority) {
   return value == null ? this.styleTween(name, styleNull(name, i5)).on("end.style." + name, styleRemove2(name)) : typeof value === "function" ? this.styleTween(name, styleFunction2(name, i5, tweenValue(this, "style." + name, value))).each(styleMaybeRemove(this._id, name)) : this.styleTween(name, styleConstant2(name, i5, value), priority).on("end.style." + name, null);
 }
 
-// ../../../../../node_modules/d3-transition/src/transition/styleTween.js
+// ../../../node_modules/d3-transition/src/transition/styleTween.js
 function styleInterpolate(name, i5, priority) {
   return function(t5) {
     this.style.setProperty(name, i5.call(this, t5), priority);
@@ -29456,7 +29456,7 @@ function styleTween_default(name, value, priority) {
   return this.tween(key, styleTween(name, value, priority == null ? "" : priority));
 }
 
-// ../../../../../node_modules/d3-transition/src/transition/text.js
+// ../../../node_modules/d3-transition/src/transition/text.js
 function textConstant2(value) {
   return function() {
     this.textContent = value;
@@ -29472,7 +29472,7 @@ function text_default2(value) {
   return this.tween("text", typeof value === "function" ? textFunction2(tweenValue(this, "text", value)) : textConstant2(value == null ? "" : value + ""));
 }
 
-// ../../../../../node_modules/d3-transition/src/transition/textTween.js
+// ../../../node_modules/d3-transition/src/transition/textTween.js
 function textInterpolate(i5) {
   return function(t5) {
     this.textContent = i5.call(this, t5);
@@ -29496,7 +29496,7 @@ function textTween_default(value) {
   return this.tween(key, textTween(value));
 }
 
-// ../../../../../node_modules/d3-transition/src/transition/transition.js
+// ../../../node_modules/d3-transition/src/transition/transition.js
 function transition_default() {
   var name = this._name, id0 = this._id, id1 = newId();
   for (var groups2 = this._groups, m3 = groups2.length, j2 = 0; j2 < m3; ++j2) {
@@ -29515,7 +29515,7 @@ function transition_default() {
   return new Transition(groups2, this._parents, name, id1);
 }
 
-// ../../../../../node_modules/d3-transition/src/transition/end.js
+// ../../../node_modules/d3-transition/src/transition/end.js
 function end_default() {
   var on0, on1, that = this, id2 = that._id, size = that.size();
   return new Promise(function(resolve, reject) {
@@ -29536,7 +29536,7 @@ function end_default() {
   });
 }
 
-// ../../../../../node_modules/d3-transition/src/transition/index.js
+// ../../../node_modules/d3-transition/src/transition/index.js
 var id = 0;
 function Transition(groups2, parents, name, id2) {
   this._groups = groups2;
@@ -29584,12 +29584,12 @@ Transition.prototype = transition.prototype = {
   [Symbol.iterator]: selection_prototype[Symbol.iterator]
 };
 
-// ../../../../../node_modules/d3-ease/src/cubic.js
+// ../../../node_modules/d3-ease/src/cubic.js
 function cubicInOut(t5) {
   return ((t5 *= 2) <= 1 ? t5 * t5 * t5 : (t5 -= 2) * t5 * t5 + 2) / 2;
 }
 
-// ../../../../../node_modules/d3-transition/src/selection/transition.js
+// ../../../node_modules/d3-transition/src/selection/transition.js
 var defaultTiming = {
   time: null,
   // Set on use.
@@ -29623,11 +29623,11 @@ function transition_default2(name) {
   return new Transition(groups2, this._parents, name, id2);
 }
 
-// ../../../../../node_modules/d3-transition/src/selection/index.js
+// ../../../node_modules/d3-transition/src/selection/index.js
 selection_default.prototype.interrupt = interrupt_default2;
 selection_default.prototype.transition = transition_default2;
 
-// ../../../../../node_modules/d3-brush/src/brush.js
+// ../../../node_modules/d3-brush/src/brush.js
 var { abs: abs2, max: max2, min: min2 } = Math;
 function number1(e11) {
   return [+e11[0], +e11[1]];
@@ -29669,7 +29669,7 @@ function type(t5) {
   return { type: t5 };
 }
 
-// ../../../../../node_modules/d3-path/src/path.js
+// ../../../node_modules/d3-path/src/path.js
 var pi = Math.PI;
 var tau = 2 * pi;
 var epsilon2 = 1e-6;
@@ -29766,26 +29766,26 @@ function pathRound(digits = 3) {
   return new Path(+digits);
 }
 
-// ../../../../../node_modules/d3-contour/src/array.js
+// ../../../node_modules/d3-contour/src/array.js
 var array2 = Array.prototype;
 var slice = array2.slice;
 
-// ../../../../../node_modules/d3-contour/src/ascending.js
+// ../../../node_modules/d3-contour/src/ascending.js
 function ascending_default(a5, b2) {
   return a5 - b2;
 }
 
-// ../../../../../node_modules/d3-contour/src/area.js
+// ../../../node_modules/d3-contour/src/area.js
 function area_default(ring) {
   var i5 = 0, n9 = ring.length, area2 = ring[n9 - 1][1] * ring[0][0] - ring[n9 - 1][0] * ring[0][1];
   while (++i5 < n9) area2 += ring[i5 - 1][1] * ring[i5][0] - ring[i5 - 1][0] * ring[i5][1];
   return area2;
 }
 
-// ../../../../../node_modules/d3-contour/src/constant.js
+// ../../../node_modules/d3-contour/src/constant.js
 var constant_default4 = (x3) => () => x3;
 
-// ../../../../../node_modules/d3-contour/src/contains.js
+// ../../../node_modules/d3-contour/src/contains.js
 function contains_default(ring, hole) {
   var i5 = -1, n9 = hole.length, c9;
   while (++i5 < n9) if (c9 = ringContains(ring, hole[i5])) return c9;
@@ -29811,11 +29811,11 @@ function within(p11, q, r6) {
   return p11 <= q && q <= r6 || r6 <= q && q <= p11;
 }
 
-// ../../../../../node_modules/d3-contour/src/noop.js
+// ../../../node_modules/d3-contour/src/noop.js
 function noop_default() {
 }
 
-// ../../../../../node_modules/d3-contour/src/contours.js
+// ../../../node_modules/d3-contour/src/contours.js
 var cases = [
   [],
   [[[1, 1.5], [0.5, 1]]],
@@ -29983,7 +29983,7 @@ function smooth1(x3, v0, v1, value) {
   return isNaN(d3) ? x3 : x3 + d3 - 0.5;
 }
 
-// ../../../../../node_modules/d3-contour/src/density.js
+// ../../../node_modules/d3-contour/src/density.js
 function defaultX(d3) {
   return d3[0];
 }
@@ -30078,7 +30078,7 @@ function density_default() {
   return density2;
 }
 
-// ../../../../../node_modules/robust-predicates/esm/util.js
+// ../../../node_modules/robust-predicates/esm/util.js
 var epsilon3 = 11102230246251565e-32;
 var splitter = 134217729;
 var resulterrbound = (3 + 8 * epsilon3) * epsilon3;
@@ -30162,7 +30162,7 @@ function vec(n9) {
   return new Float64Array(n9);
 }
 
-// ../../../../../node_modules/robust-predicates/esm/orient2d.js
+// ../../../node_modules/robust-predicates/esm/orient2d.js
 var ccwerrboundA = (3 + 16 * epsilon3) * epsilon3;
 var ccwerrboundB = (2 + 12 * epsilon3) * epsilon3;
 var ccwerrboundC = (9 + 64 * epsilon3) * epsilon3 * epsilon3;
@@ -30327,7 +30327,7 @@ function orient2d(ax, ay, bx, by, cx, cy) {
   return -orient2dadapt(ax, ay, bx, by, cx, cy, detsum);
 }
 
-// ../../../../../node_modules/robust-predicates/esm/orient3d.js
+// ../../../node_modules/robust-predicates/esm/orient3d.js
 var o3derrboundA = (7 + 56 * epsilon3) * epsilon3;
 var o3derrboundB = (3 + 28 * epsilon3) * epsilon3;
 var o3derrboundC = (26 + 288 * epsilon3) * epsilon3 * epsilon3;
@@ -30351,7 +30351,7 @@ var _12 = vec(12);
 var fin = vec(192);
 var fin2 = vec(192);
 
-// ../../../../../node_modules/robust-predicates/esm/incircle.js
+// ../../../node_modules/robust-predicates/esm/incircle.js
 var iccerrboundA = (10 + 96 * epsilon3) * epsilon3;
 var iccerrboundB = (4 + 48 * epsilon3) * epsilon3;
 var iccerrboundC = (44 + 576 * epsilon3) * epsilon3 * epsilon3;
@@ -30386,7 +30386,7 @@ var _64 = vec(64);
 var fin3 = vec(1152);
 var fin22 = vec(1152);
 
-// ../../../../../node_modules/robust-predicates/esm/insphere.js
+// ../../../node_modules/robust-predicates/esm/insphere.js
 var isperrboundA = (16 + 224 * epsilon3) * epsilon3;
 var isperrboundB = (5 + 72 * epsilon3) * epsilon3;
 var isperrboundC = (71 + 1408 * epsilon3) * epsilon3 * epsilon3;
@@ -30437,7 +30437,7 @@ var ydet = vec(96);
 var zdet = vec(96);
 var fin4 = vec(1152);
 
-// ../../../../../node_modules/delaunator/index.js
+// ../../../node_modules/delaunator/index.js
 var EPSILON = Math.pow(2, -52);
 var EDGE_STACK = new Uint32Array(512);
 var Delaunator = class _Delaunator {
@@ -30802,7 +30802,7 @@ function defaultGetY(p11) {
   return p11[1];
 }
 
-// ../../../../../node_modules/d3-delaunay/src/path.js
+// ../../../node_modules/d3-delaunay/src/path.js
 var epsilon4 = 1e-6;
 var Path2 = class {
   constructor() {
@@ -30840,7 +30840,7 @@ var Path2 = class {
   }
 };
 
-// ../../../../../node_modules/d3-delaunay/src/polygon.js
+// ../../../node_modules/d3-delaunay/src/polygon.js
 var Polygon = class {
   constructor() {
     this._ = [];
@@ -30859,7 +30859,7 @@ var Polygon = class {
   }
 };
 
-// ../../../../../node_modules/d3-delaunay/src/voronoi.js
+// ../../../node_modules/d3-delaunay/src/voronoi.js
 var Voronoi = class {
   constructor(delaunay, [xmin, ymin, xmax, ymax] = [0, 0, 960, 500]) {
     if (!((xmax = +xmax) >= (xmin = +xmin)) || !((ymax = +ymax) >= (ymin = +ymin))) throw new Error("invalid bounds");
@@ -31188,7 +31188,7 @@ var Voronoi = class {
   }
 };
 
-// ../../../../../node_modules/d3-delaunay/src/delaunay.js
+// ../../../node_modules/d3-delaunay/src/delaunay.js
 var tau2 = 2 * Math.PI;
 var pow = Math.pow;
 function pointX(p11) {
@@ -31405,7 +31405,7 @@ function* flatIterable(points, fx, fy, that) {
   }
 }
 
-// ../../../../../node_modules/d3-format/src/formatDecimal.js
+// ../../../node_modules/d3-format/src/formatDecimal.js
 function formatDecimal_default(x3) {
   return Math.abs(x3 = Math.round(x3)) >= 1e21 ? x3.toLocaleString("en").replace(/,/g, "") : x3.toString(10);
 }
@@ -31418,12 +31418,12 @@ function formatDecimalParts(x3, p11) {
   ];
 }
 
-// ../../../../../node_modules/d3-format/src/exponent.js
+// ../../../node_modules/d3-format/src/exponent.js
 function exponent_default(x3) {
   return x3 = formatDecimalParts(Math.abs(x3)), x3 ? x3[1] : NaN;
 }
 
-// ../../../../../node_modules/d3-format/src/formatGroup.js
+// ../../../node_modules/d3-format/src/formatGroup.js
 function formatGroup_default(grouping, thousands) {
   return function(value, width) {
     var i5 = value.length, t5 = [], j2 = 0, g2 = grouping[0], length4 = 0;
@@ -31437,7 +31437,7 @@ function formatGroup_default(grouping, thousands) {
   };
 }
 
-// ../../../../../node_modules/d3-format/src/formatNumerals.js
+// ../../../node_modules/d3-format/src/formatNumerals.js
 function formatNumerals_default(numerals) {
   return function(value) {
     return value.replace(/[0-9]/g, function(i5) {
@@ -31446,7 +31446,7 @@ function formatNumerals_default(numerals) {
   };
 }
 
-// ../../../../../node_modules/d3-format/src/formatSpecifier.js
+// ../../../node_modules/d3-format/src/formatSpecifier.js
 var re = /^(?:(.)?([<>=^]))?([+\-( ])?([$#])?(0)?(\d+)?(,)?(\.\d+)?(~)?([a-z%])?$/i;
 function formatSpecifier(specifier) {
   if (!(match = re.exec(specifier))) throw new Error("invalid format: " + specifier);
@@ -31481,7 +31481,7 @@ FormatSpecifier.prototype.toString = function() {
   return this.fill + this.align + this.sign + this.symbol + (this.zero ? "0" : "") + (this.width === void 0 ? "" : Math.max(1, this.width | 0)) + (this.comma ? "," : "") + (this.precision === void 0 ? "" : "." + Math.max(0, this.precision | 0)) + (this.trim ? "~" : "") + this.type;
 };
 
-// ../../../../../node_modules/d3-format/src/formatTrim.js
+// ../../../node_modules/d3-format/src/formatTrim.js
 function formatTrim_default(s8) {
   out: for (var n9 = s8.length, i5 = 1, i0 = -1, i12; i5 < n9; ++i5) {
     switch (s8[i5]) {
@@ -31501,7 +31501,7 @@ function formatTrim_default(s8) {
   return i0 > 0 ? s8.slice(0, i0) + s8.slice(i12 + 1) : s8;
 }
 
-// ../../../../../node_modules/d3-format/src/formatPrefixAuto.js
+// ../../../node_modules/d3-format/src/formatPrefixAuto.js
 var prefixExponent;
 function formatPrefixAuto_default(x3, p11) {
   var d3 = formatDecimalParts(x3, p11);
@@ -31510,7 +31510,7 @@ function formatPrefixAuto_default(x3, p11) {
   return i5 === n9 ? coefficient : i5 > n9 ? coefficient + new Array(i5 - n9 + 1).join("0") : i5 > 0 ? coefficient.slice(0, i5) + "." + coefficient.slice(i5) : "0." + new Array(1 - i5).join("0") + formatDecimalParts(x3, Math.max(0, p11 + i5 - 1))[0];
 }
 
-// ../../../../../node_modules/d3-format/src/formatRounded.js
+// ../../../node_modules/d3-format/src/formatRounded.js
 function formatRounded_default(x3, p11) {
   var d3 = formatDecimalParts(x3, p11);
   if (!d3) return x3 + "";
@@ -31518,7 +31518,7 @@ function formatRounded_default(x3, p11) {
   return exponent < 0 ? "0." + new Array(-exponent).join("0") + coefficient : coefficient.length > exponent + 1 ? coefficient.slice(0, exponent + 1) + "." + coefficient.slice(exponent + 1) : coefficient + new Array(exponent - coefficient.length + 2).join("0");
 }
 
-// ../../../../../node_modules/d3-format/src/formatTypes.js
+// ../../../node_modules/d3-format/src/formatTypes.js
 var formatTypes_default = {
   "%": (x3, p11) => (x3 * 100).toFixed(p11),
   "b": (x3) => Math.round(x3).toString(2),
@@ -31535,12 +31535,12 @@ var formatTypes_default = {
   "x": (x3) => Math.round(x3).toString(16)
 };
 
-// ../../../../../node_modules/d3-format/src/identity.js
+// ../../../node_modules/d3-format/src/identity.js
 function identity_default2(x3) {
   return x3;
 }
 
-// ../../../../../node_modules/d3-format/src/locale.js
+// ../../../node_modules/d3-format/src/locale.js
 var map = Array.prototype.map;
 var prefixes = ["y", "z", "a", "f", "p", "n", "\xB5", "m", "", "k", "M", "G", "T", "P", "E", "Z", "Y"];
 function locale_default(locale3) {
@@ -31614,7 +31614,7 @@ function locale_default(locale3) {
   };
 }
 
-// ../../../../../node_modules/d3-format/src/defaultLocale.js
+// ../../../node_modules/d3-format/src/defaultLocale.js
 var locale;
 var format;
 var formatPrefix;
@@ -31630,23 +31630,23 @@ function defaultLocale(definition) {
   return locale;
 }
 
-// ../../../../../node_modules/d3-format/src/precisionFixed.js
+// ../../../node_modules/d3-format/src/precisionFixed.js
 function precisionFixed_default(step3) {
   return Math.max(0, -exponent_default(Math.abs(step3)));
 }
 
-// ../../../../../node_modules/d3-format/src/precisionPrefix.js
+// ../../../node_modules/d3-format/src/precisionPrefix.js
 function precisionPrefix_default(step3, value) {
   return Math.max(0, Math.max(-8, Math.min(8, Math.floor(exponent_default(value) / 3))) * 3 - exponent_default(Math.abs(step3)));
 }
 
-// ../../../../../node_modules/d3-format/src/precisionRound.js
+// ../../../node_modules/d3-format/src/precisionRound.js
 function precisionRound_default(step3, max3) {
   step3 = Math.abs(step3), max3 = Math.abs(max3) - step3;
   return Math.max(0, exponent_default(max3) - exponent_default(step3)) + 1;
 }
 
-// ../../../../../node_modules/d3-geo/src/math.js
+// ../../../node_modules/d3-geo/src/math.js
 var epsilon5 = 1e-6;
 var epsilon22 = 1e-12;
 var pi2 = Math.PI;
@@ -31677,11 +31677,11 @@ function asin(x3) {
   return x3 > 1 ? halfPi : x3 < -1 ? -halfPi : Math.asin(x3);
 }
 
-// ../../../../../node_modules/d3-geo/src/noop.js
+// ../../../node_modules/d3-geo/src/noop.js
 function noop2() {
 }
 
-// ../../../../../node_modules/d3-geo/src/stream.js
+// ../../../node_modules/d3-geo/src/stream.js
 function streamGeometry(geometry, stream) {
   if (geometry && streamGeometryType.hasOwnProperty(geometry.type)) {
     streamGeometryType[geometry.type](geometry, stream);
@@ -31747,7 +31747,7 @@ function stream_default(object, stream) {
   }
 }
 
-// ../../../../../node_modules/d3-geo/src/cartesian.js
+// ../../../node_modules/d3-geo/src/cartesian.js
 function spherical(cartesian2) {
   return [atan2(cartesian2[1], cartesian2[0]), asin(cartesian2[2])];
 }
@@ -31772,7 +31772,7 @@ function cartesianNormalizeInPlace(d3) {
   d3[0] /= l8, d3[1] /= l8, d3[2] /= l8;
 }
 
-// ../../../../../node_modules/d3-geo/src/centroid.js
+// ../../../node_modules/d3-geo/src/centroid.js
 var W0;
 var W1;
 var X0;
@@ -31883,7 +31883,7 @@ function centroid_default(object) {
   return [atan2(y3, x3) * degrees3, asin(z2 / m3) * degrees3];
 }
 
-// ../../../../../node_modules/d3-geo/src/compose.js
+// ../../../node_modules/d3-geo/src/compose.js
 function compose_default(a5, b2) {
   function compose(x3, y3) {
     return x3 = a5(x3, y3), b2(x3[0], x3[1]);
@@ -31894,7 +31894,7 @@ function compose_default(a5, b2) {
   return compose;
 }
 
-// ../../../../../node_modules/d3-geo/src/rotation.js
+// ../../../node_modules/d3-geo/src/rotation.js
 function rotationIdentity(lambda, phi) {
   if (abs3(lambda) > pi2) lambda -= Math.round(lambda / tau3) * tau3;
   return [lambda, phi];
@@ -31946,7 +31946,7 @@ function rotation_default(rotate) {
   return forward;
 }
 
-// ../../../../../node_modules/d3-geo/src/circle.js
+// ../../../node_modules/d3-geo/src/circle.js
 function circleStream(stream, radius2, delta, direction, t03, t13) {
   if (!delta) return;
   var cosRadius = cos(radius2), sinRadius = sin(radius2), step3 = direction * delta;
@@ -31970,7 +31970,7 @@ function circleRadius(cosRadius, point6) {
   return ((-point6[2] < 0 ? -radius2 : radius2) + tau3 - epsilon5) % tau3;
 }
 
-// ../../../../../node_modules/d3-geo/src/clip/buffer.js
+// ../../../node_modules/d3-geo/src/clip/buffer.js
 function buffer_default() {
   var lines = [], line2;
   return {
@@ -31993,12 +31993,12 @@ function buffer_default() {
   };
 }
 
-// ../../../../../node_modules/d3-geo/src/pointEqual.js
+// ../../../node_modules/d3-geo/src/pointEqual.js
 function pointEqual_default(a5, b2) {
   return abs3(a5[0] - b2[0]) < epsilon5 && abs3(a5[1] - b2[1]) < epsilon5;
 }
 
-// ../../../../../node_modules/d3-geo/src/clip/rejoin.js
+// ../../../node_modules/d3-geo/src/clip/rejoin.js
 function Intersection(point6, points, other, entry) {
   this.x = point6;
   this.z = points;
@@ -32076,7 +32076,7 @@ function link(array3) {
   b2.p = a5;
 }
 
-// ../../../../../node_modules/d3-geo/src/polygonContains.js
+// ../../../node_modules/d3-geo/src/polygonContains.js
 function longitude(point6) {
   return abs3(point6[0]) <= pi2 ? point6[0] : sign2(point6[0]) * ((abs3(point6[0]) + pi2) % tau3 - pi2);
 }
@@ -32107,7 +32107,7 @@ function polygonContains_default(polygon, point6) {
   return (angle < -epsilon5 || angle < epsilon5 && sum3 < -epsilon22) ^ winding & 1;
 }
 
-// ../../../../../node_modules/d3-geo/src/clip/index.js
+// ../../../node_modules/d3-geo/src/clip/index.js
 function clip_default(pointVisible, clipLine, interpolate, start2) {
   return function(sink) {
     var line2 = clipLine(sink), ringBuffer = buffer_default(), ringSink = clipLine(ringBuffer), polygonStarted = false, polygon, segments, ring;
@@ -32201,7 +32201,7 @@ function compareIntersection(a5, b2) {
   return ((a5 = a5.x)[0] < 0 ? a5[1] - halfPi - epsilon5 : halfPi - a5[1]) - ((b2 = b2.x)[0] < 0 ? b2[1] - halfPi - epsilon5 : halfPi - b2[1]);
 }
 
-// ../../../../../node_modules/d3-geo/src/clip/antimeridian.js
+// ../../../node_modules/d3-geo/src/clip/antimeridian.js
 var antimeridian_default = clip_default(
   function() {
     return true;
@@ -32277,7 +32277,7 @@ function clipAntimeridianInterpolate(from, to, direction, stream) {
   }
 }
 
-// ../../../../../node_modules/d3-geo/src/clip/circle.js
+// ../../../node_modules/d3-geo/src/clip/circle.js
 function circle_default(radius2) {
   var cr = cos(radius2), delta = 2 * radians2, smallRadius = cr > 0, notHemisphere = abs3(cr) > epsilon5;
   function interpolate(from, to, direction, stream) {
@@ -32379,7 +32379,7 @@ function circle_default(radius2) {
   return clip_default(visible, clipLine, interpolate, smallRadius ? [0, -radius2] : [-pi2, radius2 - pi2]);
 }
 
-// ../../../../../node_modules/d3-geo/src/clip/line.js
+// ../../../node_modules/d3-geo/src/clip/line.js
 function line_default(a5, b2, x06, y06, x12, y12) {
   var ax = a5[0], ay = a5[1], bx = b2[0], by = b2[1], t03 = 0, t13 = 1, dx = bx - ax, dy = by - ay, r6;
   r6 = x06 - ax;
@@ -32427,7 +32427,7 @@ function line_default(a5, b2, x06, y06, x12, y12) {
   return true;
 }
 
-// ../../../../../node_modules/d3-geo/src/clip/rectangle.js
+// ../../../node_modules/d3-geo/src/clip/rectangle.js
 var clipMax = 1e9;
 var clipMin = -clipMax;
 function clipRectangle(x06, y06, x12, y12) {
@@ -32550,7 +32550,7 @@ function clipRectangle(x06, y06, x12, y12) {
   };
 }
 
-// ../../../../../node_modules/d3-geo/src/graticule.js
+// ../../../node_modules/d3-geo/src/graticule.js
 function graticuleX(y06, y12, dy) {
   var y3 = range(y06, y12 - epsilon5, dy).concat(y12);
   return function(x3) {
@@ -32645,10 +32645,10 @@ function graticule10() {
   return graticule()();
 }
 
-// ../../../../../node_modules/d3-geo/src/identity.js
+// ../../../node_modules/d3-geo/src/identity.js
 var identity_default3 = (x3) => x3;
 
-// ../../../../../node_modules/d3-geo/src/path/area.js
+// ../../../node_modules/d3-geo/src/path/area.js
 var areaSum = new Adder();
 var areaRingSum = new Adder();
 var x00;
@@ -32690,7 +32690,7 @@ function areaRingEnd() {
 }
 var area_default2 = areaStream;
 
-// ../../../../../node_modules/d3-geo/src/path/bounds.js
+// ../../../node_modules/d3-geo/src/path/bounds.js
 var x03 = Infinity;
 var y03 = x03;
 var x1 = -x03;
@@ -32715,7 +32715,7 @@ function boundsPoint(x3, y3) {
 }
 var bounds_default = boundsStream;
 
-// ../../../../../node_modules/d3-geo/src/path/centroid.js
+// ../../../node_modules/d3-geo/src/path/centroid.js
 var X02 = 0;
 var Y02 = 0;
 var Z02 = 0;
@@ -32793,7 +32793,7 @@ function centroidPointRing(x3, y3) {
 }
 var centroid_default2 = centroidStream2;
 
-// ../../../../../node_modules/d3-geo/src/path/context.js
+// ../../../node_modules/d3-geo/src/path/context.js
 function PathContext(context) {
   this._context = context;
 }
@@ -32836,7 +32836,7 @@ PathContext.prototype = {
   result: noop2
 };
 
-// ../../../../../node_modules/d3-geo/src/path/measure.js
+// ../../../node_modules/d3-geo/src/path/measure.js
 var lengthSum = new Adder();
 var lengthRing;
 var x003;
@@ -32875,7 +32875,7 @@ function lengthPoint(x3, y3) {
 }
 var measure_default = lengthStream;
 
-// ../../../../../node_modules/d3-geo/src/path/string.js
+// ../../../node_modules/d3-geo/src/path/string.js
 var cacheDigits;
 var cacheAppend;
 var cacheRadius;
@@ -32962,7 +32962,7 @@ function appendRound2(digits) {
   return cacheAppend;
 }
 
-// ../../../../../node_modules/d3-geo/src/path/index.js
+// ../../../node_modules/d3-geo/src/path/index.js
 function path_default(projection3, context) {
   let digits = 3, pointRadius = 4.5, projectionStream, contextStream;
   function path2(object) {
@@ -33018,7 +33018,7 @@ function path_default(projection3, context) {
   return path2.projection(projection3).digits(digits).context(context);
 }
 
-// ../../../../../node_modules/d3-geo/src/transform.js
+// ../../../node_modules/d3-geo/src/transform.js
 function transform_default(methods) {
   return {
     stream: transformer(methods)
@@ -33056,7 +33056,7 @@ TransformStream.prototype = {
   }
 };
 
-// ../../../../../node_modules/d3-geo/src/projection/fit.js
+// ../../../node_modules/d3-geo/src/projection/fit.js
 function fit(projection3, fitBounds, object) {
   var clip = projection3.clipExtent && projection3.clipExtent();
   projection3.scale(150).translate([0, 0]);
@@ -33088,7 +33088,7 @@ function fitHeight(projection3, height, object) {
   }, object);
 }
 
-// ../../../../../node_modules/d3-geo/src/projection/resample.js
+// ../../../node_modules/d3-geo/src/projection/resample.js
 var maxDepth = 16;
 var cosMinDistance = cos(30 * radians2);
 function resample_default(project2, delta2) {
@@ -33165,7 +33165,7 @@ function resample(project2, delta2) {
   };
 }
 
-// ../../../../../node_modules/d3-geo/src/projection/index.js
+// ../../../node_modules/d3-geo/src/projection/index.js
 var transformRadians = transformer({
   point: function(x3, y3) {
     this.stream.point(x3 * radians2, y3 * radians2);
@@ -33287,7 +33287,7 @@ function projectionMutator(projectAt) {
   };
 }
 
-// ../../../../../node_modules/d3-geo/src/projection/conic.js
+// ../../../node_modules/d3-geo/src/projection/conic.js
 function conicProjection(projectAt) {
   var phi0 = 0, phi1 = pi2 / 3, m3 = projectionMutator(projectAt), p11 = m3(phi0, phi1);
   p11.parallels = function(_2) {
@@ -33296,7 +33296,7 @@ function conicProjection(projectAt) {
   return p11;
 }
 
-// ../../../../../node_modules/d3-geo/src/projection/cylindricalEqualArea.js
+// ../../../node_modules/d3-geo/src/projection/cylindricalEqualArea.js
 function cylindricalEqualAreaRaw(phi0) {
   var cosPhi0 = cos(phi0);
   function forward(lambda, phi) {
@@ -33308,7 +33308,7 @@ function cylindricalEqualAreaRaw(phi0) {
   return forward;
 }
 
-// ../../../../../node_modules/d3-geo/src/projection/conicEqualArea.js
+// ../../../node_modules/d3-geo/src/projection/conicEqualArea.js
 function conicEqualAreaRaw(y06, y12) {
   var sy0 = sin(y06), n9 = (sy0 + sin(y12)) / 2;
   if (abs3(n9) < epsilon5) return cylindricalEqualAreaRaw(y06);
@@ -33329,12 +33329,12 @@ function conicEqualArea_default() {
   return conicProjection(conicEqualAreaRaw).scale(155.424).center([0, 33.6442]);
 }
 
-// ../../../../../node_modules/d3-geo/src/projection/albers.js
+// ../../../node_modules/d3-geo/src/projection/albers.js
 function albers_default() {
   return conicEqualArea_default().parallels([29.5, 45.5]).scale(1070).translate([480, 250]).rotate([96, 0]).center([-0.6, 38.7]);
 }
 
-// ../../../../../node_modules/d3-geo/src/projection/albersUsa.js
+// ../../../node_modules/d3-geo/src/projection/albersUsa.js
 function multiplex(streams) {
   var n9 = streams.length;
   return {
@@ -33416,7 +33416,7 @@ function albersUsa_default() {
   return albersUsa.scale(1070);
 }
 
-// ../../../../../node_modules/d3-geo/src/projection/azimuthal.js
+// ../../../node_modules/d3-geo/src/projection/azimuthal.js
 function azimuthalRaw(scale3) {
   return function(x3, y3) {
     var cx = cos(x3), cy = cos(y3), k3 = scale3(cx * cy);
@@ -33437,7 +33437,7 @@ function azimuthalInvert(angle) {
   };
 }
 
-// ../../../../../node_modules/d3-geo/src/projection/azimuthalEqualArea.js
+// ../../../node_modules/d3-geo/src/projection/azimuthalEqualArea.js
 var azimuthalEqualAreaRaw = azimuthalRaw(function(cxcy) {
   return sqrt(2 / (1 + cxcy));
 });
@@ -33448,7 +33448,7 @@ function azimuthalEqualArea_default() {
   return projection(azimuthalEqualAreaRaw).scale(124.75).clipAngle(180 - 1e-3);
 }
 
-// ../../../../../node_modules/d3-geo/src/projection/azimuthalEquidistant.js
+// ../../../node_modules/d3-geo/src/projection/azimuthalEquidistant.js
 var azimuthalEquidistantRaw = azimuthalRaw(function(c9) {
   return (c9 = acos(c9)) && c9 / sin(c9);
 });
@@ -33459,7 +33459,7 @@ function azimuthalEquidistant_default() {
   return projection(azimuthalEquidistantRaw).scale(79.4188).clipAngle(180 - 1e-3);
 }
 
-// ../../../../../node_modules/d3-geo/src/projection/mercator.js
+// ../../../node_modules/d3-geo/src/projection/mercator.js
 function mercatorRaw(lambda, phi) {
   return [lambda, log(tan((halfPi + phi) / 2))];
 }
@@ -33490,7 +33490,7 @@ function mercatorProjection(project2) {
   return reclip();
 }
 
-// ../../../../../node_modules/d3-geo/src/projection/conicConformal.js
+// ../../../node_modules/d3-geo/src/projection/conicConformal.js
 function tany(y3) {
   return tan((halfPi + y3) / 2);
 }
@@ -33518,7 +33518,7 @@ function conicConformal_default() {
   return conicProjection(conicConformalRaw).scale(109.5).parallels([30, 30]);
 }
 
-// ../../../../../node_modules/d3-geo/src/projection/equirectangular.js
+// ../../../node_modules/d3-geo/src/projection/equirectangular.js
 function equirectangularRaw(lambda, phi) {
   return [lambda, phi];
 }
@@ -33527,7 +33527,7 @@ function equirectangular_default() {
   return projection(equirectangularRaw).scale(152.63);
 }
 
-// ../../../../../node_modules/d3-geo/src/projection/conicEquidistant.js
+// ../../../node_modules/d3-geo/src/projection/conicEquidistant.js
 function conicEquidistantRaw(y06, y12) {
   var cy0 = cos(y06), n9 = y06 === y12 ? sin(y06) : (cy0 - cos(y12)) / (y12 - y06), g2 = cy0 / n9 + y06;
   if (abs3(n9) < epsilon5) return equirectangularRaw;
@@ -33547,7 +33547,7 @@ function conicEquidistant_default() {
   return conicProjection(conicEquidistantRaw).scale(131.154).center([0, 13.9389]);
 }
 
-// ../../../../../node_modules/d3-geo/src/projection/equalEarth.js
+// ../../../node_modules/d3-geo/src/projection/equalEarth.js
 var A1 = 1.340264;
 var A22 = -0.081106;
 var A3 = 893e-6;
@@ -33578,7 +33578,7 @@ function equalEarth_default() {
   return projection(equalEarthRaw).scale(177.158);
 }
 
-// ../../../../../node_modules/d3-geo/src/projection/gnomonic.js
+// ../../../node_modules/d3-geo/src/projection/gnomonic.js
 function gnomonicRaw(x3, y3) {
   var cy = cos(y3), k3 = cos(x3) * cy;
   return [cy * sin(x3) / k3, sin(y3) / k3];
@@ -33588,7 +33588,7 @@ function gnomonic_default() {
   return projection(gnomonicRaw).scale(144.049).clipAngle(60);
 }
 
-// ../../../../../node_modules/d3-geo/src/projection/orthographic.js
+// ../../../node_modules/d3-geo/src/projection/orthographic.js
 function orthographicRaw(x3, y3) {
   return [cos(y3) * sin(x3), sin(y3)];
 }
@@ -33597,7 +33597,7 @@ function orthographic_default() {
   return projection(orthographicRaw).scale(249.5).clipAngle(90 + epsilon5);
 }
 
-// ../../../../../node_modules/d3-geo/src/projection/stereographic.js
+// ../../../node_modules/d3-geo/src/projection/stereographic.js
 function stereographicRaw(x3, y3) {
   var cy = cos(y3), k3 = 1 + cos(x3) * cy;
   return [cy * sin(x3) / k3, sin(y3) / k3];
@@ -33609,7 +33609,7 @@ function stereographic_default() {
   return projection(stereographicRaw).scale(250).clipAngle(142);
 }
 
-// ../../../../../node_modules/d3-geo/src/projection/transverseMercator.js
+// ../../../node_modules/d3-geo/src/projection/transverseMercator.js
 function transverseMercatorRaw(lambda, phi) {
   return [log(tan((halfPi + phi) / 2)), -lambda];
 }
@@ -33627,7 +33627,7 @@ function transverseMercator_default() {
   return rotate([0, 0, 90]).scale(159.155);
 }
 
-// ../../../../../node_modules/d3-hierarchy/src/cluster.js
+// ../../../node_modules/d3-hierarchy/src/cluster.js
 function defaultSeparation(a5, b2) {
   return a5.parent === b2.parent ? 1 : 2;
 }
@@ -33689,7 +33689,7 @@ function cluster_default() {
   return cluster2;
 }
 
-// ../../../../../node_modules/d3-hierarchy/src/hierarchy/count.js
+// ../../../node_modules/d3-hierarchy/src/hierarchy/count.js
 function count3(node) {
   var sum3 = 0, children2 = node.children, i5 = children2 && children2.length;
   if (!i5) sum3 = 1;
@@ -33700,7 +33700,7 @@ function count_default() {
   return this.eachAfter(count3);
 }
 
-// ../../../../../node_modules/d3-hierarchy/src/hierarchy/each.js
+// ../../../node_modules/d3-hierarchy/src/hierarchy/each.js
 function each_default2(callback, that) {
   let index2 = -1;
   for (const node of this) {
@@ -33709,7 +33709,7 @@ function each_default2(callback, that) {
   return this;
 }
 
-// ../../../../../node_modules/d3-hierarchy/src/hierarchy/eachBefore.js
+// ../../../node_modules/d3-hierarchy/src/hierarchy/eachBefore.js
 function eachBefore_default(callback, that) {
   var node = this, nodes = [node], children2, i5, index2 = -1;
   while (node = nodes.pop()) {
@@ -33723,7 +33723,7 @@ function eachBefore_default(callback, that) {
   return this;
 }
 
-// ../../../../../node_modules/d3-hierarchy/src/hierarchy/eachAfter.js
+// ../../../node_modules/d3-hierarchy/src/hierarchy/eachAfter.js
 function eachAfter_default(callback, that) {
   var node = this, nodes = [node], next = [], children2, i5, n9, index2 = -1;
   while (node = nodes.pop()) {
@@ -33740,7 +33740,7 @@ function eachAfter_default(callback, that) {
   return this;
 }
 
-// ../../../../../node_modules/d3-hierarchy/src/hierarchy/find.js
+// ../../../node_modules/d3-hierarchy/src/hierarchy/find.js
 function find_default(callback, that) {
   let index2 = -1;
   for (const node of this) {
@@ -33750,7 +33750,7 @@ function find_default(callback, that) {
   }
 }
 
-// ../../../../../node_modules/d3-hierarchy/src/hierarchy/sum.js
+// ../../../node_modules/d3-hierarchy/src/hierarchy/sum.js
 function sum_default(value) {
   return this.eachAfter(function(node) {
     var sum3 = +value(node.data) || 0, children2 = node.children, i5 = children2 && children2.length;
@@ -33759,7 +33759,7 @@ function sum_default(value) {
   });
 }
 
-// ../../../../../node_modules/d3-hierarchy/src/hierarchy/sort.js
+// ../../../node_modules/d3-hierarchy/src/hierarchy/sort.js
 function sort_default2(compare) {
   return this.eachBefore(function(node) {
     if (node.children) {
@@ -33768,7 +33768,7 @@ function sort_default2(compare) {
   });
 }
 
-// ../../../../../node_modules/d3-hierarchy/src/hierarchy/path.js
+// ../../../node_modules/d3-hierarchy/src/hierarchy/path.js
 function path_default2(end) {
   var start2 = this, ancestor = leastCommonAncestor(start2, end), nodes = [start2];
   while (start2 !== ancestor) {
@@ -33795,7 +33795,7 @@ function leastCommonAncestor(a5, b2) {
   return c9;
 }
 
-// ../../../../../node_modules/d3-hierarchy/src/hierarchy/ancestors.js
+// ../../../node_modules/d3-hierarchy/src/hierarchy/ancestors.js
 function ancestors_default() {
   var node = this, nodes = [node];
   while (node = node.parent) {
@@ -33804,12 +33804,12 @@ function ancestors_default() {
   return nodes;
 }
 
-// ../../../../../node_modules/d3-hierarchy/src/hierarchy/descendants.js
+// ../../../node_modules/d3-hierarchy/src/hierarchy/descendants.js
 function descendants_default() {
   return Array.from(this);
 }
 
-// ../../../../../node_modules/d3-hierarchy/src/hierarchy/leaves.js
+// ../../../node_modules/d3-hierarchy/src/hierarchy/leaves.js
 function leaves_default() {
   var leaves = [];
   this.eachBefore(function(node) {
@@ -33820,7 +33820,7 @@ function leaves_default() {
   return leaves;
 }
 
-// ../../../../../node_modules/d3-hierarchy/src/hierarchy/links.js
+// ../../../node_modules/d3-hierarchy/src/hierarchy/links.js
 function links_default() {
   var root2 = this, links = [];
   root2.each(function(node) {
@@ -33831,7 +33831,7 @@ function links_default() {
   return links;
 }
 
-// ../../../../../node_modules/d3-hierarchy/src/hierarchy/iterator.js
+// ../../../node_modules/d3-hierarchy/src/hierarchy/iterator.js
 function* iterator_default2() {
   var node = this, current, next = [node], children2, i5, n9;
   do {
@@ -33847,7 +33847,7 @@ function* iterator_default2() {
   } while (next.length);
 }
 
-// ../../../../../node_modules/d3-hierarchy/src/hierarchy/index.js
+// ../../../node_modules/d3-hierarchy/src/hierarchy/index.js
 function hierarchy(data, children2) {
   if (data instanceof Map) {
     data = [void 0, data];
@@ -33910,7 +33910,7 @@ Node2.prototype = hierarchy.prototype = {
   [Symbol.iterator]: iterator_default2
 };
 
-// ../../../../../node_modules/d3-hierarchy/src/accessors.js
+// ../../../node_modules/d3-hierarchy/src/accessors.js
 function optional(f7) {
   return f7 == null ? null : required(f7);
 }
@@ -33919,7 +33919,7 @@ function required(f7) {
   return f7;
 }
 
-// ../../../../../node_modules/d3-hierarchy/src/stratify.js
+// ../../../node_modules/d3-hierarchy/src/stratify.js
 var preroot = { depth: -1 };
 var ambiguous = {};
 var imputed = {};
@@ -34024,7 +34024,7 @@ function slash(path2, i5) {
   return false;
 }
 
-// ../../../../../node_modules/d3-hierarchy/src/tree.js
+// ../../../node_modules/d3-hierarchy/src/tree.js
 function defaultSeparation2(a5, b2) {
   return a5.parent === b2.parent ? 1 : 2;
 }
@@ -34172,7 +34172,7 @@ function tree_default() {
   return tree2;
 }
 
-// ../../../../../node_modules/d3-random/src/lcg.js
+// ../../../node_modules/d3-random/src/lcg.js
 var mul = 1664525;
 var inc = 1013904223;
 var eps = 1 / 4294967296;
@@ -34181,7 +34181,7 @@ function lcg(seed = Math.random()) {
   return () => (state = mul * state + inc | 0, eps * (state >>> 0));
 }
 
-// ../../../../../node_modules/d3-scale/src/init.js
+// ../../../node_modules/d3-scale/src/init.js
 function initRange(domain, range3) {
   switch (arguments.length) {
     case 0:
@@ -34214,7 +34214,7 @@ function initInterpolator(domain, interpolator) {
   return this;
 }
 
-// ../../../../../node_modules/d3-scale/src/ordinal.js
+// ../../../node_modules/d3-scale/src/ordinal.js
 var implicit = Symbol("implicit");
 function ordinal() {
   var index2 = new InternMap(), domain = [], range3 = [], unknown = implicit;
@@ -34248,7 +34248,7 @@ function ordinal() {
   return scale3;
 }
 
-// ../../../../../node_modules/d3-scale/src/band.js
+// ../../../node_modules/d3-scale/src/band.js
 function band() {
   var scale3 = ordinal().unknown(void 0), domain = scale3.domain, ordinalRange2 = scale3.range, r0 = 0, r1 = 1, step3, bandwidth, round2 = false, paddingInner = 0, paddingOuter = 0, align = 0.5;
   delete scale3.unknown;
@@ -34313,19 +34313,19 @@ function point() {
   return pointish(band.apply(null, arguments).paddingInner(1));
 }
 
-// ../../../../../node_modules/d3-scale/src/constant.js
+// ../../../node_modules/d3-scale/src/constant.js
 function constants(x3) {
   return function() {
     return x3;
   };
 }
 
-// ../../../../../node_modules/d3-scale/src/number.js
+// ../../../node_modules/d3-scale/src/number.js
 function number3(x3) {
   return +x3;
 }
 
-// ../../../../../node_modules/d3-scale/src/continuous.js
+// ../../../node_modules/d3-scale/src/continuous.js
 var unit = [0, 1];
 function identity3(x3) {
   return x3;
@@ -34410,7 +34410,7 @@ function continuous() {
   return transformer2()(identity3, identity3);
 }
 
-// ../../../../../node_modules/d3-scale/src/tickFormat.js
+// ../../../node_modules/d3-scale/src/tickFormat.js
 function tickFormat(start2, stop2, count4, specifier) {
   var step3 = tickStep(start2, stop2, count4), precision;
   specifier = formatSpecifier(specifier == null ? ",f" : specifier);
@@ -34437,7 +34437,7 @@ function tickFormat(start2, stop2, count4, specifier) {
   return format(specifier);
 }
 
-// ../../../../../node_modules/d3-scale/src/linear.js
+// ../../../node_modules/d3-scale/src/linear.js
 function linearish(scale3) {
   var domain = scale3.domain;
   scale3.ticks = function(count4) {
@@ -34492,7 +34492,7 @@ function linear2() {
   return linearish(scale3);
 }
 
-// ../../../../../node_modules/d3-scale/src/identity.js
+// ../../../node_modules/d3-scale/src/identity.js
 function identity4(domain) {
   var unknown;
   function scale3(x3) {
@@ -34512,7 +34512,7 @@ function identity4(domain) {
   return linearish(scale3);
 }
 
-// ../../../../../node_modules/d3-scale/src/nice.js
+// ../../../node_modules/d3-scale/src/nice.js
 function nice2(domain, interval2) {
   domain = domain.slice();
   var i0 = 0, i12 = domain.length - 1, x06 = domain[i0], x12 = domain[i12], t5;
@@ -34525,7 +34525,7 @@ function nice2(domain, interval2) {
   return domain;
 }
 
-// ../../../../../node_modules/d3-scale/src/log.js
+// ../../../node_modules/d3-scale/src/log.js
 function transformLog(x3) {
   return Math.log(x3);
 }
@@ -34638,7 +34638,7 @@ function log2() {
   return scale3;
 }
 
-// ../../../../../node_modules/d3-scale/src/symlog.js
+// ../../../node_modules/d3-scale/src/symlog.js
 function transformSymlog(c9) {
   return function(x3) {
     return Math.sign(x3) * Math.log1p(Math.abs(x3 / c9));
@@ -34664,7 +34664,7 @@ function symlog() {
   return initRange.apply(scale3, arguments);
 }
 
-// ../../../../../node_modules/d3-scale/src/pow.js
+// ../../../node_modules/d3-scale/src/pow.js
 function transformPow(exponent) {
   return function(x3) {
     return x3 < 0 ? -Math.pow(-x3, exponent) : Math.pow(x3, exponent);
@@ -34695,7 +34695,7 @@ function pow3() {
   return scale3;
 }
 
-// ../../../../../node_modules/d3-scale/src/quantile.js
+// ../../../node_modules/d3-scale/src/quantile.js
 function quantile2() {
   var domain = [], range3 = [], thresholds = [], unknown;
   function rescale() {
@@ -34736,7 +34736,7 @@ function quantile2() {
   return initRange.apply(scale3, arguments);
 }
 
-// ../../../../../node_modules/d3-scale/src/threshold.js
+// ../../../node_modules/d3-scale/src/threshold.js
 function threshold() {
   var domain = [0.5], range3 = [0, 1], unknown, n9 = 1;
   function scale3(x3) {
@@ -34761,7 +34761,7 @@ function threshold() {
   return initRange.apply(scale3, arguments);
 }
 
-// ../../../../../node_modules/d3-time/src/interval.js
+// ../../../node_modules/d3-time/src/interval.js
 var t02 = /* @__PURE__ */ new Date();
 var t12 = /* @__PURE__ */ new Date();
 function timeInterval(floori, offseti, count4, field2) {
@@ -34822,7 +34822,7 @@ function timeInterval(floori, offseti, count4, field2) {
   return interval2;
 }
 
-// ../../../../../node_modules/d3-time/src/millisecond.js
+// ../../../node_modules/d3-time/src/millisecond.js
 var millisecond = timeInterval(() => {
 }, (date2, step3) => {
   date2.setTime(+date2 + step3);
@@ -34843,7 +34843,7 @@ millisecond.every = (k3) => {
 };
 var milliseconds = millisecond.range;
 
-// ../../../../../node_modules/d3-time/src/duration.js
+// ../../../node_modules/d3-time/src/duration.js
 var durationSecond = 1e3;
 var durationMinute = durationSecond * 60;
 var durationHour = durationMinute * 60;
@@ -34852,7 +34852,7 @@ var durationWeek = durationDay * 7;
 var durationMonth = durationDay * 30;
 var durationYear = durationDay * 365;
 
-// ../../../../../node_modules/d3-time/src/second.js
+// ../../../node_modules/d3-time/src/second.js
 var second = timeInterval((date2) => {
   date2.setTime(date2 - date2.getMilliseconds());
 }, (date2, step3) => {
@@ -34864,7 +34864,7 @@ var second = timeInterval((date2) => {
 });
 var seconds = second.range;
 
-// ../../../../../node_modules/d3-time/src/minute.js
+// ../../../node_modules/d3-time/src/minute.js
 var timeMinute = timeInterval((date2) => {
   date2.setTime(date2 - date2.getMilliseconds() - date2.getSeconds() * durationSecond);
 }, (date2, step3) => {
@@ -34886,7 +34886,7 @@ var utcMinute = timeInterval((date2) => {
 });
 var utcMinutes = utcMinute.range;
 
-// ../../../../../node_modules/d3-time/src/hour.js
+// ../../../node_modules/d3-time/src/hour.js
 var timeHour = timeInterval((date2) => {
   date2.setTime(date2 - date2.getMilliseconds() - date2.getSeconds() * durationSecond - date2.getMinutes() * durationMinute);
 }, (date2, step3) => {
@@ -34908,7 +34908,7 @@ var utcHour = timeInterval((date2) => {
 });
 var utcHours = utcHour.range;
 
-// ../../../../../node_modules/d3-time/src/day.js
+// ../../../node_modules/d3-time/src/day.js
 var timeDay = timeInterval(
   (date2) => date2.setHours(0, 0, 0, 0),
   (date2, step3) => date2.setDate(date2.getDate() + step3),
@@ -34937,7 +34937,7 @@ var unixDay = timeInterval((date2) => {
 });
 var unixDays = unixDay.range;
 
-// ../../../../../node_modules/d3-time/src/week.js
+// ../../../node_modules/d3-time/src/week.js
 function timeWeekday(i5) {
   return timeInterval((date2) => {
     date2.setDate(date2.getDate() - (date2.getDay() + 7 - i5) % 7);
@@ -34987,7 +34987,7 @@ var utcThursdays = utcThursday.range;
 var utcFridays = utcFriday.range;
 var utcSaturdays = utcSaturday.range;
 
-// ../../../../../node_modules/d3-time/src/month.js
+// ../../../node_modules/d3-time/src/month.js
 var timeMonth = timeInterval((date2) => {
   date2.setDate(1);
   date2.setHours(0, 0, 0, 0);
@@ -35011,7 +35011,7 @@ var utcMonth = timeInterval((date2) => {
 });
 var utcMonths = utcMonth.range;
 
-// ../../../../../node_modules/d3-time/src/year.js
+// ../../../node_modules/d3-time/src/year.js
 var timeYear = timeInterval((date2) => {
   date2.setMonth(0, 1);
   date2.setHours(0, 0, 0, 0);
@@ -35053,7 +35053,7 @@ utcYear.every = (k3) => {
 };
 var utcYears = utcYear.range;
 
-// ../../../../../node_modules/d3-time/src/ticks.js
+// ../../../node_modules/d3-time/src/ticks.js
 function ticker(year, month, week, day, hour, minute) {
   const tickIntervals2 = [
     [second, 1, durationSecond],
@@ -35095,7 +35095,7 @@ function ticker(year, month, week, day, hour, minute) {
 var [utcTicks, utcTickInterval] = ticker(utcYear, utcMonth, utcSunday, unixDay, utcHour, utcMinute);
 var [timeTicks, timeTickInterval] = ticker(timeYear, timeMonth, timeSunday, timeDay, timeHour, timeMinute);
 
-// ../../../../../node_modules/d3-time-format/src/locale.js
+// ../../../node_modules/d3-time-format/src/locale.js
 function localDate(d3) {
   if (0 <= d3.y && d3.y < 100) {
     var date2 = new Date(-1, d3.m, d3.d, d3.H, d3.M, d3.S, d3.L);
@@ -35636,7 +35636,7 @@ function formatUnixTimestampSeconds(d3) {
   return Math.floor(+d3 / 1e3);
 }
 
-// ../../../../../node_modules/d3-time-format/src/defaultLocale.js
+// ../../../node_modules/d3-time-format/src/defaultLocale.js
 var locale2;
 var timeFormat;
 var timeParse;
@@ -35661,7 +35661,7 @@ function defaultLocale2(definition) {
   return locale2;
 }
 
-// ../../../../../node_modules/d3-scale/src/time.js
+// ../../../node_modules/d3-scale/src/time.js
 function date(t5) {
   return new Date(t5);
 }
@@ -35701,17 +35701,17 @@ function time() {
   return initRange.apply(calendar(timeTicks, timeTickInterval, timeYear, timeMonth, timeSunday, timeDay, timeHour, timeMinute, second, timeFormat).domain([new Date(2e3, 0, 1), new Date(2e3, 0, 2)]), arguments);
 }
 
-// ../../../../../node_modules/d3-scale/src/utcTime.js
+// ../../../node_modules/d3-scale/src/utcTime.js
 function utcTime() {
   return initRange.apply(calendar(utcTicks, utcTickInterval, utcYear, utcMonth, utcSunday, utcDay, utcHour, utcMinute, second, utcFormat).domain([Date.UTC(2e3, 0, 1), Date.UTC(2e3, 0, 2)]), arguments);
 }
 
-// ../../../../../node_modules/d3-scale/src/sequential.js
+// ../../../node_modules/d3-scale/src/sequential.js
 function copy2(source, target) {
   return target.domain(source.domain()).interpolator(source.interpolator()).clamp(source.clamp()).unknown(source.unknown());
 }
 
-// ../../../../../node_modules/d3-scale/src/diverging.js
+// ../../../node_modules/d3-scale/src/diverging.js
 function transformer3() {
   var x06 = 0, x12 = 0.5, x22 = 1, s8 = 1, t03, t13, t23, k10, k21, interpolator = identity3, transform3, clamp = false, unknown;
   function scale3(x3) {
@@ -35771,50 +35771,50 @@ function divergingPow() {
   return initInterpolator.apply(scale3, arguments);
 }
 
-// ../../../../../node_modules/d3-scale-chromatic/src/colors.js
+// ../../../node_modules/d3-scale-chromatic/src/colors.js
 function colors_default(specifier) {
   var n9 = specifier.length / 6 | 0, colors = new Array(n9), i5 = 0;
   while (i5 < n9) colors[i5] = "#" + specifier.slice(i5 * 6, ++i5 * 6);
   return colors;
 }
 
-// ../../../../../node_modules/d3-scale-chromatic/src/categorical/category10.js
+// ../../../node_modules/d3-scale-chromatic/src/categorical/category10.js
 var category10_default = colors_default("1f77b4ff7f0e2ca02cd627289467bd8c564be377c27f7f7fbcbd2217becf");
 
-// ../../../../../node_modules/d3-scale-chromatic/src/categorical/Accent.js
+// ../../../node_modules/d3-scale-chromatic/src/categorical/Accent.js
 var Accent_default = colors_default("7fc97fbeaed4fdc086ffff99386cb0f0027fbf5b17666666");
 
-// ../../../../../node_modules/d3-scale-chromatic/src/categorical/Dark2.js
+// ../../../node_modules/d3-scale-chromatic/src/categorical/Dark2.js
 var Dark2_default = colors_default("1b9e77d95f027570b3e7298a66a61ee6ab02a6761d666666");
 
-// ../../../../../node_modules/d3-scale-chromatic/src/categorical/observable10.js
+// ../../../node_modules/d3-scale-chromatic/src/categorical/observable10.js
 var observable10_default = colors_default("4269d0efb118ff725c6cc5b03ca951ff8ab7a463f297bbf59c6b4e9498a0");
 
-// ../../../../../node_modules/d3-scale-chromatic/src/categorical/Paired.js
+// ../../../node_modules/d3-scale-chromatic/src/categorical/Paired.js
 var Paired_default = colors_default("a6cee31f78b4b2df8a33a02cfb9a99e31a1cfdbf6fff7f00cab2d66a3d9affff99b15928");
 
-// ../../../../../node_modules/d3-scale-chromatic/src/categorical/Pastel1.js
+// ../../../node_modules/d3-scale-chromatic/src/categorical/Pastel1.js
 var Pastel1_default = colors_default("fbb4aeb3cde3ccebc5decbe4fed9a6ffffcce5d8bdfddaecf2f2f2");
 
-// ../../../../../node_modules/d3-scale-chromatic/src/categorical/Pastel2.js
+// ../../../node_modules/d3-scale-chromatic/src/categorical/Pastel2.js
 var Pastel2_default = colors_default("b3e2cdfdcdaccbd5e8f4cae4e6f5c9fff2aef1e2cccccccc");
 
-// ../../../../../node_modules/d3-scale-chromatic/src/categorical/Set1.js
+// ../../../node_modules/d3-scale-chromatic/src/categorical/Set1.js
 var Set1_default = colors_default("e41a1c377eb84daf4a984ea3ff7f00ffff33a65628f781bf999999");
 
-// ../../../../../node_modules/d3-scale-chromatic/src/categorical/Set2.js
+// ../../../node_modules/d3-scale-chromatic/src/categorical/Set2.js
 var Set2_default = colors_default("66c2a5fc8d628da0cbe78ac3a6d854ffd92fe5c494b3b3b3");
 
-// ../../../../../node_modules/d3-scale-chromatic/src/categorical/Set3.js
+// ../../../node_modules/d3-scale-chromatic/src/categorical/Set3.js
 var Set3_default = colors_default("8dd3c7ffffb3bebadafb807280b1d3fdb462b3de69fccde5d9d9d9bc80bdccebc5ffed6f");
 
-// ../../../../../node_modules/d3-scale-chromatic/src/categorical/Tableau10.js
+// ../../../node_modules/d3-scale-chromatic/src/categorical/Tableau10.js
 var Tableau10_default = colors_default("4e79a7f28e2ce1575976b7b259a14fedc949af7aa1ff9da79c755fbab0ab");
 
-// ../../../../../node_modules/d3-scale-chromatic/src/ramp.js
+// ../../../node_modules/d3-scale-chromatic/src/ramp.js
 var ramp_default = (scheme28) => rgbBasis(scheme28[scheme28.length - 1]);
 
-// ../../../../../node_modules/d3-scale-chromatic/src/diverging/BrBG.js
+// ../../../node_modules/d3-scale-chromatic/src/diverging/BrBG.js
 var scheme = new Array(3).concat(
   "d8b365f5f5f55ab4ac",
   "a6611adfc27d80cdc1018571",
@@ -35828,7 +35828,7 @@ var scheme = new Array(3).concat(
 ).map(colors_default);
 var BrBG_default = ramp_default(scheme);
 
-// ../../../../../node_modules/d3-scale-chromatic/src/diverging/PRGn.js
+// ../../../node_modules/d3-scale-chromatic/src/diverging/PRGn.js
 var scheme2 = new Array(3).concat(
   "af8dc3f7f7f77fbf7b",
   "7b3294c2a5cfa6dba0008837",
@@ -35842,7 +35842,7 @@ var scheme2 = new Array(3).concat(
 ).map(colors_default);
 var PRGn_default = ramp_default(scheme2);
 
-// ../../../../../node_modules/d3-scale-chromatic/src/diverging/PiYG.js
+// ../../../node_modules/d3-scale-chromatic/src/diverging/PiYG.js
 var scheme3 = new Array(3).concat(
   "e9a3c9f7f7f7a1d76a",
   "d01c8bf1b6dab8e1864dac26",
@@ -35856,7 +35856,7 @@ var scheme3 = new Array(3).concat(
 ).map(colors_default);
 var PiYG_default = ramp_default(scheme3);
 
-// ../../../../../node_modules/d3-scale-chromatic/src/diverging/PuOr.js
+// ../../../node_modules/d3-scale-chromatic/src/diverging/PuOr.js
 var scheme4 = new Array(3).concat(
   "998ec3f7f7f7f1a340",
   "5e3c99b2abd2fdb863e66101",
@@ -35870,7 +35870,7 @@ var scheme4 = new Array(3).concat(
 ).map(colors_default);
 var PuOr_default = ramp_default(scheme4);
 
-// ../../../../../node_modules/d3-scale-chromatic/src/diverging/RdBu.js
+// ../../../node_modules/d3-scale-chromatic/src/diverging/RdBu.js
 var scheme5 = new Array(3).concat(
   "ef8a62f7f7f767a9cf",
   "ca0020f4a58292c5de0571b0",
@@ -35884,7 +35884,7 @@ var scheme5 = new Array(3).concat(
 ).map(colors_default);
 var RdBu_default = ramp_default(scheme5);
 
-// ../../../../../node_modules/d3-scale-chromatic/src/diverging/RdGy.js
+// ../../../node_modules/d3-scale-chromatic/src/diverging/RdGy.js
 var scheme6 = new Array(3).concat(
   "ef8a62ffffff999999",
   "ca0020f4a582bababa404040",
@@ -35898,7 +35898,7 @@ var scheme6 = new Array(3).concat(
 ).map(colors_default);
 var RdGy_default = ramp_default(scheme6);
 
-// ../../../../../node_modules/d3-scale-chromatic/src/diverging/RdYlBu.js
+// ../../../node_modules/d3-scale-chromatic/src/diverging/RdYlBu.js
 var scheme7 = new Array(3).concat(
   "fc8d59ffffbf91bfdb",
   "d7191cfdae61abd9e92c7bb6",
@@ -35912,7 +35912,7 @@ var scheme7 = new Array(3).concat(
 ).map(colors_default);
 var RdYlBu_default = ramp_default(scheme7);
 
-// ../../../../../node_modules/d3-scale-chromatic/src/diverging/RdYlGn.js
+// ../../../node_modules/d3-scale-chromatic/src/diverging/RdYlGn.js
 var scheme8 = new Array(3).concat(
   "fc8d59ffffbf91cf60",
   "d7191cfdae61a6d96a1a9641",
@@ -35926,7 +35926,7 @@ var scheme8 = new Array(3).concat(
 ).map(colors_default);
 var RdYlGn_default = ramp_default(scheme8);
 
-// ../../../../../node_modules/d3-scale-chromatic/src/diverging/Spectral.js
+// ../../../node_modules/d3-scale-chromatic/src/diverging/Spectral.js
 var scheme9 = new Array(3).concat(
   "fc8d59ffffbf99d594",
   "d7191cfdae61abdda42b83ba",
@@ -35940,7 +35940,7 @@ var scheme9 = new Array(3).concat(
 ).map(colors_default);
 var Spectral_default = ramp_default(scheme9);
 
-// ../../../../../node_modules/d3-scale-chromatic/src/sequential-multi/BuGn.js
+// ../../../node_modules/d3-scale-chromatic/src/sequential-multi/BuGn.js
 var scheme10 = new Array(3).concat(
   "e5f5f999d8c92ca25f",
   "edf8fbb2e2e266c2a4238b45",
@@ -35952,7 +35952,7 @@ var scheme10 = new Array(3).concat(
 ).map(colors_default);
 var BuGn_default = ramp_default(scheme10);
 
-// ../../../../../node_modules/d3-scale-chromatic/src/sequential-multi/BuPu.js
+// ../../../node_modules/d3-scale-chromatic/src/sequential-multi/BuPu.js
 var scheme11 = new Array(3).concat(
   "e0ecf49ebcda8856a7",
   "edf8fbb3cde38c96c688419d",
@@ -35964,7 +35964,7 @@ var scheme11 = new Array(3).concat(
 ).map(colors_default);
 var BuPu_default = ramp_default(scheme11);
 
-// ../../../../../node_modules/d3-scale-chromatic/src/sequential-multi/GnBu.js
+// ../../../node_modules/d3-scale-chromatic/src/sequential-multi/GnBu.js
 var scheme12 = new Array(3).concat(
   "e0f3dba8ddb543a2ca",
   "f0f9e8bae4bc7bccc42b8cbe",
@@ -35976,7 +35976,7 @@ var scheme12 = new Array(3).concat(
 ).map(colors_default);
 var GnBu_default = ramp_default(scheme12);
 
-// ../../../../../node_modules/d3-scale-chromatic/src/sequential-multi/OrRd.js
+// ../../../node_modules/d3-scale-chromatic/src/sequential-multi/OrRd.js
 var scheme13 = new Array(3).concat(
   "fee8c8fdbb84e34a33",
   "fef0d9fdcc8afc8d59d7301f",
@@ -35988,7 +35988,7 @@ var scheme13 = new Array(3).concat(
 ).map(colors_default);
 var OrRd_default = ramp_default(scheme13);
 
-// ../../../../../node_modules/d3-scale-chromatic/src/sequential-multi/PuBuGn.js
+// ../../../node_modules/d3-scale-chromatic/src/sequential-multi/PuBuGn.js
 var scheme14 = new Array(3).concat(
   "ece2f0a6bddb1c9099",
   "f6eff7bdc9e167a9cf02818a",
@@ -36000,7 +36000,7 @@ var scheme14 = new Array(3).concat(
 ).map(colors_default);
 var PuBuGn_default = ramp_default(scheme14);
 
-// ../../../../../node_modules/d3-scale-chromatic/src/sequential-multi/PuBu.js
+// ../../../node_modules/d3-scale-chromatic/src/sequential-multi/PuBu.js
 var scheme15 = new Array(3).concat(
   "ece7f2a6bddb2b8cbe",
   "f1eef6bdc9e174a9cf0570b0",
@@ -36012,7 +36012,7 @@ var scheme15 = new Array(3).concat(
 ).map(colors_default);
 var PuBu_default = ramp_default(scheme15);
 
-// ../../../../../node_modules/d3-scale-chromatic/src/sequential-multi/PuRd.js
+// ../../../node_modules/d3-scale-chromatic/src/sequential-multi/PuRd.js
 var scheme16 = new Array(3).concat(
   "e7e1efc994c7dd1c77",
   "f1eef6d7b5d8df65b0ce1256",
@@ -36024,7 +36024,7 @@ var scheme16 = new Array(3).concat(
 ).map(colors_default);
 var PuRd_default = ramp_default(scheme16);
 
-// ../../../../../node_modules/d3-scale-chromatic/src/sequential-multi/RdPu.js
+// ../../../node_modules/d3-scale-chromatic/src/sequential-multi/RdPu.js
 var scheme17 = new Array(3).concat(
   "fde0ddfa9fb5c51b8a",
   "feebe2fbb4b9f768a1ae017e",
@@ -36036,7 +36036,7 @@ var scheme17 = new Array(3).concat(
 ).map(colors_default);
 var RdPu_default = ramp_default(scheme17);
 
-// ../../../../../node_modules/d3-scale-chromatic/src/sequential-multi/YlGnBu.js
+// ../../../node_modules/d3-scale-chromatic/src/sequential-multi/YlGnBu.js
 var scheme18 = new Array(3).concat(
   "edf8b17fcdbb2c7fb8",
   "ffffcca1dab441b6c4225ea8",
@@ -36048,7 +36048,7 @@ var scheme18 = new Array(3).concat(
 ).map(colors_default);
 var YlGnBu_default = ramp_default(scheme18);
 
-// ../../../../../node_modules/d3-scale-chromatic/src/sequential-multi/YlGn.js
+// ../../../node_modules/d3-scale-chromatic/src/sequential-multi/YlGn.js
 var scheme19 = new Array(3).concat(
   "f7fcb9addd8e31a354",
   "ffffccc2e69978c679238443",
@@ -36060,7 +36060,7 @@ var scheme19 = new Array(3).concat(
 ).map(colors_default);
 var YlGn_default = ramp_default(scheme19);
 
-// ../../../../../node_modules/d3-scale-chromatic/src/sequential-multi/YlOrBr.js
+// ../../../node_modules/d3-scale-chromatic/src/sequential-multi/YlOrBr.js
 var scheme20 = new Array(3).concat(
   "fff7bcfec44fd95f0e",
   "ffffd4fed98efe9929cc4c02",
@@ -36072,7 +36072,7 @@ var scheme20 = new Array(3).concat(
 ).map(colors_default);
 var YlOrBr_default = ramp_default(scheme20);
 
-// ../../../../../node_modules/d3-scale-chromatic/src/sequential-multi/YlOrRd.js
+// ../../../node_modules/d3-scale-chromatic/src/sequential-multi/YlOrRd.js
 var scheme21 = new Array(3).concat(
   "ffeda0feb24cf03b20",
   "ffffb2fecc5cfd8d3ce31a1c",
@@ -36084,7 +36084,7 @@ var scheme21 = new Array(3).concat(
 ).map(colors_default);
 var YlOrRd_default = ramp_default(scheme21);
 
-// ../../../../../node_modules/d3-scale-chromatic/src/sequential-single/Blues.js
+// ../../../node_modules/d3-scale-chromatic/src/sequential-single/Blues.js
 var scheme22 = new Array(3).concat(
   "deebf79ecae13182bd",
   "eff3ffbdd7e76baed62171b5",
@@ -36096,7 +36096,7 @@ var scheme22 = new Array(3).concat(
 ).map(colors_default);
 var Blues_default = ramp_default(scheme22);
 
-// ../../../../../node_modules/d3-scale-chromatic/src/sequential-single/Greens.js
+// ../../../node_modules/d3-scale-chromatic/src/sequential-single/Greens.js
 var scheme23 = new Array(3).concat(
   "e5f5e0a1d99b31a354",
   "edf8e9bae4b374c476238b45",
@@ -36108,7 +36108,7 @@ var scheme23 = new Array(3).concat(
 ).map(colors_default);
 var Greens_default = ramp_default(scheme23);
 
-// ../../../../../node_modules/d3-scale-chromatic/src/sequential-single/Greys.js
+// ../../../node_modules/d3-scale-chromatic/src/sequential-single/Greys.js
 var scheme24 = new Array(3).concat(
   "f0f0f0bdbdbd636363",
   "f7f7f7cccccc969696525252",
@@ -36120,7 +36120,7 @@ var scheme24 = new Array(3).concat(
 ).map(colors_default);
 var Greys_default = ramp_default(scheme24);
 
-// ../../../../../node_modules/d3-scale-chromatic/src/sequential-single/Purples.js
+// ../../../node_modules/d3-scale-chromatic/src/sequential-single/Purples.js
 var scheme25 = new Array(3).concat(
   "efedf5bcbddc756bb1",
   "f2f0f7cbc9e29e9ac86a51a3",
@@ -36132,7 +36132,7 @@ var scheme25 = new Array(3).concat(
 ).map(colors_default);
 var Purples_default = ramp_default(scheme25);
 
-// ../../../../../node_modules/d3-scale-chromatic/src/sequential-single/Reds.js
+// ../../../node_modules/d3-scale-chromatic/src/sequential-single/Reds.js
 var scheme26 = new Array(3).concat(
   "fee0d2fc9272de2d26",
   "fee5d9fcae91fb6a4acb181d",
@@ -36144,7 +36144,7 @@ var scheme26 = new Array(3).concat(
 ).map(colors_default);
 var Reds_default = ramp_default(scheme26);
 
-// ../../../../../node_modules/d3-scale-chromatic/src/sequential-single/Oranges.js
+// ../../../node_modules/d3-scale-chromatic/src/sequential-single/Oranges.js
 var scheme27 = new Array(3).concat(
   "fee6cefdae6be6550d",
   "feeddefdbe85fd8d3cd94701",
@@ -36156,16 +36156,16 @@ var scheme27 = new Array(3).concat(
 ).map(colors_default);
 var Oranges_default = ramp_default(scheme27);
 
-// ../../../../../node_modules/d3-scale-chromatic/src/sequential-multi/cividis.js
+// ../../../node_modules/d3-scale-chromatic/src/sequential-multi/cividis.js
 function cividis_default(t5) {
   t5 = Math.max(0, Math.min(1, t5));
   return "rgb(" + Math.max(0, Math.min(255, Math.round(-4.54 - t5 * (35.34 - t5 * (2381.73 - t5 * (6402.7 - t5 * (7024.72 - t5 * 2710.57))))))) + ", " + Math.max(0, Math.min(255, Math.round(32.49 + t5 * (170.73 + t5 * (52.82 - t5 * (131.46 - t5 * (176.58 - t5 * 67.37))))))) + ", " + Math.max(0, Math.min(255, Math.round(81.24 + t5 * (442.36 - t5 * (2482.43 - t5 * (6167.24 - t5 * (6614.94 - t5 * 2475.67))))))) + ")";
 }
 
-// ../../../../../node_modules/d3-scale-chromatic/src/sequential-multi/cubehelix.js
+// ../../../node_modules/d3-scale-chromatic/src/sequential-multi/cubehelix.js
 var cubehelix_default2 = cubehelixLong(cubehelix(300, 0.5, 0), cubehelix(-240, 0.5, 1));
 
-// ../../../../../node_modules/d3-scale-chromatic/src/sequential-multi/rainbow.js
+// ../../../node_modules/d3-scale-chromatic/src/sequential-multi/rainbow.js
 var warm = cubehelixLong(cubehelix(-100, 0.75, 0.35), cubehelix(80, 1.5, 0.8));
 var cool = cubehelixLong(cubehelix(260, 0.75, 0.35), cubehelix(80, 1.5, 0.8));
 var c6 = cubehelix();
@@ -36178,7 +36178,7 @@ function rainbow_default(t5) {
   return c6 + "";
 }
 
-// ../../../../../node_modules/d3-scale-chromatic/src/sequential-multi/sinebow.js
+// ../../../node_modules/d3-scale-chromatic/src/sequential-multi/sinebow.js
 var c7 = rgb();
 var pi_1_3 = Math.PI / 3;
 var pi_2_3 = Math.PI * 2 / 3;
@@ -36191,13 +36191,13 @@ function sinebow_default(t5) {
   return c7 + "";
 }
 
-// ../../../../../node_modules/d3-scale-chromatic/src/sequential-multi/turbo.js
+// ../../../node_modules/d3-scale-chromatic/src/sequential-multi/turbo.js
 function turbo_default(t5) {
   t5 = Math.max(0, Math.min(1, t5));
   return "rgb(" + Math.max(0, Math.min(255, Math.round(34.61 + t5 * (1172.33 - t5 * (10793.56 - t5 * (33300.12 - t5 * (38394.49 - t5 * 14825.05))))))) + ", " + Math.max(0, Math.min(255, Math.round(23.31 + t5 * (557.33 + t5 * (1225.33 - t5 * (3574.96 - t5 * (1073.77 + t5 * 707.56))))))) + ", " + Math.max(0, Math.min(255, Math.round(27.2 + t5 * (3211.1 - t5 * (15327.97 - t5 * (27814 - t5 * (22569.18 - t5 * 6838.66))))))) + ")";
 }
 
-// ../../../../../node_modules/d3-scale-chromatic/src/sequential-multi/viridis.js
+// ../../../node_modules/d3-scale-chromatic/src/sequential-multi/viridis.js
 function ramp(range3) {
   var n9 = range3.length;
   return function(t5) {
@@ -36209,14 +36209,14 @@ var magma = ramp(colors_default("00000401000501010601010802010902020b02020d03030
 var inferno = ramp(colors_default("00000401000501010601010802010a02020c02020e03021004031204031405041706041907051b08051d09061f0a07220b07240c08260d08290e092b10092d110a30120a32140b34150b37160b39180c3c190c3e1b0c411c0c431e0c451f0c48210c4a230c4c240c4f260c51280b53290b552b0b572d0b592f0a5b310a5c320a5e340a5f3609613809623909633b09643d09653e0966400a67420a68440a68450a69470b6a490b6a4a0c6b4c0c6b4d0d6c4f0d6c510e6c520e6d540f6d550f6d57106e59106e5a116e5c126e5d126e5f136e61136e62146e64156e65156e67166e69166e6a176e6c186e6d186e6f196e71196e721a6e741a6e751b6e771c6d781c6d7a1d6d7c1d6d7d1e6d7f1e6c801f6c82206c84206b85216b87216b88226a8a226a8c23698d23698f24699025689225689326679526679727669827669a28659b29649d29649f2a63a02a63a22b62a32c61a52c60a62d60a82e5fa92e5eab2f5ead305dae305cb0315bb1325ab3325ab43359b63458b73557b93556ba3655bc3754bd3853bf3952c03a51c13a50c33b4fc43c4ec63d4dc73e4cc83f4bca404acb4149cc4248ce4347cf4446d04545d24644d34743d44842d54a41d74b3fd84c3ed94d3dda4e3cdb503bdd513ade5238df5337e05536e15635e25734e35933e45a31e55c30e65d2fe75e2ee8602de9612bea632aeb6429eb6628ec6726ed6925ee6a24ef6c23ef6e21f06f20f1711ff1731df2741cf3761bf37819f47918f57b17f57d15f67e14f68013f78212f78410f8850ff8870ef8890cf98b0bf98c0af98e09fa9008fa9207fa9407fb9606fb9706fb9906fb9b06fb9d07fc9f07fca108fca309fca50afca60cfca80dfcaa0ffcac11fcae12fcb014fcb216fcb418fbb61afbb81dfbba1ffbbc21fbbe23fac026fac228fac42afac62df9c72ff9c932f9cb35f8cd37f8cf3af7d13df7d340f6d543f6d746f5d949f5db4cf4dd4ff4df53f4e156f3e35af3e55df2e661f2e865f2ea69f1ec6df1ed71f1ef75f1f179f2f27df2f482f3f586f3f68af4f88ef5f992f6fa96f8fb9af9fc9dfafda1fcffa4"));
 var plasma = ramp(colors_default("0d088710078813078916078a19068c1b068d1d068e20068f2206902406912605912805922a05932c05942e05952f059631059733059735049837049938049a3a049a3c049b3e049c3f049c41049d43039e44039e46039f48039f4903a04b03a14c02a14e02a25002a25102a35302a35502a45601a45801a45901a55b01a55c01a65e01a66001a66100a76300a76400a76600a76700a86900a86a00a86c00a86e00a86f00a87100a87201a87401a87501a87701a87801a87a02a87b02a87d03a87e03a88004a88104a78305a78405a78606a68707a68808a68a09a58b0aa58d0ba58e0ca48f0da4910ea3920fa39410a29511a19613a19814a099159f9a169f9c179e9d189d9e199da01a9ca11b9ba21d9aa31e9aa51f99a62098a72197a82296aa2395ab2494ac2694ad2793ae2892b02991b12a90b22b8fb32c8eb42e8db52f8cb6308bb7318ab83289ba3388bb3488bc3587bd3786be3885bf3984c03a83c13b82c23c81c33d80c43e7fc5407ec6417dc7427cc8437bc9447aca457acb4679cc4778cc4977cd4a76ce4b75cf4c74d04d73d14e72d24f71d35171d45270d5536fd5546ed6556dd7566cd8576bd9586ada5a6ada5b69db5c68dc5d67dd5e66de5f65de6164df6263e06363e16462e26561e26660e3685fe4695ee56a5de56b5de66c5ce76e5be76f5ae87059e97158e97257ea7457eb7556eb7655ec7754ed7953ed7a52ee7b51ef7c51ef7e50f07f4ff0804ef1814df1834cf2844bf3854bf3874af48849f48948f58b47f58c46f68d45f68f44f79044f79143f79342f89441f89540f9973ff9983ef99a3efa9b3dfa9c3cfa9e3bfb9f3afba139fba238fca338fca537fca636fca835fca934fdab33fdac33fdae32fdaf31fdb130fdb22ffdb42ffdb52efeb72dfeb82cfeba2cfebb2bfebd2afebe2afec029fdc229fdc328fdc527fdc627fdc827fdca26fdcb26fccd25fcce25fcd025fcd225fbd324fbd524fbd724fad824fada24f9dc24f9dd25f8df25f8e125f7e225f7e425f6e626f6e826f5e926f5eb27f4ed27f3ee27f3f027f2f227f1f426f1f525f0f724f0f921"));
 
-// ../../../../../node_modules/d3-shape/src/constant.js
+// ../../../node_modules/d3-shape/src/constant.js
 function constant_default5(x3) {
   return function constant2() {
     return x3;
   };
 }
 
-// ../../../../../node_modules/d3-shape/src/math.js
+// ../../../node_modules/d3-shape/src/math.js
 var cos2 = Math.cos;
 var min3 = Math.min;
 var sin2 = Math.sin;
@@ -36226,7 +36226,7 @@ var pi3 = Math.PI;
 var halfPi2 = pi3 / 2;
 var tau4 = 2 * pi3;
 
-// ../../../../../node_modules/d3-shape/src/path.js
+// ../../../node_modules/d3-shape/src/path.js
 function withPath(shape2) {
   let digits = 3;
   shape2.digits = function(_2) {
@@ -36243,13 +36243,13 @@ function withPath(shape2) {
   return () => new Path(digits);
 }
 
-// ../../../../../node_modules/d3-shape/src/array.js
+// ../../../node_modules/d3-shape/src/array.js
 var slice2 = Array.prototype.slice;
 function array_default(x3) {
   return typeof x3 === "object" && "length" in x3 ? x3 : Array.from(x3);
 }
 
-// ../../../../../node_modules/d3-shape/src/curve/linear.js
+// ../../../node_modules/d3-shape/src/curve/linear.js
 function Linear(context) {
   this._context = context;
 }
@@ -36287,7 +36287,7 @@ function linear_default(context) {
   return new Linear(context);
 }
 
-// ../../../../../node_modules/d3-shape/src/point.js
+// ../../../node_modules/d3-shape/src/point.js
 function x2(p11) {
   return p11[0];
 }
@@ -36295,7 +36295,7 @@ function y2(p11) {
   return p11[1];
 }
 
-// ../../../../../node_modules/d3-shape/src/line.js
+// ../../../node_modules/d3-shape/src/line.js
 function line_default2(x3, y3) {
   var defined2 = constant_default5(true), context = null, curve = linear_default, output = null, path2 = withPath(line2);
   x3 = typeof x3 === "function" ? x3 : x3 === void 0 ? x2 : constant_default5(x3);
@@ -36330,7 +36330,7 @@ function line_default2(x3, y3) {
   return line2;
 }
 
-// ../../../../../node_modules/d3-shape/src/area.js
+// ../../../node_modules/d3-shape/src/area.js
 function area_default3(x06, y06, y12) {
   var x12 = null, defined2 = constant_default5(true), context = null, curve = linear_default, output = null, path2 = withPath(area2);
   x06 = typeof x06 === "function" ? x06 : x06 === void 0 ? x2 : constant_default5(+x06);
@@ -36404,7 +36404,7 @@ function area_default3(x06, y06, y12) {
   return area2;
 }
 
-// ../../../../../node_modules/d3-shape/src/curve/bump.js
+// ../../../node_modules/d3-shape/src/curve/bump.js
 var Bump = class {
   constructor(context, x3) {
     this._context = context;
@@ -36451,7 +36451,7 @@ function bumpY(context) {
   return new Bump(context, false);
 }
 
-// ../../../../../node_modules/d3-shape/src/symbol/asterisk.js
+// ../../../node_modules/d3-shape/src/symbol/asterisk.js
 var sqrt32 = sqrt3(3);
 var asterisk_default = {
   draw(context, size) {
@@ -36467,7 +36467,7 @@ var asterisk_default = {
   }
 };
 
-// ../../../../../node_modules/d3-shape/src/symbol/circle.js
+// ../../../node_modules/d3-shape/src/symbol/circle.js
 var circle_default2 = {
   draw(context, size) {
     const r6 = sqrt3(size / pi3);
@@ -36476,7 +36476,7 @@ var circle_default2 = {
   }
 };
 
-// ../../../../../node_modules/d3-shape/src/symbol/cross.js
+// ../../../node_modules/d3-shape/src/symbol/cross.js
 var cross_default = {
   draw(context, size) {
     const r6 = sqrt3(size / 5) / 2;
@@ -36496,7 +36496,7 @@ var cross_default = {
   }
 };
 
-// ../../../../../node_modules/d3-shape/src/symbol/diamond.js
+// ../../../node_modules/d3-shape/src/symbol/diamond.js
 var tan30 = sqrt3(1 / 3);
 var tan30_2 = tan30 * 2;
 var diamond_default = {
@@ -36511,7 +36511,7 @@ var diamond_default = {
   }
 };
 
-// ../../../../../node_modules/d3-shape/src/symbol/diamond2.js
+// ../../../node_modules/d3-shape/src/symbol/diamond2.js
 var diamond2_default = {
   draw(context, size) {
     const r6 = sqrt3(size) * 0.62625;
@@ -36523,7 +36523,7 @@ var diamond2_default = {
   }
 };
 
-// ../../../../../node_modules/d3-shape/src/symbol/plus.js
+// ../../../node_modules/d3-shape/src/symbol/plus.js
 var plus_default = {
   draw(context, size) {
     const r6 = sqrt3(size - min3(size / 7, 2)) * 0.87559;
@@ -36534,7 +36534,7 @@ var plus_default = {
   }
 };
 
-// ../../../../../node_modules/d3-shape/src/symbol/square.js
+// ../../../node_modules/d3-shape/src/symbol/square.js
 var square_default = {
   draw(context, size) {
     const w2 = sqrt3(size);
@@ -36543,7 +36543,7 @@ var square_default = {
   }
 };
 
-// ../../../../../node_modules/d3-shape/src/symbol/square2.js
+// ../../../node_modules/d3-shape/src/symbol/square2.js
 var square2_default = {
   draw(context, size) {
     const r6 = sqrt3(size) * 0.4431;
@@ -36555,7 +36555,7 @@ var square2_default = {
   }
 };
 
-// ../../../../../node_modules/d3-shape/src/symbol/star.js
+// ../../../node_modules/d3-shape/src/symbol/star.js
 var ka = 0.8908130915292852;
 var kr = sin2(pi3 / 10) / sin2(7 * pi3 / 10);
 var kx = sin2(tau4 / 10) * kr;
@@ -36578,7 +36578,7 @@ var star_default = {
   }
 };
 
-// ../../../../../node_modules/d3-shape/src/symbol/triangle.js
+// ../../../node_modules/d3-shape/src/symbol/triangle.js
 var sqrt33 = sqrt3(3);
 var triangle_default = {
   draw(context, size) {
@@ -36590,7 +36590,7 @@ var triangle_default = {
   }
 };
 
-// ../../../../../node_modules/d3-shape/src/symbol/triangle2.js
+// ../../../node_modules/d3-shape/src/symbol/triangle2.js
 var sqrt34 = sqrt3(3);
 var triangle2_default = {
   draw(context, size) {
@@ -36604,7 +36604,7 @@ var triangle2_default = {
   }
 };
 
-// ../../../../../node_modules/d3-shape/src/symbol/wye.js
+// ../../../node_modules/d3-shape/src/symbol/wye.js
 var c8 = -0.5;
 var s7 = sqrt3(3) / 2;
 var k2 = 1 / sqrt3(12);
@@ -36628,7 +36628,7 @@ var wye_default = {
   }
 };
 
-// ../../../../../node_modules/d3-shape/src/symbol/times.js
+// ../../../node_modules/d3-shape/src/symbol/times.js
 var times_default = {
   draw(context, size) {
     const r6 = sqrt3(size - min3(size / 6, 1.7)) * 0.6189;
@@ -36639,7 +36639,7 @@ var times_default = {
   }
 };
 
-// ../../../../../node_modules/d3-shape/src/symbol.js
+// ../../../node_modules/d3-shape/src/symbol.js
 var symbolsFill = [
   circle_default2,
   cross_default,
@@ -36659,11 +36659,11 @@ var symbolsStroke = [
   diamond2_default
 ];
 
-// ../../../../../node_modules/d3-shape/src/noop.js
+// ../../../node_modules/d3-shape/src/noop.js
 function noop_default2() {
 }
 
-// ../../../../../node_modules/d3-shape/src/curve/basis.js
+// ../../../node_modules/d3-shape/src/curve/basis.js
 function point2(that, x3, y3) {
   that._context.bezierCurveTo(
     (2 * that._x0 + that._x1) / 3,
@@ -36726,7 +36726,7 @@ function basis_default2(context) {
   return new Basis(context);
 }
 
-// ../../../../../node_modules/d3-shape/src/curve/basisClosed.js
+// ../../../node_modules/d3-shape/src/curve/basisClosed.js
 function BasisClosed(context) {
   this._context = context;
 }
@@ -36786,7 +36786,7 @@ function basisClosed_default2(context) {
   return new BasisClosed(context);
 }
 
-// ../../../../../node_modules/d3-shape/src/curve/basisOpen.js
+// ../../../node_modules/d3-shape/src/curve/basisOpen.js
 function BasisOpen(context) {
   this._context = context;
 }
@@ -36834,7 +36834,7 @@ function basisOpen_default(context) {
   return new BasisOpen(context);
 }
 
-// ../../../../../node_modules/d3-shape/src/curve/bundle.js
+// ../../../node_modules/d3-shape/src/curve/bundle.js
 function Bundle(context, beta) {
   this._basis = new Basis(context);
   this._beta = beta;
@@ -36875,7 +36875,7 @@ var bundle_default = function custom(beta) {
   return bundle;
 }(0.85);
 
-// ../../../../../node_modules/d3-shape/src/curve/cardinal.js
+// ../../../node_modules/d3-shape/src/curve/cardinal.js
 function point3(that, x3, y3) {
   that._context.bezierCurveTo(
     that._x1 + that._k * (that._x2 - that._x0),
@@ -36945,7 +36945,7 @@ var cardinal_default = function custom2(tension) {
   return cardinal;
 }(0);
 
-// ../../../../../node_modules/d3-shape/src/curve/cardinalClosed.js
+// ../../../node_modules/d3-shape/src/curve/cardinalClosed.js
 function CardinalClosed(context, tension) {
   this._context = context;
   this._k = (1 - tension) / 6;
@@ -37010,7 +37010,7 @@ var cardinalClosed_default = function custom3(tension) {
   return cardinal;
 }(0);
 
-// ../../../../../node_modules/d3-shape/src/curve/cardinalOpen.js
+// ../../../node_modules/d3-shape/src/curve/cardinalOpen.js
 function CardinalOpen(context, tension) {
   this._context = context;
   this._k = (1 - tension) / 6;
@@ -37064,7 +37064,7 @@ var cardinalOpen_default = function custom4(tension) {
   return cardinal;
 }(0);
 
-// ../../../../../node_modules/d3-shape/src/curve/catmullRom.js
+// ../../../node_modules/d3-shape/src/curve/catmullRom.js
 function point4(that, x3, y3) {
   var x12 = that._x1, y12 = that._y1, x22 = that._x2, y22 = that._y2;
   if (that._l01_a > epsilon6) {
@@ -37143,7 +37143,7 @@ var catmullRom_default = function custom5(alpha) {
   return catmullRom;
 }(0.5);
 
-// ../../../../../node_modules/d3-shape/src/curve/catmullRomClosed.js
+// ../../../node_modules/d3-shape/src/curve/catmullRomClosed.js
 function CatmullRomClosed(context, alpha) {
   this._context = context;
   this._alpha = alpha;
@@ -37214,7 +37214,7 @@ var catmullRomClosed_default = function custom6(alpha) {
   return catmullRom;
 }(0.5);
 
-// ../../../../../node_modules/d3-shape/src/curve/catmullRomOpen.js
+// ../../../node_modules/d3-shape/src/curve/catmullRomOpen.js
 function CatmullRomOpen(context, alpha) {
   this._context = context;
   this._alpha = alpha;
@@ -37274,7 +37274,7 @@ var catmullRomOpen_default = function custom7(alpha) {
   return catmullRom;
 }(0.5);
 
-// ../../../../../node_modules/d3-shape/src/curve/linearClosed.js
+// ../../../node_modules/d3-shape/src/curve/linearClosed.js
 function LinearClosed(context) {
   this._context = context;
 }
@@ -37297,7 +37297,7 @@ function linearClosed_default(context) {
   return new LinearClosed(context);
 }
 
-// ../../../../../node_modules/d3-shape/src/curve/monotone.js
+// ../../../node_modules/d3-shape/src/curve/monotone.js
 function sign3(x3) {
   return x3 < 0 ? -1 : 1;
 }
@@ -37394,7 +37394,7 @@ function monotoneY(context) {
   return new MonotoneY(context);
 }
 
-// ../../../../../node_modules/d3-shape/src/curve/natural.js
+// ../../../node_modules/d3-shape/src/curve/natural.js
 function Natural(context) {
   this._context = context;
 }
@@ -37447,7 +37447,7 @@ function natural_default(context) {
   return new Natural(context);
 }
 
-// ../../../../../node_modules/d3-shape/src/curve/step.js
+// ../../../node_modules/d3-shape/src/curve/step.js
 function Step(context, t5) {
   this._context = context;
   this._t = t5;
@@ -37503,7 +37503,7 @@ function stepAfter(context) {
   return new Step(context, 1);
 }
 
-// ../../../../../node_modules/d3-zoom/src/transform.js
+// ../../../node_modules/d3-zoom/src/transform.js
 function Transform(k3, x3, y3) {
   this.k = k3;
   this.x = x3;
@@ -37552,7 +37552,7 @@ function transform2(node) {
   return node.__zoom;
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/defined.js
+// ../../../node_modules/@observablehq/plot/src/defined.js
 function defined(x3) {
   return x3 != null && !Number.isNaN(x3);
 }
@@ -37575,7 +37575,7 @@ function negative(x3) {
   return x3 < 0 && isFinite(x3) ? x3 : NaN;
 }
 
-// ../../../../../node_modules/isoformat/src/format.js
+// ../../../node_modules/isoformat/src/format.js
 function format2(date2, fallback) {
   if (!(date2 instanceof Date)) date2 = /* @__PURE__ */ new Date(+date2);
   if (isNaN(date2)) return typeof fallback === "function" ? fallback(date2) : fallback;
@@ -37592,14 +37592,14 @@ function pad2(value, width) {
   return `${value}`.padStart(width, "0");
 }
 
-// ../../../../../node_modules/isoformat/src/parse.js
+// ../../../node_modules/isoformat/src/parse.js
 var re2 = /^(?:[-+]\d{2})?\d{4}(?:-\d{2}(?:-\d{2})?)?(?:T\d{2}:\d{2}(?::\d{2}(?:\.\d{3})?)?(?:Z|[-+]\d{2}:?\d{2})?)?$/;
 function parse2(string2, fallback) {
   if (!re2.test(string2 += "")) return typeof fallback === "function" ? fallback(string2) : fallback;
   return new Date(string2);
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/order.js
+// ../../../node_modules/@observablehq/plot/src/order.js
 function orderof(values2) {
   if (values2 == null) return;
   const first2 = values2[0];
@@ -37607,7 +37607,7 @@ function orderof(values2) {
   return descending(first2, last);
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/time.js
+// ../../../node_modules/@observablehq/plot/src/time.js
 var durationSecond2 = 1e3;
 var durationMinute2 = durationSecond2 * 60;
 var durationHour2 = durationMinute2 * 60;
@@ -37843,7 +37843,7 @@ function formatConditional(format1, format22, template2) {
   };
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/options.js
+// ../../../node_modules/@observablehq/plot/src/options.js
 var TypedArray = Object.getPrototypeOf(Uint8Array);
 var objectToString = Object.prototype.toString;
 function isArray(value) {
@@ -38270,7 +38270,7 @@ function isArrowDateType(type2) {
   type2.unit === 1;
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/scales/index.js
+// ../../../node_modules/@observablehq/plot/src/scales/index.js
 var position = Symbol("position");
 var color2 = Symbol("color");
 var radius = Symbol("radius");
@@ -38297,7 +38297,7 @@ function hasNumericRange(kind) {
   return kind === position || kind === radius || kind === length3 || kind === opacity;
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/symbol.js
+// ../../../node_modules/@observablehq/plot/src/symbol.js
 var sqrt35 = Math.sqrt(3);
 var sqrt4_3 = 2 / sqrt35;
 var symbolHexagon = {
@@ -38351,7 +38351,7 @@ function maybeSymbolChannel(symbol3) {
   return [symbol3, void 0];
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/transforms/basic.js
+// ../../../node_modules/@observablehq/plot/src/transforms/basic.js
 function basic({ filter: f12, sort: s1, reverse: r1, transform: t13, initializer: i12, ...options } = {}, transform3) {
   if (t13 === void 0) {
     if (f12 != null) t13 = filterTransform(f12);
@@ -38470,7 +38470,7 @@ function sortValue(value) {
   };
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/transforms/group.js
+// ../../../node_modules/@observablehq/plot/src/transforms/group.js
 function groupZ(outputs, options) {
   return groupn(null, null, outputs, options);
 }
@@ -38835,7 +38835,7 @@ function find2(test) {
   };
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/channel.js
+// ../../../node_modules/@observablehq/plot/src/channel.js
 function createChannel(data, { scale: scale3, type: type2, value, filter: filter5, hint, label = labelof(value) }, name) {
   if (hint === void 0 && typeof value?.transform === "function") hint = value.hint;
   return inferChannelScale(name, {
@@ -38986,7 +38986,7 @@ function getSource(channels, key) {
   return channel.source === null ? null : channel;
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/scales/schemes.js
+// ../../../node_modules/@observablehq/plot/src/scales/schemes.js
 var categoricalSchemes = /* @__PURE__ */ new Map([
   ["accent", Accent_default],
   ["category10", category10_default],
@@ -39169,7 +39169,7 @@ function isDivergingScheme(scheme28) {
   return scheme28 != null && divergingSchemes.has(`${scheme28}`.toLowerCase());
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/scales/quantitative.js
+// ../../../node_modules/@observablehq/plot/src/scales/quantitative.js
 var flip = (i5) => (t5) => i5(1 - t5);
 var unit2 = [0, 1];
 var interpolators = /* @__PURE__ */ new Map([
@@ -39388,7 +39388,7 @@ function interpolatePiecewise(interpolate) {
   return (i5, j2) => (t5) => interpolate(i5 + t5 * (j2 - i5));
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/warnings.js
+// ../../../node_modules/@observablehq/plot/src/warnings.js
 var warnings = 0;
 var lastMessage;
 function consumeWarnings() {
@@ -39404,7 +39404,7 @@ function warn(message) {
   ++warnings;
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/scales/diverging.js
+// ../../../node_modules/@observablehq/plot/src/scales/diverging.js
 function createScaleD(key, scale3, transform3, channels, {
   type: type2,
   nice: nice3,
@@ -39513,7 +39513,7 @@ function transformSymlog2(constant2) {
   };
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/scales/temporal.js
+// ../../../node_modules/@observablehq/plot/src/scales/temporal.js
 function createScaleT(key, scale3, channels, options) {
   return createScaleQ(key, scale3, channels, options);
 }
@@ -39524,7 +39524,7 @@ function createScaleUtc(key, channels, options) {
   return createScaleT(key, utcTime(), channels, options);
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/scales/ordinal.js
+// ../../../node_modules/@observablehq/plot/src/scales/ordinal.js
 var ordinalImplicit = Symbol("ordinal");
 function createScaleO(key, scale3, channels, { type: type2, interval: interval2, domain, range: range3, reverse: reverse3, hint }) {
   interval2 = maybeRangeInterval(interval2, type2);
@@ -39628,7 +39628,7 @@ function inferSymbolRange(hint) {
   return isNoneish(hint.fill) ? symbolsStroke : symbolsFill;
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/scales.js
+// ../../../node_modules/@observablehq/plot/src/scales.js
 function createScales(channelsByScale, {
   label: globalLabel,
   inset: globalInset = 0,
@@ -40060,7 +40060,7 @@ function exposeScale({ scale: scale3, type: type2, domain, range: range3, interp
   };
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/facet.js
+// ../../../node_modules/@observablehq/plot/src/facet.js
 function createFacets(channelsByScale, options) {
   const { fx, fy } = createScales(channelsByScale, options);
   const fxDomain = fx?.scale.domain();
@@ -40207,7 +40207,7 @@ function facetFilter(facets, { channels: { fx, fy }, groups: groups2 }) {
   return fx && fy ? facets.map(({ x: x3, y: y3 }) => groups2.get(x3)?.get(y3) ?? []) : fx ? facets.map(({ x: x3 }) => groups2.get(x3) ?? []) : facets.map(({ y: y3 }) => groups2.get(y3) ?? []);
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/projection.js
+// ../../../node_modules/@observablehq/plot/src/projection.js
 var pi4 = Math.PI;
 var tau5 = 2 * pi4;
 var defaultAspectRatio = 0.618;
@@ -40449,7 +40449,7 @@ function xyProjection({ x: X3, y: Y3 }) {
   }
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/context.js
+// ../../../node_modules/@observablehq/plot/src/context.js
 function createContext(options = {}) {
   const { document: document2 = typeof window !== "undefined" ? window.document : void 0, clip } = options;
   return { document: document2, clip: maybeClip(clip) };
@@ -40458,7 +40458,7 @@ function create2(name, { document: document2 }) {
   return select_default2(creator_default(name).call(document2.documentElement));
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/memoize.js
+// ../../../node_modules/@observablehq/plot/src/memoize.js
 var unset = Symbol("unset");
 function memoize1(compute) {
   return (compute.length === 1 ? memoize1Arg : memoize1Args)(compute);
@@ -40485,7 +40485,7 @@ function memoize1Args(compute) {
   };
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/format.js
+// ../../../node_modules/@observablehq/plot/src/format.js
 var numberFormat = memoize1((locale3) => {
   return new Intl.NumberFormat(locale3);
 });
@@ -40516,7 +40516,7 @@ function formatAuto(locale3 = "en-US") {
 }
 var formatDefault = formatAuto();
 
-// ../../../../../node_modules/@observablehq/plot/src/style.js
+// ../../../node_modules/@observablehq/plot/src/style.js
 var offset = (typeof window !== "undefined" ? window.devicePixelRatio > 1 : typeof it === "undefined") ? 0 : 0.5;
 var nextClipId = 0;
 var nextPatternId = 0;
@@ -40858,7 +40858,7 @@ function applyFrameAnchor({ frameAnchor }, { width, height, marginTop, marginRig
   ];
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/mark.js
+// ../../../node_modules/@observablehq/plot/src/mark.js
 var Mark = class {
   constructor(data, channels = {}, options = {}, defaults22) {
     const {
@@ -41007,7 +41007,7 @@ function withTip(options, pointer2) {
   return options?.tip === true ? { ...options, tip: pointer2 } : isObject(options?.tip) && options.tip.pointer === void 0 ? { ...options, tip: { ...options.tip, pointer: pointer2 } } : options;
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/dimensions.js
+// ../../../node_modules/@observablehq/plot/src/dimensions.js
 function createDimensions(scales, marks2, options = {}) {
   let marginTopDefault = 0.5 - offset, marginRightDefault = 0.5 + offset, marginBottomDefault = 0.5 + offset, marginLeftDefault = 0.5 - offset;
   for (const { marginTop: marginTop2, marginRight: marginRight2, marginBottom: marginBottom2, marginLeft: marginLeft2 } of marks2) {
@@ -41117,7 +41117,7 @@ function aspectRatioLength(k3, scale3) {
   return Math.abs(transform3(max3) - transform3(min4));
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/interactions/pointer.js
+// ../../../node_modules/@observablehq/plot/src/interactions/pointer.js
 var states = /* @__PURE__ */ new WeakMap();
 function pointerK(kx2, ky2, { x: x3, y: y3, px, py, maxRadius = 40, channels, render, ...options } = {}) {
   maxRadius = +maxRadius;
@@ -41264,12 +41264,12 @@ function anchorY({ y1: Y13, y2: Y23, y: Y3 = Y13 }, cy) {
   return Y13 && Y23 ? (i5) => (Y13[i5] + Y23[i5]) / 2 : Y3 ? (i5) => Y3[i5] : () => cy;
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/axes.js
+// ../../../node_modules/@observablehq/plot/src/axes.js
 function inferFontVariant(scale3) {
   return isOrdinalScale(scale3) && scale3.interval === void 0 ? void 0 : "tabular-nums";
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/legends/ramp.js
+// ../../../node_modules/@observablehq/plot/src/legends/ramp.js
 function legendRamp(color3, options) {
   let {
     label = color3.label,
@@ -41354,10 +41354,10 @@ function legendRamp(color3, options) {
   return svg.node();
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/math.js
+// ../../../node_modules/@observablehq/plot/src/math.js
 var radians3 = Math.PI / 180;
 
-// ../../../../../node_modules/@observablehq/plot/src/marker.js
+// ../../../node_modules/@observablehq/plot/src/marker.js
 function markers(mark, { marker, markerStart = marker, markerMid = marker, markerEnd = marker } = {}) {
   mark.markerStart = maybeMarker(markerStart);
   mark.markerMid = maybeMarker(markerMid);
@@ -41460,7 +41460,7 @@ function applyMarkersColor(path2, { markerStart, markerMid, markerEnd, stroke },
   if (markerEnd) path2.each(applyMarker("marker-end", markerEnd, orient && ((i5) => orient(i5) & END)));
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/transforms/inset.js
+// ../../../node_modules/@observablehq/plot/src/transforms/inset.js
 function maybeInsetX({ inset, insetLeft, insetRight, ...options } = {}) {
   [insetLeft, insetRight] = maybeInset(inset, insetLeft, insetRight);
   return { inset, insetLeft, insetRight, ...options };
@@ -41473,7 +41473,7 @@ function maybeInset(inset, inset1, inset2) {
   return inset === void 0 && inset1 === void 0 && inset2 === void 0 ? offset ? [1, 0] : [0.5, 0.5] : [inset1, inset2];
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/transforms/interval.js
+// ../../../node_modules/@observablehq/plot/src/transforms/interval.js
 function maybeIntervalValue(value, { interval: interval2 }) {
   value = { ...maybeValue(value) };
   value.interval = maybeInterval(value.interval === void 0 ? interval2 : value.interval);
@@ -41543,7 +41543,7 @@ function maybeIntervalMidY(options = {}) {
   return maybeIntervalMidK("y", maybeInsetY, options);
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/rule.js
+// ../../../node_modules/@observablehq/plot/src/marks/rule.js
 var defaults = {
   ariaLabel: "rule",
   fill: null,
@@ -41634,7 +41634,7 @@ function maybeOptionalZero(x3, x12, x22) {
   return [x12, x22];
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/template.js
+// ../../../node_modules/@observablehq/plot/src/template.js
 function template(strings, ...parts) {
   let n9 = parts.length;
   for (let j2 = 0, copy3 = true; j2 < n9; ++j2) {
@@ -41657,7 +41657,7 @@ function template(strings, ...parts) {
   };
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/text.js
+// ../../../node_modules/@observablehq/plot/src/marks/text.js
 var defaults2 = {
   ariaLabel: "text",
   strokeLinejoin: "round",
@@ -42057,7 +42057,7 @@ function isPictographic(text2, i5) {
   return isAscii(text2, i5) ? false : (rePictographic.lastIndex = i5, rePictographic.test(text2));
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/vector.js
+// ../../../node_modules/@observablehq/plot/src/marks/vector.js
 var defaults3 = {
   ariaLabel: "vector",
   fill: "none",
@@ -42171,7 +42171,7 @@ function spike(data, options = {}) {
   return vector(data, { ...rest, shape: shape2, stroke, strokeWidth, fill, fillOpacity, anchor });
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/axis.js
+// ../../../node_modules/@observablehq/plot/src/marks/axis.js
 function maybeData(data, options) {
   if (arguments.length < 2 && !isIterable(data)) options = data, data = null;
   if (options === void 0) options = {};
@@ -42766,7 +42766,7 @@ function hasTemporalDomain(scale3) {
   return isTemporal(scale3.domain());
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/legends/swatches.js
+// ../../../node_modules/@observablehq/plot/src/legends/swatches.js
 function maybeScale(scale3, key) {
   if (key == null) return key;
   const s8 = scale3(key);
@@ -42881,7 +42881,7 @@ ${extraStyle}`
   ).style("margin-left", marginLeft ? `${+marginLeft}px` : null).style("width", width === void 0 ? null : `${+width}px`).style("font-variant", impliedString(fontVariant, "normal")).call(applyInlineStyles, style).node();
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/legends.js
+// ../../../node_modules/@observablehq/plot/src/legends.js
 var legendRegistry = /* @__PURE__ */ new Map([
   ["symbol", legendSymbols],
   ["color", legendColor],
@@ -42950,7 +42950,7 @@ function createLegends(scales, context, options) {
   return legends;
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/transforms/identity.js
+// ../../../node_modules/@observablehq/plot/src/transforms/identity.js
 function maybeIdentityX(options = {}, k3 = "x") {
   return hasX(options) ? options : { ...options, [k3]: identity6 };
 }
@@ -42958,7 +42958,7 @@ function maybeIdentityY(options = {}, k3 = "y") {
   return hasY(options) ? options : { ...options, [k3]: identity6 };
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/transforms/exclusiveFacets.js
+// ../../../node_modules/@observablehq/plot/src/transforms/exclusiveFacets.js
 function exclusiveFacets(data, facets) {
   if (facets.length === 1) return { data, facets };
   const n9 = lengthof(data);
@@ -42987,7 +42987,7 @@ function exclusiveFacets(data, facets) {
   return { data, facets };
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/transforms/stack.js
+// ../../../node_modules/@observablehq/plot/src/transforms/stack.js
 function stackX(stackOptions = {}, options = {}) {
   if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const { y1: y12, y: y3 = y12, x: x3, ...rest } = options;
@@ -43284,7 +43284,7 @@ function orderZDomain(compare, domain) {
   };
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/rect.js
+// ../../../node_modules/@observablehq/plot/src/marks/rect.js
 var defaults4 = {
   ariaLabel: "rect"
 };
@@ -43418,7 +43418,7 @@ function rectY(data, options = {}) {
   return new Rect(data, maybeStackY(maybeTrivialIntervalX(maybeIdentityY(options))));
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/frame.js
+// ../../../node_modules/@observablehq/plot/src/marks/frame.js
 var defaults5 = {
   ariaLabel: "frame",
   fill: "none",
@@ -43457,7 +43457,7 @@ function frame3(options) {
   return new Frame(options);
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/tip.js
+// ../../../node_modules/@observablehq/plot/src/marks/tip.js
 var defaults6 = {
   ariaLabel: "tip",
   fill: "var(--plot-background)",
@@ -43792,7 +43792,7 @@ function formatLabel(scales, channels, key, defaultLabel = key) {
   return String(scale3?.label ?? channel?.label ?? defaultLabel);
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/plot.js
+// ../../../node_modules/@observablehq/plot/src/plot.js
 function plot(options = {}) {
   const { facet, style, title, subtitle, caption, ariaLabel, ariaDescription } = options;
   const className = maybeClassName(options.className);
@@ -44314,7 +44314,7 @@ function outerRange(scale3) {
   return [x12, x22 + scale3.bandwidth()];
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/curve.js
+// ../../../node_modules/@observablehq/plot/src/curve.js
 var curves = /* @__PURE__ */ new Map([
   ["basis", basis_default2],
   ["basis-closed", basisClosed_default2],
@@ -44359,7 +44359,7 @@ function curveAuto(context) {
   return linear_default(context);
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/transforms/bin.js
+// ../../../node_modules/@observablehq/plot/src/transforms/bin.js
 function binX(outputs = { y: "count" }, options = {}) {
   [outputs, options] = mergeOptions2(outputs, options);
   const { x: x3, y: y3 } = options;
@@ -44733,7 +44733,7 @@ var reduceY22 = {
   }
 };
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/area.js
+// ../../../node_modules/@observablehq/plot/src/marks/area.js
 var defaults7 = {
   ariaLabel: "area",
   strokeWidth: 1,
@@ -44785,7 +44785,7 @@ function areaY(data, options) {
   return new Area(data, maybeStackY(maybeIdentityY({ ...rest, x1: x3, x2: void 0 }, x3 === indexOf ? "y2" : "y")));
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/link.js
+// ../../../node_modules/@observablehq/plot/src/marks/link.js
 var defaults8 = {
   ariaLabel: "link",
   fill: "none",
@@ -44866,7 +44866,7 @@ function maybeSameValue(x3, x12, x22) {
   return [x12, x22];
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/arrow.js
+// ../../../node_modules/@observablehq/plot/src/marks/arrow.js
 var defaults9 = {
   ariaLabel: "arrow",
   fill: "none",
@@ -44987,7 +44987,7 @@ function arrow(data, { x: x3, x1: x12, x2: x22, y: y3, y1: y12, y2: y22, ...opti
   return new Arrow(data, { ...options, x1: x12, x2: x22, y1: y12, y2: y22 });
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/bar.js
+// ../../../node_modules/@observablehq/plot/src/marks/bar.js
 var barDefaults = {
   ariaLabel: "bar"
 };
@@ -45092,7 +45092,7 @@ function barY(data, options = {}) {
   return new BarY(data, maybeStackY(maybeIntervalY(maybeIdentityY(options))));
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/cell.js
+// ../../../node_modules/@observablehq/plot/src/marks/cell.js
 var defaults10 = {
   ariaLabel: "cell"
 };
@@ -45125,7 +45125,7 @@ function cellY(data, { y: y3 = indexOf, fill, stroke, ...options } = {}) {
   return new Cell(data, { ...options, y: y3, fill, stroke });
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/dot.js
+// ../../../node_modules/@observablehq/plot/src/marks/dot.js
 var defaults11 = {
   ariaLabel: "dot",
   fill: "none",
@@ -45225,7 +45225,7 @@ function hexagon(data, options) {
   return dot(data, { ...options, symbol: "hexagon" });
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/line.js
+// ../../../node_modules/@observablehq/plot/src/marks/line.js
 var defaults12 = {
   ariaLabel: "line",
   fill: "none",
@@ -45299,7 +45299,7 @@ function lineY(data, { x: x3 = indexOf, y: y3 = identity6, ...options } = {}) {
   return new Line(data, maybeDenseIntervalX({ ...options, x: x3, y: y3 }));
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/auto.js
+// ../../../node_modules/@observablehq/plot/src/marks/auto.js
 function autoSpec(data, options) {
   options = normalizeOptions(options);
   const { x: x3, y: y3, color: color3, size } = options;
@@ -45546,7 +45546,7 @@ var impls = {
 };
 var implNames = Object.fromEntries(Object.entries(impls).map(([name, impl]) => [impl, name]));
 
-// ../../../../../node_modules/@observablehq/plot/src/transforms/map.js
+// ../../../node_modules/@observablehq/plot/src/transforms/map.js
 function mapX(mapper, options = {}) {
   let { x: x3, x1: x12, x2: x22 } = options;
   if (x3 === void 0 && x12 === void 0 && x22 === void 0) options = { ...options, x: x3 = identity6 };
@@ -45627,7 +45627,7 @@ var mapCumsum = {
   }
 };
 
-// ../../../../../node_modules/@observablehq/plot/src/transforms/window.js
+// ../../../node_modules/@observablehq/plot/src/transforms/window.js
 function windowX(windowOptions = {}, options) {
   if (arguments.length === 1) options = windowOptions;
   return mapX(window2(windowOptions), options);
@@ -45903,7 +45903,7 @@ function reduceLast2(k3, s8, strict) {
   };
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/bollinger.js
+// ../../../node_modules/@observablehq/plot/src/marks/bollinger.js
 var defaults13 = {
   n: 20,
   k: 2,
@@ -45964,7 +45964,7 @@ function bollinger({ n: n9 = defaults13.n, k: k3 = 0, strict = defaults13.strict
   return window2({ k: n9, reduce: (Y3) => mean(Y3) + k3 * (deviation(Y3) || 0), strict, anchor });
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/tick.js
+// ../../../node_modules/@observablehq/plot/src/marks/tick.js
 var defaults14 = {
   ariaLabel: "tick",
   fill: null,
@@ -46052,7 +46052,7 @@ function tickY(data, { y: y3 = identity6, ...options } = {}) {
   return new TickY(data, { ...options, y: y3 });
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/box.js
+// ../../../node_modules/@observablehq/plot/src/marks/box.js
 function boxX(data, {
   x: x3 = identity6,
   y: y3 = null,
@@ -46113,7 +46113,7 @@ function quartile3(values2) {
   return quantile(values2, 0.75);
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/raster.js
+// ../../../node_modules/@observablehq/plot/src/marks/raster.js
 var defaults15 = {
   ariaLabel: "raster",
   stroke: null,
@@ -46524,7 +46524,7 @@ function denseY(y12, y22, width, height) {
   };
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/contour.js
+// ../../../node_modules/@observablehq/plot/src/marks/contour.js
 var defaults16 = {
   ariaLabel: "contour",
   fill: "none",
@@ -46657,7 +46657,7 @@ function finite3(x3) {
   return isFinite(x3) ? x3 : NaN;
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/crosshair.js
+// ../../../node_modules/@observablehq/plot/src/marks/crosshair.js
 function crosshair(data, options) {
   return crosshairK(pointer, data, options);
 }
@@ -46744,7 +46744,7 @@ function textChannel(source, options) {
   });
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/delaunay.js
+// ../../../node_modules/@observablehq/plot/src/marks/delaunay.js
 var delaunayLinkDefaults = {
   ariaLabel: "delaunay link",
   fill: "none",
@@ -46964,7 +46964,7 @@ function voronoiMesh(data, options) {
   return delaunayMark(VoronoiMesh, data, options);
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/density.js
+// ../../../node_modules/@observablehq/plot/src/marks/density.js
 var defaults17 = {
   ariaLabel: "density",
   fill: "none",
@@ -47079,7 +47079,7 @@ function isDensity(value) {
   return /^density$/i.test(value);
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/difference.js
+// ../../../node_modules/@observablehq/plot/src/marks/difference.js
 function differenceX(data, options) {
   return differenceK("x", data, options);
 }
@@ -47206,7 +47206,7 @@ function clipDifference(k3, positive2) {
   };
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/transforms/centroid.js
+// ../../../node_modules/@observablehq/plot/src/transforms/centroid.js
 function centroid({ geometry = identity6, ...options } = {}) {
   const getG = memoize1((data) => valueof(data, geometry));
   return initializer(
@@ -47239,7 +47239,7 @@ function geoCentroid({ geometry = identity6, ...options } = {}) {
   };
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/geo.js
+// ../../../node_modules/@observablehq/plot/src/marks/geo.js
 var defaults18 = {
   ariaLabel: "geo",
   fill: "none",
@@ -47288,7 +47288,7 @@ function graticule2({ strokeOpacity = 0.1, ...options } = {}) {
   return geo(graticule10(), { strokeOpacity, ...options });
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/transforms/hexbin.js
+// ../../../node_modules/@observablehq/plot/src/transforms/hexbin.js
 var ox = 0.5;
 var oy = 0;
 function hexbin(outputs = { fill: "count" }, { binWidth, ...options } = {}) {
@@ -47380,7 +47380,7 @@ function hbin(data, I2, X3, Y3, dx) {
   return bins.values();
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/hexgrid.js
+// ../../../node_modules/@observablehq/plot/src/marks/hexgrid.js
 var defaults19 = {
   ariaLabel: "hexgrid",
   fill: "none",
@@ -47412,7 +47412,7 @@ function round(x3) {
   return Math.round(x3 * 1e3) / 1e3;
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/image.js
+// ../../../node_modules/@observablehq/plot/src/marks/image.js
 var defaults20 = {
   ariaLabel: "image",
   fill: null,
@@ -47481,7 +47481,7 @@ function image(data, { x: x3, y: y3, ...options } = {}) {
   return new Image(data, { ...options, x: x3, y: y3 });
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/stats.js
+// ../../../node_modules/@observablehq/plot/src/stats.js
 function ibetainv(p11, a5, b2) {
   var EPS = 1e-8;
   var a1 = a5 - 1;
@@ -47584,7 +47584,7 @@ function qt(p11, dof) {
   return p11 > 0.5 ? x3 : -x3;
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/linearRegression.js
+// ../../../node_modules/@observablehq/plot/src/marks/linearRegression.js
 var defaults21 = {
   ariaLabel: "linear-regression",
   fill: "currentColor",
@@ -47706,7 +47706,7 @@ function confidenceIntervalF(I2, X3, Y3, p11, f7) {
   };
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/transforms/tree.js
+// ../../../node_modules/@observablehq/plot/src/transforms/tree.js
 function treeNode({
   path: path2 = identity6,
   // the delimited path
@@ -48026,7 +48026,7 @@ function treeOutputs(options, maybeTreeValue) {
   return outputs;
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/tree.js
+// ../../../node_modules/@observablehq/plot/src/marks/tree.js
 function tree(data, {
   fill,
   stroke,
@@ -48100,7 +48100,7 @@ function cluster(data, options) {
   return tree(data, { ...options, treeLayout: cluster_default });
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/marks/waffle.js
+// ../../../node_modules/@observablehq/plot/src/marks/waffle.js
 var waffleDefaults = {
   ariaLabel: "waffle"
 };
@@ -48282,7 +48282,7 @@ function waffleTip(tip2) {
   return tip2 === true ? { maxRadius: Infinity } : isObject(tip2) && tip2.maxRadius === void 0 ? { ...tip2, maxRadius: Infinity } : void 0;
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/transforms/dodge.js
+// ../../../node_modules/@observablehq/plot/src/transforms/dodge.js
 var import_interval_tree_1d = __toESM(require_interval_tree(), 1);
 var anchorXLeft = ({ marginLeft }) => [1, marginLeft];
 var anchorXRight = ({ width, marginRight }) => [-1, width - marginRight];
@@ -48408,7 +48408,7 @@ function compareAscending(a5, b2) {
   return a5 - b2;
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/transforms/normalize.js
+// ../../../node_modules/@observablehq/plot/src/transforms/normalize.js
 function normalizeX(basis2, options) {
   if (arguments.length === 1) ({ basis: basis2, ...options } = basis2);
   return mapX(normalize3(basis2), options);
@@ -48492,7 +48492,7 @@ var normalizeMedian = normalizeAccessor(median);
 var normalizeMin = normalizeAccessor(min);
 var normalizeSum = normalizeAccessor(sum);
 
-// ../../../../../node_modules/@observablehq/plot/src/transforms/shift.js
+// ../../../node_modules/@observablehq/plot/src/transforms/shift.js
 function shiftX(interval2, options) {
   return shiftK("x", interval2, options);
 }
@@ -48533,7 +48533,7 @@ function shiftK(x3, interval2, options = {}) {
   return mapped;
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/transforms/select.js
+// ../../../node_modules/@observablehq/plot/src/transforms/select.js
 function select(selector, options = {}) {
   if (typeof selector === "string") {
     switch (selector.toLowerCase()) {
@@ -48617,7 +48617,7 @@ function selectChannel(v3, selector, options) {
   });
 }
 
-// ../../../../../node_modules/@observablehq/plot/src/index.js
+// ../../../node_modules/@observablehq/plot/src/index.js
 Mark.prototype.plot = function({ marks: marks2 = [], ...options } = {}) {
   return plot({ ...options, marks: [...marks2, this] });
 };
