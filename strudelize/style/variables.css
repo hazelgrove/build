@@ -24,6 +24,7 @@
   --T1: oklch(97% 0.025 90); /* buffer shards */
   --T2: oklch(from var(--T1) 94% c h); /* projector shards */
   --T3: oklch(from var(--T1) 91% c h); /* result background */
+  --T4: oklch(from var(--T1) 88% c h); /* darker background */
 
   /* MOLTEN - under construction */
   --Y0: oklch(95% 0.05 90); /* menu fill */
@@ -40,6 +41,7 @@
   --TYP: oklch(60% 0.2 300);
   --PAT: oklch(from var(--TYP) l c calc(h - 1 * 75));
   --TPAT: var(--PAT);
+  --LABEL: oklch(60% 0.2 180);
 
   /* AURA - docs highlighting */
   --highlight-a: oklch(0.95 0.07 360);
@@ -68,7 +70,7 @@
   --light-page-color: var(--menu-item-hover-bkg);
   --cell-active: var(--SAND);
   --main-scroll-thumb: var(--BR1);
-  --main-scroll-track: var(--SAND);
+  --main-scroll-track: var(--NONE);
   --cell-selected-accent: var(--R1);
 
   /* CODE DECO */
@@ -82,17 +84,17 @@
   --token-pat: var(--PAT);
   --token-typ: var(--TYP);
   --token-tpat: var(--TPAT);
+  --token-label: var(--LABEL);
   --token-string-lit: var(--Y3);
   --token-comment: var(--G2);
   --token-incomplete: var(--Y3);
-  --token-inconsistent: var(--BR2);
+  --token-inconsistent: var(--token-exp);
   --token-buffer: var(--BR1);
   --token-explicit-hole: var(--Y2);
   --token-explicit-hole-shadow: var(--BLACK);
   --token-secondary: var(--shard-exp);
   --token-rul: var(--token-exp);
-  --token-nul: var(--R2);
-  --token-any: var(--token-nul);
+  --token-any: var(--R2);
 
   /* CODE SHARDS */
 
@@ -110,10 +112,9 @@
   --shard_projector: var(--T2);
   --shard-rul: var(--shard-exp);
   --shard-lines-rul: var(--shard-lines-exp);
-  --shard-nul: var(--R0);
-  --shadow-nul: var(--R0);
-  --shard-any: var(--shard-nul);
-  --shadow-any: var(--shadow-nul);
+  --shadow-selected: var(--R0);
+  --shard-any: var(--shard-exp);
+  --shadow-any: var(--R0);
 
   /* EMPTY HOLE DECO */
 
@@ -159,11 +160,11 @@
   --menu-bkg: var(--Y0);
   --menu-item-hover-bkg: var(--SAND);
   --menu-item-text: var(--STONE);
-  --menu-scroll-track: var(--BR1);
-  --menu-scroll-thumb: var(--BR2);
   --menu-outline: var(--BR2);
-  --menu-icon: var(--BR2);
-  --menu-group-name: var(--BR4);
+  --menu-icon: var(--BR4);
+  --menu-group-name: var(--menu-icon);
+  --menu-scroll-thumb: var(--menu-outline);
+  --menu-scroll-track: var(--BR1);
   --menu-divider: var(--CREASE);
   --menu-shadow: var(--SHADOW);
 
@@ -195,30 +196,34 @@
   /* Z-STACK */
 
   /* BELOW CODE LEVEL */
-  --err-hole-arms-z: 0;
-  --tile-z: 1;
-  --projector-backing-z: 1;
-  --err-hole-z: 2;
+  --err-hole-arms-z: 1;
+  --tile-z: 2;
+  --err-hole-z: 3;
   --select-z: 4;
-  --test-result-z: 5;
+  --stepper-interactive-z: 5;
+  --projector-underlay-z: 9;
 
   /* AT CODE LEVEL */
   --code-text-z: 10;
-  --empty-hole-z: 10;
   --projector-z: 10;
 
   /* ABOVE CODE LEVEL */
   --backpack-targets-z: 11;
+  --projector-indicated-z: 11;
+  --projector-hover-z: 12;
   --caret-z: 20;
+  --projector-overlay-z: 29;
 
   /* TOP LEVEL UI */
-  --context-inspector-z: 29; /* keep below bottom bar */
-  --bottom-bar-z: 30;
-  --top-bar-z: 30;
-  --explainthis-expander-z: 30;
+  --context-menu-z: 30; /* must be over num-samples badge */
+  --context-inspector-z: 30; /* keep below bottom bar */
+  --bottom-bar-z: 31;
+  --top-bar-z: 31;
+  --explainthis-expander-z: 31;
+  --backpack-z: 32;
+  --top-bar-hover-z: 33;
 
   /* HACKS */
-  --overlay-z: 100;
   --modal-back-z: 100;
   --modal-z: 101;
 }

@@ -15,24 +15,18 @@
       rel="stylesheet"
     />
 
-    <!-- The current version of lit-html is broken so this overwrites it for the ninja-keys import. -->
-    <script type="importmap">
-      {
-          "imports": {
-              "https://unpkg.com/lit-html@latest/directives/ref.js?module": "https://unpkg.com/lit-html@2.2.6/directives/ref.js?module"
-          }
-      }
-  </script>
-  <script type="module" src="ninja_module.js"></script>
-  
+  <script type="module" src="bundled.js"></script>
+
   </head>
 
   <body spellcheck="false">
     <div id="container">
       <div class="loading">
         <div class="spinner">
-          <img width="100px" height="100px" src="img/loading.gif" />
-          <img class="spinner-nut" width="100px" height="100px" src="img/hazelnut.svg" />
+          <div class="loader" ></div>
+          <div class="nut-container">
+            <img class="spinner-nut" src="img/hazelnut.svg" />
+          </div>
         </div>
         loading
       </div>

@@ -3,16 +3,23 @@
 @import "style/animations.css";
 @import "style/loading.css";
 @import "style/editor.css";
-@import "style/projectors.css";
+@import "style/projectors/proj-base.css";
 @import "style/nut-menu.css";
 @import "style/cursor-inspector.css";
 @import "style/type-display.css";
-@import "style/projectors-panel.css";
 @import "style/explainthis.css";
+@import "style/assistant.css";
+@import "style/probesystem.css";
+@import "style/sidebar.css";
 @import "style/exercise-mode.css";
+@import "style/tutorial-mode.css";
+@import "style/test-panel.css";
 @import "style/cell.css";
 @import "style/dynamics.css";
+@import "style/stepper.css";
 @import "style/toggle.css";
+@import "style/theorems.css";
+@import "style/strudel.css";
 
 /* BASE ELEMENTS */
 
@@ -33,11 +40,6 @@ select {
   font-family: inherit;
   font-size: inherit;
   color: var(--select-text);
-  /* text-transform: capitalize; */
-}
-select:hover {
-  border-radius: 1em;
-  background-color: var(--SAND);
 }
 
 :root {
@@ -88,22 +90,32 @@ select:hover {
 }
 
 #main {
-  grid-row: 2;
+  /* Backpack uses position:fixed + FloatingElement to escape overflow clipping */
+  grid-row: 2 / span 1;
   grid-column: 1 / span 1;
   overflow: auto;
   padding: 0;
   background-color: var(--main-bkg);
+  display: flex;
+  flex-direction: column;
 }
 
 #side-bar {
-  grid-row: 2 / span 1;
-  grid-column: 2 / span 1;
+  display: flex;
+  flex-direction: column;
   border-left: 0.6px solid var(--BR2);
-  overflow-y: scroll;
-  overflow-x: hidden;
-  width: max-content;
-  background-color: var(--ui-bkg);
+  background-color: var(--T1);
+  position: relative;
+  min-width: 300px;
+  width: 400px;
   scrollbar-color: var(--main-scroll-thumb) var(--NONE);
+  scrollbar-width: thin;
+}
+
+#sidebars {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 #top-bar {
@@ -116,13 +128,16 @@ select:hover {
   outline: 0.6px solid var(--BR2);
 }
 
+#top-bar:hover {
+  z-index: var(--top-bar-hover-z);
+}
+
 #bottom-bar {
   z-index: var(--bottom-bar-z);
   grid-row: 3 / span 1;
   grid-column: 1 / span 2;
   display: flex;
   align-items: center;
-  gap: 1em;
   justify-content: space-between;
   align-items: stretch;
   background-color: var(--ui-bkg);
