@@ -5,7 +5,13 @@
   var __getOwnPropNames = Object.getOwnPropertyNames;
   var __getProtoOf = Object.getPrototypeOf;
   var __hasOwnProp = Object.prototype.hasOwnProperty;
-  var __commonJS = (cb, mod2) => function __require() {
+  var __require = /* @__PURE__ */ ((x2) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x2, {
+    get: (a4, b2) => (typeof require !== "undefined" ? require : a4)[b2]
+  }) : x2)(function(x2) {
+    if (typeof require !== "undefined") return require.apply(this, arguments);
+    throw Error('Dynamic require of "' + x2 + '" is not supported');
+  });
+  var __commonJS = (cb, mod2) => function __require2() {
     return mod2 || (0, cb[__getOwnPropNames(cb)[0]])((mod2 = { exports: {} }).exports, mod2), mod2.exports;
   };
   var __copyProps = (to, from, except, desc) => {
@@ -25451,6 +25457,7 @@
   ], NinjaKeys);
 
   // prebundle.js
+  var import_web_worker = __toESM(__require("web-worker"));
   var import_algebrite = __toESM(require_algebrite());
   window.Algebrite = import_algebrite.default;
   hotkeys_esm_default.filter = (event) => {
