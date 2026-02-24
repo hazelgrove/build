@@ -15,6 +15,7 @@
 }
 
 .projector.Automerge .wrapper {
+  position: relative;
   height: 100%;
   width: 100%;
   border-radius: 0.1em;
@@ -26,6 +27,7 @@
   margin-right: 2px;
   display: flex;
   align-items: center;
+  color: var(--SAND);
 }
 
 .projector.Automerge.indicated .cols,
@@ -55,7 +57,79 @@
   overflow: hidden;
 }
 
+.projector.Automerge input::placeholder {
+  opacity: 0.5;
+}
+
 .projector.Automerge input::selection {
   color: var(--BLACK);
   background-color: var(--shard-selected);
+}
+
+.projector.Automerge .hot-reload-toggle {
+  flex-shrink: 0;
+  margin-left: 4px;
+  font-size: 0.7em;
+}
+
+.projector.Automerge .hot-reload-toggle.disabled {
+  opacity: 0.35;
+  cursor: default;
+  pointer-events: none;
+}
+
+.projector.Automerge .manual-reload-btn {
+  flex-shrink: 0;
+  cursor: pointer;
+  font-size: 0.8em;
+  margin-left: 4px;
+  user-select: none;
+  color: var(--GB1);
+  /* align vertically with hot-reload toggle */
+  position: relative;
+  top: 1px;
+}
+
+.projector.Automerge .manual-reload-btn.disabled {
+  opacity: 0.35;
+  cursor: default;
+  pointer-events: none;
+}
+
+.projector.Automerge .manual-reload-btn:hover {
+  animation: wobble 0.6s ease 0s 1 normal forwards;
+  filter: brightness(1.2);
+}
+
+@keyframes spin360 {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+
+.projector.Automerge .manual-reload-btn.spinning {
+  animation: spin360 0.4s ease-in-out;
+}
+
+/* Last-load status superscript (mirrors inline test result styling) */
+.projector.Automerge .wrapper::after {
+  position: absolute;
+  top: -0.15em;
+  right: -1em;
+  font-size: 64%;
+  z-index: var(--projector-overlay-z);
+}
+
+.projector.Automerge .wrapper.load-succeeded::after {
+  content: "\2714";
+  color: var(--test-pass);
+}
+
+.projector.Automerge .wrapper.load-failed::after {
+  content: "\2718";
+  color: var(--test-fail);
+}
+
+.projector.Automerge .wrapper.load-none::after {
+  content: "?";
+  color: var(--test-indet);
 }
