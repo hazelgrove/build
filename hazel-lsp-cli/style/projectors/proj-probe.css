@@ -32,6 +32,8 @@
   ); /* blue for below/after cursor */
   --sample-above-bg: oklch(0.93 0.06 -0.01);
   --sample-below-bg: oklch(0.93 0.03 195);
+  --sample-above-shadow: oklch(0.85 0.08 355); /* pinkish/magenta */
+  --sample-below-shadow: oklch(0.8 0.09 230); /* blue */
 }
 
 /* Turn off caret when text projector is focused */
@@ -389,7 +391,7 @@
   position: relative;
   --bottom-border-clr: none;
   --bkg: var(--exp-base);
-  --below-shadow: oklch(0.8 0.09 230);
+  --depth-shadow: oklch(0.75 0 0);
   --num-levels: 7;
   --base: 0;
   padding: 0 0.1em;
@@ -409,11 +411,10 @@
   --bottom-border-clr: var(--R2);
   --inner-shadow: #f59393 !important; */
   background-color: var(--T2) !important;
-  --below-shadow: oklch(0.46 0 0);
+  --depth-shadow: oklch(0.46 0 0);
   --bottom-border-clr: oklch(0.4 0 0);
-  --inner-shadow: #a2a2a2 !important;
 }
-.live-offside .sample:has(.value.indet.cursor) {
+.live-offside .sample:has(.value.indet.focus) {
   background-color: var(--T3) !important;
 }
 /* .live-offside .sample:has(.value.cursor-callee) {
@@ -425,131 +426,106 @@
   --bkg: var(--exp-ap-indicated);
 } */
 
-.live-offside .sample:has(.value.cursor-unrelated.level0) {
+.live-offside .sample:has(.value.unrelated.depth-same) {
   --bottom-border-clr: #73e1a3;
 }
 
-.live-offside .sample:has(.value.below) {
+/* Color layer: background colors + coordinated depth shadow from scheme */
+.live-offside .sample:has(.value.related-after),
+.live-offside .sample:has(.value.tangent-after) {
   background-color: var(--sample-below-bg);
+  --depth-shadow: var(--sample-below-shadow);
+  --bottom-border-clr: var(--sample-below-shadow);
 }
-.live-offside .sample:has(.value.above) {
+.live-offside .sample:has(.value.related-before),
+.live-offside .sample:has(.value.tangent-before) {
   background-color: var(--sample-above-bg);
+  --depth-shadow: var(--sample-above-shadow);
+  --bottom-border-clr: var(--sample-above-shadow);
 }
-.live-offside.Many .sample:has(.value.above) {
+.live-offside .sample:has(.value.focus) {
+  --depth-shadow: var(--exp-shadow);
+  --bottom-border-clr: var(--exp-shadow);
+}
+/* Structural layer: depth effects from call stack (colors from --depth-shadow) */
+.live-offside.Many .sample:has(.value.depth-above) {
   position: relative;
   top: -3.5px;
-  --bottom-border-clr: #bd92cf;
-  --below-shadow: oklch(0.89 0.05 355);
-  box-shadow: 0 3.5px 0 var(--below-shadow);
+  box-shadow: 0 3.5px 0 var(--depth-shadow);
   border-bottom-width: 1px;
   border-bottom-style: solid;
 }
-.live-offside.Many .sample:has(.value.below) {
+.live-offside.Many .sample:has(.value.depth-below) {
   translate: 0 3px;
   box-shadow:
-    0px -0.75px 0 var(--below-shadow),
-    0px -1.5px 0 var(--below-shadow),
-    0px -2.25px 0 var(--below-shadow),
-    0px -3px 0 var(--below-shadow);
+    0px -0.75px 0 var(--depth-shadow),
+    0px -1.5px 0 var(--depth-shadow),
+    0px -2.25px 0 var(--depth-shadow),
+    0px -3px 0 var(--depth-shadow);
   height: calc(1.45em - 4.25px);
 }
 
-.live-offside.Many .sample:has(.value.above.indirect) {
-  --bkg: oklch(0.4 0.18 300);
-  box-shadow: inset 24px 25px 0 var(--inner-shadow);
-  filter: drop-shadow(0 5.25px 0 var(--below-shadow));
-}
-.live-offside.Many .sample:has(.value.above.direct.L1) {
-  --bkg: oklch(0.7 0.18 300);
-  box-shadow: inset 1.5px 1.5px 0 var(--inner-shadow);
-  filter: drop-shadow(0 1.5px 0 var(--below-shadow));
-}
-.live-offside.Many .sample:has(.value.above.indirect.L2) {
-  --bkg: oklch(0.66 0.18 300);
-  box-shadow: inset 3px 3px 0 var(--inner-shadow);
-  filter: drop-shadow(0 2.25px 0 var(--below-shadow));
-}
-.live-offside.Many .sample:has(.value.above.indirect.L3) {
-  --bkg: oklch(0.62 0.18 300);
-  box-shadow: inset 6px 6px 0 var(--inner-shadow);
-  filter: drop-shadow(0 3px 0 var(--below-shadow));
-}
-.live-offside.Many .sample:has(.value.above.indirect.L4) {
-  --bkg: oklch(0.58 0.18 300);
-  box-shadow: inset 9px 9px 0 var(--inner-shadow);
-  filter: drop-shadow(0 3.75px 0 var(--below-shadow));
-}
-.live-offside.Many .sample:has(.value.above.indirect.L5) {
-  --bkg: oklch(0.54 0.18 300);
-  box-shadow: inset 14px 14px 0 var(--inner-shadow);
-  filter: drop-shadow(0 4.5px 0 var(--below-shadow));
-}
-.live-offside.Many .sample:has(.value.above.indirect.L6) {
-  --bkg: oklch(0.5 0.18 300);
-  box-shadow: inset 18px 18px 0 var(--inner-shadow);
-  filter: drop-shadow(0 5.25px 0 var(--below-shadow));
-}
-
-.live-offside.Many .sample:has(.value.above.L1) {
+.live-offside.Many .sample:has(.value.depth-above.depth-1) {
   top: -1.5px;
-  box-shadow: 0 1.5px 0 #c8c8c8bb;
+  box-shadow: 0 1.5px 0 var(--depth-shadow);
 }
-.sample:has(.value.below) {
+.sample:has(.value.depth-below) {
   position: relative;
-  border-top: 1px solid var(--pat-shadow);
   border-radius: 0.05em 0.2em 0.05em 0.2em;
   border: none;
   /* overflow: hidden; */
 }
 .live-offside.Many
-  .sample:has(.value.cursor-unrelated:not(.above):not(.below)) {
+  .sample:has(.value.unrelated:not(.depth-above):not(.depth-below)) {
   background-color: #e5efe8;
 }
 
-.live-offside.Many .sample:has(.value.above.L2) {
+.live-offside.Many .sample:has(.value.depth-above.depth-2) {
   top: -2.5px;
-  box-shadow: 0 2.5px 0 #d0cab7bb;
+  box-shadow: 0 2.5px 0 var(--depth-shadow);
 }
-.live-offside.Many .sample:has(.value.below.L1) {
+.live-offside.Many .sample:has(.value.depth-below.depth-1) {
   border: none;
   translate: 0 0.75px;
-  box-shadow: 0px -0.75px 0 var(--below-shadow);
+  box-shadow: 0px -0.75px 0 var(--depth-shadow);
   border: none;
   height: calc(1.45em - 2px);
 }
 
-.live-offside.Many .sample:has(.value.below.L2) {
+.live-offside.Many .sample:has(.value.depth-below.depth-2) {
   border: none;
   translate: 0 1.5px;
   box-shadow:
-    0px -0.75px 0 var(--below-shadow),
-    0px -1.5px 0 var(--below-shadow);
+    0px -0.75px 0 var(--depth-shadow),
+    0px -1.5px 0 var(--depth-shadow);
   height: calc(1.45em - 2.75px);
 }
 
-.live-offside.Many .sample:has(.value.below.L3) {
+.live-offside.Many .sample:has(.value.depth-below.depth-3) {
   border: none;
   translate: 0 2.25px;
   box-shadow:
-    0px -0.75px 0 var(--below-shadow),
-    0px -1.5px 0 var(--below-shadow),
-    0px -2.25px 0 var(--below-shadow);
+    0px -0.75px 0 var(--depth-shadow),
+    0px -1.5px 0 var(--depth-shadow),
+    0px -2.25px 0 var(--depth-shadow);
   height: calc(1.45em - 3.5px);
 }
 
-.live-offside.Many .sample:has(.value.below.L4) {
+.live-offside.Many .sample:has(.value.depth-below.depth-4) {
   border: none;
   translate: 0 3px;
   box-shadow:
-    0px -0.75px 0 var(--below-shadow),
-    0px -1.5px 0 var(--below-shadow),
-    0px -2.25px 0 var(--below-shadow),
-    0px -3px 0 var(--below-shadow);
+    0px -0.75px 0 var(--depth-shadow),
+    0px -1.5px 0 var(--depth-shadow),
+    0px -2.25px 0 var(--depth-shadow),
+    0px -3px 0 var(--depth-shadow);
   height: calc(1.45em - 4.25px);
 }
 
 /* TOKEN BKG INDICATED + HOVER */
-.projector.probe.indicated .Many.sample:has(.value.cursor-unrelated) {
+.projector.probe.indicated .Many.sample:has(.value.unrelated),
+.projector.probe.indicated .Many.sample:has(.value.tangent-before),
+.projector.probe.indicated .Many.sample:has(.value.tangent-after) {
   filter: contrast(0.5) brightness(1.32) saturate(0.7);
 }
 
@@ -571,7 +547,7 @@
   animation: flash-border 1s infinite;
 }
 
-.live-offside .sample:has(.value.cursor) {
+.live-offside .sample:has(.value.focus) {
   background-color: var(--bkg);
 }
 
@@ -580,11 +556,11 @@
   background-color: #d6eed6;
 }
 
-.projector.probe.indicated .live-offside:focus .sample:has(.value.cursor) {
+.projector.probe.indicated .live-offside:focus .sample:has(.value.focus) {
   outline: 1.5px solid var(--R1);
   background-color: oklch(from var(--bkg) calc(l * 0.96) calc(c + 0.04) h);
 }
-.projector.probe.indicated .live-offside .sample:has(.value.cursor) {
+.projector.probe.indicated .live-offside .sample:has(.value.focus) {
   outline: 1.5px solid var(--G0);
 }
 
@@ -629,7 +605,7 @@
   filter: none !important;
 }
 
-.live-offside .value.indet.cursor .code-text .token {
+.live-offside .value.indet.focus .code-text .token {
   color: grey;
 }
 
@@ -642,35 +618,39 @@
   /* Might have to disable this for multiline display to work */
   display: none;
 }
-.indicated .live-offside .value.cursor .code-text .token {
+.indicated .live-offside .value.focus .code-text .token {
   color: #247e3d;
 }
 
-.live-offside .value.cursor .code-text .token {
+.live-offside .value.focus .code-text .token {
   color: var(--exp-indicated);
 }
 
-.live-offside.Many .value.cursor-unrelated .code-text .token {
+.live-offside.Many .value.unrelated .code-text .token,
+.live-offside.Many .value.tangent-before .code-text .token,
+.live-offside.Many .value.tangent-after .code-text .token {
   color: white;
 }
-/* .live-offside.Single .value.cursor-unrelated .code-text .token {
+/* .live-offside.Single .value.unrelated .code-text .token {
   color: rgb(102, 102, 102);
 } */
-.live-offside.Single .value.cursor-unrelated .code-text .token {
+.live-offside.Single .value.unrelated .code-text .token {
   color: #437543;
 }
-.live-offside.Single .value.above .code-text .token {
+/* Faded text for tangent (unrelated but directional) samples */
+.live-offside.Single .value.tangent-before .code-text .token {
   color: var(--sample-above-text);
 }
-.live-offside.Single .value.below .code-text .token {
+.live-offside.Single .value.tangent-after .code-text .token {
   color: var(--sample-below-text);
 }
-.live-offside.Many .value.above.cursor-caller .code-text .token,
-.live-offside.Single .value.above.cursor-caller .code-text .token {
+/* Saturated text for related (caller/callee) samples */
+.live-offside.Many .value.related-before .code-text .token,
+.live-offside.Single .value.related-before .code-text .token {
   color: oklch(0.58 0.21 346.68);
 }
-.live-offside.Many .value.below.cursor-callee .code-text .token,
-.live-offside.Single .value.below.cursor-callee .code-text .token {
+.live-offside.Many .value.related-after .code-text .token,
+.live-offside.Single .value.related-after .code-text .token {
   color: var(--PAT);
 }
 
@@ -821,22 +801,22 @@
   padding-left: 1em;
 }
 
-/* Require .indicated on probe AND .cursor on value for menu to appear */
+/* Require .indicated on probe AND .focus on value for menu to appear */
 .projector.probe.indicated
   .live-offside:focus
-  .sample:has(.value.cursor):hover
+  .sample:has(.value.focus):hover
   .sample-context-menu,
 .projector.probe.indicated
   .live-offside:focus
-  .sample:has(.value.cursor)
+  .sample:has(.value.focus)
   .sample-context-menu.dropdown-active {
   display: block;
 }
 .projector.probe.indicated
-  .sample:has(.value.cursor):hover
+  .sample:has(.value.focus):hover
   .sample-context-menu:empty,
 .projector.probe.indicated
-  .sample:has(.value.cursor)
+  .sample:has(.value.focus)
   .sample-context-menu.dropdown-active:empty {
   display: none;
 }
@@ -883,15 +863,6 @@
 
 .projector.probe .nav-arrow:not(.disabled):hover {
   filter: brightness(1.05) saturate(1.05);
-}
-
-/* TEMP COLORS */
-
-.projector.probe .live-offside .sample:has(.value.before) {
-  background-color: #f4e5fb;
-}
-.projector.probe .live-offside .sample:has(.value.after) {
-  background-color: oklch(0.94 0.03 254.38);
 }
 
 /* Indicator explaining why no samples are shown */
