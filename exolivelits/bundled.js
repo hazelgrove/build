@@ -5,13 +5,7 @@
   var __getOwnPropNames = Object.getOwnPropertyNames;
   var __getProtoOf = Object.getPrototypeOf;
   var __hasOwnProp = Object.prototype.hasOwnProperty;
-  var __require = /* @__PURE__ */ ((x3) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x3, {
-    get: (a5, b2) => (typeof require !== "undefined" ? require : a5)[b2]
-  }) : x3)(function(x3) {
-    if (typeof require !== "undefined") return require.apply(this, arguments);
-    throw Error('Dynamic require of "' + x3 + '" is not supported');
-  });
-  var __commonJS = (cb, mod2) => function __require2() {
+  var __commonJS = (cb, mod2) => function __require() {
     return mod2 || (0, cb[__getOwnPropNames(cb)[0]])((mod2 = { exports: {} }).exports, mod2), mod2.exports;
   };
   var __export = (target, all) => {
@@ -25917,7 +25911,6 @@
   ], NinjaKeys);
 
   // prebundle.js
-  var import_web_worker = __toESM(__require("web-worker"));
   var import_algebrite = __toESM(require_algebrite());
 
   // ../../../../../node_modules/@observablehq/plot/src/index.js
