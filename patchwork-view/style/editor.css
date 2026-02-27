@@ -349,42 +349,6 @@ svg.shard.selected.buffer-parsed > path {
   stroke: none;
 }
 
-/* Remote caret styling for collaborative cursor display */
-.remote-caret {
-  pointer-events: none;
-  opacity: 0.8;
-  z-index: var(--caret-z);
-}
-
-.remote-caret-svg {
-  width: 100%;
-  height: 100%;
-}
-
-.remote-caret-path {
-  /* fill is set inline via style attribute */
-  stroke: none;
-}
-
-.remote-caret-label {
-  /* Positioned above the caret, left-aligned */
-  position: absolute;
-  bottom: 100%;
-  left: 0;
-  /* Small rounded rectangle */
-  padding: 1px 4px;
-  border-radius: 3px;
-  /* Small, unobtrusive font */
-  font-size: 10px;
-  font-weight: 500;
-  line-height: 1.2;
-  white-space: nowrap;
-  /* Text color - white for contrast against colored background */
-  color: white;
-  /* Slight shadow for readability */
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-}
-
 /* TERM INDICATION DECO */
 
 .child-line {
@@ -507,44 +471,20 @@ svg:has(.child-line) {
 
 /* Open animations for each direction - scale from origin while maintaining translate */
 @keyframes context-menu-open-down-right {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }
 @keyframes context-menu-open-down-left {
-  from {
-    opacity: 0;
-    transform: translateX(-100%) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(-100%) scale(1);
-  }
+  from { opacity: 0; transform: translateX(-100%) scale(0.95); }
+  to { opacity: 1; transform: translateX(-100%) scale(1); }
 }
 @keyframes context-menu-open-up-right {
-  from {
-    opacity: 0;
-    transform: translateY(-100%) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(-100%) scale(1);
-  }
+  from { opacity: 0; transform: translateY(-100%) scale(0.95); }
+  to { opacity: 1; transform: translateY(-100%) scale(1); }
 }
 @keyframes context-menu-open-up-left {
-  from {
-    opacity: 0;
-    transform: translate(-100%, -100%) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-100%, -100%) scale(1);
-  }
+  from { opacity: 0; transform: translate(-100%, -100%) scale(0.95); }
+  to { opacity: 1; transform: translate(-100%, -100%) scale(1); }
 }
 
 .context-menu .group .contents {
