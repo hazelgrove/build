@@ -415,7 +415,7 @@
   --bottom-border-clr: oklch(0.4 0 0);
 }
 .live-offside .sample:has(.value.indet.focus) {
-  background-color: var(--T3) !important;
+  background-color: hsl(43, 80%, 83%) !important;
 }
 /* .live-offside .sample:has(.value.cursor-callee) {
   --below-shadow: var(--exp-ap-indicated);
@@ -601,12 +601,11 @@
 /* TOKENS */
 
 .live-offside .value.indet .code-text .token {
-  color: white;
-  filter: none !important;
+  color: var(--BR2) !important;
 }
 
 .live-offside .value.indet.focus .code-text .token {
-  color: grey;
+  color: var(--BR2) !important;
 }
 
 .live-offside .value .token.explicit-hole {
@@ -862,7 +861,7 @@
 }
 
 .projector.probe .nav-arrow:not(.disabled):hover {
-  filter: brightness(1.05) saturate(1.05);
+  filter: invert(1) brightness(0.4) sepia(1) hue-rotate(310deg) saturate(10);
 }
 
 /* Indicator explaining why no samples are shown */
