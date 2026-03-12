@@ -49997,7 +49997,7 @@ moduleWatcher.loadModules([
   "automerge:3phkB7HzGoQ67w2ahmj9gepELErw",
   "automerge:Qq3G9LB5bNHwSVJ6m29Tz8zgb4E"
 ]);
-registerPatchworkViewElement({ repo, moduleWatcher });
+registerPatchworkViewElement({ repo });
 window.Algebrite = import_algebrite.default;
 window.Plot = src_exports;
 hotkeys_esm_default.filter = (event) => {
