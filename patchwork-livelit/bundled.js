@@ -23950,11 +23950,11 @@ var require_common = __commonJS({
         let enableOverride = null;
         let namespacesCache;
         let enabledCache;
-        function debug4(...args2) {
-          if (!debug4.enabled) {
+        function debug6(...args2) {
+          if (!debug6.enabled) {
             return;
           }
-          const self2 = debug4;
+          const self2 = debug6;
           const curr = Number(/* @__PURE__ */ new Date());
           const ms = curr - (prevTime || curr);
           self2.diff = ms;
@@ -23984,12 +23984,12 @@ var require_common = __commonJS({
           const logFn = self2.log || createDebug.log;
           logFn.apply(self2, args2);
         }
-        debug4.namespace = namespace;
-        debug4.useColors = createDebug.useColors();
-        debug4.color = createDebug.selectColor(namespace);
-        debug4.extend = extend2;
-        debug4.destroy = createDebug.destroy;
-        Object.defineProperty(debug4, "enabled", {
+        debug6.namespace = namespace;
+        debug6.useColors = createDebug.useColors();
+        debug6.color = createDebug.selectColor(namespace);
+        debug6.extend = extend2;
+        debug6.destroy = createDebug.destroy;
+        Object.defineProperty(debug6, "enabled", {
           enumerable: true,
           configurable: false,
           get: () => {
@@ -24007,9 +24007,9 @@ var require_common = __commonJS({
           }
         });
         if (typeof createDebug.init === "function") {
-          createDebug.init(debug4);
+          createDebug.init(debug6);
         }
-        return debug4;
+        return debug6;
       }
       function extend2(namespace, delimiter) {
         const newDebug = createDebug(this.namespace + (typeof delimiter === "undefined" ? ":" : delimiter) + namespace);
@@ -49941,22 +49941,220 @@ var IndexedDBStorageAdapter = class {
   }
 };
 
+// ../../../node_modules/@automerge/automerge-repo-network-websocket/dist/WebSocketClientAdapter.js
+import { NetworkAdapter as NetworkAdapter5, cbor as cbor2 } from "@automerge/automerge-repo/slim";
+var import_debug4 = __toESM(require_browser(), 1);
+
+// ../../../node_modules/@automerge/automerge-repo-network-websocket/dist/messages.js
+var isPeerMessage2 = (message) => message.type === "peer";
+var isErrorMessage2 = (message) => message.type === "error";
+
+// ../../../node_modules/@automerge/automerge-repo-network-websocket/dist/protocolVersion.js
+var ProtocolV12 = "1";
+
+// ../../../node_modules/@automerge/automerge-repo-network-websocket/dist/assert.js
+function assert2(value, message = "Assertion failed") {
+  if (value === false || value === null || value === void 0) {
+    const error = new Error(trimLines2(message));
+    error.stack = removeLine2(error.stack, "assert.ts");
+    throw error;
+  }
+}
+var trimLines2 = (s8) => s8.split("\n").map((s9) => s9.trim()).join("\n");
+var removeLine2 = (s8 = "", targetText) => s8.split("\n").filter((line2) => !line2.includes(targetText)).join("\n");
+
+// ../../../node_modules/@automerge/automerge-repo-network-websocket/dist/toArrayBuffer.js
+var toArrayBuffer2 = (bytes) => {
+  const { buffer: buffer2, byteOffset, byteLength } = bytes;
+  return buffer2.slice(byteOffset, byteOffset + byteLength);
+};
+
+// ../../../node_modules/@automerge/automerge-repo-network-websocket/dist/WebSocketClientAdapter.js
+var WebSocketNetworkAdapter2 = class extends NetworkAdapter5 {
+  socket;
+};
+var WebSocketClientAdapter2 = class extends WebSocketNetworkAdapter2 {
+  url;
+  retryInterval;
+  #ready = false;
+  #readyResolver;
+  #readyPromise = new Promise((resolve) => {
+    this.#readyResolver = resolve;
+  });
+  isReady() {
+    return this.#ready;
+  }
+  whenReady() {
+    return this.#readyPromise;
+  }
+  #forceReady() {
+    if (!this.#ready) {
+      this.#ready = true;
+      this.#readyResolver?.();
+    }
+  }
+  #retryIntervalId;
+  #log = (0, import_debug4.default)("automerge-repo:websocket:browser");
+  remotePeerId;
+  // this adapter only connects to one remote client at a time
+  constructor(url, retryInterval = 5e3) {
+    super();
+    this.url = url;
+    this.retryInterval = retryInterval;
+    this.#log = this.#log.extend(url);
+  }
+  connect(peerId, peerMetadata) {
+    if (!this.socket || !this.peerId) {
+      this.#log("connecting");
+      this.peerId = peerId;
+      this.peerMetadata = peerMetadata ?? {};
+    } else {
+      this.#log("reconnecting");
+      assert2(peerId === this.peerId);
+      this.socket.removeEventListener("open", this.onOpen);
+      this.socket.removeEventListener("close", this.onClose);
+      this.socket.removeEventListener("message", this.onMessage);
+      this.socket.removeEventListener("error", this.onError);
+    }
+    if (!this.#retryIntervalId)
+      this.#retryIntervalId = setInterval(() => {
+        this.connect(peerId, peerMetadata);
+      }, this.retryInterval);
+    this.socket = new browser_default(this.url);
+    this.socket.binaryType = "arraybuffer";
+    this.socket.addEventListener("open", this.onOpen);
+    this.socket.addEventListener("close", this.onClose);
+    this.socket.addEventListener("message", this.onMessage);
+    this.socket.addEventListener("error", this.onError);
+    setTimeout(() => this.#forceReady(), 1e3);
+    this.join();
+  }
+  onOpen = () => {
+    this.#log("open");
+    clearInterval(this.#retryIntervalId);
+    this.#retryIntervalId = void 0;
+    this.join();
+  };
+  // When a socket closes, or disconnects, remove it from the array.
+  onClose = () => {
+    this.#log("close");
+    if (this.remotePeerId)
+      this.emit("peer-disconnected", { peerId: this.remotePeerId });
+    if (this.retryInterval > 0 && !this.#retryIntervalId)
+      setTimeout(() => {
+        assert2(this.peerId);
+        return this.connect(this.peerId, this.peerMetadata);
+      }, this.retryInterval);
+  };
+  onMessage = (event) => {
+    this.receiveMessage(event.data);
+  };
+  /** The websocket error handler signature is different on node and the browser.  */
+  onError = (event) => {
+    if ("error" in event) {
+      if (event.error.code !== "ECONNREFUSED") {
+        throw event.error;
+      }
+    } else {
+    }
+    this.#log("Connection failed, retrying...");
+  };
+  join() {
+    assert2(this.peerId);
+    assert2(this.socket);
+    if (this.socket.readyState === browser_default.OPEN) {
+      this.send(joinMessage2(this.peerId, this.peerMetadata));
+    } else {
+    }
+  }
+  disconnect() {
+    assert2(this.peerId);
+    assert2(this.socket);
+    const socket = this.socket;
+    if (socket) {
+      socket.removeEventListener("open", this.onOpen);
+      socket.removeEventListener("close", this.onClose);
+      socket.removeEventListener("message", this.onMessage);
+      socket.removeEventListener("error", this.onError);
+      socket.close();
+    }
+    clearInterval(this.#retryIntervalId);
+    if (this.remotePeerId)
+      this.emit("peer-disconnected", { peerId: this.remotePeerId });
+    this.socket = void 0;
+  }
+  send(message) {
+    if ("data" in message && message.data?.byteLength === 0)
+      throw new Error("Tried to send a zero-length message");
+    assert2(this.peerId);
+    if (!this.socket) {
+      this.#log("Tried to send on a disconnected socket.");
+      return;
+    }
+    if (this.socket.readyState !== browser_default.OPEN)
+      throw new Error(`Websocket not ready (${this.socket.readyState})`);
+    const encoded = cbor2.encode(message);
+    this.socket.send(toArrayBuffer2(encoded));
+  }
+  peerCandidate(remotePeerId, peerMetadata) {
+    assert2(this.socket);
+    this.#forceReady();
+    this.remotePeerId = remotePeerId;
+    this.emit("peer-candidate", {
+      peerId: remotePeerId,
+      peerMetadata
+    });
+  }
+  receiveMessage(messageBytes) {
+    let message;
+    try {
+      message = cbor2.decode(new Uint8Array(messageBytes));
+    } catch (e11) {
+      this.#log("error decoding message:", e11);
+      return;
+    }
+    assert2(this.socket);
+    if (messageBytes.byteLength === 0)
+      throw new Error("received a zero-length message");
+    if (isPeerMessage2(message)) {
+      const { peerMetadata } = message;
+      this.#log(`peer: ${message.senderId}`);
+      this.peerCandidate(message.senderId, peerMetadata);
+    } else if (isErrorMessage2(message)) {
+      this.#log(`error: ${message.message}`);
+    } else {
+      this.emit("message", message);
+    }
+  }
+};
+function joinMessage2(senderId, peerMetadata) {
+  return {
+    type: "join",
+    senderId,
+    peerMetadata,
+    supportedProtocolVersions: [ProtocolV12]
+  };
+}
+
+// ../../../node_modules/@automerge/automerge-repo-network-websocket/dist/WebSocketServerAdapter.js
+var import_debug5 = __toESM(require_browser(), 1);
+import { cbor as cborHelpers2, NetworkAdapter as NetworkAdapter6 } from "@automerge/automerge-repo/slim";
+var log5 = (0, import_debug5.default)("WebsocketServer");
+var { encode: encode2, decode: decode2 } = cborHelpers2;
+
 // prebundle.js
 var repo = new slim_exports.Repo({
   storage: new IndexedDBStorageAdapter(),
-  async sharePolicy(peerId) {
-    return peerId.includes("service-worker");
-  },
+  network: [new WebSocketClientAdapter2("wss://sync3.automerge.org")],
   enableRemoteHeadsGossiping: true
 });
 window.repo = repo;
 var result = await setup();
-if (!result) {
-  throw new Error("Failed to set up service worker");
+if (result?.port) {
+  repo.networkSubsystem.addNetworkAdapter(
+    new MessageChannelNetworkAdapter(result.port)
+  );
 }
-repo.networkSubsystem.addNetworkAdapter(
-  new MessageChannelNetworkAdapter(result.port)
-);
 await repo.networkSubsystem.whenReady();
 window.getRepoChannel = () => {
   const { port1, port2 } = new MessageChannel();
@@ -49968,15 +50166,14 @@ window.hazelWriteToDoc = async (docUrl, jsonString) => {
     const handle = await repo.find(docUrl);
     const parsed = JSON.parse(jsonString);
     handle.change((doc) => {
-      if (parsed.store && doc.store) {
-        for (const key of Object.keys(doc.store)) {
-          if (!(key in parsed.store)) {
-            delete doc.store[key];
-          }
+      if (!parsed || typeof parsed !== "object") return;
+      for (const key of Object.keys(doc)) {
+        if (!(key in parsed)) {
+          delete doc[key];
         }
-        for (const [key, value] of Object.entries(parsed.store)) {
-          doc.store[key] = value;
-        }
+      }
+      for (const [key, value] of Object.entries(parsed)) {
+        doc[key] = value;
       }
     });
   } catch (e11) {
@@ -50006,6 +50203,21 @@ moduleWatcher.loadModules([
   "automerge:Qq3G9LB5bNHwSVJ6m29Tz8zgb4E"
 ]);
 registerPatchworkViewElement({ repo });
+document.addEventListener("focusin", (e11) => {
+  if (e11.target && e11.target.closest && e11.target.closest("patchwork-view")) {
+    const main = document.getElementById("main");
+    if (main) {
+      const top3 = main.scrollTop;
+      const left2 = main.scrollLeft;
+      requestAnimationFrame(() => {
+        if (main.scrollTop !== top3 || main.scrollLeft !== left2) {
+          main.scrollTop = top3;
+          main.scrollLeft = left2;
+        }
+      });
+    }
+  }
+}, true);
 window.Algebrite = import_algebrite.default;
 window.Plot = src_exports;
 hotkeys_esm_default.filter = (event) => {

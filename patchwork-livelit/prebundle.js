@@ -15,25 +15,22 @@ import {
 	MessageChannelNetworkAdapter,
 	Repo,
 } from "@automerge/vanillajs/slim"
+import {WebSocketClientAdapter} from "@automerge/automerge-repo-network-websocket"
 
 const repo = new Repo({
 	storage: new IndexedDBStorageAdapter(),
-	async sharePolicy(peerId) {
-		return peerId.includes("service-worker")
-	},
+	network: [new WebSocketClientAdapter("wss://sync3.automerge.org")],
 	enableRemoteHeadsGossiping: true,
 })
 
 window.repo = repo
 
 const result = await setup()
-if (!result) {
-	throw new Error("Failed to set up service worker")
+if (result?.port) {
+	repo.networkSubsystem.addNetworkAdapter(
+		new MessageChannelNetworkAdapter(result.port)
+	)
 }
-
-repo.networkSubsystem.addNetworkAdapter(
-	new MessageChannelNetworkAdapter(result.port)
-)
 await repo.networkSubsystem.whenReady()
 
 window.getRepoChannel = () => {
@@ -48,18 +45,15 @@ window.hazelWriteToDoc = async (docUrl, jsonString) => {
 		const parsed = JSON.parse(jsonString)
 
 		handle.change(doc => {
-			// Only sync top-level keys in doc.store (where tldraw keeps shapes)
-			if (parsed.store && doc.store) {
-				// Delete keys in doc.store that aren't in parsed.store
-				for (const key of Object.keys(doc.store)) {
-					if (!(key in parsed.store)) {
-						delete doc.store[key]
-					}
+			if (!parsed || typeof parsed !== "object") return
+			// Sync all top-level keys from parsed into doc
+			for (const key of Object.keys(doc)) {
+				if (!(key in parsed)) {
+					delete doc[key]
 				}
-				// Add/update keys from parsed.store
-				for (const [key, value] of Object.entries(parsed.store)) {
-					doc.store[key] = value
-				}
+			}
+			for (const [key, value] of Object.entries(parsed)) {
+				doc[key] = value
 			}
 		})
 	} catch (e) {
@@ -93,6 +87,27 @@ moduleWatcher.loadModules([
 ])
 
 registerPatchworkViewElement({repo})
+
+// Prevent tldraw popover focus from scrolling #main.
+// When Radix UI opens a popover (e.g. the "More" tools menu), it focuses the
+// popover content, which causes the browser to scroll the nearest scrollable
+// ancestor (#main) to bring it into view. We save and restore the scroll
+// position to counteract this.
+document.addEventListener("focusin", (e) => {
+	if (e.target && e.target.closest && e.target.closest("patchwork-view")) {
+		const main = document.getElementById("main")
+		if (main) {
+			const top = main.scrollTop
+			const left = main.scrollLeft
+			requestAnimationFrame(() => {
+				if (main.scrollTop !== top || main.scrollLeft !== left) {
+					main.scrollTop = top
+					main.scrollLeft = left
+				}
+			})
+		}
+	}
+}, true)
 
 window.Algebrite = Algebrite
 window.Plot = Plot
