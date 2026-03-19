@@ -1,5 +1,11 @@
 /* PROJECTOR: Rich Probes for Tables */
 
+/* Empty hole indicator in table headers */
+.table th .empty-hole {
+    width: 0.6em;
+    height: 0.6em;
+    vertical-align: middle;
+}
 
 /* Closure Navigation Buttons in Table Header */
 .closure-nav-button {
@@ -77,6 +83,12 @@
     background-color: var(--df-hover-bg);
 }
 
+.column-menu .menu-divider {
+    height: 0.6px;
+    background: var(--menu-divider, #ddd);
+    margin: 6px 0.5em;
+}
+
 .submenu-item {
     padding: 8px 12px;
     cursor: pointer;
@@ -101,11 +113,63 @@
 
 
 
+/* Modal backdrop for rich probe table */
+.modal-backdrop.live-offside {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: var(--modal-z);
+  margin-top: 5px;
+}
+
+.modal-backdrop.live-offside .modal {
+  background-color: var(--df-bg);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  padding: 0;
+  overflow: visible;
+  pointer-events: auto;
+}
+
 .modal .table th {
+    position: relative;
     padding-left: 15px;
     padding-right: 15px;
 }
 
 .modal .table {
     width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: 8px;
+}
+
+.modal .table th:first-child {
+    border-top-left-radius: 8px;
+}
+
+.modal .table th:last-child {
+    border-top-right-radius: 8px;
+}
+
+.modal .table tr:last-child td:first-child {
+    border-bottom-left-radius: 8px;
+}
+
+.modal .table tr:last-child td:last-child {
+    border-bottom-right-radius: 8px;
+}
+
+/* Add Column Header Button */
+.table th.add-column-header {
+    cursor: pointer;
+    padding: 2px 8px;
+    color: var(--BR2);
+    opacity: 0.5;
+    font-size: 1rem;
+    user-select: none;
+}
+
+.table th.add-column-header:hover {
+    opacity: 1;
 }
