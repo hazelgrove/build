@@ -50180,12 +50180,30 @@ window.hazelWriteToDoc = async (docUrl, jsonString) => {
     console.error("hazelWriteToDoc error:", e11);
   }
 };
+var fallbackModules = [
+  "automerge:3qXkpoGfWoyomfG8wTifhnzBEnpX",
+  "automerge:L45rfzTVcMDsyXRyuhpNMPXqPwf",
+  "automerge:3Fj5zE7QdhbbWVJNsAHPbf84YfX6",
+  "automerge:3phkB7HzGoQ67w2ahmj9gepELErw",
+  "automerge:Qq3G9LB5bNHwSVJ6m29Tz8zgb4E"
+];
+var moduleUrls = fallbackModules;
+try {
+  const registryUrl = "automerge:2LZBb891v37vggWYQPJRbYdyBGGE";
+  const handle = await repo.find(registryUrl);
+  const doc = handle.doc();
+  if (doc && Array.isArray(doc.modules) && doc.modules.length > 0) {
+    console.log("Loaded module URLs from registry:", doc.modules);
+    moduleUrls = doc.modules;
+  }
+} catch (e11) {
+  console.warn("Failed to read module registry, using fallback:", e11);
+}
 var moduleWatcher = new ModuleWatcher(
   repo,
-  // codemirror-base
-  ["automerge:3qXkpoGfWoyomfG8wTifhnzBEnpX"],
+  moduleUrls,
   (name, mod2) => {
-    console.log("Prebundled module loaded:", name, mod2);
+    console.log("Module loaded:", name, mod2);
     if (Array.isArray(mod2.plugins)) {
       registerPlugins(mod2.plugins, name);
     }
@@ -50194,14 +50212,7 @@ var moduleWatcher = new ModuleWatcher(
 window.moduleWatcher = moduleWatcher;
 console.log("moduleWatcher", moduleWatcher);
 window.plugins = getRegistry("patchwork:tool");
-moduleWatcher.loadModules([
-  "automerge:3qXkpoGfWoyomfG8wTifhnzBEnpX",
-  "automerge:L45rfzTVcMDsyXRyuhpNMPXqPwf",
-  "automerge:3Fj5zE7QdhbbWVJNsAHPbf84YfX6",
-  // petrinaut tool?
-  "automerge:3phkB7HzGoQ67w2ahmj9gepELErw",
-  "automerge:Qq3G9LB5bNHwSVJ6m29Tz8zgb4E"
-]);
+moduleWatcher.loadModules(moduleUrls);
 registerPatchworkViewElement({ repo });
 document.addEventListener("focusin", (e11) => {
   if (e11.target && e11.target.closest && e11.target.closest("patchwork-view")) {
