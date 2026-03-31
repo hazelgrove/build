@@ -152,10 +152,6 @@
   white-space: nowrap;
 }
 
-.proof-button-open {
-  background-color: var(--BR2);
-}
-
 .axiom-box {
   background-color: var(--menu-bkg);
   border-radius: 0 0 0.5em 0;
