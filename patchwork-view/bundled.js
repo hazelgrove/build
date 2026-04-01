@@ -49273,12 +49273,12 @@ import { NetworkAdapter } from "@automerge/automerge-repo/slim";
 var BroadcastChannelNetworkAdapter = class extends NetworkAdapter {
   #broadcastChannel;
   #disconnected = false;
-  #options;
   #ready = false;
-  #readyResolver;
-  #readyPromise = new Promise((resolve) => {
-    this.#readyResolver = resolve;
-  });
+  // reassigned in constructor, but keeps TS from complaining
+  #markReady = () => {
+  };
+  #readyPromise;
+  #options;
   #connectedPeers = [];
   isReady() {
     return this.#ready;
@@ -49286,16 +49286,21 @@ var BroadcastChannelNetworkAdapter = class extends NetworkAdapter {
   whenReady() {
     return this.#readyPromise;
   }
-  #forceReady() {
-    if (!this.#ready) {
-      this.#ready = true;
-      this.#readyResolver?.();
-    }
-  }
   constructor(options) {
     super();
-    this.#options = { channelName: "broadcast", ...options ?? {} };
+    this.#options = {
+      channelName: "broadcast",
+      peerWaitMs: 1e3,
+      ...options ?? {}
+    };
     this.#broadcastChannel = new BroadcastChannel(this.#options.channelName);
+    this.#readyPromise = new Promise((resolve) => {
+      this.#markReady = () => {
+        this.#ready = true;
+        resolve();
+      };
+      setTimeout(() => this.#markReady(), this.#options.peerWaitMs);
+    });
   }
   connect(peerId, peerMetadata) {
     this.peerId = peerId;
@@ -49356,7 +49361,7 @@ var BroadcastChannelNetworkAdapter = class extends NetworkAdapter {
     });
   }
   #announceConnection(peerId, peerMetadata) {
-    this.#forceReady();
+    this.#markReady();
     this.#connectedPeers.push(peerId);
     this.emit("peer-candidate", { peerId, peerMetadata });
   }
