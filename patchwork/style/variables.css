@@ -71,6 +71,10 @@
   --WARNHOLE: oklch(0.97 0.04 78.17);
   --CREASE: oklch(0% 0 0 / 40%);
 
+  /* Agent chat — context meter (track = dark shale, fill = bright blue) */
+  --context-meter-track: var(--BR4);
+  --context-meter-fill: oklch(58% 0.2 250);
+
   /* CODE BACKGROUND */
 
   --main-bkg: var(--T3);
@@ -145,6 +149,11 @@
   /* WARNING HOLE DECO */
   --warning-hole-stroke: var(--O1);
   --warning-hole-fill: var(--WARNHOLE);
+
+  /* EMPTY HOLE DECO (sidebar) */
+  --hole-stroke: oklch(60% 0.15 250);
+  --hole-fill: oklch(92% 0.04 250);
+  --hole-active: oklch(50% 0.2 250);
 
   /* BACKPACK DECO */
 
