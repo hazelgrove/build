@@ -385,7 +385,7 @@ var require_BigInteger = __commonJS({
         return new NativeBigInt(this.value * this.value);
       };
       function divMod1(a5, b2) {
-        var a_l = a5.length, b_l = b2.length, base = BASE, result2 = createArray(b2.length), divisorMostSignificantDigit = b2[b_l - 1], lambda = Math.ceil(base / (2 * divisorMostSignificantDigit)), remainder = multiplySmall(a5, lambda), divisor = multiplySmall(b2, lambda), quotientDigit, shift, carry, borrow, i6, l8, q;
+        var a_l = a5.length, b_l = b2.length, base = BASE, result = createArray(b2.length), divisorMostSignificantDigit = b2[b_l - 1], lambda = Math.ceil(base / (2 * divisorMostSignificantDigit)), remainder = multiplySmall(a5, lambda), divisor = multiplySmall(b2, lambda), quotientDigit, shift, carry, borrow, i6, l8, q;
         if (remainder.length <= a_l) remainder.push(0);
         divisor.push(0);
         divisorMostSignificantDigit = divisor[b_l - 1];
@@ -425,18 +425,18 @@ var require_BigInteger = __commonJS({
             }
             borrow += carry;
           }
-          result2[shift] = quotientDigit;
+          result[shift] = quotientDigit;
         }
         remainder = divModSmall(remainder, lambda)[0];
-        return [arrayToSmall(result2), arrayToSmall(remainder)];
+        return [arrayToSmall(result), arrayToSmall(remainder)];
       }
       function divMod2(a5, b2) {
-        var a_l = a5.length, b_l = b2.length, result2 = [], part = [], base = BASE, guess2, xlen, highx, highy, check;
+        var a_l = a5.length, b_l = b2.length, result = [], part = [], base = BASE, guess2, xlen, highx, highy, check;
         while (a_l) {
           part.unshift(a5[--a_l]);
           trim(part);
           if (compareAbs(part, b2) < 0) {
-            result2.push(0);
+            result.push(0);
             continue;
           }
           xlen = part.length;
@@ -451,11 +451,11 @@ var require_BigInteger = __commonJS({
             if (compareAbs(check, part) <= 0) break;
             guess2--;
           } while (guess2);
-          result2.push(guess2);
+          result.push(guess2);
           part = subtract2(part, check);
         }
-        result2.reverse();
-        return [arrayToSmall(result2), arrayToSmall(part)];
+        result.reverse();
+        return [arrayToSmall(result), arrayToSmall(part)];
       }
       function divModSmall(value, lambda) {
         var length4 = value.length, quotient = createArray(length4), base = BASE, i6, q, remainder, divisor;
@@ -518,10 +518,10 @@ var require_BigInteger = __commonJS({
         return [quotient, mod2];
       }
       BigInteger.prototype.divmod = function(v3) {
-        var result2 = divModAny(this, v3);
+        var result = divModAny(this, v3);
         return {
-          quotient: result2[0],
-          remainder: result2[1]
+          quotient: result[0],
+          remainder: result[1]
         };
       };
       NativeBigInt.prototype.divmod = SmallInteger.prototype.divmod = BigInteger.prototype.divmod;
@@ -876,13 +876,13 @@ var require_BigInteger = __commonJS({
           throw new Error(String(n9) + " is too large for shifting.");
         }
         if (n9 < 0) return this.shiftRight(-n9);
-        var result2 = this;
-        if (result2.isZero()) return result2;
+        var result = this;
+        if (result.isZero()) return result;
         while (n9 >= powers2Length) {
-          result2 = result2.multiply(highestPower2);
+          result = result.multiply(highestPower2);
           n9 -= powers2Length - 1;
         }
-        return result2.multiply(powersOfTwo[n9]);
+        return result.multiply(powersOfTwo[n9]);
       };
       NativeBigInt.prototype.shiftLeft = SmallInteger.prototype.shiftLeft = BigInteger.prototype.shiftLeft;
       BigInteger.prototype.shiftRight = function(v3) {
@@ -892,14 +892,14 @@ var require_BigInteger = __commonJS({
           throw new Error(String(n9) + " is too large for shifting.");
         }
         if (n9 < 0) return this.shiftLeft(-n9);
-        var result2 = this;
+        var result = this;
         while (n9 >= powers2Length) {
-          if (result2.isZero() || result2.isNegative() && result2.isUnit()) return result2;
-          remQuo = divModAny(result2, highestPower2);
-          result2 = remQuo[1].isNegative() ? remQuo[0].prev() : remQuo[0];
+          if (result.isZero() || result.isNegative() && result.isUnit()) return result;
+          remQuo = divModAny(result, highestPower2);
+          result = remQuo[1].isNegative() ? remQuo[0].prev() : remQuo[0];
           n9 -= powers2Length - 1;
         }
-        remQuo = divModAny(result2, powersOfTwo[n9]);
+        remQuo = divModAny(result, powersOfTwo[n9]);
         return remQuo[1].isNegative() ? remQuo[0].prev() : remQuo[0];
       };
       NativeBigInt.prototype.shiftRight = SmallInteger.prototype.shiftRight = BigInteger.prototype.shiftRight;
@@ -909,7 +909,7 @@ var require_BigInteger = __commonJS({
         var xRem = xSign ? x3.not() : x3, yRem = ySign ? y3.not() : y3;
         var xDigit = 0, yDigit = 0;
         var xDivMod = null, yDivMod = null;
-        var result2 = [];
+        var result = [];
         while (!xRem.isZero() || !yRem.isZero()) {
           xDivMod = divModAny(xRem, highestPower2);
           xDigit = xDivMod[1].toJSNumber();
@@ -923,11 +923,11 @@ var require_BigInteger = __commonJS({
           }
           xRem = xDivMod[0];
           yRem = yDivMod[0];
-          result2.push(fn(xDigit, yDigit));
+          result.push(fn(xDigit, yDigit));
         }
         var sum3 = fn(xSign ? 1 : 0, ySign ? 1 : 0) !== 0 ? bigInt2(-1) : bigInt2(0);
-        for (var i6 = result2.length - 1; i6 >= 0; i6 -= 1) {
-          sum3 = sum3.multiply(highestPower2).add(bigInt2(result2[i6]));
+        for (var i6 = result.length - 1; i6 >= 0; i6 -= 1) {
+          sum3 = sum3.multiply(highestPower2).add(bigInt2(result[i6]));
         }
         return sum3;
       }
@@ -1031,14 +1031,14 @@ var require_BigInteger = __commonJS({
         var range3 = high.subtract(low).add(1);
         if (range3.isSmall) return low.add(Math.floor(usedRNG() * range3));
         var digits = toBase(range3, BASE).value;
-        var result2 = [], restricted = true;
+        var result = [], restricted = true;
         for (var i6 = 0; i6 < digits.length; i6++) {
           var top3 = restricted ? digits[i6] + (i6 + 1 < digits.length ? digits[i6 + 1] / BASE : 0) : BASE;
           var digit = truncate(usedRNG() * top3);
-          result2.push(digit);
+          result.push(digit);
           if (digit < digits[i6]) restricted = false;
         }
-        return low.add(Integer.fromArray(result2, BASE, false));
+        return low.add(Integer.fromArray(result, BASE, false));
       }
       var parseBase = function(text2, base, alphabet, caseSensitive) {
         alphabet = alphabet || DEFAULT_ALPHABET;
@@ -2585,7 +2585,7 @@ var require_algebrite = __commonJS({
       approx_logarithmsOfRationals = 8;
       approx_rationalsOfLogarithms = 9;
       approxRationalsOfRadicals = function(theFloat) {
-        var bestResultSoFar, complexity, error, hypothesis, i5, i12, j2, len, likelyMultiplier, minimumComplexity, numberOfDigitsAfterTheDot, o12, precision, ratio, ref2, result2, splitBeforeAndAfterDot;
+        var bestResultSoFar, complexity, error, hypothesis, i5, i12, j2, len, likelyMultiplier, minimumComplexity, numberOfDigitsAfterTheDot, o12, precision, ratio, ref2, result, splitBeforeAndAfterDot;
         splitBeforeAndAfterDot = theFloat.toString().split(".");
         if (splitBeforeAndAfterDot.length === 2) {
           numberOfDigitsAfterTheDot = splitBeforeAndAfterDot[1].length;
@@ -2614,8 +2614,8 @@ var require_algebrite = __commonJS({
               complexity = simpleComplexityMeasure(likelyMultiplier, i5, j2);
               if (complexity < minimumComplexity) {
                 minimumComplexity = complexity;
-                result2 = likelyMultiplier + " * sqrt( " + i5 + " ) / " + j2;
-                bestResultSoFar = [result2, approx_ratioOfRadical, likelyMultiplier, i5, j2];
+                result = likelyMultiplier + " * sqrt( " + i5 + " ) / " + j2;
+                bestResultSoFar = [result, approx_ratioOfRadical, likelyMultiplier, i5, j2];
               }
             }
           }
@@ -2623,7 +2623,7 @@ var require_algebrite = __commonJS({
         return bestResultSoFar;
       };
       approxRadicalsOfRationals = function(theFloat) {
-        var bestResultSoFar, complexity, error, hypothesis, i5, i12, j2, len, len1, likelyMultiplier, minimumComplexity, numberOfDigitsAfterTheDot, o12, precision, ratio, ref2, ref12, result2, splitBeforeAndAfterDot;
+        var bestResultSoFar, complexity, error, hypothesis, i5, i12, j2, len, len1, likelyMultiplier, minimumComplexity, numberOfDigitsAfterTheDot, o12, precision, ratio, ref2, ref12, result, splitBeforeAndAfterDot;
         splitBeforeAndAfterDot = theFloat.toString().split(".");
         if (splitBeforeAndAfterDot.length === 2) {
           numberOfDigitsAfterTheDot = splitBeforeAndAfterDot[1].length;
@@ -2654,8 +2654,8 @@ var require_algebrite = __commonJS({
               complexity = simpleComplexityMeasure(likelyMultiplier, i5, j2);
               if (complexity < minimumComplexity) {
                 minimumComplexity = complexity;
-                result2 = likelyMultiplier + " * (sqrt( " + i5 + " / " + j2 + " )";
-                bestResultSoFar = [result2, approx_radicalOfRatio, likelyMultiplier, i5, j2];
+                result = likelyMultiplier + " * (sqrt( " + i5 + " / " + j2 + " )";
+                bestResultSoFar = [result, approx_radicalOfRatio, likelyMultiplier, i5, j2];
               }
             }
           }
@@ -2703,7 +2703,7 @@ var require_algebrite = __commonJS({
         return null;
       };
       approxRationalsOfLogs = function(theFloat) {
-        var bestResultSoFar, complexity, error, hypothesis, i5, i12, j2, likelyMultiplier, minimumComplexity, numberOfDigitsAfterTheDot, o12, precision, ratio, result2, splitBeforeAndAfterDot;
+        var bestResultSoFar, complexity, error, hypothesis, i5, i12, j2, likelyMultiplier, minimumComplexity, numberOfDigitsAfterTheDot, o12, precision, ratio, result, splitBeforeAndAfterDot;
         splitBeforeAndAfterDot = theFloat.toString().split(".");
         if (splitBeforeAndAfterDot.length === 2) {
           numberOfDigitsAfterTheDot = splitBeforeAndAfterDot[1].length;
@@ -2733,8 +2733,8 @@ var require_algebrite = __commonJS({
               complexity = simpleComplexityMeasure(likelyMultiplier, i5, j2);
               if (complexity < minimumComplexity) {
                 minimumComplexity = complexity;
-                result2 = likelyMultiplier + " * log( " + i5 + " ) / " + j2;
-                bestResultSoFar = [result2, approx_rationalsOfLogarithms, likelyMultiplier, i5, j2];
+                result = likelyMultiplier + " * log( " + i5 + " ) / " + j2;
+                bestResultSoFar = [result, approx_rationalsOfLogarithms, likelyMultiplier, i5, j2];
               }
             }
           }
@@ -2742,7 +2742,7 @@ var require_algebrite = __commonJS({
         return bestResultSoFar;
       };
       approxLogsOfRationals = function(theFloat) {
-        var bestResultSoFar, complexity, error, hypothesis, i5, i12, j2, likelyMultiplier, minimumComplexity, numberOfDigitsAfterTheDot, o12, precision, ratio, result2, splitBeforeAndAfterDot;
+        var bestResultSoFar, complexity, error, hypothesis, i5, i12, j2, likelyMultiplier, minimumComplexity, numberOfDigitsAfterTheDot, o12, precision, ratio, result, splitBeforeAndAfterDot;
         splitBeforeAndAfterDot = theFloat.toString().split(".");
         if (splitBeforeAndAfterDot.length === 2) {
           numberOfDigitsAfterTheDot = splitBeforeAndAfterDot[1].length;
@@ -2769,8 +2769,8 @@ var require_algebrite = __commonJS({
               complexity = simpleComplexityMeasure(likelyMultiplier, i5, j2);
               if (complexity < minimumComplexity) {
                 minimumComplexity = complexity;
-                result2 = likelyMultiplier + " * log( " + i5 + " / " + j2 + " )";
-                bestResultSoFar = [result2, approx_logarithmsOfRationals, likelyMultiplier, i5, j2];
+                result = likelyMultiplier + " * log( " + i5 + " / " + j2 + " )";
+                bestResultSoFar = [result, approx_logarithmsOfRationals, likelyMultiplier, i5, j2];
               }
             }
           }
@@ -2778,7 +2778,7 @@ var require_algebrite = __commonJS({
         return bestResultSoFar;
       };
       approxRationalsOfPowersOfE = function(theFloat) {
-        var bestResultSoFar, complexity, error, hypothesis, i5, i12, j2, likelyMultiplier, minimumComplexity, numberOfDigitsAfterTheDot, o12, precision, ratio, result2, splitBeforeAndAfterDot;
+        var bestResultSoFar, complexity, error, hypothesis, i5, i12, j2, likelyMultiplier, minimumComplexity, numberOfDigitsAfterTheDot, o12, precision, ratio, result, splitBeforeAndAfterDot;
         splitBeforeAndAfterDot = theFloat.toString().split(".");
         if (splitBeforeAndAfterDot.length === 2) {
           numberOfDigitsAfterTheDot = splitBeforeAndAfterDot[1].length;
@@ -2805,8 +2805,8 @@ var require_algebrite = __commonJS({
               complexity = simpleComplexityMeasure(likelyMultiplier, i5, j2);
               if (complexity < minimumComplexity) {
                 minimumComplexity = complexity;
-                result2 = likelyMultiplier + " * (e ^ " + i5 + " ) / " + j2;
-                bestResultSoFar = [result2, approx_rationalOfE, likelyMultiplier, i5, j2];
+                result = likelyMultiplier + " * (e ^ " + i5 + " ) / " + j2;
+                bestResultSoFar = [result, approx_rationalOfE, likelyMultiplier, i5, j2];
               }
             }
           }
@@ -2814,7 +2814,7 @@ var require_algebrite = __commonJS({
         return bestResultSoFar;
       };
       approxRationalsOfPowersOfPI = function(theFloat) {
-        var bestResultSoFar, complexity, error, hypothesis, i5, i12, j2, likelyMultiplier, minimumComplexity, numberOfDigitsAfterTheDot, o12, precision, ratio, result2, splitBeforeAndAfterDot;
+        var bestResultSoFar, complexity, error, hypothesis, i5, i12, j2, likelyMultiplier, minimumComplexity, numberOfDigitsAfterTheDot, o12, precision, ratio, result, splitBeforeAndAfterDot;
         splitBeforeAndAfterDot = theFloat.toString().split(".");
         if (splitBeforeAndAfterDot.length === 2) {
           numberOfDigitsAfterTheDot = splitBeforeAndAfterDot[1].length;
@@ -2841,8 +2841,8 @@ var require_algebrite = __commonJS({
               complexity = simpleComplexityMeasure(likelyMultiplier, i5, j2);
               if (complexity < minimumComplexity) {
                 minimumComplexity = complexity;
-                result2 = likelyMultiplier + " * (pi ^ " + i5 + " ) / " + j2 + " )";
-                bestResultSoFar = [result2, approx_rationalOfPi, likelyMultiplier, i5, j2];
+                result = likelyMultiplier + " * (pi ^ " + i5 + " ) / " + j2 + " )";
+                bestResultSoFar = [result, approx_rationalOfPi, likelyMultiplier, i5, j2];
               }
             }
           }
@@ -2870,7 +2870,7 @@ var require_algebrite = __commonJS({
         return null;
       };
       approxSineOfRationals = function(theFloat) {
-        var bestResultSoFar, complexity, error, fraction, hypothesis, i5, i12, j2, likelyMultiplier, minimumComplexity, numberOfDigitsAfterTheDot, o12, precision, ratio, result2, splitBeforeAndAfterDot;
+        var bestResultSoFar, complexity, error, fraction, hypothesis, i5, i12, j2, likelyMultiplier, minimumComplexity, numberOfDigitsAfterTheDot, o12, precision, ratio, result, splitBeforeAndAfterDot;
         splitBeforeAndAfterDot = theFloat.toString().split(".");
         if (splitBeforeAndAfterDot.length === 2) {
           numberOfDigitsAfterTheDot = splitBeforeAndAfterDot[1].length;
@@ -2898,8 +2898,8 @@ var require_algebrite = __commonJS({
               complexity = simpleComplexityMeasure(likelyMultiplier, i5, j2);
               if (complexity < minimumComplexity) {
                 minimumComplexity = complexity;
-                result2 = likelyMultiplier + " * sin( " + i5 + "/" + j2 + " )";
-                bestResultSoFar = [result2, approx_sine_of_rational, likelyMultiplier, i5, j2];
+                result = likelyMultiplier + " * sin( " + i5 + "/" + j2 + " )";
+                bestResultSoFar = [result, approx_sine_of_rational, likelyMultiplier, i5, j2];
               }
             }
           }
@@ -2907,7 +2907,7 @@ var require_algebrite = __commonJS({
         return bestResultSoFar;
       };
       approxSineOfRationalMultiplesOfPI = function(theFloat) {
-        var bestResultSoFar, complexity, error, fraction, hypothesis, i5, i12, j2, likelyMultiplier, minimumComplexity, numberOfDigitsAfterTheDot, o12, precision, ratio, result2, splitBeforeAndAfterDot;
+        var bestResultSoFar, complexity, error, fraction, hypothesis, i5, i12, j2, likelyMultiplier, minimumComplexity, numberOfDigitsAfterTheDot, o12, precision, ratio, result, splitBeforeAndAfterDot;
         splitBeforeAndAfterDot = theFloat.toString().split(".");
         if (splitBeforeAndAfterDot.length === 2) {
           numberOfDigitsAfterTheDot = splitBeforeAndAfterDot[1].length;
@@ -2935,8 +2935,8 @@ var require_algebrite = __commonJS({
               complexity = simpleComplexityMeasure(likelyMultiplier, i5, j2);
               if (complexity < minimumComplexity) {
                 minimumComplexity = complexity;
-                result2 = likelyMultiplier + " * sin( " + i5 + "/" + j2 + " * pi )";
-                bestResultSoFar = [result2, approx_sine_of_pi_times_rational, likelyMultiplier, i5, j2];
+                result = likelyMultiplier + " * sin( " + i5 + "/" + j2 + " * pi )";
+                bestResultSoFar = [result, approx_sine_of_pi_times_rational, likelyMultiplier, i5, j2];
               }
             }
           }
@@ -4663,13 +4663,13 @@ var require_algebrite = __commonJS({
         return p11.toJSNumber();
       };
       convert_rational_to_double = function(p11) {
-        var quotientAndRemainder, result2;
+        var quotientAndRemainder, result;
         if (p11.q == null) {
           debugger;
         }
         quotientAndRemainder = p11.q.a.divmod(p11.q.b);
-        result2 = quotientAndRemainder.quotient + quotientAndRemainder.remainder / p11.q.b.toJSNumber();
-        return result2;
+        result = quotientAndRemainder.quotient + quotientAndRemainder.remainder / p11.q.b.toJSNumber();
+        return result;
       };
       new_integer = function(n9) {
         var theNewInteger;
@@ -6953,12 +6953,12 @@ var require_algebrite = __commonJS({
         return restore();
       };
       dpow = function() {
-        var a5, b2, base, expo, result2, theta;
+        var a5, b2, base, expo, result, theta;
         a5 = 0;
         b2 = 0;
         base = 0;
         expo = 0;
-        result2 = 0;
+        result = 0;
         theta = 0;
         expo = pop_double();
         base = pop_double();
@@ -6966,11 +6966,11 @@ var require_algebrite = __commonJS({
           stop("divide by zero");
         }
         if (base >= 0 || expo % 1 === 0) {
-          result2 = Math.pow(base, expo);
-          push_double(result2);
+          result = Math.pow(base, expo);
+          push_double(result);
           return;
         }
-        result2 = Math.pow(Math.abs(base), expo);
+        result = Math.pow(Math.abs(base), expo);
         theta = Math.PI * expo;
         if (expo % 0.5 === 0) {
           a5 = 0;
@@ -6979,8 +6979,8 @@ var require_algebrite = __commonJS({
           a5 = Math.cos(theta);
           b2 = Math.sin(theta);
         }
-        push_double(a5 * result2);
-        push_double(b2 * result2);
+        push_double(a5 * result);
+        push_double(b2 * result);
         push(imaginaryunit);
         multiply();
         return add();
@@ -22699,7 +22699,7 @@ var require_algebrite = __commonJS({
         return findDependenciesInScript(codeFromAlgebraBlock, true)[6];
       };
       computeResultsAndJavaScriptFromAlgebra = function(codeFromAlgebraBlock) {
-        var code3, dependencyInfo, i5, keepState, l1, latexResult, len, len1, m1, originalcodeFromAlgebraBlock, readableSummaryOfCode, result2, stringToBeRun, testableStringIsIgnoredHere, timeStartFromAlgebra, userSimplificationsInProgramForm;
+        var code3, dependencyInfo, i5, keepState, l1, latexResult, len, len1, m1, originalcodeFromAlgebraBlock, readableSummaryOfCode, result, stringToBeRun, testableStringIsIgnoredHere, timeStartFromAlgebra, userSimplificationsInProgramForm;
         originalcodeFromAlgebraBlock = codeFromAlgebraBlock;
         keepState = true;
         called_from_Algebra_block = true;
@@ -22730,14 +22730,14 @@ var require_algebrite = __commonJS({
             console.log("codeFromAlgebraBlock including patterns: " + codeFromAlgebraBlock);
           }
         }
-        [testableStringIsIgnoredHere, result2, code3, readableSummaryOfCode, latexResult, errorMessage, dependencyInfo] = findDependenciesInScript(codeFromAlgebraBlock);
+        [testableStringIsIgnoredHere, result, code3, readableSummaryOfCode, latexResult, errorMessage, dependencyInfo] = findDependenciesInScript(codeFromAlgebraBlock);
         called_from_Algebra_block = false;
         if (readableSummaryOfCode !== "" || errorMessage !== "") {
-          result2 += "\n" + readableSummaryOfCode;
+          result += "\n" + readableSummaryOfCode;
           if (errorMessage !== "") {
-            result2 += "\n" + errorMessage;
+            result += "\n" + errorMessage;
           }
-          result2 = result2.replace(/\n/g, "\n\n");
+          result = result.replace(/\n/g, "\n\n");
           latexResult += "\n$$" + readableSummaryOfCode + "$$";
           if (errorMessage !== "") {
             latexResult += turnErrorMessageToLatex(errorMessage);
@@ -23089,7 +23089,7 @@ var require_algebrite = __commonJS({
         return data;
       };
       exec = function(name, ...argus) {
-        var argu, error, fn, l1, len, result2;
+        var argu, error, fn, l1, len, result;
         fn = get_binding(usr_symbol(name));
         check_stack();
         push(fn);
@@ -23102,14 +23102,14 @@ var require_algebrite = __commonJS({
         push(p1);
         try {
           top_level_eval();
-          result2 = pop();
+          result = pop();
           check_stack();
         } catch (error1) {
           error = error1;
           reset_after_error();
           throw error;
         }
-        return result2;
+        return result;
       };
       $.exec = exec;
       $.parse = parse;
@@ -23335,15 +23335,15 @@ var require_interval_tree = __commonJS({
       rebuild(node, intervals);
       return SUCCESS;
     }
-    proto.intervals = function(result2) {
-      result2.push.apply(result2, this.leftPoints);
+    proto.intervals = function(result) {
+      result.push.apply(result, this.leftPoints);
       if (this.left) {
-        this.left.intervals(result2);
+        this.left.intervals(result);
       }
       if (this.right) {
-        this.right.intervals(result2);
+        this.right.intervals(result);
       }
-      return result2;
+      return result;
     };
     proto.insert = function(interval2) {
       var weight = this.count - this.leftPoints.length;
@@ -23921,7 +23921,7 @@ var require_ms = __commonJS({
 // ../../../node_modules/debug/src/common.js
 var require_common = __commonJS({
   "../../../node_modules/debug/src/common.js"(exports2, module2) {
-    function setup2(env) {
+    function setup(env) {
       createDebug.debug = createDebug;
       createDebug.default = createDebug;
       createDebug.coerce = coerce;
@@ -24091,7 +24091,7 @@ var require_common = __commonJS({
       createDebug.enable(createDebug.load());
       return createDebug;
     }
-    module2.exports = setup2;
+    module2.exports = setup;
   }
 });
 
@@ -26442,8 +26442,8 @@ var NinjaKeys = class NinjaKeys2 extends s4 {
     this._headerRef.value.setSearch("");
     this._headerRef.value.focusSearch();
     if (action.handler) {
-      const result2 = action.handler(action);
-      if (!(result2 === null || result2 === void 0 ? void 0 : result2.keepOpen)) {
+      const result = action.handler(action);
+      if (!(result === null || result === void 0 ? void 0 : result.keepOpen)) {
         this.close();
       }
     }
@@ -32611,10 +32611,10 @@ function buffer_default() {
       if (lines.length > 1) lines.push(lines.pop().concat(lines.shift()));
     },
     result: function() {
-      var result2 = lines;
+      var result = lines;
       lines = [];
       line2 = null;
-      return result2;
+      return result;
     }
   };
 }
@@ -33558,9 +33558,9 @@ var PathString = class {
     }
   }
   result() {
-    const result2 = this._;
+    const result = this._;
     this._ = "";
-    return result2.length ? result2 : null;
+    return result.length ? result : null;
   }
 };
 function append3(strings) {
@@ -49250,8 +49250,7 @@ Mark.prototype.plot = function({ marks: marks2 = [], ...options } = {}) {
 
 // prebundle.js
 import { registerPatchworkViewElement } from "@inkandswitch/patchwork-elements";
-import { ModuleWatcher } from "@inkandswitch/patchwork-filesystem";
-import setup from "@inkandswitch/patchwork-bootloader";
+import { importModuleFromFolderDocUrl } from "@inkandswitch/patchwork-filesystem";
 import { registerPlugins, getRegistry } from "@inkandswitch/patchwork-plugins";
 
 // ../../../node_modules/@automerge/vanillajs/dist/slim.js
@@ -49858,9 +49857,9 @@ var IndexedDBStorageAdapter = class {
         reject(request.error);
       };
       request.onsuccess = (event) => {
-        const result2 = event.target.result;
-        if (result2 && typeof result2 === "object" && "binary" in result2) {
-          resolve(result2.binary);
+        const result = event.target.result;
+        if (result && typeof result === "object" && "binary" in result) {
+          resolve(result.binary);
         } else {
           resolve(void 0);
         }
@@ -49903,7 +49902,7 @@ var IndexedDBStorageAdapter = class {
     const transaction = db.transaction(this.store);
     const objectStore = transaction.objectStore(this.store);
     const request = objectStore.openCursor(range3);
-    const result2 = [];
+    const result = [];
     return new Promise((resolve, reject) => {
       transaction.onerror = () => {
         reject(request.error);
@@ -49911,13 +49910,13 @@ var IndexedDBStorageAdapter = class {
       request.onsuccess = (event) => {
         const cursor = event.target.result;
         if (cursor) {
-          result2.push({
+          result.push({
             data: cursor.value.binary,
             key: cursor.key
           });
           cursor.continue();
         } else {
-          resolve(result2);
+          resolve(result);
         }
       };
     });
@@ -50149,12 +50148,7 @@ var repo = new slim_exports.Repo({
   enableRemoteHeadsGossiping: true
 });
 window.repo = repo;
-var result = await setup();
-if (result?.port) {
-  repo.networkSubsystem.addNetworkAdapter(
-    new MessageChannelNetworkAdapter(result.port)
-  );
-}
+await navigator.serviceWorker.register("/service-worker.js", { type: "module" });
 await repo.networkSubsystem.whenReady();
 window.getRepoChannel = () => {
   const { port1, port2 } = new MessageChannel();
@@ -50180,39 +50174,58 @@ window.hazelWriteToDoc = async (docUrl, jsonString) => {
     console.error("hazelWriteToDoc error:", e11);
   }
 };
-var fallbackModules = [
+var moduleUrls = [
+  "automerge:43ry6vTh5A2doKmHgeKhyNxead61",
+  "automerge:36eA2C4SFzNKPnPjPAUHUpKJAAHG",
+  "automerge:3jBp3cskHWkTkCAMJAHfRC7mjTox",
   "automerge:3qXkpoGfWoyomfG8wTifhnzBEnpX",
   "automerge:L45rfzTVcMDsyXRyuhpNMPXqPwf",
-  "automerge:3Fj5zE7QdhbbWVJNsAHPbf84YfX6",
+  "automerge:2JwvUFqFGwxaZPu9CUDT5TBTq35M",
+  "automerge:5sEcRSQ771Lo63SbiJuwPTDNtzX",
+  "automerge:2bFZZwGF1hCN7336RuLLeMyqsH15",
+  "automerge:dhkuYMpSttbRJPBJ7J5XST28bu7",
+  "automerge:ovGdwzdUsBQij1yzMKp3hxATD4q",
+  "automerge:b5LT7iW7jjznmRdFiPmCz2vbx7H",
+  "automerge:qqqwgSzRjkdf6tG3fFmMDuTZUWo",
+  "automerge:3SbuS1ZvzSw1tRgXWiuhMVANysUM",
+  "automerge:2RZPBJVL6nenLKR4myKz6bsHqjsz",
+  "automerge:rerDfz4L6HS8hBu1BfGqAXvRViX",
+  "automerge:YG3YfBzfLc9JrWFZFDheLq7aXge",
+  "automerge:38bVH1cbYTqv5p2BpC5drJQLLLFL",
+  "automerge:4LpZgiCvBmUrqhoEK7fspCkp5jgh",
+  "automerge:2c1R47RtNU6rmWMZ6LePNfC7FUe2",
+  "automerge:58P7iJNhNTSSBn59Y9uLwWS6MAx",
+  "automerge:Qq3G9LB5bNHwSVJ6m29Tz8zgb4E",
+  "automerge:49gmqzzPJHSLc35MfCVCxWB86zo2",
+  "automerge:3gH1AZwy53dHX3mqxkdfN875J3HT",
+  "automerge:kFcrzeDmr5zXE1jShvxUPsoToAN",
+  "automerge:fqFhWUYy3sgb3LhTDi7k5hej6PW",
+  "automerge:5TNu5FZRLu3wnWaEQTL36fnXgNS",
+  "automerge:9FzfqZkzwhXGkj2RpfrhxrDPjPZ",
+  "automerge:3rxjo7nkqtnjyckeXvGDS9ELREC6",
+  "automerge:3XoX2JVTrw76KGuVUAK5AXcKXf56",
+  "automerge:4MCbKQoMiEnGXchaHRH3e7kxWXVs",
+  "automerge:6iXwddwF9cwrjmM5yqp2xUENxUY",
   "automerge:3phkB7HzGoQ67w2ahmj9gepELErw",
-  "automerge:Qq3G9LB5bNHwSVJ6m29Tz8zgb4E"
+  "automerge:27WwxXXqZKrjdS5weWCqiEjPenp3",
+  "automerge:3c61tPPwick8v75Sv9G33WjTji3R",
+  "automerge:Teq1HFmGFqc37ZM7YqU6Ym7hhKJ",
+  "automerge:3KLJcphTQpL3SAVhwYi2HYL5e9Fv",
+  "automerge:Fhp9tNtedR7zQ2pXd9ZJBBP1XqA"
 ];
-var moduleUrls = fallbackModules;
-try {
-  const registryUrl = "automerge:2LZBb891v37vggWYQPJRbYdyBGGE";
-  const handle = await repo.find(registryUrl);
-  const doc = handle.doc();
-  if (doc && Array.isArray(doc.modules) && doc.modules.length > 0) {
-    console.log("Loaded module URLs from registry:", doc.modules);
-    moduleUrls = doc.modules;
-  }
-} catch (e11) {
-  console.warn("Failed to read module registry, using fallback:", e11);
-}
-var moduleWatcher = new ModuleWatcher(
-  repo,
-  moduleUrls,
-  (name, mod2) => {
-    console.log("Module loaded:", name, mod2);
-    if (Array.isArray(mod2.plugins)) {
-      registerPlugins(mod2.plugins, name);
-    }
-  }
-);
-window.moduleWatcher = moduleWatcher;
-console.log("moduleWatcher", moduleWatcher);
 window.plugins = getRegistry("patchwork:tool");
-moduleWatcher.loadModules(moduleUrls);
+async function loadModule(url) {
+  try {
+    const mod2 = await importModuleFromFolderDocUrl(url);
+    console.log("Module loaded:", url, mod2);
+    if (Array.isArray(mod2.plugins)) {
+      registerPlugins(mod2.plugins, url);
+    }
+  } catch (e11) {
+    console.warn(`Failed to load module ${url}:`, e11);
+  }
+}
+moduleUrls.forEach(loadModule);
 registerPatchworkViewElement({ repo });
 document.addEventListener("focusin", (e11) => {
   if (e11.target && e11.target.closest && e11.target.closest("patchwork-view")) {
