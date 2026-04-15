@@ -50175,9 +50175,12 @@ window.hazelWriteToDoc = async (docUrl, jsonString) => {
   }
 };
 var moduleUrls = [
-  "automerge:43ry6vTh5A2doKmHgeKhyNxead61",
-  "automerge:36eA2C4SFzNKPnPjPAUHUpKJAAHG",
-  "automerge:3jBp3cskHWkTkCAMJAHfRC7mjTox",
+  // BAD
+  // "automerge:43ry6vTh5A2doKmHgeKhyNxead61",
+  // BAD
+  // "automerge:36eA2C4SFzNKPnPjPAUHUpKJAAHG",
+  // BAD
+  // "automerge:3jBp3cskHWkTkCAMJAHfRC7mjTox",
   "automerge:3qXkpoGfWoyomfG8wTifhnzBEnpX",
   "automerge:L45rfzTVcMDsyXRyuhpNMPXqPwf",
   "automerge:2JwvUFqFGwxaZPu9CUDT5TBTq35M",
@@ -50186,12 +50189,14 @@ var moduleUrls = [
   "automerge:dhkuYMpSttbRJPBJ7J5XST28bu7",
   "automerge:ovGdwzdUsBQij1yzMKp3hxATD4q",
   "automerge:b5LT7iW7jjznmRdFiPmCz2vbx7H",
-  "automerge:qqqwgSzRjkdf6tG3fFmMDuTZUWo",
+  // BAD
+  // "automerge:qqqwgSzRjkdf6tG3fFmMDuTZUWo",
   "automerge:3SbuS1ZvzSw1tRgXWiuhMVANysUM",
   "automerge:2RZPBJVL6nenLKR4myKz6bsHqjsz",
   "automerge:rerDfz4L6HS8hBu1BfGqAXvRViX",
   "automerge:YG3YfBzfLc9JrWFZFDheLq7aXge",
-  "automerge:38bVH1cbYTqv5p2BpC5drJQLLLFL",
+  // BAD
+  // "automerge:38bVH1cbYTqv5p2BpC5drJQLLLFL",
   "automerge:4LpZgiCvBmUrqhoEK7fspCkp5jgh",
   "automerge:2c1R47RtNU6rmWMZ6LePNfC7FUe2",
   "automerge:58P7iJNhNTSSBn59Y9uLwWS6MAx",
@@ -50201,14 +50206,17 @@ var moduleUrls = [
   "automerge:kFcrzeDmr5zXE1jShvxUPsoToAN",
   "automerge:fqFhWUYy3sgb3LhTDi7k5hej6PW",
   "automerge:5TNu5FZRLu3wnWaEQTL36fnXgNS",
-  "automerge:9FzfqZkzwhXGkj2RpfrhxrDPjPZ",
-  "automerge:3rxjo7nkqtnjyckeXvGDS9ELREC6",
+  // BAD
+  // "automerge:9FzfqZkzwhXGkj2RpfrhxrDPjPZ",
+  // BAD
+  // "automerge:3rxjo7nkqtnjyckeXvGDS9ELREC6",
   "automerge:3XoX2JVTrw76KGuVUAK5AXcKXf56",
   "automerge:4MCbKQoMiEnGXchaHRH3e7kxWXVs",
   "automerge:6iXwddwF9cwrjmM5yqp2xUENxUY",
   "automerge:3phkB7HzGoQ67w2ahmj9gepELErw",
   "automerge:27WwxXXqZKrjdS5weWCqiEjPenp3",
-  "automerge:3c61tPPwick8v75Sv9G33WjTji3R",
+  // BAD
+  // "automerge:3c61tPPwick8v75Sv9G33WjTji3R",
   "automerge:Teq1HFmGFqc37ZM7YqU6Ym7hhKJ",
   "automerge:3KLJcphTQpL3SAVhwYi2HYL5e9Fv",
   "automerge:Fhp9tNtedR7zQ2pXd9ZJBBP1XqA"
