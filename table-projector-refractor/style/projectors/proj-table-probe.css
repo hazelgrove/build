@@ -122,6 +122,24 @@
   margin-top: 5px;
 }
 
+/* When the rich-probe modal is open, pull the active sample menu into
+   normal flow so the modal's `top: 100%` anchor includes the menu's
+   height — modal stacks below the menu instead of overlapping it. */
+.projector.probe:has(.modal-backdrop)
+  .live-offside
+  .sample-context-menu.dropdown-active {
+  position: relative;
+}
+
+/* Top-align samples and sample-groups so the one growing to fit its
+   in-flow menu extends downward rather than shifting up relative to
+   its neighbors. */
+.projector.probe:has(.modal-backdrop) .live-offside,
+.projector.probe:has(.modal-backdrop) .live-offside .sample-groups,
+.projector.probe:has(.modal-backdrop) .live-offside .sample-group {
+  align-items: flex-start;
+}
+
 .modal-backdrop.live-offside .modal {
   background-color: var(--df-bg);
   border-radius: 8px;
@@ -129,6 +147,29 @@
   padding: 0;
   overflow: visible;
   pointer-events: auto;
+  position: relative;
+}
+
+.modal-backdrop.live-offside .modal .modal-close-btn {
+  position: absolute;
+  top: 0;
+  right: -18px;
+  width: 16px;
+  height: 16px;
+  line-height: 14px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--BR2);
+  cursor: pointer;
+  user-select: none;
+  /* Must exceed .table th z-index (projector-z + 1) so the button
+     stays visible if it ever overlaps sticky headers. */
+  z-index: calc(var(--projector-z) + 10);
+}
+
+.modal-backdrop.live-offside .modal .modal-close-btn:hover {
+  color: var(--R1);
 }
 
 .modal .table th {
