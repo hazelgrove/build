@@ -1,5 +1,15 @@
 /* Chat Messages View Styles */
 
+/* Force text selection/copy everywhere inside the agent chat view, overriding
+   any per-element `user-select: none` declarations (buttons, headers, etc.). */
+.chat-view-container,
+.chat-view-container * {
+  user-select: text !important;
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+}
+
 .chat-messages-view {
   display: flex;
   flex-direction: column;
@@ -130,6 +140,39 @@
   -moz-user-select: text;
   -ms-user-select: text;
   cursor: text;
+}
+
+.agent-thinking-block {
+  margin-bottom: 0.5em;
+  padding-left: 0.5em;
+  border-left: 2px solid var(--STONE);
+  border-left-color: rgba(128, 128, 128, 0.3);
+}
+
+.agent-thinking-header {
+  font-size: 0.78em;
+  font-weight: 700;
+  font-style: normal;
+  color: var(--STONE);
+  opacity: 0.75;
+  margin-bottom: 0.25em;
+  user-select: text;
+}
+
+.agent-thinking-text {
+  font-size: 0.78em;
+  font-style: italic;
+  color: var(--STONE);
+  opacity: 0.65;
+  line-height: 1.4;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.agent-thinking-text .agent-message-markdown {
+  white-space: normal;
 }
 
 /* Markdown inside Filbert replies (Omd → vdom) */
@@ -307,6 +350,252 @@
   margin: 0.2em 0 0.35em;
 }
 
+/* Inline output of a chat slash command (/cost, /credits, /usage, /help).
+   Each variant has its own .slash-card-<kind> for accent colors; shared layout below. */
+.slash-command-output-message-container {
+  justify-content: stretch;
+}
+
+.slash-card {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0.5em 0;
+  padding: 0.7em 0.9em;
+  background: var(--main-bkg, rgba(255, 255, 255, 0.55));
+  border: 0.5px solid var(--BR3, var(--STONE));
+  border-left: 3px solid var(--BR2, var(--STONE));
+  border-radius: 6px;
+  text-align: left;
+  font-size: 0.92em;
+  color: var(--STONE);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.slash-card-cost {
+  border-left-color: var(--YELLOW, #c79c2c);
+}
+.slash-card-credits {
+  border-left-color: var(--GREEN, #4a8c5e);
+}
+.slash-card-usage {
+  border-left-color: var(--BLUE, #4a6f8c);
+}
+.slash-card-help {
+  border-left-color: var(--BR2, var(--STONE));
+}
+.slash-card-key {
+  border-left-color: var(--STONE);
+}
+.slash-key-value {
+  display: block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-all;
+}
+.slash-key-code {
+  display: inline-block;
+  max-width: 100%;
+  font-size: 0.82em;
+  padding: 0.25em 0.45em;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+  overflow-wrap: anywhere;
+  word-break: break-all;
+  white-space: normal;
+  color: var(--STONE);
+}
+.slash-card-error {
+  border-left-color: var(--RED, #b04848);
+  background: rgba(176, 72, 72, 0.06);
+}
+
+.slash-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.45em;
+  border-bottom: 0.5px solid var(--BR3, var(--STONE));
+  padding-bottom: 0.35em;
+}
+
+.slash-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.3em;
+  height: 1.3em;
+  border-radius: 50%;
+  background: var(--BR3, var(--STONE));
+  color: var(--main-bkg, #fff);
+  font-weight: 700;
+  font-size: 0.85em;
+  line-height: 1;
+}
+.slash-card-cost .slash-card-icon {
+  background: var(--YELLOW, #c79c2c);
+}
+.slash-card-credits .slash-card-icon {
+  background: var(--GREEN, #4a8c5e);
+}
+.slash-card-usage .slash-card-icon {
+  background: var(--BLUE, #4a6f8c);
+}
+.slash-card-error .slash-card-icon {
+  background: var(--RED, #b04848);
+}
+
+.slash-card-title {
+  font-weight: 600;
+  font-size: 0.95em;
+  letter-spacing: 0.02em;
+}
+
+.slash-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45em;
+}
+
+.slash-card-note {
+  font-size: 0.82em;
+  color: var(--STONE);
+  opacity: 0.85;
+  font-style: italic;
+}
+
+.slash-card-footer {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4em;
+  font-size: 0.82em;
+  color: var(--STONE);
+}
+.slash-card-footer-label {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.75;
+}
+.slash-card-footer-value {
+  font-family: var(--font-mono, monospace);
+}
+
+/* Three-up tile row used by /cost and /credits */
+.slash-stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5em;
+}
+
+.slash-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+  padding: 0.45em 0.55em;
+  background: rgba(0, 0, 0, 0.035);
+  border-radius: 4px;
+  min-width: 0;
+}
+
+.slash-stat-label {
+  font-size: 0.72em;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--STONE);
+  opacity: 0.8;
+}
+
+.slash-stat-value {
+  font-family: var(--font-mono, monospace);
+  font-size: 1.05em;
+  font-weight: 600;
+  color: var(--STONE);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.slash-stat-accent .slash-stat-value {
+  color: var(--BR1);
+}
+.slash-card-cost .slash-stat-accent .slash-stat-value {
+  color: var(--YELLOW, #c79c2c);
+}
+.slash-card-credits .slash-stat-accent .slash-stat-value {
+  color: var(--GREEN, #4a8c5e);
+}
+
+/* Used/total bar under /credits */
+.slash-progress {
+  width: 100%;
+  height: 6px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.slash-progress-fill {
+  height: 100%;
+  background: var(--GREEN, #4a8c5e);
+}
+
+/* Key-value grid used by /usage */
+.slash-kv-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.05em;
+}
+.slash-kv {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.3em 0.45em;
+  border-bottom: 0.5px solid var(--BR3, rgba(0, 0, 0, 0.07));
+}
+.slash-kv:last-child {
+  border-bottom: none;
+}
+.slash-kv-key {
+  font-size: 0.85em;
+  color: var(--STONE);
+  opacity: 0.8;
+  text-transform: lowercase;
+}
+.slash-kv-value {
+  font-family: var(--font-mono, monospace);
+  font-weight: 500;
+  color: var(--STONE);
+}
+.slash-kv-strong .slash-kv-value {
+  font-weight: 700;
+  font-size: 1.02em;
+}
+
+/* /help command list */
+.slash-help-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+}
+.slash-help-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6em;
+  padding: 0.2em 0;
+}
+.slash-help-cmd {
+  font-family: var(--font-mono, monospace);
+  font-weight: 600;
+  color: var(--STONE);
+  background: rgba(0, 0, 0, 0.05);
+  padding: 0.1em 0.45em;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.slash-help-desc {
+  font-size: 0.9em;
+  color: var(--STONE);
+}
+
 /* Input Container at Bottom */
 .chat-input-container {
   padding: 0.8em 1em;
@@ -404,6 +693,14 @@
   background-color: var(--context-meter-fill);
   min-width: 0;
   transition: width 0.2s ease;
+}
+
+.token-context-meter-pct {
+  font-family: monospace;
+  font-size: 0.72em;
+  color: var(--BR4);
+  text-align: center;
+  line-height: 1.25;
 }
 
 /* Toast notification for copy */
@@ -951,14 +1248,249 @@
   animation: jello 0.6s ease 0s 1 normal forwards;
 }
 
+/* Reasoning effort dropup — sits in the bottom-bar action row */
+.reasoning-effort-dropup {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  outline: none;
+}
+
+.reasoning-effort-button {
+  font-size: 11px;
+  font-family: var(--code-font);
+  color: var(--STONE);
+  opacity: 0.85;
+  padding: 2px 6px;
+  border: 1px solid var(--BR2);
+  border-radius: 3px;
+  background-color: var(--SAND);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: opacity 0.15s ease, border-color 0.15s ease;
+}
+
+.reasoning-effort-button:hover {
+  opacity: 1;
+  border-color: var(--BR3);
+}
+
+/* Plain text "change model" button — same font as the reasoning button,
+   no border/background so it reads as a hoverable label. */
+.chat-input-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2px;
+  user-select: none;
+}
+
+.chat-input-top-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.chat-input-top-bar-right {
+  display: flex;
+  align-items: center;
+}
+
+.session-mode-toggle {
+  font-size: 11px;
+  line-height: 1;
+  font-family: var(--code-font);
+  font-weight: 600;
+  padding: 2px 4px;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: opacity 0.15s ease;
+  opacity: 0.85;
+}
+
+.session-mode-toggle:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.session-mode-converse {
+  color: #2e8b57;
+}
+
+.session-mode-edit {
+  color: #8a2be2;
+}
+
+.session-mode-plan {
+  color: #1f6feb;
+}
+
+.session-mode-info {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: help;
+}
+
+.session-mode-info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  color: var(--STONE);
+  opacity: 0.5;
+  transition: opacity 0.15s ease;
+}
+
+.session-mode-info-icon svg {
+  width: 12px;
+  height: 12px;
+  fill: currentColor;
+}
+
+.session-mode-info:hover .session-mode-info-icon {
+  opacity: 1;
+}
+
+.session-mode-info-tooltip {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 0;
+  display: none;
+  width: 320px;
+  max-width: 320px;
+  padding: 8px 10px;
+  font-size: 11px;
+  line-height: 1.4;
+  font-family: var(--code-font);
+  color: var(--STONE);
+  background: var(--SAND);
+  border: 1px solid var(--BR2);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  z-index: 100;
+  white-space: normal;
+  pointer-events: none;
+}
+
+.session-mode-info:hover .session-mode-info-tooltip {
+  display: block;
+}
+
+.change-model-button {
+  font-size: 11px;
+  line-height: 1;
+  font-family: var(--code-font);
+  color: var(--STONE);
+  opacity: 0.7;
+  padding: 0 4px;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: opacity 0.15s ease;
+}
+
+.change-model-button:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.change-model-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2px;
+}
+
+.change-model-current-name {
+  font-size: 11px;
+  line-height: 1;
+  font-family: var(--code-font);
+  color: var(--STONE);
+  opacity: 0.5;
+  padding: 0 4px;
+  user-select: none;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.reasoning-effort-menu {
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 0;
+  display: none;
+  flex-direction: column;
+  background: var(--SAND);
+  border: 1px solid var(--BR2);
+  border-radius: 3px;
+  min-width: 80px;
+  z-index: 50;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* Click button → dropup gets focus → menu opens.
+   Click outside → focus leaves → menu closes. Selection blurs explicitly. */
+.reasoning-effort-dropup:focus-within .reasoning-effort-menu {
+  display: flex;
+}
+
+.reasoning-effort-menu-item {
+  font-size: 11px;
+  font-family: var(--code-font);
+  color: var(--STONE);
+  padding: 4px 8px;
+  cursor: pointer;
+  opacity: 0.85;
+}
+
+.reasoning-effort-menu-item:hover {
+  background: var(--BR1);
+  opacity: 1;
+}
+
+.reasoning-effort-menu-item.selected {
+  color: var(--BR3);
+  opacity: 1;
+}
+
 .chat-message-input-container {
   position: relative;
   width: 100%;
   max-width: 100%;
   display: flex;
-  flex-direction: row;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: stretch;
   gap: 0;
+  border-radius: 8px;
+  border: 0.6px solid var(--BR2);
+  background-color: var(--SAND);
+  overflow: visible;
+}
+
+.chat-message-input-container:hover,
+.chat-message-input-container:focus-within {
+  border-color: var(--BR3);
+}
+
+/* Thin in-composer bottom bar: dropup left, send/stop right. */
+.chat-input-bottom-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 6px;
+  min-height: 24px;
+}
+
+.chat-input-bottom-bar-left,
+.chat-input-bottom-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 /* Slash commands: palette above the composer (triggered by typing "/") */
@@ -1011,12 +1543,10 @@
 .chat-message-input {
   width: 100%;
   padding: 0.6em 0.8em;
-  padding-right: 4.25em; /* send and/or queue+stop inside composer */
-  border-radius: 8px;
-  border: 0.6px solid var(--BR2);
+  border-radius: 8px 8px 0 0;
+  border: none;
   background-color: var(--SAND);
   color: var(--STONE);
-  /* font-family: var(--code-font); */
   font-size: 0.9em;
   line-height: 1.4;
   resize: none;
@@ -1025,25 +1555,6 @@
   max-height: 200px;
   box-sizing: border-box;
   outline: none;
-  transition: border-color 0.15s ease, background-color 0.15s ease;
-}
-
-/* Only the textarea is in normal flow; send/stop are position:absolute */
-.chat-message-input-container > .chat-message-input {
-  flex: 1;
-  min-width: 0;
-  width: auto;
-}
-
-.chat-message-input:hover {
-  border-color: var(--BR3);
-  background-color: var(--SAND);
-}
-
-.chat-message-input:focus {
-  border-color: var(--BR3);
-  background-color: var(--SAND);
-  outline: 0.6px solid var(--BR3);
 }
 
 .chat-message-input::placeholder {
@@ -1150,11 +1661,9 @@
   background-color: var(--T3);
 }
 
-/* Chat message send button - positioned inside textarea, bottom right */
+/* Chat message send button - sits in the in-composer bottom bar (right side). */
 .chat-message-input-container .chat-message-send-button {
-  position: absolute;
-  bottom: 0.6em;
-  right: 0.35em;
+  position: static;
   width: 20px;
   height: 20px;
   border: 0.75px solid var(--BR3);
@@ -1167,7 +1676,6 @@
   line-height: 0;
   padding: 0;
   fill: var(--STONE);
-  z-index: 10;
   pointer-events: auto;
 }
 
@@ -1193,11 +1701,9 @@
   background-color: var(--T3);
 }
 
-/* Stop — same slot and size as .chat-message-send-button (inside composer) */
+/* Stop — same size as .chat-message-send-button (in the bottom bar). */
 .chat-message-input-container .chat-message-stop-button {
-  position: absolute;
-  bottom: 0.6em;
-  right: 0.35em;
+  position: static;
   width: 20px;
   height: 20px;
   border: 0.75px solid var(--BR3);
@@ -1210,7 +1716,6 @@
   line-height: 0;
   padding: 0;
   fill: var(--STONE);
-  z-index: 11;
   pointer-events: auto;
 }
 
@@ -1228,11 +1733,9 @@
   background-color: var(--T3);
 }
 
-/* Queue send (while busy) — sits left of the stop button */
+/* Queue send (while busy) — sits left of the stop button in the bottom bar. */
 .chat-message-input-container .chat-message-queue-send-button {
-  position: absolute;
-  bottom: 0.6em;
-  right: 2.35em;
+  position: static;
   width: 20px;
   height: 20px;
   border: 0.75px solid var(--BR3);
@@ -1245,7 +1748,6 @@
   line-height: 0;
   padding: 0;
   fill: var(--STONE);
-  z-index: 11;
   pointer-events: auto;
 }
 
@@ -1354,28 +1856,30 @@
   fill: var(--BR3);
 }
 
-/* Tool Calls Display */
+/* Tool Calls Display — plain-text row that expands when clicked. */
 .agent-tool-call-inline {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-  border: 0.6px solid var(--BR2);
-  border-radius: 4px;
-  background-color: var(--T2);
-  overflow: hidden;
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
   position: relative;
   width: 100%;
 }
 
-.agent-tool-call-inline::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 2px;
-  height: 0.75em;
-  background-color: var(--BR2);
-  z-index: 1;
+.agent-tool-call-inline.stale .tool-call-signifier {
+  opacity: 0.5;
+}
+
+/* Visually group consecutive tool calls produced by the same LLM turn (batch).
+   A thin left border brackets the rows; tighter vertical spacing within. */
+.agent-tool-call-batch {
+  border-left: 2px solid var(--BR2);
+  padding-left: 0.5em;
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+.agent-tool-call-batch .agent-tool-call-inline {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
 }
 
 /* Edit Summary Display */
@@ -1676,33 +2180,42 @@
 .tool-call-header {
   display: flex;
   align-items: center;
-  gap: 0.5em;
-  padding: 0.5em 0.75em;
+  gap: 0.4em;
+  padding: 0;
   cursor: pointer;
-  transition: background-color 0.15s ease;
   user-select: none;
+  line-height: 1.4;
 }
 
-.tool-call-header:hover {
-  background-color: var(--T3);
+.tool-call-category-icon {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--STONE);
 }
 
-.tool-call-header.expanded {
-  border-bottom: 0.6px solid var(--BR2);
+.tool-call-category-icon svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
 }
 
 .tool-call-status-icon {
   flex-shrink: 0;
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
+  margin-left: auto;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .tool-call-status-icon svg {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
 }
 
 .tool-call-status-icon.tool-call-success {
@@ -1722,15 +2235,28 @@
   font-size: 0.85em;
   color: var(--STONE);
   font-weight: 500;
-  flex: 1;
+  font-family: var(--code-font);
+}
+
+.tool-call-signifier {
+  font-size: 0.8em;
+  color: var(--BR3);
+  font-family: var(--code-font);
+  opacity: 0.8;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+  flex: 1 1 auto;
 }
 
 .tool-call-content {
-  padding: 0.75em;
+  padding: 0;
+  padding-left: 1.25em;
+  margin-top: 0.25em;
   display: flex;
   flex-direction: column;
-  gap: 0.75em;
-  background-color: var(--T1);
+  gap: 0.5em;
 }
 
 .tool-call-args,
@@ -1756,10 +2282,7 @@
   font-family: var(--code-font);
   white-space: pre-wrap;
   word-break: break-word;
-  padding: 0.5em;
-  background-color: var(--T2);
-  border-radius: 3px;
-  border: 0.6px solid var(--BR2);
+  padding: 0;
   user-select: text;
   -webkit-user-select: text;
   -moz-user-select: text;
