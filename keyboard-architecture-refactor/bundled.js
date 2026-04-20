@@ -25454,7 +25454,8 @@
   var import_algebrite = __toESM(require_algebrite());
   window.Algebrite = import_algebrite.default;
   hotkeys_esm_default.filter = (event) => {
-    const target = event.target || event.srcElement;
+    const path = typeof event.composedPath === "function" ? event.composedPath() : [];
+    const target = path[0] || event.target || event.srcElement;
     const { tagName, id } = target;
     if (id == "clipboard-shim") {
       return true;
