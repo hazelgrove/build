@@ -1540,45 +1540,26 @@
   font-size: 0.95em;
 }
 
-/* The composer is now a contenteditable <div> (see AgentComposerInput.re).
-   min/max-height + overflow give it the same auto-growing-to-a-cap feel
-   the old <textarea> had. font-family is set explicitly because a <div>
-   inherits from body (sans-serif here) whereas <textarea> had a UA
-   default of platform monospace — we preserve that old feel. A
-   JS-toggled .is-empty class paints the placeholder; :empty is unusable
-   because browsers insert stray <br>s into contenteditable after clear.
-   position:relative anchors the absolute-positioned placeholder so the
-   caret sits at the real text origin and isn't pushed past the
-   pseudo-content the way it would be if the ::before were in-flow. */
 .chat-message-input {
-  position: relative;
   width: 100%;
   padding: 0.6em 0.8em;
   border-radius: 8px 8px 0 0;
   border: none;
   background-color: var(--SAND);
   color: var(--STONE);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    monospace;
-  font-size: 0.8em;
+  font-size: 0.9em;
   line-height: 1.4;
+  resize: none;
+  overflow-y: auto;
   min-height: 2.5em;
   max-height: 200px;
-  overflow-y: auto;
   box-sizing: border-box;
   outline: none;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
 }
 
-.chat-message-input.is-empty::before {
-  content: attr(data-placeholder);
-  position: absolute;
-  top: 0.6em;
-  left: 0.8em;
+.chat-message-input::placeholder {
   color: var(--BR2);
   opacity: 0.6;
-  pointer-events: none;
 }
 
 /* Send Button - Small circular hollow button */
@@ -3018,178 +2999,5 @@
   font-weight: 600;
   color: var(--BR3);
   padding: 0 0.1em;
-}
-
-/* =========================================================================
-   Inline annotations
-   =========================================================================
-   Flow: user selects text in an agent message → mouseup captures a
-   pending_selection with container-relative coords → pressing Enter (outside
-   any input/textarea) finalizes it into a draft annotation → an inline
-   textbox is rendered at those coords inside .chat-messages-container,
-   absolute-positioned directly under the last line of the selection. On send,
-   each draft annotation is serialized as a blockquote above the user's
-   message and the draft list is cleared.
-   ========================================================================= */
-
-/* Inline annotation textbox — rendered as a block inside the target agent
-   message (appended after the rendered markdown), so the surrounding text
-   flows normally instead of being overlaid. Styled to match
-   .chat-message-input (same SAND bg, STONE text, same shape) at a slightly
-   smaller font-size. Default height is one line. */
-.annotation-inline-textbox-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 0.25em;
-  margin-top: 0.45em;
-  width: min(26em, 100%);
-  padding: 0.35em 0.55em;
-  background: var(--SAND);
-  color: var(--STONE);
-  border: 0.6px solid var(--BR2);
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-}
-
-.annotation-inline-textbox {
-  flex: 1 1 auto;
-  width: 100%;
-  padding: 0;
-  border: none;
-  background: transparent;
-  color: var(--STONE);
-  font-family: inherit;
-  font-size: 0.78em;
-  line-height: 1.4;
-  resize: none;
-  overflow-y: auto;
-  min-height: 1.4em;
-  max-height: 160px;
-  box-sizing: border-box;
-  outline: none;
-}
-
-.annotation-inline-textbox::placeholder {
-  color: var(--BR2);
-  opacity: 0.6;
-}
-
-.annotation-inline-textbox-remove {
-  flex: 0 0 auto;
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.4em;
-  height: 1.4em;
-  cursor: pointer;
-  user-select: none;
-  line-height: 1;
-  color: var(--BR2);
-  border-radius: 50%;
-}
-
-.annotation-inline-textbox-remove:hover {
-  color: var(--STONE);
-  background: var(--T2);
-}
-
-/* Inline annotation "pills" inside the contenteditable composer: atomic
-   <span contenteditable="false"> tokens rendered in-flow with the user's
-   text (Cursor-style). Browser handles them as a single-character atom
-   for caret movement + Backspace deletion. */
-.chat-message-input .chat-annotation-pill {
-  display: inline-flex;
-  align-items: center;
-  padding: 0 0.5em;
-  margin: 0 0.15em;
-  background: var(--T1);
-  border: 0.6px solid var(--BR2);
-  border-radius: 999px;
-  font-size: 0.82em;
-  font-weight: 600;
-  color: var(--BR2);
-  letter-spacing: 0.03em;
-  line-height: 1.5;
-  white-space: nowrap;
-  user-select: none;
-  vertical-align: middle;
-  cursor: pointer;
-}
-
-.chat-message-input .chat-annotation-pill:hover {
-  background: var(--T2);
-  color: var(--STONE);
-}
-
-/* × remove button inside a pill: hidden by default, revealed when the user
-   hovers the pill. Sits to the right of the label. */
-.chat-message-input .chat-annotation-pill-label {
-  display: inline;
-}
-
-.chat-message-input .chat-annotation-pill-remove {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.15em;
-  height: 1.15em;
-  margin-left: 0.3em;
-  border-radius: 50%;
-  line-height: 1;
-  color: var(--BR2);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.1s ease-in-out;
-}
-
-.chat-message-input .chat-annotation-pill:hover .chat-annotation-pill-remove {
-  opacity: 0.9;
-  pointer-events: auto;
-}
-
-.chat-message-input .chat-annotation-pill-remove:hover {
-  background: var(--T3, var(--T2));
-  color: var(--STONE);
-  opacity: 1;
-}
-
-/* Draw the × with two pseudo-element lines crossing through the centre of
-   the circular remove button. Pixel-perfect centring, unlike the raw "×"
-   glyph whose vertical metrics sit low in most fonts. Shared between the
-   inline-composer pill-remove and the annotation-comment textbox remove. */
-.chat-message-input .chat-annotation-pill-remove::before,
-.chat-message-input .chat-annotation-pill-remove::after,
-.annotation-inline-textbox-remove::before,
-.annotation-inline-textbox-remove::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  height: 1.25px;
-  border-radius: 1px;
-  background: currentColor;
-}
-
-.chat-message-input .chat-annotation-pill-remove::before,
-.chat-message-input .chat-annotation-pill-remove::after {
-  width: 60%;
-}
-
-.annotation-inline-textbox-remove::before,
-.annotation-inline-textbox-remove::after {
-  width: 52%;
-}
-
-.chat-message-input .chat-annotation-pill-remove::before,
-.annotation-inline-textbox-remove::before {
-  transform: translate(-50%, -50%) rotate(45deg);
-}
-
-.chat-message-input .chat-annotation-pill-remove::after,
-.annotation-inline-textbox-remove::after {
-  transform: translate(-50%, -50%) rotate(-45deg);
 }
 
