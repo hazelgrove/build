@@ -25455,10 +25455,14 @@
   window.Algebrite = import_algebrite.default;
   hotkeys_esm_default.filter = (event) => {
     const path = typeof event.composedPath === "function" ? event.composedPath() : [];
-    const target = path[0] || event.target || event.srcElement;
+    const target = event.target || event.srcElement;
     const { tagName, id } = target;
     if (id == "clipboard-shim") {
       return true;
+    }
+    const inNinjaKeys = path.some((el) => el && el.tagName === "NINJA-KEYS");
+    if (inNinjaKeys) {
+      return ["Escape", "Enter", "ArrowUp", "ArrowDown", "Backspace", "Tab"].includes(event.key);
     }
     let flag2 = true;
     const isInput = tagName === "INPUT" && !["checkbox", "radio", "range", "button", "file", "reset", "submit", "color"].includes(target.type);
