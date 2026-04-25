@@ -15,7 +15,17 @@
 #main .code-editor {
   /* Only code in primary editor is selectable atm */
   cursor: text;
+  flex-direction: row;
+  padding-left: 1em;
+  /* Suppress browser focus outline — editors use tabindex for keyboard
+   * focus but have their own visual selection indicators */
+  outline: none;
 }
+
+#main .code-editor.has-line-numbers{
+  padding-left: 0;
+}
+
 
 #main.Scratch,
 #main.Documentation {
@@ -23,12 +33,12 @@
 }
 
 :is(#main.Scratch,
-#main.Documentation) > * > .code-editor {
+#main.Documentation):not(.Derivations) > * > .code-editor {
   background-color: var(--cell-active);
 }
 
-#main.Scratch .cell,
-#main.Documentation .cell {
+:is(#main.Scratch,
+#main.Documentation):not(.Derivations) .cell {
   flex-grow: 1;
 }
 
@@ -43,6 +53,12 @@
   gap: 1.2em;
   background-color: var(--ui-bkg);
   scrollbar-color: var(--main-scroll-thumb) var(--NONE);
+}
+
+/* Derivation slides inside the unified Scratch/Documentation modes
+   must not inherit the flex-grow applied to code scratchpad cells. */
+#main.Derivations > .cell {
+  flex: 0 0 auto;
 }
 
 #main.Tutorial .cell,
@@ -60,8 +76,7 @@
   flex-direction: column;
 }
 
-.cell>* {
-  padding-left: 1em;
+.cell > * {
   padding: 1em;
   padding-left: 1.2em;
 }
@@ -241,6 +256,21 @@
 
 .prompt-content {
   font-size: 1rem;
+}
+
+/* Markdown paragraphs inside a prompt. Each blank line in the source
+   produces its own <p>; we space them modestly and trim the outer
+   margins so the prompt cell doesn't pick up extra padding. */
+.prompt-content p {
+  margin: 0.5em 0;
+}
+
+.prompt-content p:first-child {
+  margin-top: 0;
+}
+
+.prompt-content p:last-child {
+  margin-bottom: 0;
 }
 
 #main.Tutorial .cell:has(.code-editor.selected),
