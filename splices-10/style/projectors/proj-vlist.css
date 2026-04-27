@@ -1,0 +1,70 @@
+/* Vertical-list projector
+ *
+ * A simple stack of splice editors with +/- buttons. */
+
+.projector .vlist {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 2px;
+}
+
+.projector .vlist-buttons {
+  display: flex;
+  gap: 4px;
+  justify-content: flex-end;
+}
+
+.projector .vlist-btn {
+  width: 1.5em;
+  height: 1.5em;
+  font: inherit;
+  cursor: pointer;
+  border: 1px solid var(--BG4);
+  background: var(--BG1);
+  color: var(--F1);
+  border-radius: 3px;
+  line-height: 1;
+  padding: 0;
+}
+
+.projector .vlist-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.projector .vlist-row {
+  display: flex;
+  align-items: center;
+}
+
+/* Splice editor viewport
+ *
+ * Splice divs are the positioning context for their inner caret,
+ * selection, indication, and error decorations. All such decorations
+ * are CSS-absolutely-positioned using pixel coordinates derived from
+ * splice-local text grid coordinates. */
+
+.splice-container {
+  position: relative;
+  display: inline-block;
+  min-width: 2em;
+  min-height: 1em;
+  cursor: text;
+}
+
+.projector .vlist .splice-container.inline-editor-wrapper {
+  padding: 0.15em 0.45em;
+}
+
+.splice-container > .code {
+  position: relative;
+}
+
+.splice-container > .code-deco {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
