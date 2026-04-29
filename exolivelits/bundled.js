@@ -48627,10 +48627,15 @@ ${extraStyle}`
   window.Algebrite = import_algebrite.default;
   window.Plot = src_exports;
   hotkeys_esm_default.filter = (event) => {
+    const path2 = typeof event.composedPath === "function" ? event.composedPath() : [];
     const target = event.target || event.srcElement;
     const { tagName, id: id2 } = target;
     if (id2 == "clipboard-shim") {
       return true;
+    }
+    const inNinjaKeys = path2.some((el) => el && el.tagName === "NINJA-KEYS");
+    if (inNinjaKeys) {
+      return ["Escape", "Enter", "ArrowUp", "ArrowDown", "Backspace", "Tab"].includes(event.key);
     }
     let flag2 = true;
     const isInput = tagName === "INPUT" && ![
