@@ -1,0 +1,244 @@
+/* PROJECTOR: Rich Probes for Tables */
+
+/* Empty hole indicator in table headers */
+.table th .empty-hole {
+    width: 0.6em;
+    height: 0.6em;
+    vertical-align: middle;
+}
+
+/* Closure Navigation Buttons in Table Header */
+.closure-nav-button {
+    cursor: pointer;
+    padding: 2px 6px;
+    margin: 0 4px;
+    border-radius: 3px;
+    background-color: var(--df-header-bg);
+    color: var(--BR2);
+    font-size: 14px;
+    transition: all 0.2s ease;
+    user-select: none;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.closure-nav-button:hover {
+    background-color: var(--df-hover-bg);
+    transform: scale(1.05);
+}
+
+.closure-nav-button:active {
+    transform: scale(0.95);
+}
+
+/* Column Menu */
+.column-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--df-bg);
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: calc(var(--projector-z) + 2);
+    min-width: 120px;
+}
+
+.menu-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    color: var(--BR2);
+}
+
+.menu-item:hover {
+    background-color: var(--df-hover-bg);
+}
+
+.column-menu .menu-divider {
+    height: 0.6px;
+    background: var(--menu-divider, #ddd);
+    margin: 6px 0.5em;
+}
+
+/* === Inline rich-probe rendering ===
+ *
+ * When a rich probe is active, ProbeProj.value_view replaces the
+ * sample's value seg with the rich renderer's output (a table, a card,
+ * future renderers, ...). We need to (a) show the user this is the
+ * sample's dynamic value, and (b) keep that styling out of each
+ * renderer's CSS so adding new rich probes is friction-free.
+ *
+ * Strategy: drop .value's full background-color override and frame the
+ * rich content with a thin RING in the sample's state color, sourced
+ * from the CSS variable `--bottom-border-clr` that proj-probe.css
+ * already maintains per sample-focus state on every .live-offside
+ * .sample. Each rich probe just renders its content into .value.rich;
+ * the ring appears automatically. No per-renderer cell-bg overrides,
+ * no padding tricks, no pseudo-elements. */
+
+.live-offside .value.rich {
+  /* Drop the .value's full bg fill — we don't want it bleeding behind
+     a tall multi-row table or wide hand. The state coloring comes from
+     the ring below instead. */
+  background-color: transparent !important;
+  /* State-aware ring. --bottom-border-clr is set on .live-offside
+     .sample per state (focus/related/tangent/indet/...) and falls
+     back to `none` for the neutral case, which CSS treats as "no
+     color" — so an unfocused sample gets no visible ring. */
+  outline: 2px solid var(--bottom-border-clr, transparent);
+  outline-offset: 0;
+  border-radius: 4px;
+  /* Size to content; let cards/hands flow naturally without clipping. */
+  display: inline-block;
+  overflow: visible;
+}
+
+/* --- Per-renderer mechanical fixes (NOT coloring) --- */
+
+/* CardRenderer reuses CardProj's `.projector.card` wrapper for shared
+   styling. .projector defaults to position:absolute, which yanks each
+   sample's card out of the .sample-group flex row and stacks them at
+   the same origin. Restore inline flow inside .value.rich. */
+.live-offside .value.rich .projector.card {
+  position: static;
+  display: inline-block;
+  z-index: auto;
+}
+
+/* `.card .hand` uses `left: 3px` to nudge the hand inside CardProj's
+   full projector box. That relative shift would push cards past the
+   ring; drop it inline. */
+.live-offside .value.rich .hand {
+  left: 0;
+}
+
+/* TableRenderer's wrapper. inline-block + width:auto means the inner
+   shrinks to its table's natural width — no X overflow and no table
+   visually escaping the .value.rich outline. Inline style sets
+   min-width (in code blocks) so user resizing controls the floor;
+   the inner grows past it when columns naturally need more space.
+   Vertical content beyond the requested height does scroll, since
+   that's the point of clamping height_blocks at the data rows. */
+.live-offside .value.rich > .rich-probe-wrapper > .rich-probe-table-inner {
+  display: inline-block;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-radius: 2px;
+}
+
+/* The column dropdown lives as a sibling of .rich-probe-table-inner
+   (rendered by TableRenderer at the wrapper level) so it can extend
+   past the inner's reserved height without being clipped by
+   overflow:auto, while the table data inside still scrolls. The
+   wrapper sets the positioning context; --menu-col / --menu-cols are
+   set inline by TableRenderer to land the menu roughly under the
+   right column header. */
+.live-offside .value.rich > .rich-probe-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.live-offside .value.rich .column-menu-floating {
+  position: absolute;
+  /* Just below the header row. .table th rows pick up this height
+     from --row-height-px set in Main.re. */
+  top: var(--row-height-px, 1.5em);
+  left: calc(100% / var(--menu-cols, 1) * var(--menu-col, 0));
+  /* Restore the typography the menu had when it lived inside .table
+     th — the table cell context provided code-font + weight 600 by
+     inheritance, but the menu now floats at the wrapper level and
+     would otherwise pick up the page's default font. */
+  font-family: var(--code-font);
+  font-weight: 600;
+}
+.live-offside .value.rich > .rich-probe-table-inner > table.table {
+  height: 100%;
+}
+
+/* Make the resize handle in the rich-probe context — the existing
+   .projector.table / .modal-backdrop selectors don't reach into the
+   inline .value.rich, so the handle would have no dimensions. */
+.live-offside .value.rich .table-resize-handle {
+  position: sticky;
+  bottom: 0;
+  left: 100%;
+  width: 14px;
+  height: 14px;
+  margin-top: -14px;
+  cursor: nwse-resize;
+  background: linear-gradient(135deg, transparent 50%, rgba(0, 0, 0, 0.25) 50%);
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  border-left: 1px solid rgba(0, 0, 0, 0.15);
+  border-top-left-radius: 2px;
+  z-index: calc(var(--projector-z) + 2);
+  pointer-events: auto;
+}
+
+/* Sticky header for in-table scroll. */
+.live-offside .value.rich .table th {
+  position: sticky;
+  top: 0;
+  padding-left: 15px;
+  padding-right: 15px;
+  z-index: calc(var(--projector-z) + 1);
+  /* Don't wrap the column name and the menu button onto two lines.
+     If the column is too narrow, the cell auto-widens to fit them
+     inline; if the user resizes the table small enough that the
+     header would have wrapped, the table grows past the requested
+     width instead of stealing a vertical row. This is also why
+     `.rich-probe-table-inner` uses overflow-x:visible — the table
+     can outgrow its requested width without forcing a scrollbar. */
+  white-space: nowrap;
+}
+
+/* Column dropdown sits inside the scrollable .rich-probe-table-inner;
+   raise its z so overflow:auto doesn't clip it. */
+.live-offside .value.rich .column-menu {
+  z-index: calc(var(--projector-z) + 5);
+}
+
+/* Each table cell wraps its value in a nested `.value` div, which
+   inherits a stack of sample-state rules from proj-probe.css that
+   only make sense on the OUTER .value: the colored bg keyed off
+   .value.indet/.tangent/.related/etc., the dimmed token color +
+   opacity for off-focus samples, and the underlines used to mark
+   probe relationships. Inside a table those decorations carry no
+   meaning — cells aren't samples — and just add visual noise. Reset
+   them; keep the syntax token colors, which still tell the user
+   "this is a string vs a number" at a glance. */
+.live-offside .value.rich .value {
+  background-color: transparent !important;
+  opacity: 1 !important;
+  text-decoration: none !important;
+  /* proj-probe.css decorates the OUTER .value with a stack of
+     borders, box-shadows, and animations to encode sample state
+     (focus indication, depth above/below, hover flash, etc.). All
+     of those use descendant selectors and re-apply to every nested
+     .value inside the rich content, drawing pseudo-underlines and
+     glows on every cell. None of it is meaningful at the cell
+     level. */
+  border: 0 !important;
+  box-shadow: none !important;
+  animation: none !important;
+  outline: 0 !important;
+}
+.live-offside .value.rich .value .token,
+.live-offside .value.rich .value .code-text .token {
+  opacity: 1 !important;
+  text-decoration: none !important;
+}
+
+/* Add Column Header Button */
+.table th.add-column-header {
+    cursor: pointer;
+    padding: 2px 8px;
+    color: var(--BR2);
+    opacity: 0.5;
+    font-size: 1rem;
+    user-select: none;
+}
+
+.table th.add-column-header:hover {
+    opacity: 1;
+}
