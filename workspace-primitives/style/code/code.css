@@ -1,0 +1,20 @@
+/* Code surface — base styles.
+   See docs/style/surfaces.md. */
+
+.code-surface {
+  font-family: var(--code-font);
+  font-size: var(--base-font-size);
+  line-height: var(--line-height);
+  color: var(--STONE);
+  background: var(--SAND);
+  padding: 0.6em 0.8em;
+}
+
+.code-surface.inset {
+  border: 1px solid var(--BR2);
+  border-radius: 0.3em;
+}
+
+.token.kw  { color: var(--BR4); font-weight: bold; }
+.token.id  { color: var(--token-exp); }
+.token.num { color: var(--token-typ); }
