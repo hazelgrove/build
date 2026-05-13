@@ -5,6 +5,7 @@
   <title>Hazel — Workspace Palette</title>
   <link rel="stylesheet" href="../fonts.css">
   <link rel="stylesheet" href="../variables.css">
+  <link rel="stylesheet" href="../animations.css">
   <link rel="stylesheet" href="../code/code.css">
   <link rel="stylesheet" href="workspace.css">
   <link rel="stylesheet" href="../menu/menu.css">
@@ -198,6 +199,23 @@
     <div class="list-row">
       <div class="label">A bare list row (no leading, no trailing)</div>
     </div>
+
+    <p style="margin-top: 1em;">Status variants — port <code class="code-inline">.problem-row.{,syntax,hole,warning}</code> from the problems panel. Each adds a left-accent border + tinted bg; <code class="code-inline">.active</code> intensifies both.</p>
+    <div class="list-row error">
+      <div class="label">An error row (default red — <code class="code-inline">.error</code>)</div>
+    </div>
+    <div class="list-row error active">
+      <div class="label">An active error row</div>
+    </div>
+    <div class="list-row syntax">
+      <div class="label">A syntax row (<code class="code-inline">.syntax</code>)</div>
+    </div>
+    <div class="list-row warning">
+      <div class="label">A warning row (<code class="code-inline">.warning</code>)</div>
+    </div>
+    <div class="list-row hole">
+      <div class="label">A hole row (<code class="code-inline">.hole</code>)</div>
+    </div>
   </section>
 
   <!-- ============ LAYOUT CONTAINERS ============ -->
@@ -335,8 +353,75 @@
         </div>
       </div>
     </div>
+
+    <hr class="divider">
+
+    <div class="heading h2">Anchored to a corner</div>
+    <p>When the menu is attached to a trigger, the corner closest to the trigger is sharpened and only the opposite corner is rounded. <code class="code-inline">.tl / .tr / .bl / .br</code> select the anchor. Without one of these, the menu is floating and all four corners are rounded (as in the examples above).</p>
+    <div class="row" style="align-items: flex-start; gap: 2em;">
+      <div>
+        <div class="heading h3"><code class="code-inline">.tl</code></div>
+        <div class="menu-surface tl" style="min-width: 8em;">
+          <div class="menu-item"><div class="label">Item</div></div>
+          <div class="menu-item"><div class="label">Item</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="heading h3"><code class="code-inline">.tr</code></div>
+        <div class="menu-surface tr" style="min-width: 8em;">
+          <div class="menu-item"><div class="label">Item</div></div>
+          <div class="menu-item"><div class="label">Item</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="heading h3"><code class="code-inline">.bl</code></div>
+        <div class="menu-surface bl" style="min-width: 8em;">
+          <div class="menu-item"><div class="label">Item</div></div>
+          <div class="menu-item"><div class="label">Item</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="heading h3"><code class="code-inline">.br</code></div>
+        <div class="menu-surface br" style="min-width: 8em;">
+          <div class="menu-item"><div class="label">Item</div></div>
+          <div class="menu-item"><div class="label">Item</div></div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="heading h2">Scrolling menu</div>
+    <p>The menu surface has a default <code class="code-inline">max-height: 70vh</code>; taller contents scroll inside the menu (here forced smaller with an inline override).</p>
+    <div class="menu-surface" style="max-width: 16em; max-height: 10em;">
+      <div class="menu-item"><span>📄</span><div class="label">Open recent 1</div></div>
+      <div class="menu-item"><span>📄</span><div class="label">Open recent 2</div></div>
+      <div class="menu-item"><span>📄</span><div class="label">Open recent 3</div></div>
+      <div class="menu-item"><span>📄</span><div class="label">Open recent 4</div></div>
+      <div class="menu-item"><span>📄</span><div class="label">Open recent 5</div></div>
+      <div class="menu-item"><span>📄</span><div class="label">Open recent 6</div></div>
+      <div class="menu-item"><span>📄</span><div class="label">Open recent 7</div></div>
+      <div class="menu-item"><span>📄</span><div class="label">Open recent 8</div></div>
+      <div class="menu-item"><span>📄</span><div class="label">Open recent 9</div></div>
+      <div class="menu-item"><span>📄</span><div class="label">Open recent 10</div></div>
+      <div class="menu-item"><span>📄</span><div class="label">Open recent 11</div></div>
+      <div class="menu-item"><span>📄</span><div class="label">Open recent 12</div></div>
+    </div>
   </section>
 
 </div>
+<script>
+  // Make demo controls interactive so users can see hover/active animations.
+  // Not part of the design system — palette-only.
+  document.querySelectorAll('.toggle').forEach(t => {
+    t.addEventListener('click', () => t.classList.toggle('active'));
+  });
+  document.querySelectorAll('.menu-item').forEach(item => {
+    item.addEventListener('click', () => {
+      item.parentElement.querySelectorAll('.menu-item.selected').forEach(s => s.classList.remove('selected'));
+      item.classList.add('selected');
+    });
+  });
+</script>
 </body>
 </html>

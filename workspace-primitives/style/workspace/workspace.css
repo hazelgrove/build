@@ -196,6 +196,10 @@
   transition: margin 0.1s ease-in;
 }
 
+.toggle:hover {
+  animation: wobble 0.4s ease 0s 1 normal none;
+}
+
 .toggle > .knob {
   width: 0.9em;
   height: 0.9em;
@@ -439,6 +443,63 @@
 }
 
 .list-row.expanded { background-color: var(--T2); }
+
+/* Status variants — port `.problem-row.{,syntax,hole,warning}` from
+   sidebar.css. Each adds a left accent + tinted background; hover and
+   active intensify both. */
+
+.list-row.error {
+  border-left: 3px solid color-mix(in srgb, var(--R1) 40%, transparent);
+  background-color: color-mix(in srgb, var(--R0) 50%, transparent);
+}
+.list-row.error:hover {
+  background-color: var(--R0);
+  filter: brightness(0.95);
+}
+.list-row.error.active {
+  border-left: 5px solid var(--R2);
+  background-color: var(--ci-status-error-bkg);
+  box-shadow: inset 0 0 0 1px var(--R1);
+}
+
+.list-row.syntax {
+  border-left: 3px solid color-mix(in srgb, var(--Y1) 60%, transparent);
+  background-color: color-mix(in srgb, var(--Y0) 50%, transparent);
+}
+.list-row.syntax:hover {
+  background-color: var(--Y0);
+}
+.list-row.syntax.active {
+  border-left: 5px solid var(--Y2);
+  background-color: color-mix(in srgb, var(--Y0) 80%, transparent);
+  box-shadow: inset 0 0 0 1px var(--Y1);
+}
+
+.list-row.hole {
+  border-left: 3px solid color-mix(in srgb, var(--hole-stroke) 60%, transparent);
+  background-color: color-mix(in srgb, var(--hole-fill) 50%, transparent);
+}
+.list-row.hole:hover {
+  background-color: var(--hole-fill);
+}
+.list-row.hole.active {
+  border-left: 5px solid var(--hole-active);
+  background-color: color-mix(in srgb, var(--hole-fill) 80%, transparent);
+  box-shadow: inset 0 0 0 1px var(--hole-stroke);
+}
+
+.list-row.warning {
+  border-left: 3px solid color-mix(in srgb, var(--warning-hole-stroke) 60%, transparent);
+  background-color: color-mix(in srgb, var(--warning-hole-fill) 50%, transparent);
+}
+.list-row.warning:hover {
+  background-color: var(--warning-hole-fill);
+}
+.list-row.warning.active {
+  border-left: 5px solid var(--warning-hole-stroke);
+  background-color: color-mix(in srgb, var(--warning-hole-fill) 80%, transparent);
+  box-shadow: inset 0 0 0 1px var(--warning-hole-stroke);
+}
 
 /* ============================================================
    Tabs container — vertical strip ports `#persistent .tab`

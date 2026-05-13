@@ -16,9 +16,23 @@
   border-radius: 0.5em;
   padding: 0.2em;
   min-width: 160px;
+  max-height: 70vh;
+  overflow-y: auto;
+  scrollbar-color: var(--menu-scroll-thumb) var(--menu-scroll-track);
+  scrollbar-width: thin;
   display: flex;
   flex-direction: column;
 }
+
+/* Corner anchoring — without one of these, the menu floats and all four
+   corners are rounded. With one of `.tl / .tr / .bl / .br`, that corner is
+   the trigger-side (sharp) and the opposite corner is the only rounded one.
+   Ports the nut-menu submenu (`0 0 0.5em 0` — top-left anchor)
+   and the spirit of `.context-menu.open-down-*`. */
+.menu-surface.tl { border-radius: 0 0 0.5em 0; }
+.menu-surface.tr { border-radius: 0 0 0 0.5em; }
+.menu-surface.bl { border-radius: 0 0.5em 0 0; }
+.menu-surface.br { border-radius: 0.5em 0 0 0; }
 
 /* ============================================================
    Menu item — single clickable row with label + optional shortcut
