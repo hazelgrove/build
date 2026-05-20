@@ -365,6 +365,14 @@
   align-items: center;
 }
 
+/* When any sample in a group has a rich-probe view active, the samples
+ * can be very different heights (a 5-row table vs a 10-row table). Top-
+ * align so the tops of each rendering line up; centering would offset
+ * shorter samples and visually decouple their identities from headers. */
+.live-offside .sample-group:has(.value.rich) {
+  align-items: flex-start;
+}
+
 .live-offside .sample-group:not(:last-child)::after {
   content: "•";
   font-size: 0.4em;
@@ -390,13 +398,8 @@
   cursor: col-resize;
 } */
 
-/* TOKEN BKG. The .sample element is the positioning container for the
- * context-menu dropdown and hosts the CSS variables / layout transforms
- * (top/translate/scale/height) that move the sample as a whole. All
- * visual fills (background, outline, border-radius, box-shadow) live on
- * the .value element instead, so they don't extend to cover the
- * sample-context-menu when it flows in-line (e.g. when the rich-probe
- * modal is open). */
+/* TOKEN BKG. Layout lives on .sample; visual fills live on .value (so
+ * they don't bleed into the context-menu when it flows in-line). */
 .live-offside .sample {
   position: relative;
   --bottom-border-clr: none;
