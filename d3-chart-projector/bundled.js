@@ -32383,24 +32383,30 @@
   window.Algebrite = import_algebrite.default;
   var d3 = Object.assign({}, src_exports2, src_exports, src_exports3, src_exports4, src_exports5);
   window.d3 = d3;
-  var CHART = {
-    W: 320,
-    H: 220,
-    M: { top: 12, right: 14, bottom: 30, left: 38 },
-    PALETTE: [
-      "#4e79a7",
-      "#f28e2b",
-      "#59a14f",
-      "#e15759",
-      "#edc948",
-      "#b07aa1",
-      "#76b7b2",
-      "#ff9da7"
-    ]
-  };
+  var CHART = { W: 320, H: 220, M: { top: 12, right: 14, bottom: 30, left: 38 } };
   var IW = CHART.W - CHART.M.left - CHART.M.right;
   var IH = CHART.H - CHART.M.top - CHART.M.bottom;
-  var color2 = (i5) => CHART.PALETTE[i5 % CHART.PALETTE.length];
+  var FALLBACK_PALETTE = [
+    "#4e79a7",
+    "#f28e2b",
+    "#59a14f",
+    "#e15759",
+    "#edc948",
+    "#b07aa1",
+    "#76b7b2",
+    "#ff9da7"
+  ];
+  var COLORS = FALLBACK_PALETTE;
+  var color2 = (i5) => COLORS[i5 % COLORS.length];
+  function chartColors(el) {
+    const cs = getComputedStyle(el);
+    const out = [];
+    for (let i5 = 1; i5 <= 8; i5++) {
+      const v2 = cs.getPropertyValue(`--chart-${i5}`).trim();
+      if (v2) out.push(v2);
+    }
+    return out.length ? out : FALLBACK_PALETTE;
+  }
   function domain(values) {
     let lo = Math.min(...values), hi = Math.max(...values);
     return lo === hi ? [lo - 1, hi + 1] : [lo, hi];
@@ -32410,6 +32416,18 @@
   }
   function emptyChart(svg) {
     svg.append("text").attr("x", CHART.W / 2).attr("y", CHART.H / 2).attr("class", "chart-empty").text("no data");
+  }
+  function legendRow(svg, items) {
+    const sw = 7, gap = 10, ly = CHART.H - 5;
+    const widths = items.map((it) => sw + 3 + it.name.length * 5.4 + gap);
+    const total = widths.reduce((a5, b2) => a5 + b2, 0) - gap;
+    let lx = Math.max(2, (CHART.W - total) / 2);
+    const g2 = svg.append("g");
+    items.forEach((it, i5) => {
+      g2.append("rect").attr("x", lx).attr("y", ly - 7).attr("width", sw).attr("height", sw).attr("rx", 1.5).attr("fill", it.c);
+      g2.append("text").attr("x", lx + sw + 3).attr("y", ly).attr("class", "chart-legend").text(it.name);
+      lx += widths[i5];
+    });
   }
   function renderBar(svg, spec) {
     const cats = spec.categories || [], series = spec.series || [];
@@ -32422,9 +32440,18 @@
     const y0 = y3(0);
     svg.append("g").attr("class", "d3-axis d3-grid").attr("transform", `translate(${CHART.M.left},0)`).call(d3.axisLeft(y3).ticks(4).tickSize(-IW));
     svg.append("g").attr("class", "d3-axis").attr("transform", `translate(0,${CHART.M.top + IH})`).call(d3.axisBottom(x3).tickFormat((_2, i5) => cats[i5]).tickSize(0));
+    const multi = series.length > 1;
+    const showLabels = !multi && cats.length <= 12;
     series.forEach((s8, si) => {
-      svg.append("g").selectAll("rect").data(s8.values).enter().append("rect").attr("x", (_2, i5) => x3(i5) + sub(si)).attr("y", (d4) => Math.min(y3(d4), y0)).attr("width", sub.bandwidth()).attr("height", (d4) => Math.abs(y3(d4) - y0)).attr("fill", color2(si));
+      const g2 = svg.append("g");
+      g2.selectAll("rect").data(s8.values).enter().append("rect").attr("class", "chart-mark").attr("x", (_2, i5) => x3(i5) + sub(si)).attr("y", (d4) => Math.min(y3(d4), y0)).attr("width", sub.bandwidth()).attr("height", (d4) => Math.abs(y3(d4) - y0)).attr("rx", 1.5).attr("fill", (_2, i5) => color2(multi ? si : i5)).append("title").text((d4, i5) => (multi ? `${s8.name} \xB7 ` : "") + `${cats[i5]}: ${fmt(d4)}`);
+      if (showLabels) {
+        g2.selectAll("text").data(s8.values).enter().append("text").attr("class", "chart-value").attr("x", (_2, i5) => x3(i5) + sub(si) + sub.bandwidth() / 2).attr("y", (d4) => Math.min(y3(d4), y0) - 2).text((d4) => fmt(d4));
+      }
     });
+    if (multi) {
+      legendRow(svg, series.map((s8, i5) => ({ name: s8.name, c: color2(i5) })));
+    }
   }
   function renderXY(svg, spec, connect) {
     const points = spec.points || [];
@@ -32437,7 +32464,7 @@
       const line = d3.line().x((p11) => x3(p11.x)).y((p11) => y3(p11.y));
       svg.append("path").attr("class", "chart-line").attr("d", line(points)).attr("fill", "none").attr("stroke", color2(0));
     }
-    svg.append("g").selectAll("circle").data(points).enter().append("circle").attr("cx", (p11) => x3(p11.x)).attr("cy", (p11) => y3(p11.y)).attr("r", 2.5).attr("fill", color2(0));
+    svg.append("g").selectAll("circle").data(points).enter().append("circle").attr("class", "chart-mark").attr("cx", (p11) => x3(p11.x)).attr("cy", (p11) => y3(p11.y)).attr("r", 2.75).attr("fill", color2(0)).append("title").text((p11) => `(${fmt(p11.x)}, ${fmt(p11.y)})`);
   }
   function renderPie(svg, spec) {
     const slices = (spec.slices || []).map((s8) => ({ label: s8.label, value: Math.max(0, s8.value) }));
@@ -32447,18 +32474,21 @@
     const cx = 8 + r6, cy = CHART.M.top + IH / 2;
     const pie = d3.pie().sort(null).value((s8) => s8.value);
     const arc = d3.arc().innerRadius(0).outerRadius(r6);
-    svg.append("g").attr("transform", `translate(${cx},${cy})`).selectAll("path").data(pie(slices)).enter().append("path").attr("d", arc).attr("fill", (_2, i5) => color2(i5));
+    svg.append("g").attr("transform", `translate(${cx},${cy})`).selectAll("path").data(pie(slices)).enter().append("path").attr("class", "chart-mark").attr("d", arc).attr("fill", (_2, i5) => color2(i5)).append("title").text((d4) => `${d4.data.label}: ${fmt(d4.data.value)} (${Math.round(d4.data.value / total * 100)}%)`);
     const lx = cx + r6 + 12, rowH = 14;
+    const maxChars = Math.max(4, Math.floor((CHART.W - lx - 14) / 5.4));
+    const truncate = (str) => str.length > maxChars ? str.slice(0, maxChars - 1) + "\u2026" : str;
     const y0 = cy - rowH * slices.length / 2 + rowH / 2;
     const legend = svg.append("g");
     slices.forEach((s8, i5) => {
       const ly = y0 + rowH * i5;
-      legend.append("rect").attr("x", lx).attr("y", ly - 6).attr("width", 8).attr("height", 8).attr("fill", color2(i5));
-      legend.append("text").attr("x", lx + 12).attr("y", ly + 2).attr("class", "chart-legend").text(`${s8.label}: ${fmt(s8.value)}`);
+      legend.append("rect").attr("x", lx).attr("y", ly - 6).attr("width", 8).attr("height", 8).attr("rx", 1.5).attr("fill", color2(i5));
+      legend.append("text").attr("x", lx + 12).attr("y", ly + 2).attr("class", "chart-legend").text(truncate(`${s8.label}: ${fmt(s8.value)}`)).append("title").text(`${s8.label}: ${fmt(s8.value)}`);
     });
   }
   window.HazelD3 = {
     render(el, spec) {
+      COLORS = chartColors(el);
       const root2 = d3.select(el);
       root2.selectAll("*").remove();
       const svg = root2.append("svg").attr("viewBox", `0 0 ${CHART.W} ${CHART.H}`).attr("preserveAspectRatio", "xMidYMid meet").attr("class", `chart-svg chart-${spec.kind}`);

@@ -16,16 +16,27 @@ import * as d3Shape from 'd3-shape';
 const d3 = Object.assign({}, d3Scale, d3Array, d3Selection, d3Axis, d3Shape);
 window.d3 = d3;
 
-const CHART = {
-  W: 320, H: 220, M: { top: 12, right: 14, bottom: 30, left: 38 },
-  PALETTE: [
-    "#4e79a7", "#f28e2b", "#59a14f", "#e15759",
-    "#edc948", "#b07aa1", "#76b7b2", "#ff9da7",
-  ],
-};
+const CHART = { W: 320, H: 220, M: { top: 12, right: 14, bottom: 30, left: 38 } };
 const IW = CHART.W - CHART.M.left - CHART.M.right;
 const IH = CHART.H - CHART.M.top - CHART.M.bottom;
-const color = i => CHART.PALETTE[i % CHART.PALETTE.length];
+
+// Series colors come from CSS custom properties (--chart-1..8) so charts track
+// Hazel's theme; fall back to a fixed palette if they're unset.
+const FALLBACK_PALETTE = [
+  "#4e79a7", "#f28e2b", "#59a14f", "#e15759",
+  "#edc948", "#b07aa1", "#76b7b2", "#ff9da7",
+];
+let COLORS = FALLBACK_PALETTE;
+const color = i => COLORS[i % COLORS.length];
+function chartColors(el) {
+  const cs = getComputedStyle(el);
+  const out = [];
+  for (let i = 1; i <= 8; i++) {
+    const v = cs.getPropertyValue(`--chart-${i}`).trim();
+    if (v) out.push(v);
+  }
+  return out.length ? out : FALLBACK_PALETTE;
+}
 
 // A linear domain, padding a zero-width span so degenerate data still draws.
 function domain(values) {
@@ -38,6 +49,22 @@ function fmt(v) {
 function emptyChart(svg) {
   svg.append("text").attr("x", CHART.W / 2).attr("y", CHART.H / 2)
     .attr("class", "chart-empty").text("no data");
+}
+
+// Horizontal legend centered along the bottom edge (for multi-series bars).
+function legendRow(svg, items) {
+  const sw = 7, gap = 10, ly = CHART.H - 5;
+  const widths = items.map(it => sw + 3 + it.name.length * 5.4 + gap);
+  const total = widths.reduce((a, b) => a + b, 0) - gap;
+  let lx = Math.max(2, (CHART.W - total) / 2);
+  const g = svg.append("g");
+  items.forEach((it, i) => {
+    g.append("rect").attr("x", lx).attr("y", ly - 7)
+      .attr("width", sw).attr("height", sw).attr("rx", 1.5).attr("fill", it.c);
+    g.append("text").attr("x", lx + sw + 3).attr("y", ly)
+      .attr("class", "chart-legend").text(it.name);
+    lx += widths[i];
+  });
 }
 
 function renderBar(svg, spec) {
@@ -58,14 +85,33 @@ function renderBar(svg, spec) {
   svg.append("g").attr("class", "d3-axis")
     .attr("transform", `translate(0,${CHART.M.top + IH})`)
     .call(d3.axisBottom(x).tickFormat((_, i) => cats[i]).tickSize(0));
+  const multi = series.length > 1;
+  // Single series: color per category (decorative — the category is already
+  // the x-axis). Multiple series: color per series, identified by a legend.
+  const showLabels = !multi && cats.length <= 12; // else too cramped
   series.forEach((s, si) => {
-    svg.append("g").selectAll("rect").data(s.values).enter().append("rect")
+    const g = svg.append("g");
+    g.selectAll("rect").data(s.values).enter().append("rect")
+      .attr("class", "chart-mark")
       .attr("x", (_, i) => x(i) + sub(si))
       .attr("y", d => Math.min(y(d), y0))
       .attr("width", sub.bandwidth())
       .attr("height", d => Math.abs(y(d) - y0))
-      .attr("fill", color(si));
+      .attr("rx", 1.5)
+      .attr("fill", (_, i) => color(multi ? si : i))
+      .append("title")
+      .text((d, i) => (multi ? `${s.name} · ` : "") + `${cats[i]}: ${fmt(d)}`);
+    if (showLabels) {
+      g.selectAll("text").data(s.values).enter().append("text")
+        .attr("class", "chart-value")
+        .attr("x", (_, i) => x(i) + sub(si) + sub.bandwidth() / 2)
+        .attr("y", d => Math.min(y(d), y0) - 2)
+        .text(d => fmt(d));
+    }
   });
+  if (multi) {
+    legendRow(svg, series.map((s, i) => ({ name: s.name, c: color(i) })));
+  }
 }
 
 function renderXY(svg, spec, connect) {
@@ -87,8 +133,10 @@ function renderXY(svg, spec, connect) {
       .attr("d", line(points)).attr("fill", "none").attr("stroke", color(0));
   }
   svg.append("g").selectAll("circle").data(points).enter().append("circle")
-    .attr("cx", p => x(p.x)).attr("cy", p => y(p.y)).attr("r", 2.5)
-    .attr("fill", color(0));
+    .attr("class", "chart-mark")
+    .attr("cx", p => x(p.x)).attr("cy", p => y(p.y)).attr("r", 2.75)
+    .attr("fill", color(0))
+    .append("title").text(p => `(${fmt(p.x)}, ${fmt(p.y)})`);
 }
 
 function renderPie(svg, spec) {
@@ -101,22 +149,34 @@ function renderPie(svg, spec) {
   const arc = d3.arc().innerRadius(0).outerRadius(r);
   svg.append("g").attr("transform", `translate(${cx},${cy})`)
     .selectAll("path").data(pie(slices)).enter().append("path")
-    .attr("d", arc).attr("fill", (_, i) => color(i));
-  // Legend (the only place slice labels/values appear, since a pie has no axis)
+    .attr("class", "chart-mark")
+    .attr("d", arc).attr("fill", (_, i) => color(i))
+    .append("title")
+    .text(d =>
+      `${d.data.label}: ${fmt(d.data.value)} `
+      + `(${Math.round(d.data.value / total * 100)}%)`);
+  // Legend (the only place slice labels/values appear, since a pie has no
+  // axis). Long entries are truncated to stay within the viewBox width.
   const lx = cx + r + 12, rowH = 14;
+  const maxChars = Math.max(4, Math.floor((CHART.W - lx - 14) / 5.4));
+  const truncate = str =>
+    str.length > maxChars ? str.slice(0, maxChars - 1) + "…" : str;
   const y0 = cy - rowH * slices.length / 2 + rowH / 2;
   const legend = svg.append("g");
   slices.forEach((s, i) => {
     const ly = y0 + rowH * i;
     legend.append("rect").attr("x", lx).attr("y", ly - 6)
-      .attr("width", 8).attr("height", 8).attr("fill", color(i));
+      .attr("width", 8).attr("height", 8).attr("rx", 1.5).attr("fill", color(i));
     legend.append("text").attr("x", lx + 12).attr("y", ly + 2)
-      .attr("class", "chart-legend").text(`${s.label}: ${fmt(s.value)}`);
+      .attr("class", "chart-legend")
+      .text(truncate(`${s.label}: ${fmt(s.value)}`))
+      .append("title").text(`${s.label}: ${fmt(s.value)}`);
   });
 }
 
 window.HazelD3 = {
   render(el, spec) {
+    COLORS = chartColors(el);
     const root = d3.select(el);
     root.selectAll("*").remove();
     const svg = root.append("svg")
