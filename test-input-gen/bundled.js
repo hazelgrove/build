@@ -32661,8 +32661,9 @@
     }
     return z3;
   }
-  window.hazelZ3Solve = function(smt, onResult) {
-    ensureZ3().then(async (Z3) => {
+  var z3Queue = Promise.resolve();
+  function runOneZ3Solve(smt, onResult) {
+    return ensureZ3().then(async (Z3) => {
       const cfg = Z3.mk_config();
       const ctx = Z3.mk_context(cfg);
       Z3.del_config(cfg);
@@ -32674,9 +32675,23 @@
         } catch (_2) {
         }
       }
-    }).then((output) => onResult(output)).catch(
-      (err) => onResult("error\n" + (err && err.message ? err.message : String(err)))
+    }).then(
+      (output) => {
+        try {
+          onResult(output);
+        } catch (_2) {
+        }
+      },
+      (err) => {
+        try {
+          onResult("error\n" + (err && err.message ? err.message : String(err)));
+        } catch (_2) {
+        }
+      }
     );
+  }
+  window.hazelZ3Solve = function(smt, onResult) {
+    z3Queue = z3Queue.then(() => runOneZ3Solve(smt, onResult));
   };
   hotkeys_esm_default.filter = (event) => {
     const path = typeof event.composedPath === "function" ? event.composedPath() : [];
