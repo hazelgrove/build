@@ -1,0 +1,23 @@
+(rule
+ (copy ../main.bc.js hazel.js))
+
+(rule
+ (copy ../worker.bc.js worker.js))
+
+(rule
+ (targets
+  (dir jscoq))
+ (deps
+  (source_tree %{project_root}/node_modules/jscoq))
+ (action
+  (run cp -R %{project_root}/node_modules/jscoq jscoq)))
+
+(rule
+ (targets bundled.js)
+ (deps prebundle.js)
+ (action
+  (run
+   %{project_root}/node_modules/esbuild/bin/esbuild
+   prebundle.js
+   --bundle
+   --outfile=bundled.js)))
