@@ -192,6 +192,11 @@ window.HazelJSCoq = {
         return {ok: false, errors: [error]};
       });
   },
+
+  searchAndReport(code, callback, opts = {}) {
+    console.log('[Hazel JSCoq] running Rocq tactic search candidate');
+    return this.checkAndReport(code, callback, {show: false, ...opts});
+  },
 };
 
 // This is the default behavior for the hotkeys module but I'm overriding it for the

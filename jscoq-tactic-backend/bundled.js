@@ -25614,6 +25614,10 @@ ${formatErrors(result.errors)}`;
         callback("error", message);
         return { ok: false, errors: [error] };
       });
+    },
+    searchAndReport(code3, callback, opts = {}) {
+      console.log("[Hazel JSCoq] running Rocq tactic search candidate");
+      return this.checkAndReport(code3, callback, { show: false, ...opts });
     }
   };
   hotkeys_esm_default.filter = (event) => {
