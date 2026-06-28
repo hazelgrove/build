@@ -25512,6 +25512,7 @@
   };
   window.HazelJSCoq = {
     manager: null,
+    warmupPromise: null,
     async start({ code: code3 = "", show = true } = {}) {
       ensureStyle("jscoq/frontend/classic/css/ide-base.css");
       ensureStyle("jscoq/frontend/classic/css/coq-base.css");
@@ -25576,6 +25577,32 @@
         errors: manager.error,
         manager
       };
+    },
+    warmupSearch(opts = {}) {
+      if (!this.warmupPromise) {
+        const warmupCode = [
+          "From Coq Require Import Reals.",
+          "Open Scope R_scope.",
+          "Theorem hazel_jscoq_warmup : forall x : R, sin x = sin x.",
+          "Proof. intros. reflexivity. Qed."
+        ].join("\n");
+        console.log("[Hazel JSCoq] warming up Rocq tactic search");
+        this.warmupPromise = this.check(
+          warmupCode,
+          { show: false, advanceLimit: 80, ...opts }
+        ).then((result) => {
+          console.log(
+            "[Hazel JSCoq]",
+            result.ok ? "Rocq tactic search warmup passed." : "Rocq tactic search warmup failed."
+          );
+          return result;
+        }).catch((error) => {
+          this.warmupPromise = null;
+          console.warn("[Hazel JSCoq] Rocq tactic search warmup failed to run", error);
+          return { ok: false, errors: [error] };
+        });
+      }
+      return this.warmupPromise;
     },
     checkAndReport(code3, callback, opts = {}) {
       const formatErrors = (errors) => {
