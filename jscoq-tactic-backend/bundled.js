@@ -25453,6 +25453,15 @@
   // prebundle.js
   var import_algebrite = __toESM(require_algebrite());
   window.Algebrite = import_algebrite.default;
+  window.HazelAlgebrite = {
+    simplifyToString(input) {
+      if (!window.Algebrite || !window.Algebrite.simplify) {
+        throw new Error("Algebrite is not available.");
+      }
+      const result = window.Algebrite.simplify(input);
+      return result && result.toString ? result.toString() : String(result);
+    }
+  };
   var jscoqModulePromise = null;
   var loadJsCoq = async () => {
     if (!jscoqModulePromise) {
@@ -25470,11 +25479,15 @@
     link.href = href;
     document.head.appendChild(link);
   };
-  var ensureCoqHost = () => {
-    let host = document.getElementById("hazel-jscoq-host");
+  var ensureCoqHost = ({
+    hostId = "hazel-jscoq-host",
+    wrapperId = "hazel-jscoq-wrapper",
+    codeId = "hazel-jscoq-code"
+  } = {}) => {
+    let host = document.getElementById(hostId);
     if (host) return host;
     host = document.createElement("div");
-    host.id = "hazel-jscoq-host";
+    host.id = hostId;
     host.className = "hazel-jscoq-host";
     host.style.position = "fixed";
     host.style.right = "12px";
@@ -25499,10 +25512,10 @@
       host.style.display = "none";
     };
     const wrapper = document.createElement("div");
-    wrapper.id = "hazel-jscoq-wrapper";
+    wrapper.id = wrapperId;
     wrapper.className = "jscoq-main";
     const code3 = document.createElement("textarea");
-    code3.id = "hazel-jscoq-code";
+    code3.id = codeId;
     code3.value = "(* Hazel generated Coq will appear here. *)";
     host.appendChild(close);
     wrapper.appendChild(code3);
@@ -25513,48 +25526,240 @@
   window.HazelJSCoq = {
     manager: null,
     warmupPromise: null,
+    checkCounter: 0,
+    activeChecks: /* @__PURE__ */ new Map(),
+    completedChecks: [],
+    maxCompletedChecks: 20,
+    retiredManagers: [],
+    maxRetiredManagers: 2,
+    managerRetirementDelayMs: 5e3,
+    jscoqPaths() {
+      return {
+        jscoqBasePath: new URL("/jscoq/", window.location.href).href,
+        jscoqPkgPath: new URL("/jscoq/coq-pkgs/", window.location.href).href,
+        nodeModulesPath: new URL("/node_modules/", window.location.href).href
+      };
+    },
+    installHiddenManagerGuards(manager) {
+      if (!manager || manager.__hazelHiddenGuardsInstalled) return;
+      manager.__hazelHiddenGuardsInstalled = true;
+      const markError = (sid, loc, msg) => {
+        const stm = manager.doc && manager.doc.stm_id ? manager.doc.stm_id[sid] : null;
+        if (stm) {
+          stm.phase = "error";
+          stm.feedback = stm.feedback || [];
+          stm.feedback.push({ level: "Error", loc, msg });
+          if (!manager.error.includes(stm)) manager.error.push(stm);
+        } else if (manager.error.length === 0) {
+          manager.error.push({ coq_sid: sid, feedback: [{ level: "Error", loc, msg }] });
+        }
+      };
+      manager.feedMessage = (sid, lvl, loc, msg) => {
+        const level2 = Array.isArray(lvl) ? lvl[0] : lvl;
+        if (level2 === "Error") markError(sid, loc, msg);
+      };
+      manager.coqLog = () => {
+      };
+      manager.coqLibError = () => {
+      };
+      manager.coqJsonExn = (msg) => {
+        if (manager.error.length === 0) {
+          manager.error.push({ coq_sid: 0, feedback: [{ level: "Error", msg }] });
+        }
+      };
+      manager.coqCoqExn = ({ pp, msg, sids } = {}) => {
+        markError(sids && sids.length > 0 ? sids[0] : 0, void 0, pp || msg);
+      };
+      if (manager.pprint) manager.pprint.adjustBreaks = () => {
+      };
+    },
+    async makeManager({ code: code3 = "", show = true, fresh = false } = {}) {
+      ensureStyle("jscoq/frontend/classic/css/ide-base.css");
+      ensureStyle("jscoq/frontend/classic/css/coq-base.css");
+      ensureStyle("jscoq/frontend/classic/css/coq-light.css");
+      const hostIds = fresh ? (() => {
+        const id = ++this.checkCounter;
+        return {
+          hostId: `hazel-jscoq-check-host-${id}`,
+          wrapperId: `hazel-jscoq-check-wrapper-${id}`,
+          codeId: `hazel-jscoq-check-code-${id}`
+        };
+      })() : {
+        hostId: "hazel-jscoq-host",
+        wrapperId: "hazel-jscoq-wrapper",
+        codeId: "hazel-jscoq-code"
+      };
+      const host = ensureCoqHost(hostIds);
+      const codeNode = document.getElementById(hostIds.codeId);
+      if (code3) codeNode.value = code3;
+      host.style.display = show ? "block" : "none";
+      const { JsCoq } = await loadJsCoq();
+      const { jscoqBasePath, jscoqPkgPath, nodeModulesPath } = this.jscoqPaths();
+      const manager = await JsCoq.start(
+        jscoqBasePath,
+        nodeModulesPath,
+        [hostIds.codeId],
+        {
+          wrapper_id: hostIds.wrapperId,
+          base_path: jscoqBasePath,
+          pkg_path: jscoqPkgPath,
+          node_modules_path: nodeModulesPath,
+          prelaunch: true,
+          prelude: true,
+          implicit_libs: true,
+          init_pkgs: ["init", "coq-base", "coq-arith", "coq-reals"],
+          all_pkgs: ["coq"],
+          show,
+          focus: false,
+          replace: false,
+          editor: { keyMap: "default" }
+        }
+      );
+      manager.__hazelHostId = hostIds.hostId;
+      manager.__hazelCodeBytes = code3.length;
+      if (!show) this.installHiddenManagerGuards(manager);
+      return manager;
+    },
+    endManagerWorker(manager) {
+      if (!manager || manager.__hazelWorkerEnded) return;
+      try {
+        if (manager.coq && typeof manager.coq.end === "function") {
+          manager.coq.end();
+        }
+        manager.__hazelWorkerEnded = true;
+      } catch (error) {
+        console.warn("[Hazel JSCoq] worker termination failed during cleanup", error);
+      }
+    },
+    cleanupManager(manager, { force = false } = {}) {
+      if (!manager) return;
+      const hostId = manager.__hazelHostId;
+      if (force) {
+        manager.__hazelAborted = true;
+        try {
+          const lastAdded = typeof manager.lastAdded === "function" ? manager.lastAdded() : null;
+          if (lastAdded && typeof manager.cancel === "function") manager.cancel(lastAdded);
+        } catch (error) {
+          console.warn("[Hazel JSCoq] manager cancel failed during cleanup", error);
+        }
+      }
+      if (manager.__hazelRetireTimer) {
+        window.clearTimeout(manager.__hazelRetireTimer);
+        manager.__hazelRetireTimer = null;
+      }
+      const removeHiddenHost = () => {
+        if (!hostId || hostId === "hazel-jscoq-host") return;
+        const host = document.getElementById(hostId);
+        if (host) host.remove();
+      };
+      const finishCleanup = () => {
+        this.endManagerWorker(manager);
+        removeHiddenHost();
+        this.retiredManagers = this.retiredManagers.filter((retired) => retired !== manager);
+      };
+      if (force) finishCleanup();
+      else {
+        manager.__hazelRetireTimer = window.setTimeout(
+          finishCleanup,
+          this.managerRetirementDelayMs
+        );
+      }
+    },
+    retireManager(manager) {
+      if (!manager) return;
+      this.retiredManagers.push(manager);
+      this.cleanupManager(manager);
+      while (this.retiredManagers.length > this.maxRetiredManagers) {
+        const oldManager = this.retiredManagers.shift();
+        this.cleanupManager(oldManager, { force: true });
+      }
+      this.cleanupStrayHiddenHosts();
+    },
+    cleanupRetiredManagers({ force = false } = {}) {
+      for (const manager of this.retiredManagers) {
+        this.cleanupManager(manager, { force });
+      }
+      this.retiredManagers = [];
+    },
+    cleanupStrayHiddenHosts() {
+      const retainedHostIds = new Set(
+        this.retiredManagers.map((manager) => manager && manager.__hazelHostId).filter(Boolean)
+      );
+      for (const check of this.activeChecks.values()) {
+        if (check.manager && check.manager.__hazelHostId) {
+          retainedHostIds.add(check.manager.__hazelHostId);
+        }
+      }
+      document.querySelectorAll('.hazel-jscoq-host[id^="hazel-jscoq-check-host-"]').forEach((node) => {
+        if (!retainedHostIds.has(node.id)) node.remove();
+      });
+    },
+    reset({ clearModule = false } = {}) {
+      console.warn("[Hazel JSCoq] resetting JSCoq bridge state");
+      for (const check of this.activeChecks.values()) {
+        this.cleanupManager(check.manager, { force: true });
+      }
+      this.activeChecks.clear();
+      this.cleanupRetiredManagers({ force: true });
+      this.cleanupManager(this.manager, { force: true });
+      this.manager = null;
+      this.warmupPromise = null;
+      document.querySelectorAll('.hazel-jscoq-host[id^="hazel-jscoq-check-host-"]').forEach((node) => node.remove());
+      if (clearModule) jscoqModulePromise = null;
+      return this.stats();
+    },
+    stats() {
+      return {
+        activeChecks: this.activeChecks.size,
+        completedChecks: this.completedChecks.slice(),
+        checkCounter: this.checkCounter,
+        hasWarmManager: !!this.manager,
+        hasWarmupPromise: !!this.warmupPromise,
+        retiredManagers: this.retiredManagers.length,
+        memory: performance && performance.memory ? {
+          usedJSHeapSize: performance.memory.usedJSHeapSize,
+          totalJSHeapSize: performance.memory.totalJSHeapSize,
+          jsHeapSizeLimit: performance.memory.jsHeapSizeLimit
+        } : null,
+        hiddenCheckHosts: document.querySelectorAll('.hazel-jscoq-host[id^="hazel-jscoq-check-host-"]').length
+      };
+    },
+    recordCompletedCheck(record) {
+      this.completedChecks.push(record);
+      while (this.completedChecks.length > this.maxCompletedChecks) {
+        this.completedChecks.shift();
+      }
+    },
     async start({ code: code3 = "", show = true } = {}) {
       ensureStyle("jscoq/frontend/classic/css/ide-base.css");
       ensureStyle("jscoq/frontend/classic/css/coq-base.css");
       ensureStyle("jscoq/frontend/classic/css/coq-light.css");
-      const host = ensureCoqHost();
-      const codeNode = document.getElementById("hazel-jscoq-code");
-      if (code3) codeNode.value = code3;
-      host.style.display = show ? "block" : "none";
       if (!this.manager) {
-        const { JsCoq } = await loadJsCoq();
-        const jscoqBasePath = new URL("/jscoq/", window.location.href).href;
-        const jscoqPkgPath = new URL("/jscoq/coq-pkgs/", window.location.href).href;
-        const nodeModulesPath = new URL("/node_modules/", window.location.href).href;
-        this.manager = await JsCoq.start(
-          jscoqBasePath,
-          nodeModulesPath,
-          ["hazel-jscoq-code"],
-          {
-            wrapper_id: "hazel-jscoq-wrapper",
-            base_path: jscoqBasePath,
-            pkg_path: jscoqPkgPath,
-            node_modules_path: nodeModulesPath,
-            prelaunch: true,
-            prelude: true,
-            implicit_libs: true,
-            init_pkgs: ["init", "coq-base", "coq-arith", "coq-reals"],
-            all_pkgs: ["coq"],
-            show,
-            focus: false,
-            replace: false,
-            editor: { keyMap: "default" }
-          }
-        );
+        this.manager = await this.makeManager({ code: code3, show, fresh: false });
       }
       return this.manager;
     },
     async check(code3, { show = true, advanceLimit = 200 } = {}) {
       const jscoqCode = code3.replaceAll("From Stdlib Require", "From Coq Require");
-      const manager = await this.start({ code: jscoqCode, show });
+      const startedAt = performance.now();
+      const checkId = ++this.checkCounter;
+      console.log(
+        "[Hazel JSCoq] starting check",
+        { checkId, codeBytes: jscoqCode.length, advanceLimit }
+      );
+      const manager = await this.makeManager({
+        code: jscoqCode,
+        show,
+        fresh: true
+      });
+      this.activeChecks.set(checkId, { manager, startedAt, codeBytes: jscoqCode.length });
       await manager.when_ready.promise;
       const waitForSettled = () => new Promise((resolve) => {
         const poll = () => {
+          if (manager.__hazelAborted) {
+            resolve();
+            return;
+          }
           const active = manager.doc.sentences.some(
             (stm) => stm && (stm.phase === "pending" || stm.phase === "adding" || stm.phase === "added" || stm.phase === "processing")
           );
@@ -25565,18 +25770,36 @@
       });
       let steps = 0;
       while (steps < advanceLimit) {
+        if (manager.__hazelAborted) break;
         const advanced = manager.goNext(false);
         if (!advanced) break;
         steps += 1;
         await waitForSettled();
+        if (manager.__hazelAborted) break;
         if (manager.error.length > 0) break;
       }
-      return {
-        ok: manager.error.length === 0,
+      const durationMs = Math.round(performance.now() - startedAt);
+      const result = {
+        ok: !manager.__hazelAborted && manager.error.length === 0,
         steps,
-        errors: manager.error,
-        manager
+        errors: manager.__hazelAborted ? ["JSCoq check was aborted."] : manager.error,
+        manager,
+        checkId,
+        durationMs,
+        codeBytes: jscoqCode.length
       };
+      this.activeChecks.delete(checkId);
+      this.recordCompletedCheck({
+        checkId,
+        ok: result.ok,
+        steps,
+        durationMs,
+        codeBytes: jscoqCode.length,
+        errorCount: manager.error.length
+      });
+      console.log("[Hazel JSCoq] finished check", this.completedChecks[this.completedChecks.length - 1]);
+      if (!show) this.retireManager(manager);
+      return result;
     },
     warmupSearch(opts = {}) {
       if (!this.warmupPromise) {
@@ -25587,10 +25810,34 @@
           "Proof. intros. reflexivity. Qed."
         ].join("\n");
         console.log("[Hazel JSCoq] warming up Rocq tactic search");
-        this.warmupPromise = this.check(
-          warmupCode,
-          { show: false, advanceLimit: 80, ...opts }
-        ).then((result) => {
+        this.warmupPromise = this.start({ code: warmupCode, show: false }).then(async (manager) => {
+          await manager.when_ready.promise;
+          const waitForSettled = () => new Promise((resolve) => {
+            const poll = () => {
+              const active = manager.doc.sentences.some(
+                (stm) => stm && (stm.phase === "pending" || stm.phase === "adding" || stm.phase === "added" || stm.phase === "processing")
+              );
+              if (!active) resolve();
+              else window.setTimeout(poll, 20);
+            };
+            poll();
+          });
+          let steps = 0;
+          const advanceLimit = opts.advanceLimit || 80;
+          while (steps < advanceLimit) {
+            const advanced = manager.goNext(false);
+            if (!advanced) break;
+            steps += 1;
+            await waitForSettled();
+            if (manager.error.length > 0) break;
+          }
+          return {
+            ok: manager.error.length === 0,
+            steps,
+            errors: manager.error,
+            manager
+          };
+        }).then((result) => {
           console.log(
             "[Hazel JSCoq]",
             result.ok ? "Rocq tactic search warmup passed." : "Rocq tactic search warmup failed."
@@ -25617,7 +25864,10 @@
           }
         }).join("\n");
       };
-      console.log("[Hazel JSCoq] checking generated Coq program");
+      console.log(
+        "[Hazel JSCoq] checking generated Coq program",
+        { codeBytes: code3.length, activeChecks: this.activeChecks.size }
+      );
       const timeoutMs = opts.timeoutMs || 45e3;
       const timeout = new Promise((resolve) => {
         window.setTimeout(
@@ -25629,21 +25879,33 @@
           timeoutMs
         );
       });
+      const startedAt = performance.now();
       return Promise.race([this.check(code3, { show: false, ...opts }), timeout]).then((result) => {
+        if (result && result.errors && result.errors.some(
+          (error) => typeof error === "string" && error.includes("timed out")
+        )) {
+          this.reset();
+        }
         const message = result.ok ? "JSCoq passed." : `JSCoq failed:
 ${formatErrors(result.errors)}`;
-        console.log("[Hazel JSCoq]", message);
+        console.log(
+          "[Hazel JSCoq]",
+          message,
+          { durationMs: Math.round(performance.now() - startedAt), stats: this.stats() }
+        );
         callback(result.ok ? "ok" : "error", message);
         return result;
       }).catch((error) => {
         const message = `JSCoq check failed to run: ${error && error.message ? error.message : String(error)}`;
         console.error("[Hazel JSCoq]", message, error);
+        this.reset();
         callback("error", message);
         return { ok: false, errors: [error] };
       });
     },
     searchAndReport(code3, callback, opts = {}) {
       console.log("[Hazel JSCoq] running Rocq tactic search candidate");
+      console.log("[Hazel JSCoq] Rocq tactic search candidate source:\n" + code3);
       return this.checkAndReport(code3, callback, { show: false, ...opts });
     }
   };
