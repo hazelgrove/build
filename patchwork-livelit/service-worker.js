@@ -1222,7 +1222,7 @@ var MessageChannelNetworkAdapter = class extends NetworkAdapter3 {
 };
 
 // service-worker-template.js
-var cachename = "default";
+var cachename = "automerge-docs-v2";
 var debugging = false;
 var cacheableStatuses = [
   200,
@@ -1410,7 +1410,7 @@ async function resolveAutomergeUrl(automergeURL) {
 self.addEventListener("fetch", (fetchEvent) => {
   log3("fetch event", fetchEvent.request.url);
   const request = fetchEvent.request;
-  if (request.method !== "GET") return fetchEvent.respondWith(fetch(request));
+  if (request.method !== "GET") return;
   const url = new URL(fetchEvent.request.url);
   let specialURL;
   if (url.hostname == self.location.hostname && url.port == self.location.port && url.protocol == self.location.protocol) {
@@ -1420,52 +1420,37 @@ self.addEventListener("fetch", (fetchEvent) => {
     } catch {
     }
   }
+  if (!specialURL) return;
   fetchEvent.respondWith(
     (async () => {
       const cache = await caches.open(cachename);
       const match = await cache.match(request);
       try {
-        if (specialURL) {
-          if (match) {
-            log3(`serving ${specialURL} from cache ${cachename}`);
-            const headers = new Headers(match.headers);
-            headers.set("cross-origin-embedder-policy", "credentialless");
-            headers.set("cross-origin-resource-policy", "cross-origin");
-            return new Response(match.body, {
-              status: match.status,
-              headers
-            });
-          }
-          const response = await resolveAutomergeUrl(specialURL);
-          if (response.status === 307) {
-            return response;
-          }
-          if (cacheableStatuses.includes(response.status)) {
-            log3(`caching ${specialURL}`);
-            await cache.put(request, response.clone());
-          }
-          return response;
-        } else {
-          const response = await fetch(request);
-          if (response) {
-            if (cacheableStatuses.includes(response.status) && response.url.match(/^https?\:/)) {
-              await cache.put(request, response.clone());
-            } else {
-              log3(
-                `skipping uncacheable response code from cache: ${response.status} for ${response.url}`
-              );
-            }
-            return response;
-          }
-          if (match) return match;
-          return new Response("couldnt fetch and no stale", { status: 503 });
+        if (match) {
+          log3(`serving ${specialURL} from cache ${cachename}`);
+          const headers = new Headers(match.headers);
+          headers.set("cross-origin-embedder-policy", "credentialless");
+          headers.set("cross-origin-resource-policy", "cross-origin");
+          return new Response(match.body, {
+            status: match.status,
+            headers
+          });
         }
+        const response = await resolveAutomergeUrl(specialURL);
+        if (response.status === 307) {
+          return response;
+        }
+        if (cacheableStatuses.includes(response.status)) {
+          log3(`caching ${specialURL}`);
+          await cache.put(request, response.clone());
+        }
+        return response;
       } catch (error) {
         const message = error instanceof Error ? `${error.message}
 
 ${error.stack}` : String(error);
         console.error(
-          `service worker error resolving ${request.url}${specialURL ? ` (for: ${specialURL})` : ""}.
+          `service worker error resolving ${request.url} (for: ${specialURL}).
 ${message}`
         );
         if (match) return match;

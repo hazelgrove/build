@@ -50148,7 +50148,18 @@ var repo = new slim_exports.Repo({
   enableRemoteHeadsGossiping: true
 });
 window.repo = repo;
-await navigator.serviceWorker.register("/service-worker.js", { type: "module" });
+await navigator.serviceWorker.register(
+  new URL("service-worker.js", import.meta.url),
+  { type: "module" }
+);
+if (!navigator.serviceWorker.controller) {
+  await new Promise((resolve) => {
+    navigator.serviceWorker.addEventListener("controllerchange", resolve, {
+      once: true
+    });
+    setTimeout(resolve, 1e4);
+  });
+}
 await repo.networkSubsystem.whenReady();
 window.getRepoChannel = () => {
   const { port1, port2 } = new MessageChannel();
