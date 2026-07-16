@@ -181,6 +181,35 @@
   cursor: pointer;
 }
 
+.code-container.drag-refactor-mode .code-text .token {
+  cursor: grab;
+}
+
+/* mid-drag the caret RIDES the grabbed token's scrub (CodeDrag adds
+   #caret to the winner's paused animations); kill the blink so it
+   reads as solid cargo, not an active insertion point (pausing
+   could freeze it at the invisible phase) */
+body.code-dragging #caret {
+  animation: none;
+}
+
+/* scroll-past-end: room below the last line, VS Code style — also
+   gives downward drags near the buffer end somewhere to breathe */
+#main.Scratch,
+#main.Documentation {
+  padding-bottom: 45vh;
+}
+
+/* shape-dependent connector lines can't ride tokens honestly —
+   fade them out for the drag, back in after (the backing shards DO
+   ride, per-piece) */
+.code-deco .child-line {
+  transition: opacity 120ms ease-out;
+}
+body.code-dragging .code-deco .child-line {
+  opacity: 0;
+}
+
 .code-container.meta-down .token.ref:hover {
   text-decoration: underline;
   text-decoration-style: solid;
