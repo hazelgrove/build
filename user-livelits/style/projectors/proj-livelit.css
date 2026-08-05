@@ -30,3 +30,18 @@
     display: flex;
     flex-direction: column;
 }
+/* A commit is being re-evaluated: the last good view shown dimmed and
+   inert until the fresh sample arrives (see LivelitProj.last_good_view) */
+.livelit-pending {
+  opacity: 0.65;
+  pointer-events: none;
+  transition: opacity 0.15s ease-in;
+}
+
+/* User livelits anchor to the top-left: oversized content hangs down
+   past the backing instead of centering (centered overflow shifts
+   whenever content and placeholder heights disagree — the "pop"). */
+.livelit > .user-livelit {
+    justify-content: flex-start;
+    align-items: flex-start;
+}
