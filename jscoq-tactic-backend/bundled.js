@@ -25557,6 +25557,7 @@
     managerGenerationCounter: 0,
     recycleCounter: 0,
     recyclePromise: null,
+    warmupTimeoutMs: 12e4,
     maxPersistentStateId: 80,
     maxPersistentUserChecks: 12,
     warmupLibraryCode: "From Coq Require Import ZArith Lia Ring Rbase Rfunctions Rtrigo1 Cos_plus Lra Reals.Ranalysis1 Reals.Ranalysis3 Reals.Rtrigo_reg.\n",
@@ -25566,6 +25567,13 @@
         jscoqPkgPath: new URL("/jscoq/coq-pkgs/", window.location.href).href,
         nodeModulesPath: new URL("/node_modules/", window.location.href).href
       };
+    },
+    withTimeout(promise, timeoutMs, message) {
+      let timeoutId;
+      const timeout = new Promise((_2, reject) => {
+        timeoutId = window.setTimeout(() => reject(new Error(message)), timeoutMs);
+      });
+      return Promise.race([promise, timeout]).finally(() => window.clearTimeout(timeoutId));
     },
     settleCancellationFutures(manager, sid) {
       if (!sid || !manager || !manager.coq || !manager.coq.sids) return;
@@ -26094,7 +26102,7 @@
       }
       if (!this.warmupPromise) {
         console.log("[Hazel JSCoq] initializing persistent Rocq worker");
-        this.warmupPromise = this.start({ code: "", show: false }).then(async (manager) => {
+        const warmup = this.start({ code: "", show: false }).then(async (manager) => {
           await manager.when_ready.promise;
           console.log("[Hazel JSCoq] preloading Hazel Rocq libraries");
           const preload = await this.check(
@@ -26114,7 +26122,12 @@
             { durationMs: result.durationMs, steps: result.steps }
           );
           return result;
-        }).catch((error) => {
+        });
+        this.warmupPromise = this.withTimeout(
+          warmup,
+          this.warmupTimeoutMs,
+          `Persistent Rocq worker did not become ready within ${this.warmupTimeoutMs}ms.`
+        ).catch((error) => {
           this.reset();
           console.warn("[Hazel JSCoq] Rocq tactic search warmup failed to run", error);
           return { ok: false, errors: [error] };
