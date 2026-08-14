@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>build | Hazel builds for deployment to hazel.org/build/</title>
+    <meta name="description" content="Hazel builds for deployment to hazel.org/build/">
+    <style>
+      :root { color-scheme: light dark; }
+      body {
+        max-width: 42rem;
+        margin: 4rem auto;
+        padding: 0 1.5rem;
+        font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      }
+      code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; }
+    </style>
+  </head>
+  <body>
+    <h1>build</h1>
+    <p>Hazel builds for deployment to <code>hazel.org/build/&lt;branch&gt;/</code>.</p>
+    <p>
+      This repository is deployed to automatically by the GitHub Actions in the main hazel repo,
+      no need to modify it directly.
+    </p>
+    <p>
+      We periodically hit the size limit for GitHub pages so we archive prior builds in the
+      <code>build-pre-&lt;month&gt;&lt;yyyy&gt;</code> repositories.
+    </p>
+  </body>
+</html>
