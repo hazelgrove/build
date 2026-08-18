@@ -32434,8 +32434,9 @@
     if (!cats.length || !series.length) return emptyChart(svg);
     const x3 = d3.scaleBand().domain(cats.map((_2, i5) => i5)).range([CHART.M.left, CHART.M.left + IW]).padding(0.2);
     const sub = d3.scaleBand().domain(series.map((_2, i5) => i5)).range([0, x3.bandwidth()]).padding(0.05);
+    const cells = (s8) => (s8.values || []).map((v2, i5) => ({ v: v2, i: i5 })).filter((d4) => d4.v !== null && d4.v !== void 0);
     const all = [0];
-    series.forEach((s8) => s8.values.forEach((v2) => all.push(v2)));
+    series.forEach((s8) => cells(s8).forEach((d4) => all.push(d4.v)));
     const y3 = d3.scaleLinear().domain([Math.min(...all), Math.max(...all)]).nice().range([CHART.M.top + IH, CHART.M.top]);
     const y0 = y3(0);
     svg.append("g").attr("class", "d3-axis d3-grid").attr("transform", `translate(${CHART.M.left},0)`).call(d3.axisLeft(y3).ticks(4).tickSize(-IW));
@@ -32444,9 +32445,10 @@
     const showLabels = !multi && cats.length <= 12;
     series.forEach((s8, si) => {
       const g2 = svg.append("g");
-      g2.selectAll("rect").data(s8.values).enter().append("rect").attr("class", "chart-mark").attr("x", (_2, i5) => x3(i5) + sub(si)).attr("y", (d4) => Math.min(y3(d4), y0)).attr("width", sub.bandwidth()).attr("height", (d4) => Math.abs(y3(d4) - y0)).attr("rx", 1.5).attr("fill", (_2, i5) => color2(multi ? si : i5)).append("title").text((d4, i5) => (multi ? `${s8.name} \xB7 ` : "") + `${cats[i5]}: ${fmt(d4)}`);
+      const data = cells(s8);
+      g2.selectAll("rect").data(data).enter().append("rect").attr("class", "chart-mark").attr("x", (d4) => x3(d4.i) + sub(si)).attr("y", (d4) => Math.min(y3(d4.v), y0)).attr("width", sub.bandwidth()).attr("height", (d4) => Math.abs(y3(d4.v) - y0)).attr("rx", 1.5).attr("fill", (d4) => color2(multi ? si : d4.i)).append("title").text((d4) => (multi ? `${s8.name} \xB7 ` : "") + `${cats[d4.i]}: ${fmt(d4.v)}`);
       if (showLabels) {
-        g2.selectAll("text").data(s8.values).enter().append("text").attr("class", "chart-value").attr("x", (_2, i5) => x3(i5) + sub(si) + sub.bandwidth() / 2).attr("y", (d4) => Math.min(y3(d4), y0) - 2).text((d4) => fmt(d4));
+        g2.selectAll("text").data(data).enter().append("text").attr("class", "chart-value").attr("x", (d4) => x3(d4.i) + sub(si) + sub.bandwidth() / 2).attr("y", (d4) => Math.min(y3(d4.v), y0) - 2).text((d4) => fmt(d4.v));
       }
     });
     if (multi) {
