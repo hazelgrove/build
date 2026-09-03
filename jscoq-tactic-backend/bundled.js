@@ -25478,10 +25478,11 @@
     }
   };
   var jscoqModulePromise = null;
+  var webAssetUrl = (path) => new URL(path, document.baseURI).href;
   var loadJsCoq = async () => {
     if (!jscoqModulePromise) {
       const runtimeImport = new Function("specifier", "return import(specifier)");
-      jscoqModulePromise = runtimeImport("/jscoq/jscoq.js");
+      jscoqModulePromise = runtimeImport(webAssetUrl("jscoq/jscoq.js"));
     }
     return jscoqModulePromise;
   };
@@ -25563,9 +25564,9 @@
     warmupLibraryCode: "From Coq Require Import ZArith Lia Ring Rbase Rfunctions Rtrigo1 Cos_plus Lra Reals.Ranalysis1 Reals.Ranalysis3 Reals.Rtrigo_reg.\n",
     jscoqPaths() {
       return {
-        jscoqBasePath: new URL("/jscoq/", window.location.href).href,
-        jscoqPkgPath: new URL("/jscoq/coq-pkgs/", window.location.href).href,
-        nodeModulesPath: new URL("/node_modules/", window.location.href).href
+        jscoqBasePath: webAssetUrl("jscoq/"),
+        jscoqPkgPath: webAssetUrl("jscoq/coq-pkgs/"),
+        nodeModulesPath: webAssetUrl("node_modules/")
       };
     },
     withTimeout(promise, timeoutMs, message) {
