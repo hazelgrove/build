@@ -25478,16 +25478,21 @@
     const claimedByOwner = /* @__PURE__ */ new Map();
     const lastEval = /* @__PURE__ */ new Map();
     const here = (path) => new URL(path, document.baseURI).href;
-    const LOCAL_GLUE = here("./fumola/fumola_wasm.js");
-    const LOCAL_WASM = here("./fumola/fumola_wasm_bg.wasm");
-    const CDN_WASM = "https://cdn.jsdelivr.net/gh/hazelgrove/hazel@fumola-livelit-mvp/assets/fumola/fumola_wasm_bg.wasm";
+    const LOCAL = {
+      glue: here("./fumola/fumola_wasm.js"),
+      wasm: here("./fumola/fumola_wasm_bg.wasm")
+    };
+    const PUBLISHED = {
+      glue: "https://adapton.github.io/fumola/fumola_wasm.js",
+      wasm: "https://adapton.github.io/fumola/fumola_wasm_bg.wasm"
+    };
     const dynamicImport = new Function("p", "return import(p)");
-    dynamicImport(LOCAL_GLUE).then(async (mod2) => {
-      try {
-        await mod2.default({ module_or_path: LOCAL_WASM });
-      } catch (localError) {
-        await mod2.default({ module_or_path: CDN_WASM });
-      }
+    const load = async (from) => {
+      const mod2 = await dynamicImport(from.glue);
+      await mod2.default({ module_or_path: from.wasm });
+      return mod2;
+    };
+    load(LOCAL).catch(() => load(PUBLISHED)).then((mod2) => {
       wasm = mod2;
     }).catch((e11) => {
       loadError = String(e11);
