@@ -25481,9 +25481,9 @@
     const dynamicImport = new Function("p", "return import(p)");
     dynamicImport("./fumola/fumola_wasm.js").then(async (mod2) => {
       try {
-        await mod2.default(LOCAL_WASM);
+        await mod2.default({ module_or_path: LOCAL_WASM });
       } catch (localError) {
-        await mod2.default(CDN_WASM);
+        await mod2.default({ module_or_path: CDN_WASM });
       }
       wasm = mod2;
     }).catch((e11) => {
@@ -25492,19 +25492,7 @@
     });
     const ready = () => wasm !== null;
     const claim = (id, owner) => {
-      if (!ready()) return id;
-      if (id === 0) {
-        const fresh2 = wasm.fumola_create();
-        owners.set(fresh2, owner);
-        return fresh2;
-      }
-      const existing = owners.get(id);
-      if (existing === void 0) {
-        wasm.fumola_realize(id);
-        owners.set(id, owner);
-        return id;
-      }
-      if (existing === owner) return id;
+      if (!ready() || id !== 0) return id;
       const fresh = wasm.fumola_create();
       owners.set(fresh, owner);
       return fresh;
