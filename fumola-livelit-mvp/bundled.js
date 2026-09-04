@@ -25474,6 +25474,7 @@
   window.fumola = (() => {
     let wasm = null;
     let loadError = null;
+    let loadedFrom = null;
     const owners = /* @__PURE__ */ new Map();
     const claimedByOwner = /* @__PURE__ */ new Map();
     const lastEval = /* @__PURE__ */ new Map();
@@ -25492,8 +25493,17 @@
       await mod2.default({ module_or_path: from.wasm });
       return mod2;
     };
-    load(LOCAL).catch(() => load(PUBLISHED)).then((mod2) => {
+    load(LOCAL).then((mod2) => {
+      loadedFrom = "local";
+      return mod2;
+    }).catch(
+      () => load(PUBLISHED).then((mod2) => {
+        loadedFrom = "published";
+        return mod2;
+      })
+    ).then((mod2) => {
       wasm = mod2;
+      console.info("Fumola livelit: runtime loaded from the " + loadedFrom + " build");
     }).catch((e11) => {
       loadError = String(e11);
       console.warn("Fumola livelit: wasm runtime unavailable:", e11);
@@ -25537,7 +25547,8 @@
       lastEval.set(id, { src, result });
       return result;
     };
-    return { ready, claim, evalSync };
+    const source = () => loadedFrom;
+    return { ready, source, claim, evalSync };
   })();
 })();
 /*! Bundled license information:
