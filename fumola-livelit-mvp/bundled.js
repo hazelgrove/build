@@ -25476,10 +25476,17 @@
     let loadError = null;
     const owners = /* @__PURE__ */ new Map();
     const lastEval = /* @__PURE__ */ new Map();
+    const LOCAL_WASM = "./fumola/fumola_wasm_bg.wasm";
+    const CDN_WASM = "https://cdn.jsdelivr.net/gh/hazelgrove/hazel@fumola-livelit-mvp/assets/fumola/fumola_wasm_bg.wasm";
     const dynamicImport = new Function("p", "return import(p)");
-    dynamicImport("./fumola/fumola_wasm.js").then((mod2) => mod2.default("./fumola/fumola_wasm_bg.wasm").then(() => {
+    dynamicImport("./fumola/fumola_wasm.js").then(async (mod2) => {
+      try {
+        await mod2.default(LOCAL_WASM);
+      } catch (localError) {
+        await mod2.default(CDN_WASM);
+      }
       wasm = mod2;
-    })).catch((e11) => {
+    }).catch((e11) => {
       loadError = String(e11);
       console.warn("Fumola livelit: wasm runtime unavailable:", e11);
     });
