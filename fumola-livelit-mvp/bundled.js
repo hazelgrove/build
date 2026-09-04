@@ -25475,11 +25475,14 @@
     let wasm = null;
     let loadError = null;
     const owners = /* @__PURE__ */ new Map();
+    const claimedByOwner = /* @__PURE__ */ new Map();
     const lastEval = /* @__PURE__ */ new Map();
-    const LOCAL_WASM = "./fumola/fumola_wasm_bg.wasm";
+    const here = (path) => new URL(path, document.baseURI).href;
+    const LOCAL_GLUE = here("./fumola/fumola_wasm.js");
+    const LOCAL_WASM = here("./fumola/fumola_wasm_bg.wasm");
     const CDN_WASM = "https://cdn.jsdelivr.net/gh/hazelgrove/hazel@fumola-livelit-mvp/assets/fumola/fumola_wasm_bg.wasm";
     const dynamicImport = new Function("p", "return import(p)");
-    dynamicImport("./fumola/fumola_wasm.js").then(async (mod2) => {
+    dynamicImport(LOCAL_GLUE).then(async (mod2) => {
       try {
         await mod2.default({ module_or_path: LOCAL_WASM });
       } catch (localError) {
@@ -25493,8 +25496,11 @@
     const ready = () => wasm !== null;
     const claim = (id, owner) => {
       if (!ready() || id !== 0) return id;
+      const already = claimedByOwner.get(owner);
+      if (already !== void 0) return already;
       const fresh = wasm.fumola_create();
       owners.set(fresh, owner);
+      claimedByOwner.set(owner, fresh);
       return fresh;
     };
     const summarize = (message) => {
