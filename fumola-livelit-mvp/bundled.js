@@ -25518,23 +25518,40 @@
       claimedByOwner.set(owner, fresh);
       return fresh;
     };
-    const evalSync = (id, src) => {
+    const evalTop = (id, src) => {
       if (!ready()) {
         return JSON.stringify({
           ok: false,
+          kind: "runtime",
+          error: "the Fumola runtime is not loaded"
+        });
+      }
+      if (!wasm.fumola_has(id)) wasm.fumola_realize(id);
+      try {
+        return wasm.fumola_eval_top(id, src);
+      } catch (e11) {
+        return JSON.stringify({ ok: false, kind: "runtime", error: String(e11) });
+      }
+    };
+    const evalSync = (id, thunkName, src) => {
+      if (!ready()) {
+        return JSON.stringify({
+          ok: false,
+          kind: "runtime",
           error: loadError === null ? "the Fumola runtime is still loading" : "the Fumola runtime is unavailable"
         });
       }
+      const key = thunkName + "\0" + src;
       const last = lastEval.get(id);
-      if (last !== void 0 && last.src === src) return last.result;
+      if (last !== void 0 && last.key === key) return last.result;
       if (!wasm.fumola_has(id)) wasm.fumola_realize(id);
       let result;
       try {
-        result = wasm.fumola_eval(id, src);
+        result = wasm.fumola_eval(id, thunkName, src);
       } catch (e11) {
         result = JSON.stringify({ ok: false, error: String(e11) });
       }
-      lastEval.set(id, { src, result });
+      lastEval.set(id, { key, result });
       return result;
     };
     const source = () => loadedFrom;
@@ -25547,12 +25564,12 @@
       }
       if (!wasm.fumola_has(id)) wasm.fumola_realize(id);
       try {
-        return wasm.fumola_eval(id, src);
+        return wasm.fumola_eval_top(id, src);
       } catch (e11) {
-        return JSON.stringify({ ok: false, error: String(e11) });
+        return JSON.stringify({ ok: false, kind: "runtime", error: String(e11) });
       }
     };
-    return { ready, source, claim, evalSync, evalFresh };
+    return { ready, source, claim, evalSync, evalTop, evalFresh };
   })();
 })();
 /*! Bundled license information:
