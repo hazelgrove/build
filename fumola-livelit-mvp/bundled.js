@@ -25555,6 +25555,19 @@
       return result;
     };
     const source = () => loadedFrom;
+    const ensureMode = (id, mode) => {
+      if (!ready()) {
+        return JSON.stringify({
+          ok: false,
+          error: "the Fumola runtime is not loaded"
+        });
+      }
+      try {
+        return wasm.fumola_ensure_mode(id, mode);
+      } catch (e11) {
+        return JSON.stringify({ ok: false, kind: "runtime", error: String(e11) });
+      }
+    };
     const evalFresh = (id, src) => {
       if (!ready()) {
         return JSON.stringify({
@@ -25569,7 +25582,7 @@
         return JSON.stringify({ ok: false, kind: "runtime", error: String(e11) });
       }
     };
-    return { ready, source, claim, evalSync, evalTop, evalFresh };
+    return { ready, source, claim, ensureMode, evalSync, evalTop, evalFresh };
   })();
 })();
 /*! Bundled license information:
