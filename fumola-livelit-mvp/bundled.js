@@ -25503,19 +25503,23 @@
       return mod2;
     };
     (async () => {
-      const failures = [];
-      for (const from of SOURCES) {
-        try {
-          wasm = await load(from);
-          loadedFrom = from.name;
-          console.info("Fumola livelit: runtime loaded from " + from.name);
-          return;
-        } catch (e11) {
-          failures.push(from.name + " (" + e11 + ")");
+      try {
+        const failures = [];
+        for (const from of SOURCES) {
+          try {
+            wasm = await load(from);
+            loadedFrom = from.name;
+            console.info("Fumola livelit: runtime loaded from " + from.name);
+            return;
+          } catch (e11) {
+            failures.push(from.name + " (" + e11 + ")");
+          }
         }
+        loadError = "tried " + failures.join("; ");
+        console.warn("Fumola livelit: wasm runtime unavailable: " + loadError);
+      } finally {
+        window.dispatchEvent(new Event("fumola-runtime-ready"));
       }
-      loadError = "tried " + failures.join("; ");
-      console.warn("Fumola livelit: wasm runtime unavailable: " + loadError);
     })();
     const ready = () => wasm !== null;
     const claim = (id, owner) => {

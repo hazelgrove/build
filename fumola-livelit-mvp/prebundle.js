@@ -130,21 +130,39 @@ window.fumola = (() => {
     return mod;
   };
   (async () => {
-    // Sequential on purpose: a later source is a fallback, not a race. Loading
-    // two runtimes and discarding one would instantiate wasm twice.
-    const failures = [];
-    for (const from of SOURCES) {
-      try {
-        wasm = await load(from);
-        loadedFrom = from.name;
-        console.info("Fumola livelit: runtime loaded from " + from.name);
-        return;
-      } catch (e) {
-        failures.push(from.name + " (" + e + ")");
+    try {
+      // Sequential on purpose: a later source is a fallback, not a race. Loading
+      // two runtimes and discarding one would instantiate wasm twice.
+      const failures = [];
+      for (const from of SOURCES) {
+        try {
+          wasm = await load(from);
+          loadedFrom = from.name;
+          console.info("Fumola livelit: runtime loaded from " + from.name);
+          return;
+        } catch (e) {
+          failures.push(from.name + " (" + e + ")");
+        }
       }
+      loadError = "tried " + failures.join("; ");
+      console.warn("Fumola livelit: wasm runtime unavailable: " + loadError);
+    } finally {
+      // Announce the outcome, either way.
+      //
+      // This load is asynchronous and the wasm is a few megabytes, usually
+      // fetched cross-origin, so a program is routinely elaborated before it
+      // arrives. Such a program is not wrong -- its Fumola livelits expand to
+      // "the runtime is still loading", which was true when it was said -- but
+      // nothing would ever revisit it, so the card stayed that way until the
+      // page was reloaded. Hazel listens for this and recalculates.
+      //
+      // In a finally so that it covers the early return above as well as
+      // running out of sources, and so it is reached after wasm and loadError
+      // are set: a listener that asks ready() gets the settled answer. On
+      // failure it matters too -- the message settles from "still loading" to
+      // "unavailable" rather than waiting on a load that is not coming.
+      window.dispatchEvent(new Event("fumola-runtime-ready"));
     }
-    loadError = "tried " + failures.join("; ");
-    console.warn("Fumola livelit: wasm runtime unavailable: " + loadError);
   })();
 
   const ready = () => wasm !== null;
