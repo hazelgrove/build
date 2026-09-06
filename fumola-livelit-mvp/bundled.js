@@ -25479,35 +25479,44 @@
     const claimedByOwner = /* @__PURE__ */ new Map();
     const lastEval = /* @__PURE__ */ new Map();
     const here = (path) => new URL(path, document.baseURI).href;
-    const LOCAL = {
-      glue: here("./fumola/fumola_wasm.js"),
-      wasm: here("./fumola/fumola_wasm_bg.wasm")
-    };
-    const PUBLISHED = {
-      glue: "https://adapton.github.io/fumola/fumola_wasm.js",
-      wasm: "https://adapton.github.io/fumola/fumola_wasm_bg.wasm"
-    };
+    const SOURCES = [
+      {
+        name: "local",
+        glue: here("./fumola/fumola_wasm.js"),
+        wasm: here("./fumola/fumola_wasm_bg.wasm")
+      },
+      {
+        name: "fumola.org",
+        glue: "https://fumola.org/fumola_wasm.js",
+        wasm: "https://fumola.org/fumola_wasm_bg.wasm"
+      },
+      {
+        name: "adapton.github.io",
+        glue: "https://adapton.github.io/fumola/fumola_wasm.js",
+        wasm: "https://adapton.github.io/fumola/fumola_wasm_bg.wasm"
+      }
+    ];
     const dynamicImport = new Function("p", "return import(p)");
     const load = async (from) => {
       const mod2 = await dynamicImport(from.glue);
       await mod2.default({ module_or_path: from.wasm });
       return mod2;
     };
-    load(LOCAL).then((mod2) => {
-      loadedFrom = "local";
-      return mod2;
-    }).catch(
-      () => load(PUBLISHED).then((mod2) => {
-        loadedFrom = "published";
-        return mod2;
-      })
-    ).then((mod2) => {
-      wasm = mod2;
-      console.info("Fumola livelit: runtime loaded from the " + loadedFrom + " build");
-    }).catch((e11) => {
-      loadError = String(e11);
-      console.warn("Fumola livelit: wasm runtime unavailable:", e11);
-    });
+    (async () => {
+      const failures = [];
+      for (const from of SOURCES) {
+        try {
+          wasm = await load(from);
+          loadedFrom = from.name;
+          console.info("Fumola livelit: runtime loaded from " + from.name);
+          return;
+        } catch (e11) {
+          failures.push(from.name + " (" + e11 + ")");
+        }
+      }
+      loadError = "tried " + failures.join("; ");
+      console.warn("Fumola livelit: wasm runtime unavailable: " + loadError);
+    })();
     const ready = () => wasm !== null;
     const claim = (id, owner) => {
       if (!ready() || id !== 0) return id;
