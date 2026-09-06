@@ -25502,16 +25502,50 @@
       await mod2.default({ module_or_path: from.wasm });
       return mod2;
     };
+    const LOAD_TIMEOUT_MS = 3e4;
+    const withTimeout = (attempt, ms, name) => new Promise((resolve, reject) => {
+      const timer = setTimeout(
+        () => reject(new Error(name + " did not answer within " + ms + "ms")),
+        ms
+      );
+      attempt.then(
+        (v2) => {
+          clearTimeout(timer);
+          resolve(v2);
+        },
+        (e11) => {
+          clearTimeout(timer);
+          reject(e11);
+        }
+      );
+    });
     (async () => {
       try {
         const failures = [];
         for (const from of SOURCES) {
+          let abandoned = false;
           try {
-            wasm = await load(from);
+            const attempt = load(from);
+            attempt.then(
+              (mod2) => {
+                if (abandoned && wasm === null) {
+                  wasm = mod2;
+                  loadedFrom = from.name;
+                  console.info(
+                    "Fumola livelit: runtime loaded from " + from.name + " (late)"
+                  );
+                  window.dispatchEvent(new Event("fumola-runtime-ready"));
+                }
+              },
+              () => {
+              }
+            );
+            wasm = await withTimeout(attempt, LOAD_TIMEOUT_MS, from.name);
             loadedFrom = from.name;
             console.info("Fumola livelit: runtime loaded from " + from.name);
             return;
           } catch (e11) {
+            abandoned = true;
             failures.push(from.name + " (" + e11 + ")");
           }
         }
