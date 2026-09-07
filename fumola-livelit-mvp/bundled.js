@@ -25479,28 +25479,43 @@
     const claimedByOwner = /* @__PURE__ */ new Map();
     const lastEval = /* @__PURE__ */ new Map();
     const here = (path) => new URL(path, document.baseURI).href;
+    const published = (name, origin) => ({
+      name,
+      origin,
+      manifest: origin + "/runtime.json",
+      glue: origin + "/fumola_wasm.js",
+      wasm: origin + "/fumola_wasm_bg.wasm"
+    });
     const SOURCES = [
       {
         name: "local",
         glue: here("./fumola/fumola_wasm.js"),
         wasm: here("./fumola/fumola_wasm_bg.wasm")
       },
-      {
-        name: "fumola.org",
-        glue: "https://fumola.org/fumola_wasm.js",
-        wasm: "https://fumola.org/fumola_wasm_bg.wasm"
-      },
-      {
-        name: "adapton.github.io",
-        glue: "https://adapton.github.io/fumola/fumola_wasm.js",
-        wasm: "https://adapton.github.io/fumola/fumola_wasm_bg.wasm"
-      }
+      published("fumola.org", "https://fumola.org"),
+      published("adapton.github.io", "https://adapton.github.io/fumola")
     ];
     const dynamicImport = new Function("p", "return import(p)");
     const load = async (from) => {
-      const mod2 = await dynamicImport(from.glue);
-      await mod2.default({ module_or_path: from.wasm });
-      return mod2;
+      let { glue, wasm: wasm2 } = from;
+      let version2 = "stable";
+      if (from.manifest) {
+        try {
+          const reply = await fetch(from.manifest, { cache: "no-cache" });
+          if (reply.ok) {
+            const manifest = await reply.json();
+            if (manifest.js && manifest.wasm) {
+              glue = from.origin + manifest.js;
+              wasm2 = from.origin + manifest.wasm;
+              version2 = manifest.hash || "unknown";
+            }
+          }
+        } catch (e11) {
+        }
+      }
+      const mod2 = await dynamicImport(glue);
+      await mod2.default({ module_or_path: wasm2 });
+      return { mod: mod2, version: version2 };
     };
     const LOAD_TIMEOUT_MS = 3e4;
     const withTimeout = (attempt, ms, name) => new Promise((resolve, reject) => {
@@ -25527,12 +25542,12 @@
           try {
             const attempt = load(from);
             attempt.then(
-              (mod2) => {
+              (loaded2) => {
                 if (abandoned && wasm === null) {
-                  wasm = mod2;
-                  loadedFrom = from.name;
+                  wasm = loaded2.mod;
+                  loadedFrom = from.name + " @ " + loaded2.version;
                   console.info(
-                    "Fumola livelit: runtime loaded from " + from.name + " (late)"
+                    "Fumola livelit: runtime loaded from " + loadedFrom + " (late)"
                   );
                   window.dispatchEvent(new Event("fumola-runtime-ready"));
                 }
@@ -25540,9 +25555,10 @@
               () => {
               }
             );
-            wasm = await withTimeout(attempt, LOAD_TIMEOUT_MS, from.name);
-            loadedFrom = from.name;
-            console.info("Fumola livelit: runtime loaded from " + from.name);
+            const loaded = await withTimeout(attempt, LOAD_TIMEOUT_MS, from.name);
+            wasm = loaded.mod;
+            loadedFrom = from.name + " @ " + loaded.version;
+            console.info("Fumola livelit: runtime loaded from " + loadedFrom);
             return;
           } catch (e11) {
             abandoned = true;
