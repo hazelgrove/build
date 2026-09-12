@@ -25471,6 +25471,182 @@
     }
     return flag2;
   };
+  window.fumola = (() => {
+    let wasm = null;
+    let loadError = null;
+    let loadedFrom = null;
+    const owners = /* @__PURE__ */ new Map();
+    const claimedByOwner = /* @__PURE__ */ new Map();
+    const lastEval = /* @__PURE__ */ new Map();
+    const here = (path) => new URL(path, document.baseURI).href;
+    const published = (name, origin) => ({
+      name,
+      origin,
+      manifest: origin + "/runtime.json",
+      glue: origin + "/fumola_wasm.js",
+      wasm: origin + "/fumola_wasm_bg.wasm"
+    });
+    const SOURCES = [
+      {
+        name: "local",
+        glue: here("./fumola/fumola_wasm.js"),
+        wasm: here("./fumola/fumola_wasm_bg.wasm")
+      },
+      published("fumola.org", "https://fumola.org"),
+      published("adapton.github.io", "https://adapton.github.io/fumola")
+    ];
+    const dynamicImport = new Function("p", "return import(p)");
+    const load = async (from) => {
+      let { glue, wasm: wasm2 } = from;
+      let version2 = "stable";
+      if (from.manifest) {
+        try {
+          const reply = await fetch(from.manifest, { cache: "no-cache" });
+          if (reply.ok) {
+            const manifest = await reply.json();
+            if (manifest.js && manifest.wasm) {
+              glue = from.origin + manifest.js;
+              wasm2 = from.origin + manifest.wasm;
+              version2 = manifest.hash || "unknown";
+            }
+          }
+        } catch (e11) {
+        }
+      }
+      const mod2 = await dynamicImport(glue);
+      await mod2.default({ module_or_path: wasm2 });
+      return { mod: mod2, version: version2 };
+    };
+    const LOAD_TIMEOUT_MS = 3e4;
+    const withTimeout = (attempt, ms, name) => new Promise((resolve, reject) => {
+      const timer = setTimeout(
+        () => reject(new Error(name + " did not answer within " + ms + "ms")),
+        ms
+      );
+      attempt.then(
+        (v2) => {
+          clearTimeout(timer);
+          resolve(v2);
+        },
+        (e11) => {
+          clearTimeout(timer);
+          reject(e11);
+        }
+      );
+    });
+    (async () => {
+      try {
+        const failures = [];
+        for (const from of SOURCES) {
+          let abandoned = false;
+          try {
+            const attempt = load(from);
+            attempt.then(
+              (loaded2) => {
+                if (abandoned && wasm === null) {
+                  wasm = loaded2.mod;
+                  loadedFrom = from.name + " @ " + loaded2.version;
+                  console.info(
+                    "Fumola livelit: runtime loaded from " + loadedFrom + " (late)"
+                  );
+                  window.dispatchEvent(new Event("fumola-runtime-ready"));
+                }
+              },
+              () => {
+              }
+            );
+            const loaded = await withTimeout(attempt, LOAD_TIMEOUT_MS, from.name);
+            wasm = loaded.mod;
+            loadedFrom = from.name + " @ " + loaded.version;
+            console.info("Fumola livelit: runtime loaded from " + loadedFrom);
+            return;
+          } catch (e11) {
+            abandoned = true;
+            failures.push(from.name + " (" + e11 + ")");
+          }
+        }
+        loadError = "tried " + failures.join("; ");
+        console.warn("Fumola livelit: wasm runtime unavailable: " + loadError);
+      } finally {
+        window.dispatchEvent(new Event("fumola-runtime-ready"));
+      }
+    })();
+    const ready = () => wasm !== null;
+    const claim = (id, owner) => {
+      if (!ready() || id !== 0) return id;
+      const already = claimedByOwner.get(owner);
+      if (already !== void 0) return already;
+      const fresh = wasm.fumola_create();
+      owners.set(fresh, owner);
+      claimedByOwner.set(owner, fresh);
+      return fresh;
+    };
+    const evalTop = (id, src) => {
+      if (!ready()) {
+        return JSON.stringify({
+          ok: false,
+          kind: "runtime",
+          error: "the Fumola runtime is not loaded"
+        });
+      }
+      if (!wasm.fumola_has(id)) wasm.fumola_realize(id);
+      try {
+        return wasm.fumola_eval_top(id, src);
+      } catch (e11) {
+        return JSON.stringify({ ok: false, kind: "runtime", error: String(e11) });
+      }
+    };
+    const evalSync = (id, thunkName, src) => {
+      if (!ready()) {
+        return JSON.stringify({
+          ok: false,
+          kind: "runtime",
+          error: loadError === null ? "the Fumola runtime is still loading" : "the Fumola runtime is unavailable"
+        });
+      }
+      const key = thunkName + "\0" + src;
+      const last = lastEval.get(id);
+      if (last !== void 0 && last.key === key) return last.result;
+      if (!wasm.fumola_has(id)) wasm.fumola_realize(id);
+      let result;
+      try {
+        result = wasm.fumola_eval(id, thunkName, src);
+      } catch (e11) {
+        result = JSON.stringify({ ok: false, error: String(e11) });
+      }
+      lastEval.set(id, { key, result });
+      return result;
+    };
+    const source = () => loadedFrom;
+    const ensureMode = (id, mode) => {
+      if (!ready()) {
+        return JSON.stringify({
+          ok: false,
+          error: "the Fumola runtime is not loaded"
+        });
+      }
+      try {
+        return wasm.fumola_ensure_mode(id, mode);
+      } catch (e11) {
+        return JSON.stringify({ ok: false, kind: "runtime", error: String(e11) });
+      }
+    };
+    const evalFresh = (id, src) => {
+      if (!ready()) {
+        return JSON.stringify({
+          ok: false,
+          error: "the Fumola runtime is not loaded"
+        });
+      }
+      if (!wasm.fumola_has(id)) wasm.fumola_realize(id);
+      try {
+        return wasm.fumola_eval_top(id, src);
+      } catch (e11) {
+        return JSON.stringify({ ok: false, kind: "runtime", error: String(e11) });
+      }
+    };
+    return { ready, source, claim, ensureMode, evalSync, evalTop, evalFresh };
+  })();
 })();
 /*! Bundled license information:
 
