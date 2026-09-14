@@ -25645,7 +25645,26 @@
         return JSON.stringify({ ok: false, kind: "runtime", error: String(e11) });
       }
     };
-    return { ready, source, claim, ensureMode, evalSync, evalTop, evalFresh };
+    const reset = (id) => {
+      if (!ready()) return false;
+      if (!wasm.fumola_has(id)) return false;
+      try {
+        wasm.fumola_reset(id);
+        return true;
+      } catch (e11) {
+        return false;
+      }
+    };
+    return {
+      ready,
+      source,
+      claim,
+      ensureMode,
+      evalSync,
+      evalTop,
+      evalFresh,
+      reset
+    };
   })();
 })();
 /*! Bundled license information:
