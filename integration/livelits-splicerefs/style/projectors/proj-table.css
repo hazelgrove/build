@@ -26,17 +26,34 @@ table.table {
     font-weight: normal;
 }
 
+/* A floor, so a header can never fall back to whatever color it inherits --
+ * that is how it ended up in the muted code color, barely off its own fill.
+ * Safe to set on the <th> because the column menu nested inside it sets its
+ * own color (nut-menu.css); the rest of the typography must not be, hence
+ * the wrapper below. */
+.table th {
+    color: var(--text-strong);
+}
+
 /* Typography lives on the label wrapper so it doesn't inherit into
  * nested children (e.g. the column menu sitting inside the <th>). */
 .table th .column-label {
     font-weight: 600;
-    color: var(--BR4);
+    color: var(--text-strong);
     font-family: var(--code-font);
 }
 
-.table th,
-.table td {
+.table th {
     vertical-align: middle;
+    padding: 0px;
+}
+
+/* Top-align cell contents: rows are sized by their tallest cell, and
+ * offside decorations (probe sample chips) are placed on the grid row
+ * computed from the top of the table row (TableProj.splice_rows), so
+ * vertically-centered contents would drift away from their chips. */
+.table td {
+    vertical-align: top;
     padding: 0px;
 }
 
@@ -52,6 +69,34 @@ table.table {
  * cursor moves across other column headers in the same row). */
 .table tbody tr:hover {
     background-color: var(--df-hover-bg);
+}
+
+/* In high contrast a difference in fill is not enough on its own -- some
+   users cannot see it at all -- and the zebra step is deliberately gentle,
+   since a fraction of the page-to-ink axis is a bigger step when that axis is
+   longer. So the grid gets a stroke instead of a heavier fill.
+
+   `--hazel-contrast` is published by the Colors slide for exactly this (see
+   ../README.md), and `--border-inverse` is the ink end of the axis, so these
+   rules read against the table in either polarity without knowing which
+   scheme is up: black on the light high-contrast scheme, white on the dark
+   one. */
+@container style(--hazel-contrast: high) {
+    .table tbody tr {
+        border-bottom: 1px solid var(--border-inverse);
+    }
+
+    .table th {
+        border-bottom: 2px solid var(--border-inverse);
+    }
+
+    /* The hovered row has to be unmistakable rather than merely different, so
+       it takes a stroke on all four sides. Inset, because an outline outside
+       the row would be clipped by the scroll container. */
+    .table tbody tr:hover {
+        outline: 2px solid var(--border-inverse);
+        outline-offset: -2px;
+    }
 }
 
 /* Threshold of 10 rows must stay in sync with scroll_threshold_rows
@@ -92,11 +137,95 @@ div.projector.table:has(tbody tr:nth-child(10)) .table th {
 }
 
 .projector.table > .table-inner > .table-error-banner {
-    color: var(--R1);
+    color: var(--text-error);
     font-size: calc(var(--base-font-size) * 0.95);
     line-height: 1.2;
     padding: 0.35em 0.5em 0.25em;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+/* Splice cells
+ *
+ * Editable cells host a .splice-editor sub-editor (see proj-base.css)
+ * inside a .cell-splice wrapper. The td must not clip: the sub-editor's
+ * caret/selection decorations and overlays (context menu, completions)
+ * overflow the cell box. */
+.table td:has(.cell-splice) {
+    overflow: visible;
+}
+
+/* Splice sub-editors must share the main editor's font metrics: the
+ * caret/selection/highlight overlays are positioned on the global
+ * (row_height, col_width) grid, so the table's 0.9x code shrink above
+ * would accumulate per-line and per-char drift between the text and
+ * its decorations. Read-only value cells keep the shrink — they have
+ * no overlays. */
+.projector.table .cell-splice .code {
+    font-size: var(--base-font-size);
+}
+
+/* Whole-cell click focus: stretch the sub-editor across the td so a
+ * click anywhere in the cell reaches the editor's pointer handlers.
+ * Pointer goals are computed relative to .code-container and clamped
+ * into the splice, and all decorations live inside .code-container,
+ * so the container can sit centered without desyncing anything. */
+.table td .cell-splice {
+    display: block;
+}
+
+.table td .cell-splice .splice-editor {
+    display: block;
+    width: 100%;
+}
+
+.table td .cell-splice .splice-editor .code-editor.sub-editor {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 0 0.4em;
+    box-sizing: border-box;
+    /* The table's text-align: center must not reach the code lines:
+     * decorations (highlights, caret) are positioned on a left-aligned
+     * measured grid, so centering each line would desync them on
+     * multi-line cells. The flex centering above centers the code
+     * block as a whole instead. */
+    text-align: left;
+}
+
+/* Keep splice rows exactly one text line tall, like the read-only
+ * value cells: .inline-editor-wrapper's vertical padding would
+ * otherwise make each row overflow the Block(rows) placeholder
+ * space reserved by TableProj.placeholder. */
+.table td .cell-splice .splice-editor.inline-editor-wrapper {
+    padding: 0;
+}
+
+/* Editable column labels
+ *
+ * Renameable headers render as text inputs styled like the static
+ * label text; committing (Enter/blur) rewrites the label in every
+ * row. Sizing tracks the title via the size attribute-less width so
+ * keep it modest and centered. */
+.table th input.column-label-input {
+    font-weight: 600;
+    color: var(--BR4);
+    font-family: var(--code-font);
+    font-size: inherit;
+    background: transparent;
+    border: none;
+    outline: none;
+    text-align: center;
+    width: 100%;
+    min-width: 3em;
+    padding: 0;
+}
+
+.table th input.column-label-input:hover {
+    background: var(--df-hover-bg);
+}
+
+.table th input.column-label-input:focus {
+    background: var(--light-page-color);
+    box-shadow: inset 0 -1px 0 var(--BR4);
 }
