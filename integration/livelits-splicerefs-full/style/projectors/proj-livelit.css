@@ -1,0 +1,103 @@
+/* Content box: a livelit GUI's canvas is the region just inside the
+   chevron end-caps (0.4ch clears the nib slope), with a hair of
+   vertical padding. Oversized content CLIPS here instead of
+   overlapping neighboring code — undersized content centers. */
+.livelit > *:not(svg) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: var(--projector-z);
+    inset: 1px 0.4ch;
+    overflow: hidden;
+}
+
+.livelit > .slider > input {
+  margin: 0;
+  filter: sepia(1);
+  cursor: pointer;
+  outline: none;
+  width: 90%;
+}
+
+.livelit > .emotion {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.livelit > .emotion input {
+    margin: 0;
+    filter: sepia(1);
+    cursor: pointer;
+    outline: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+/* A commit is being re-evaluated: the last good view shown dimmed and
+   inert until the fresh sample arrives (see LivelitProj.last_good_view) */
+.livelit-pending {
+  opacity: 0.65;
+  pointer-events: none;
+  transition: opacity 0.15s ease-in;
+}
+
+/* Centered like builtins: the content box clips overflow, so the old
+   hang-down-past-the-backing anchoring is no longer needed. */
+
+/* Instant hover hint: any livelit GUI element carrying data-hint shows
+   it as an immediate tooltip bubble (native title has a long delay). */
+.livelit [data-hint] {
+    position: relative;
+}
+.livelit [data-hint]:hover::after {
+    content: attr(data-hint);
+    position: absolute;
+    left: 50%;
+    bottom: 3px;
+    transform: translateX(-50%);
+    background: #333c;
+    color: #fff;
+    padding: 0px 6px;
+    border-radius: 4px;
+    font-size: 0.65em;
+    font-family: var(--code-font);
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* A splice inside a livelit sits in ONE editor row. The wrapper padding
+   it inherits from .inline-editor-wrapper (0.2em top and bottom, plus a
+   1px border) makes it about 6px taller than the row, and since
+   `.livelit > *` is overflow:hidden that difference clips the widget's
+   own text rather than overflowing it. Trimmed here only -- the
+   stepper's induction and case editors share that class and keep it. */
+.livelit-splice .splice-editor.inline-editor-wrapper {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* A splice's error arm draws BELOW the row its term sits on -- see
+   Arms.simple_arm, which flips the path under the term and adds a hook
+   past that. In the main editor it draws into the gap under the line; in
+   a livelit there is no gap, because the cell is exactly one row tall and
+   clips. The arm rendered and was then cut off, which reads as a broken
+   underline rather than as an error.
+
+   Giving the cell back its 1px inset was not enough (measured: still ~1px
+   short), and the room the arm wants is not a fixed number of pixels --
+   it scales with the font. So stop clipping on that axis instead. The
+   horizontal clip is the one that matters, since it is what keeps a wide
+   GUI off the code beside it; vertically, overflowing into the line gap
+   is exactly what every other decoration in the editor does.
+
+   `overflow-x: clip` with `overflow-y: visible` is the one combination
+   that gets this: `visible` degrades to `auto` (and would scroll) beside
+   `hidden`, but not beside `clip`. Scoped to livelits that actually host
+   a splice, so every other widget keeps the plain clip. */
+.livelit:has(.livelit-splice) > *:not(svg) {
+  inset-block: 0;
+  overflow-x: clip;
+  overflow-y: visible;
+}
