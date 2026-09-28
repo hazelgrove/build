@@ -23180,6 +23180,71 @@
     }
   });
 
+  // canvas-layout-bridge.js
+  var worker;
+  var next = 0;
+  var activeKey;
+  var jobs = /* @__PURE__ */ new Map();
+  var cache = /* @__PURE__ */ new Map();
+  var latest = /* @__PURE__ */ new Map();
+  var observations = [];
+  var state = { pending: 0, status: "idle", runs: observations };
+  function finish(job, result) {
+    clearTimeout(job.timer);
+    jobs.delete(job.id);
+    state.pending = jobs.size;
+    cache.set(job.key, result);
+    while (cache.size > 48) cache.delete(cache.keys().next().value);
+    observations.push({ kind: job.data.kind, nodes: job.data.items.length, ms: result.ms, error: result.error || null });
+    if (observations.length > 150) observations.shift();
+    if (activeKey === job.key && latest.get(job.scope) === job.key) {
+      state.status = result.error ? "Layout failed; previous positions retained" : `Ready \xB7 ${Math.round(result.ms)} ms`;
+      job.done();
+    }
+  }
+  function startWorker() {
+    if (worker) return;
+    worker = new Worker(new URL("canvas-layout-worker.js", document.baseURI));
+    worker.onmessage = ({ data }) => {
+      const job = jobs.get(data.id);
+      if (job) finish(job, data);
+    };
+    worker.onerror = (e11) => failWorker("Layout worker failed: " + (e11.message || "unknown error"));
+  }
+  function failWorker(error) {
+    worker?.terminate();
+    worker = null;
+    for (const job of [...jobs.values()]) finish(job, { error, ms: 0 });
+  }
+  window.__canvasResearchState = state;
+  window.__canvasResearchLayout = (encoded, done) => {
+    const data = JSON.parse(encoded), scope = data.scope;
+    const key = JSON.stringify([scope, data.items.map((n9) => n9.key), data.links, data.clusters, data.topology]);
+    latest.set(scope, key);
+    activeKey = key;
+    if (cache.has(key)) {
+      const r6 = cache.get(key);
+      return JSON.stringify(r6.positions || []);
+    }
+    const existing = [...jobs.values()].find((j2) => j2.key === key);
+    if (existing) {
+      existing.done = done;
+      return "[]";
+    }
+    const id = ++next, job = { id, key, scope, data, done };
+    jobs.set(id, job);
+    state.pending = jobs.size;
+    state.status = "Arranging\u2026";
+    job.timer = setTimeout(() => failWorker("Layout exceeded the 8 second limit"), 8e3);
+    try {
+      startWorker();
+      worker.postMessage({ ...data, id });
+    } catch (error) {
+      finish(job, { error: String(error), ms: 0 });
+    }
+    return "[]";
+  };
+
   // ../../../../../node_modules/@lit/reactive-element/css-tag.js
   var t = window;
   var e = t.ShadowRoot && (void 0 === t.ShadyCSS || t.ShadyCSS.nativeShadow) && "adoptedStyleSheets" in Document.prototype && "replace" in CSSStyleSheet.prototype;
