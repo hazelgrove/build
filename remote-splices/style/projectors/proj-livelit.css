@@ -66,8 +66,8 @@
     left: 50%;
     bottom: 3px;
     transform: translateX(-50%);
-    background: #333c;
-    color: #fff;
+    background: var(--surface-inverse);
+    color: var(--text-inverse);
     padding: 0px 6px;
     border-radius: 4px;
     font-size: 0.65em;
@@ -192,9 +192,9 @@
     font-family: var(--code-font);
     font-size: var(--base-font-size);
     padding: 0 0.05em;
-    border: 1px solid rgba(0, 0, 0, 0.18);
+    border: 1px solid color-mix(in srgb, var(--text-default) 18%, transparent);
     border-radius: 0.3em;
-    background: rgba(0, 0, 0, 0.03);
+    background: color-mix(in srgb, var(--text-default) 3%, transparent);
     white-space: nowrap;
 }
 .fumola-peek-reads {
