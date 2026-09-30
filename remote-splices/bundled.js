@@ -25596,6 +25596,28 @@
         return JSON.stringify({ ok: false, kind: "runtime", error: String(e11) });
       }
     };
+    const evalScratch = (id, src) => {
+      if (!ready()) {
+        return JSON.stringify({
+          ok: false,
+          kind: "runtime",
+          error: "the Fumola runtime is not loaded"
+        });
+      }
+      if (typeof wasm.fumola_eval_scratch !== "function") {
+        return JSON.stringify({
+          ok: false,
+          kind: "runtime",
+          error: "this Fumola runtime cannot evaluate on a scratch branch"
+        });
+      }
+      if (!wasm.fumola_has(id)) wasm.fumola_realize(id);
+      try {
+        return wasm.fumola_eval_scratch(id, src);
+      } catch (e11) {
+        return JSON.stringify({ ok: false, kind: "runtime", error: String(e11) });
+      }
+    };
     const evalSync = (id, thunkName, src) => {
       if (!ready()) {
         return JSON.stringify({
@@ -25662,6 +25684,7 @@
       ensureMode,
       evalSync,
       evalTop,
+      evalScratch,
       evalFresh,
       reset
     };
