@@ -25677,10 +25677,30 @@
         return false;
       }
     };
+    const instances = () => {
+      if (!ready()) return JSON.stringify({ ok: false, error: "the Fumola runtime is not loaded" });
+      const list2 = [];
+      let heap = null;
+      for (const [name, id] of claimedByOwner) {
+        if (!wasm.fumola_has(id)) continue;
+        let stats = null;
+        if (wasm.fumola_stats) {
+          try {
+            stats = JSON.parse(wasm.fumola_stats(id));
+            if (stats.heap_bytes != null) heap = stats.heap_bytes;
+          } catch (e11) {
+            stats = null;
+          }
+        }
+        list2.push({ name: String(name), id, stats });
+      }
+      return JSON.stringify({ ok: true, heap_bytes: heap, instances: list2 });
+    };
     return {
       ready,
       source,
       claim,
+      instances,
       ensureMode,
       evalSync,
       evalTop,
