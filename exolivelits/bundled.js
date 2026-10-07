@@ -48653,6 +48653,29 @@ ${extraStyle}`
     }
     return flag2;
   };
+  var boundHotkeys = /* @__PURE__ */ new WeakMap();
+  NinjaKeys.prototype.update = function(changedProperties) {
+    if (changedProperties.has("data")) {
+      this._flatData = this._flattern(this.data);
+      if (!this.disableHotkeys) {
+        (boundHotkeys.get(this) || []).forEach(
+          ({ hotkey, method }) => hotkeys_esm_default.unbind(hotkey, method)
+        );
+        const bound = this._flatData.filter((action) => !!action.hotkey).map((action) => {
+          const method = (event) => {
+            event.preventDefault();
+            if (action.handler) {
+              action.handler(action);
+            }
+          };
+          hotkeys_esm_default(action.hotkey, method);
+          return { hotkey: action.hotkey, method };
+        });
+        boundHotkeys.set(this, bound);
+      }
+    }
+    Object.getPrototypeOf(NinjaKeys.prototype).update.call(this, changedProperties);
+  };
 })();
 /*! Bundled license information:
 
