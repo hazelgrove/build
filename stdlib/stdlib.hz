@@ -140,6 +140,9 @@ module Bool = {
 };
 # Ord: comparison results (Lt, Eq, Gt) #
 module Ord = {
+  # the type Ord; Lt, Eq and Gt also work unqualified everywhere #
+  type t = Lt + Eq + Gt;
+
   let invert = $prim.invert_ord
 };
 # Color: OKLCH color operations #
@@ -153,8 +156,11 @@ module Color = {
   let lightness = $prim.color_lightness;
   let mix = $prim.color_mix
 };
-# Option: Hazel-source transcription of the BuiltinsADT.re option_* HazelFn builtins #
+# Option: a value that may be missing (Some or None) #
 module Option = {
+  # the type Option; None and Some also work unqualified everywhere #
+  type t = None + Some(?);
+
   let map : (Option, ? -> ?) -> ? = fun (opt, f) ->
     case opt
     | None => None
@@ -173,7 +179,7 @@ module Option = {
     | Some(x) => [x]
     end
 };
-# List: Hazel-source transcription of the BuiltinsList.re HazelFn builtins #
+# List: lists and their operations #
 module List = {
   let length : [?] -> Int = fun xs ->
     case xs
