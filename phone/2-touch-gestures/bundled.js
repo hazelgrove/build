@@ -25453,11 +25453,25 @@
   // prebundle.js
   var import_algebrite = __toESM(require_algebrite());
   window.Algebrite = import_algebrite.default;
+  var ninjaOpen = NinjaKeys.prototype.open;
+  var ninjaClose = NinjaKeys.prototype.close;
+  NinjaKeys.prototype.open = function(...args2) {
+    if (!this.visible) this._returnFocus = document.activeElement;
+    return ninjaOpen.apply(this, args2);
+  };
+  NinjaKeys.prototype.close = function(...args2) {
+    const prev = this._returnFocus;
+    this._returnFocus = null;
+    const result = ninjaClose.apply(this, args2);
+    if (prev && prev.isConnected && document.activeElement === this)
+      prev.focus({ preventScroll: true });
+    return result;
+  };
   hotkeys_esm_default.filter = (event) => {
     const path = typeof event.composedPath === "function" ? event.composedPath() : [];
     const target = event.target || event.srcElement;
-    const { tagName, id } = target;
-    if (id == "clipboard-shim" || target.classList && target.classList.contains("code-editor-input")) {
+    const { tagName } = target;
+    if (target.classList && target.classList.contains("code-editor-input")) {
       return true;
     }
     const inNinjaKeys = path.some((el) => el && el.tagName === "NINJA-KEYS");
