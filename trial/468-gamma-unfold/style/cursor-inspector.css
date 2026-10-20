@@ -1,0 +1,544 @@
+/* CURSOR INSPECTOR */
+
+#cursor-inspector {
+  display: flex;
+  align-items: stretch;
+  gap: 0.5em;
+  /* Below is to permit access to projector panel if ci is too wide */
+  overflow: hidden;
+  min-width: 0;
+}
+
+#cursor-inspector.no-info {
+  align-items: center;
+}
+
+#cursor-inspector.error {
+  border-color: var(--border-error);
+}
+
+#cursor-inspector.warning {
+  border-color: var(--border-highlight);
+}
+
+#cursor-inspector .icon {
+  display: flex;
+  padding: 0.2em;
+  mix-blend-mode: luminosity;
+}
+
+#cursor-inspector .syntax-class {
+  display: flex;
+  align-items: center;
+}
+
+#cursor-inspector .gamma {
+  cursor: pointer;
+  display: flex;
+  font-family: math;
+  font-weight: normal;
+  background-color: var(--ci-icon-bkg);
+  border-radius: 0 1.1em 0 0;
+  color: var(--light-page-color);
+  width: 2em;
+  height: 100%;
+  transition: border-radius 0.2s ease-in;
+  align-items: center;
+}
+
+#cursor-inspector .gamma svg {
+  pointer-events: auto;
+  fill: var(--cell-active);
+  scale: 0.66;
+  padding-left: 0.3em;
+  transition: scale 0.1s ease-in;
+}
+
+#cursor-inspector .gamma:hover svg {
+  scale: 0.9;
+  animation: jello 0.6s ease 0s 1 normal forwards;
+}
+
+#cursor-inspector .Exp .gamma {
+  background-color: var(--ci-icon-bkg);
+}
+
+#cursor-inspector .Pat .gamma {
+  background-color: var(--token-pat);
+}
+
+#cursor-inspector .Typ .gamma {
+  background-color: var(--token-typ);
+}
+
+#cursor-inspector .Drv .gamma {
+  background-color: var(--token-drv);
+}
+
+#cursor-inspector .TPat .gamma {
+  background-color: var(--token-tpat);
+}
+
+#cursor-inspector .Label .gamma {
+  background-color: var(--token-label);
+}
+#cursor-inspector .Mod .gamma {
+  background-color: var(--token-mod);
+}
+#cursor-inspector .Sig .gamma {
+  background-color: var(--token-sig);
+}
+#cursor-inspector .MPat .gamma {
+  background-color: var(--token-mpat);
+}
+
+#cursor-inspector .ci-header .gamma.visible,
+#cursor-inspector .ci-header.error .gamma.visible,
+#bottom-bar:has(~ .context-inspector:hover) .gamma {
+  background-color: var(--surface-highlight-soft);
+  outline: 0.3px solid var(--border-strong);
+  color: var(--text-strong);
+}
+
+#cursor-inspector .ci-header .gamma:hover,
+#cursor-inspector .ci-header.warning .gamma:hover,
+#cursor-inspector .ci-header .gamma.visible,
+#cursor-inspector .ci-header.warning .gamma.visible,
+#bottom-bar:has(~ .context-inspector:hover) .gamma {
+  background-color: var(--surface-highlight-soft);
+  outline: 0.3px solid var(--warning-hole-stroke);
+  color: var(--warning-hole-stroke);
+}
+
+#cursor-inspector .ci-header .gamma.visible svg {
+  fill: var(--text-strong);
+}
+
+#cursor-inspector .gamma.visible,
+#bottom-bar:has(~ .context-inspector:hover) .gamma {
+  border-radius: 0;
+}
+
+#cursor-inspector .ci-header {
+  outline: 0.6px solid var(--border-default);
+  padding: 0em 0.6em 0em 0em;
+  border-radius: 0 1.1em 0 0;
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+  white-space: nowrap;
+}
+
+#cursor-inspector .ci-header.error {
+  background-color: var(--ci-status-error-bkg);
+  color: var(--ci-status-error-text);
+}
+
+#cursor-inspector .ci-header.error .gamma {
+  background-color: var(--surface-error-strong);
+}
+
+#cursor-inspector .ci-header.error .toggle-switch {
+  background-color: var(--surface-error-strong);
+}
+
+#cursor-inspector .ci-header.error .toggle-switch .toggle-knob {
+  color: var(--text-error-strong);
+}
+
+#cursor-inspector .ci-header.warning {
+  background-color: var(--ci-status-warning-bkg);
+  color: var(--ci-status-warning-text);
+}
+#cursor-inspector .ci-header.warning .gamma {
+  background-color: var(--warning-hole-stroke);
+}
+#cursor-inspector .ci-header.warning .toggle-switch {
+  background-color: var(--warning-hole-stroke);
+}
+#cursor-inspector .ci-header.warning .toggle-switch .toggle-knob {
+  color: var(--warning-hole-stroke);
+}
+
+#cursor-inspector .ci-header.ok .toggle-switch .toggle-knob {
+  background-color: var(--surface-code);
+}
+
+#cursor-inspector .ci-header.ok.Exp .toggle-switch.active {
+  background-color: var(--surface-accent);
+}
+
+#cursor-inspector .ci-header.ok.Pat .toggle-switch.active {
+  background-color: var(--token-pat);
+}
+
+#cursor-inspector .ci-header.ok.Typ .toggle-switch.active {
+  background-color: var(--token-typ);
+}
+
+#cursor-inspector .ci-header.ok.Drv .toggle-switch.active {
+  background-color: var(--token-drv);
+}
+
+#cursor-inspector .ci-header.ok.TPat .toggle-switch.active {
+  background-color: var(--token-tpat);
+}
+
+#cursor-inspector .ci-header.ok.Label .toggle-switch.active {
+  background-color: var(--token-label);
+}
+#cursor-inspector .ci-header.ok.Mod .toggle-switch.active {
+  background-color: var(--token-mod);
+}
+#cursor-inspector .ci-header.ok.Sig .toggle-switch.active {
+  background-color: var(--token-sig);
+}
+#cursor-inspector .ci-header.ok.MPat .toggle-switch.active {
+  background-color: var(--token-mpat);
+}
+#cursor-inspector .ci-header.ok.Exp .toggle-switch .toggle-knob {
+  color: var(--text-accent);
+}
+
+#cursor-inspector .ci-header.ok.Pat .toggle-switch .toggle-knob {
+  color: var(--token-pat);
+}
+
+#cursor-inspector .ci-header.ok.Typ .toggle-switch .toggle-knob {
+  color: var(--token-typ);
+}
+
+#cursor-inspector .ci-header.ok.Drv .toggle-switch .toggle-knob {
+  color: var(--token-drv);
+}
+
+#cursor-inspector .ci-header.ok.TPat .toggle-switch .toggle-knob {
+  color: var(--token-tpat);
+}
+
+#cursor-inspector .ci-header.ok.Label .toggle-switch .toggle-knob {
+  color: var(--token-label);
+}
+#cursor-inspector .ci-header.ok.Mod .toggle-switch .toggle-knob {
+  color: var(--token-mod);
+}
+#cursor-inspector .ci-header.ok.Sig .toggle-switch .toggle-knob {
+  color: var(--token-sig);
+}
+#cursor-inspector .ci-header.ok.MPat .toggle-switch .toggle-knob {
+  color: var(--token-mpat);
+}
+
+#cursor-inspector .ci-header.ok.Any {
+  background-color: var(--shard-any);
+  color: var(--shadow-any);
+}
+
+#cursor-inspector .ci-header.ok.Exp {
+  background-color: var(--shard-exp);
+  color: var(--text-accent);
+}
+
+#cursor-inspector .ci-header.ok.Pat {
+  background-color: var(--shard-pat);
+  color: var(--token-pat);
+}
+
+#cursor-inspector .ci-header.ok.Typ {
+  background-color: var(--shard-typ);
+  color: var(--token-typ);
+}
+
+#cursor-inspector .ci-header.ok.Drv {
+  background-color: var(--shard-drv);
+  color: var(--token-drv);
+}
+
+#cursor-inspector .ci-header.ok.TPat {
+  background-color: var(--shard-tpat);
+  color: var(--token-tpat);
+}
+
+#cursor-inspector .ci-header.ok.Label {
+  background-color: var(--surface-label);
+  color: var(--token-label);
+}
+#cursor-inspector .ci-header.ok.Mod {
+  background-color: var(--shard-mod);
+  color: var(--token-mod);
+}
+#cursor-inspector .ci-header.ok.Sig {
+  background-color: var(--shard-sig);
+  color: var(--token-sig);
+}
+#cursor-inspector .ci-header.ok.MPat {
+  background-color: var(--shard-mpat);
+  color: var(--token-mpat);
+}
+
+#cursor-inspector .term-tag {
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+
+#cursor-inspector .divider {
+  color: var(--text-muted);
+}
+
+#cursor-inspector.error .divider {
+  color: var(--text-error-strong) !important;
+}
+#cursor-inspector.warning .divider {
+  color: var(--warning-hole-stroke) !important;
+}
+#cursor-inspector .Pat .divider {
+  color: var(--token-pat);
+}
+
+#cursor-inspector .Typ .divider {
+  color: var(--token-typ);
+}
+
+#cursor-inspector .TPat .divider {
+  color: var(--token-tpat);
+}
+#cursor-inspector .Mod .divider {
+  color: var(--token-mod);
+}
+#cursor-inspector .Sig .divider {
+  color: var(--token-sig);
+}
+#cursor-inspector .MPat .divider {
+  color: var(--token-mpat);
+}
+
+#cursor-inspector .status.error .code {
+  padding: 0 0.3em 0 0.3em;
+  border-radius: 0.2em;
+  border-bottom: 1px solid var(--ci-status-error-text);
+}
+#cursor-inspector .status.warning .code {
+  padding: 0 0.3em 0 0.3em;
+  border-radius: 0.2em;
+  border-bottom: 1px solid var(--ci-status-warning-text);
+}
+
+#cursor-inspector .status.ok,
+#cursor-inspector .status.error,
+#cursor-inspector .status.warning {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  white-space: nowrap;
+  color: var(--ci-status-text);
+}
+
+#cursor-inspector .status.error {
+  color: var(--ci-status-error-text);
+}
+
+#cursor-inspector .status.warning {
+  color: var(--ci-status-warning-text);
+}
+
+#cursor-inspector .code {
+  position: relative;
+}
+
+#page>.context-inspector {
+  position: absolute;
+  z-index: var(--context-inspector-z);
+  bottom: 2em;
+  min-width: 10em;
+  max-height: 11.15em;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  white-space: nowrap;
+  border-radius: 0 0.2em 0em 0;
+  outline: 0.6px solid var(--menu-outline);
+  background-color: var(--menu-bkg);
+  box-shadow: 0px 20px 20px var(--menu-shadow);
+  scrollbar-color: var(--menu-scroll-thumb) var(--menu-scroll-track);
+  scrollbar-width: thin;
+  /* below triggers chrome jank bug */
+  /* scroll-snap-type: y mandatory; */
+  direction: rtl;
+}
+
+@supports (-moz-appearance: none) {
+  .context-inspector {
+    scroll-snap-type: y mandatory;
+  }
+}
+
+.context-inspector .context-entry {
+  scroll-snap-align: end;
+  direction: ltr;
+  width: 100%;
+  max-width: 18em;
+  padding-left: 0.3em;
+  padding-right: 0.9em;
+  border-bottom: 0.5px solid var(--border-soft);
+}
+
+.context-inspector .context-entry:hover {
+  max-width: 400em;
+  background-color: var(--menu-item-hover-bkg);
+}
+
+.context-inspector .context-entry:hover .name {
+  filter: brightness(0);
+}
+
+.context-inspector::-webkit-scrollbar {
+  background-color: var(--menu-scroll-track);
+}
+
+/* Un-namespaced for exercise mode display */
+
+.context-inspector .context-entry {
+  display: flex;
+  gap: 0.5em;
+  cursor: pointer;
+}
+
+.context-inspector .context-entry .name {
+  color: var(--menu-item-text);
+}
+
+.context-inspector .context-entry .seperator {
+  color: var(--context-inspector-colon);
+}
+
+/* A long entry's toggle, which shows its type whole; a column of its own
+   on every entry, so the names stay in a column */
+.context-inspector .context-entry .unfold {
+  flex: none;
+  width: 1em;
+  text-align: center;
+  color: var(--text-muted);
+  user-select: none;
+}
+.context-inspector .context-entry .unfold:not(.none):hover {
+  color: var(--text-strong);
+}
+/* An unfolded entry: its name on a row, its type laid out below it
+   (ContextInspector.unfold_columns wide), under the name */
+.context-inspector .context-entry.unfolded {
+  flex-direction: column;
+  gap: 0.1em;
+  max-width: none;
+}
+.context-inspector .context-entry.unfolded .entry-head {
+  display: flex;
+  gap: 0.5em;
+}
+.context-inspector .context-entry.unfolded .entry-typ {
+  padding-left: 1.5em;
+}
+/* How a long entry offers its full view, chosen on the Colors slide
+   (gamma-unfold; ContextInspector.ctx_view classes the box by it). Always:
+   the toggle drawn, as above. Hover: drawn while the pointer is on the
+   entry, and on an unfolded one, to fold it back. Right-click: not drawn;
+   the entry's right-click menu has it (as it does in every mode), and the
+   empty column goes too. */
+.context-inspector.unfold-hover
+  .context-entry:not(:hover):not(.unfolded)
+  > .unfold {
+  visibility: hidden;
+}
+.context-inspector.unfold-right-click .context-entry .unfold {
+  display: none;
+}
+/* An entry's right-click menu, at the press (the backdrop under it is
+   editor.css's .context-menu-backdrop, which closes it) */
+.context-inspector .context-entry-menu {
+  position: fixed;
+  z-index: var(--context-menu-z);
+  display: flex;
+  flex-direction: column;
+  min-width: 10em;
+  padding: 0.2em;
+  background-color: var(--menu-bkg);
+  border-radius: 0 0.5em 0.5em 0.5em;
+  outline: 0.6px solid var(--menu-outline);
+  box-shadow: 0px 10px 20px var(--menu-shadow);
+  font-family: var(--ui-font, inherit);
+  white-space: nowrap;
+}
+.context-inspector .context-entry-menu-item {
+  padding: 0.05em 0.5em 0.05em 0.7em;
+  color: var(--menu-item-text);
+  cursor: pointer;
+}
+.context-inspector .context-entry-menu-item:hover {
+  background-color: var(--surface-code);
+  border-radius: 0.2em;
+}
+/* while an entry is unfolded, Gamma grows to show more of it, up to the
+   cursor inspector's full view's limit */
+#page > .context-inspector:has(.context-entry.unfolded) {
+  max-height: 40vh;
+}
+/* The full view (#2674): a toggle at the bar's right end opens a panel
+   over the bar with what the bar inspects, its types printed whole, on
+   several lines. The bar stays one line, clipped as before. */
+#bottom-bar .ci-expand {
+  flex: none;
+  display: flex;
+  align-items: center;
+  padding: 0 0.6em;
+  cursor: pointer;
+  user-select: none;
+  color: var(--text-muted);
+}
+#bottom-bar .ci-expand:hover,
+#bottom-bar .ci-expand.open {
+  color: var(--text-strong);
+  background-color: var(--surface-highlight);
+}
+#page > .ci-expanded {
+  position: absolute;
+  z-index: var(--context-inspector-z);
+  left: 0;
+  right: 0;
+  bottom: 2em;
+  /* as tall as what it shows, up to this, until its top edge is dragged
+     (which sets a height, any up to the window's top) */
+  max-height: 40vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--menu-bkg);
+  outline: 0.6px solid var(--menu-outline);
+  box-shadow: 0px -10px 20px var(--menu-shadow);
+}
+#page > .ci-expanded[style*="height"] {
+  max-height: none;
+}
+#page > .ci-expanded .ci-expanded-grip {
+  flex: none;
+  height: 6px;
+  cursor: row-resize;
+  border-top: 2px solid var(--menu-outline);
+}
+#page > .ci-expanded .ci-expanded-grip:hover {
+  background-color: var(--surface-highlight);
+}
+/* types are laid out to the panel's width (panel_columns), so this
+   scrolls down; across only if a single token is wider than the panel */
+#page > .ci-expanded .ci-expanded-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: auto;
+  padding: 0.4em 0.8em 0.5em;
+}
+#page > .ci-expanded .ci-expanded-body > * {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.5em;
+  white-space: normal;
+}
