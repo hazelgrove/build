@@ -25453,13 +25453,24 @@
   // prebundle.js
   var import_algebrite = __toESM(require_algebrite());
   window.Algebrite = import_algebrite.default;
+  var ninjaOpen = NinjaKeys.prototype.open;
+  var ninjaClose = NinjaKeys.prototype.close;
+  NinjaKeys.prototype.open = function(...args2) {
+    if (!this.visible) this._returnFocus = document.activeElement;
+    return ninjaOpen.apply(this, args2);
+  };
+  NinjaKeys.prototype.close = function(...args2) {
+    const prev = this._returnFocus;
+    this._returnFocus = null;
+    const result = ninjaClose.apply(this, args2);
+    if (prev && prev.isConnected && document.activeElement === this)
+      prev.focus({ preventScroll: true });
+    return result;
+  };
   hotkeys_esm_default.filter = (event) => {
     const path = typeof event.composedPath === "function" ? event.composedPath() : [];
     const target = event.target || event.srcElement;
-    const { tagName, id } = target;
-    if (id == "clipboard-shim") {
-      return true;
-    }
+    const { tagName } = target;
     const inNinjaKeys = path.some((el) => el && el.tagName === "NINJA-KEYS");
     if (inNinjaKeys) {
       return ["Escape", "Enter", "ArrowUp", "ArrowDown", "Backspace", "Tab"].includes(event.key);
@@ -25470,6 +25481,29 @@
       flag2 = false;
     }
     return flag2;
+  };
+  var boundHotkeys = /* @__PURE__ */ new WeakMap();
+  NinjaKeys.prototype.update = function(changedProperties) {
+    if (changedProperties.has("data")) {
+      this._flatData = this._flattern(this.data);
+      if (!this.disableHotkeys) {
+        (boundHotkeys.get(this) || []).forEach(
+          ({ hotkey, method }) => hotkeys_esm_default.unbind(hotkey, method)
+        );
+        const bound = this._flatData.filter((action) => !!action.hotkey).map((action) => {
+          const method = (event) => {
+            event.preventDefault();
+            if (action.handler) {
+              action.handler(action);
+            }
+          };
+          hotkeys_esm_default(action.hotkey, method);
+          return { hotkey: action.hotkey, method };
+        });
+        boundHotkeys.set(this, bound);
+      }
+    }
+    Object.getPrototypeOf(NinjaKeys.prototype).update.call(this, changedProperties);
   };
 })();
 /*! Bundled license information:
