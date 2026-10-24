@@ -49454,7 +49454,7 @@ f=Q(c[1]),e=e6t;break a;case
 7:var
 f=Q(c[1]),e=e6u;break a}var
 f=0,e=e6o}return[0,kJ([0,[0,e6s,c1(g)],[0,[0,e6r,c1(e)],[0,[0,e6q,f],[0,[0,e6p,c1(it(b))],0]]]])]}return 0}var
-VM=[bo,function(a){return ch(function(a){return 2===a[0]?[0,a[1][1]]:0},alf(0)[2])}];eD["Hazel"]={version:"0.1 (draft, js-library)",build:"e12596e1ba2d831aa51312ef8df895b2ad29339a",analyze:lL(function(a){var
+VM=[bo,function(a){return ch(function(a){return 2===a[0]?[0,a[1][1]]:0},alf(0)[2])}];eD["Hazel"]={version:"0.1 (draft, js-library)",build:"b6c0493c8210993b7ce31f447558ddefbfa250fd",analyze:lL(function(a){var
 b=aUg(ej(a));return b?kJ([0,[0,e5Y,VK(aUh(b[1])[1])],0]):kJ([0,[0,e50,VK(e5Z)],0])}),run:lL(function(a){var
 b=aUg(ej(a));if(!b)return kJ([0,[0,e55,VK(e54)],[0,[0,e53,lh],0]]);var
 c=aUh(b[1]),d=c[1],e=[0,[0,e51,xG(alg(c[2]))],0];return kJ([0,[0,e52,VK(d)],e])}),analyzeProgram:lL(function(a){return kJ(alj(ali(alh(a)),(typeof
